@@ -19,6 +19,7 @@ app.post("/webhook",(req, res) =>{
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
+  const id = 1234;
   var respuesta = req.body.queryResult.fulfillmentText;
 	
 	//Consulta nombre de Generalista en Mongo Atlas 
@@ -46,7 +47,8 @@ app.post("/webhook",(req, res) =>{
 function sendAnalytics () {	
 //Creción del Objeto Json para almacenar en Mongo Atlas
   var historial = new Object();
-  historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
+  //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
+  historial.UsuarioId = id;
   historial.UsuarioDice = req.body.queryResult.queryText;
   historial.NombreIntento= req.body.queryResult.intent.displayName;
   historial.BotResponde= respuesta;	
@@ -72,7 +74,8 @@ function sendAnalytics () {
 	if (action == "nothandled") {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(req.body.originalRequest.data.sender.id) // ID de usuario en la plataforma de chat  //falta definir con ID usuario de workplace 
+	  //.setUserId(req.body.originalRequest.data.sender.id) // ID de usuario en la plataforma de chat  //falta definir con ID usuario de workplace 
+	  .setUserId(id)
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -80,8 +83,9 @@ function sendAnalytics () {
 	} else {
 	  messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(req.body.originalRequest.data.sender.id) // ID de usuario en la plataforma de chat   //falta definir con ID usuario de workplace
-	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
+	  //.setUserId(req.body.originalRequest.data.sender.id) // ID de usuario en la plataforma de chat   //falta definir con ID usuario de workplace
+	  .setUserId(id)
+          .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
 	  .setAsHandled(); // Marque esta solicitud como exitosamente manejada(handled)
@@ -105,7 +109,8 @@ function sendAnalytics () {
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
-	  .setUserId(req.body.originalRequest.data.sender.id) // ID de usuario la misma que arriba  //falta definir con ID usuario de workplace
+	  //.setUserId(req.body.originalRequest.data.sender.id) // ID de usuario la misma que arriba  //falta definir con ID usuario de workplace
+	  .setUserId(id)
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setMessage(respuesta); // Mensaje de respuesta del Bot
 	
