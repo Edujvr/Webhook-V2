@@ -26,7 +26,7 @@ app.post("/webhook",(req, res) =>{
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
 		console.log(req.body.queryResult.parameters.UsuariosRed);
-		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.outputContexts.parameters.UsuariosRed });
+		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 		query.findOne(function (err, colaboradores) {
 		    if (err) {
 		      res.status(500).send(err);
