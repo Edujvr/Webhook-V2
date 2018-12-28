@@ -142,7 +142,7 @@ function sendAnalytics () {
 	    }
 	  }
 	
-    };
+    });
 	
 
 
