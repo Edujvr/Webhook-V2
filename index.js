@@ -128,7 +128,7 @@ function sendAnalytics () {
 	    // Si la respuesta es una cadena, envíela como respuesta al usuario
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {};
-	      responseJson.fulfillmentMessages.text = responseToUser; // respuesta hablada
+	      responseJson.fulfillmentMessages = responseToUser; // respuesta hablada
 	      //responseJson.displayText = responseToUser; // respuesta mostrada
 	      res.json(responseJson); // Enviar respuesta a Dialogflow
 	    } else {
