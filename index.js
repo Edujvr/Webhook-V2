@@ -67,7 +67,7 @@ function sendAnalytics () {
 	  });
 	
 	// Creación mensaje Set de Usuario
-	var messageSet = chatbase.newMessageSet()
+	/*var messageSet = chatbase.newMessageSet()
 	  .setApiKey("f8be6699-d8b4-44d8-90cb-07d8d2e98cf2") // Chatbase API key
 	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
 	  .setVersion('2.0'); // La versión que el bot desplegado es
@@ -120,7 +120,7 @@ function sendAnalytics () {
 	  })
 	  .catch(error => {
 	    console.error(error);
-	});
+	});*/
 	
 }	
 	//Envio de información webhook a Dialogflow Messenger
