@@ -124,25 +124,27 @@ function sendAnalytics () {
 	
 }	
 	//Envio de información webhook a Dialogflow Messenger
-         function sendResponse (responseToUser) {
-	    // Si la respuesta es una cadena, envíela como respuesta al usuario
+	function sendResponse (responseToUser) {
+	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
-	      let responseJson = {};
-	      responseJson.fulfillmentMessages.text = responseToUser; // respuesta hablada
-	      //responseJson.displayText = responseToUser; // respuesta mostrada
-	      res.json(responseJson); // Enviar respuesta a Dialogflow
+	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
+	      response.json(responseJson); // Send response to Dialogflow
 	    } else {
-	      // Si la respuesta al usuario incluye respuestas ricas o contextos, envíelos a Dialogflow
+	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
-	      // Si speech o displayText está definido, úselo para responder (si uno no está definido use el valor del otro)
-	      responseJson.speech = responseToUser.speech || responseToUser.displayText;
-	      responseJson.displayText = responseToUser.displayText || responseToUser.speech;
-	      // Opcional: agregue mensajes enriquecidos para integraciones (https://dialogflow.com/docs/rich-messages)
-	      responseJson.data = responseToUser.data;
-	      // Opcional: agregar contextos (https://dialogflow.com/docs/contexts)
-	      responseJson.contextOut = responseToUser.outputContexts;
+	      // Define the text response
+	      responseJson.fulfillmentText = responseToUser.fulfillmentText;
+	      // Optional: add rich messages for integrations (https://dialogflow.com/docs/rich-messages)
+	      if (responseToUser.fulfillmentMessages) {
+		responseJson.fulfillmentMessages = responseToUser.fulfillmentMessages;
+	      }
+	      // Optional: add contexts (https://dialogflow.com/docs/contexts)
+	      if (responseToUser.outputContexts) {
+		responseJson.outputContexts = responseToUser.outputContexts;
+	      }
+	      // Send the response to Dialogflow
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
-	      res.json(responseJson); // Enviar respuesta a Dialogflow
+	      response.json(responseJson);
 	    }
 	  }
 	
