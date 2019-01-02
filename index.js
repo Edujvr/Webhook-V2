@@ -45,7 +45,6 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics();
 	 }
 		
-
 function sendAnalytics () {	
 //Creción del Objeto Json para almacenar en Mongo Atlas
   var historial = new Object();
@@ -55,7 +54,6 @@ function sendAnalytics () {
   historial.NombreIntento= req.body.queryResult.intent.displayName;
   historial.BotResponde= respuesta;	
   console.log(historial);
-	
 	
 //Envio de objeto con mensaje a Mongo Atlas
   let newHistorial = new Historial(historial);
