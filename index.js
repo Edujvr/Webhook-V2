@@ -128,7 +128,7 @@ function sendAnalytics () {
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
-	      response.json(responseJson); // Send response to Dialogflow
+	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
@@ -144,7 +144,7 @@ function sendAnalytics () {
 	      }
 	      // Send the response to Dialogflow
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
-	      response.json(responseJson);
+	      res.json(responseJson);
 	    }
 	  }
 	
