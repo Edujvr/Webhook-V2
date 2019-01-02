@@ -59,12 +59,10 @@ function sendAnalytics () {
 	
 //Envio de objeto con mensaje a Mongo Atlas
 	let newHistorial = new Historial(historial);
-	  newHistorial.save((err, task) => {
-	    if (err) {
-	      res.status(500).send(err);
-	    }
-	    res.status(201).json(historial);
-	  });
+	  newHistorial.save(function (err) {
+	  if (err) return handleError(err);
+	  // saved!
+	}); 
 	
 /*	// Creación mensaje Set de Usuario
 	var messageSet = chatbase.newMessageSet()
