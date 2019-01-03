@@ -41,11 +41,11 @@ app.post("/webhook",(req, res) =>{
 	      // Define the text response
 	      responseJson.fulfillmentText = req.body.queryResult.fulfillmentText;
 	      // Optional: add rich messages for integrations (https://dialogflow.com/docs/rich-messages)
-	      if (responseToUser.fulfillmentMessages) {
+	      if (req.body.queryResult.fulfillmentMessages) {
 		responseJson.fulfillmentMessages = req.body.queryResult.fulfillmentMessages;
 	      }
 	      // Optional: add contexts (https://dialogflow.com/docs/contexts)
-	      if (responseToUser.outputContexts) {
+	      if (req.body.queryResult.outputContexts) {
 		responseJson.outputContexts = req.body.queryResult.outputContexts;
 	      }
 	      // Send the response to Dialogflow
