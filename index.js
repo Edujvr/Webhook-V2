@@ -55,7 +55,6 @@ function sendAnalytics () {
   historial.UsuarioDice = req.body.queryResult.queryText;
   historial.NombreIntento= req.body.queryResult.intent.displayName;
   historial.BotResponde= respuesta;	
-  console.log(historial);
 	
 //Envio de objeto con mensaje a Mongo Atlas
 	let newHistorial = new Historial(historial);
@@ -126,6 +125,7 @@ function sendAnalytics () {
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
+	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
