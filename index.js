@@ -51,6 +51,7 @@ app.post("/webhook",(req, res) =>{
 	      // Send the response to Dialogflow
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson);
+		sendAnalytics();
 	 }
 		
 function sendAnalytics () {	
