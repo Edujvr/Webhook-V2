@@ -36,14 +36,29 @@ app.post("/webhook",(req, res) =>{
 			sendResponse(respuesta);
 			sendAnalytics();
 		  });
-	 } else { //Envio de información directa webhook a Dialogflow		  
+	 } else { //Envio de información directa webhook a Dialogflow	
+	      let responseJson = {};
+	      // Define the text response
+	      responseJson.fulfillmentText = req.body.queryResult.fulfillmentText;
+	      // Optional: add rich messages for integrations (https://dialogflow.com/docs/rich-messages)
+	      if (responseToUser.fulfillmentMessages) {
+		responseJson.fulfillmentMessages = req.body.queryResult.fulfillmentMessages;
+	      }
+	      // Optional: add contexts (https://dialogflow.com/docs/contexts)
+	      if (responseToUser.outputContexts) {
+		responseJson.outputContexts = req.body.queryResult.outputContexts;
+	      }
+	      // Send the response to Dialogflow
+	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	      res.json(responseJson);
+		/* 
 	    res.json({
-		    messages: req.body.queryResult.fulfillmentMessages,
+		    fulfillmentText: req.body.queryResult.fulfillmentText,
 		    speech: respuesta,
 		    displayText: respuesta,
 		    contextOut: req.body.queryResult.outputContexts
        		 });
-			sendAnalytics();
+			sendAnalytics();*/
 	 }
 		
 function sendAnalytics () {	
