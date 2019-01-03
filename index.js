@@ -20,6 +20,7 @@ app.post("/webhook",(req, res) =>{
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
   const id = 1234;
+  let session = (req.body.session) ? req.body.session : undefined;
   var respuesta = req.body.queryResult.fulfillmentText;
   
 	
@@ -49,7 +50,7 @@ function sendAnalytics () {
 //Creción del Objeto Json para almacenar en Mongo Atlas
   var historial = new Object();
   //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
-  historial.SesionId = id;
+  historial.SesionId = session;
   historial.UsuarioId = id;
   historial.UsuarioDice = req.body.queryResult.queryText;
   historial.NombreIntento= req.body.queryResult.intent.displayName;
