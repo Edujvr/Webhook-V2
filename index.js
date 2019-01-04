@@ -66,32 +66,33 @@ function sendAnalytics () {
 	
 //Envio de objeto con mensaje a Mongo Atlas
 	let newHistorial = new Historial(historial);
-		newHistorial.save(function (err) {
-		if (err) return handleError(err);
-			// saved!
-		}); 
-// Creación mensaje Set de Usuario
+	  newHistorial.save(function (err) {
+	  if (err) return handleError(err);
+	  // saved!
+	});
+	
+	// Creación mensaje Set de Usuario
 	var messageSet = chatbase.newMessageSet()
-	  .setApiKey("19498c02-69aa-45b3-bba2-4cc7c02a5b3a") // Chatbase API key
-	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
-	  .setVersion('2.0'); // La versión que el bot desplegado es
+	  .setApiKey("f8be6699-d8b4-44d8-90cb-07d8d2e98cf2") // Chatbase API key
+	  .setPlatform("Facebook") // Nombre de la Plataforma del Chat
+	  .setVersion('1.0'); // La versión que el bot desplegado es
 
 	// Mensaje del Usuario
 	if (action == "nothandled") {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(123) //.setUserId(req.body.originalRequest.data.sender.id)
+	  .setUserId(id) // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setIntent("Intento") // La intención decodificada a partir del mensaje del usuario
-	  .setMessage("Hola") // Mensaje de Usuario
+	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
+	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
 	  .setAsNotHandled(); // Indica a Chatbase que marque esta solicitud de usuario como "no gestionada"(not handled)
 	} else {
-	messageSet.newMessage() // Crea una nueva instancia de Mensaje
+	  messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(123) //.setUserId(req.body.originalRequest.data.sender.id)
+	  .setUserId(id) // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setIntent("Intento") // La intención decodificada a partir del mensaje del usuario
-	  .setMessage("hola") // Mensaje de Usuario
+	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
+	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
 	  .setAsHandled(); // Marque esta solicitud como exitosamente manejada(handled)
 	}
 
@@ -106,16 +107,16 @@ function sendAnalytics () {
 	
 	// Creación mensaje Set del Bot
 	var messageSet2 = chatbase.newMessageSet()
-	  .setApiKey("19498c02-69aa-45b3-bba2-4cc7c02a5b3a") // Chatbase API key
-	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
-	  .setVersion('2.0'); // La versión que el bot desplegado es
+	  .setApiKey("f8be6699-d8b4-44d8-90cb-07d8d2e98cf2") // Chatbase API key
+	  .setPlatform("Facebook") // Nombre de la Plataforma del Chat
+	  .setVersion('1.0'); // La versión que el bot desplegado es
 	
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
-	  .setUserId(123) //.setUserId(req.body.originalRequest.data.sender.id)
+	  .setUserId(id) // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setMessage("Hola Usuario"); // Mensaje de respuesta del Bot
+	  .setMessage(respuesta); // Mensaje de respuesta del Bot
 	
 	// Envio de mensaje a Chatbase
 	messageSet2.sendMessageSet()
