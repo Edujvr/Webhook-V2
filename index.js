@@ -73,9 +73,9 @@ function sendAnalytics () {
 	
 	// Creación mensaje Set de Usuario
 	var messageSet = chatbase.newMessageSet()
-	  .setApiKey("f8be6699-d8b4-44d8-90cb-07d8d2e98cf2") // Chatbase API key
-	  .setPlatform("Facebook") // Nombre de la Plataforma del Chat
-	  .setVersion('1.0'); // La versión que el bot desplegado es
+	  .setApiKey("19498c02-69aa-45b3-bba2-4cc7c02a5b3a") // Chatbase API key
+	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
+	  .setVersion('2.0'); // La versión que el bot desplegado es
 
 	// Mensaje del Usuario
 	if (action == "nothandled") {
@@ -107,9 +107,9 @@ function sendAnalytics () {
 	
 	// Creación mensaje Set del Bot
 	var messageSet2 = chatbase.newMessageSet()
-	  .setApiKey("f8be6699-d8b4-44d8-90cb-07d8d2e98cf2") // Chatbase API key
-	  .setPlatform("Facebook") // Nombre de la Plataforma del Chat
-	  .setVersion('1.0'); // La versión que el bot desplegado es
+	  .setApiKey("19498c02-69aa-45b3-bba2-4cc7c02a5b3a") // Chatbase API key
+	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
+	  .setVersion('2.0'); // La versión que el bot desplegado es
 	
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
