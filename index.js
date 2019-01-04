@@ -81,7 +81,7 @@ function sendAnalytics () {
 	if (action == "nothandled") {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(id) // ID de usuario en la plataforma de chat 
+	  .setUserId('1234') // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -89,7 +89,7 @@ function sendAnalytics () {
 	} else {
 	  messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(id) // ID de usuario en la plataforma de chat 
+	  .setUserId('1234') // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -114,7 +114,7 @@ function sendAnalytics () {
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
-	  .setUserId(id) // ID de usuario la misma que arriba
+	  .setUserId('1234') // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setMessage(respuesta); // Mensaje de respuesta del Bot
 	
