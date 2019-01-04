@@ -80,18 +80,18 @@ function sendAnalytics () {
 	if (action == "nothandled") {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(id) //.setUserId(req.body.originalRequest.data.sender.id)
+	  .setUserId(123) //.setUserId(req.body.originalRequest.data.sender.id)
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
-	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
+	  .setIntent("Intento") // La intención decodificada a partir del mensaje del usuario
+	  .setMessage("Hola") // Mensaje de Usuario
 	  .setAsNotHandled(); // Indica a Chatbase que marque esta solicitud de usuario como "no gestionada"(not handled)
 	} else {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(id) //.setUserId(req.body.originalRequest.data.sender.id)
+	  .setUserId(123) //.setUserId(req.body.originalRequest.data.sender.id)
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
-	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
+	  .setIntent("Intento") // La intención decodificada a partir del mensaje del usuario
+	  .setMessage("hola") // Mensaje de Usuario
 	  .setAsHandled(); // Marque esta solicitud como exitosamente manejada(handled)
 	}
 
@@ -113,9 +113,9 @@ function sendAnalytics () {
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
-	  .setUserId(id) //.setUserId(req.body.originalRequest.data.sender.id)
+	  .setUserId(123) //.setUserId(req.body.originalRequest.data.sender.id)
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setMessage(respuesta); // Mensaje de respuesta del Bot
+	  .setMessage("Hola Usuario"); // Mensaje de respuesta del Bot
 	
 	// Envio de mensaje a Chatbase
 	messageSet2.sendMessageSet()
