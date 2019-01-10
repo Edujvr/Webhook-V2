@@ -26,7 +26,7 @@ app.post("/webhook",(req, res) =>{
 	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
-		console.log(req.body.queryResult.parameters.UsuariosRed);
+	console.log(req.body.queryResult.parameters.UsuariosRed);
 		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 		query.findOne(function (err, colaboradores) {
 		    if (err) {
@@ -37,35 +37,21 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics();
 		  });
 	 } else { //Envio de información directa webhook a Dialogflow	
-	      /*let responseJson = {};
-	      // Define the text response
-	      responseJson.fulfillmentText = req.body.queryResult.fulfillmentText;
-	      // Optional: add rich messages for integrations (https://dialogflow.com/docs/rich-messages)
-	      if (req.body.queryResult.fulfillmentMessages) {
-		responseJson.fulfillmentMessages = req.body.queryResult.fulfillmentMessages;
-	      }
-	      // Optional: add contexts (https://dialogflow.com/docs/contexts)
-	      if (req.body.queryResult.outputContexts) {
-		responseJson.outputContexts = req.body.queryResult.outputContexts;
-	      }
-	      // Send the response to Dialogflow
-	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
-	      res.json(responseJson);*/
 		sendResponse(req); 
 		sendAnalytics();
 	 }
 		
-function sendAnalytics () {	
-//Creción del Objeto Json para almacenar en Mongo Atlas
-  var historial = new Object();
-  //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
-  historial.SesionId = id;
-  historial.UsuarioId = id;
-  historial.UsuarioDice = req.body.queryResult.queryText;
-  historial.NombreIntento= req.body.queryResult.intent.displayName;
-  historial.BotResponde= respuesta;	
-	
-//Envio de objeto con mensaje a Mongo Atlas
+	function sendAnalytics () {	
+	//Creción del Objeto Json para almacenar en Mongo Atlas
+	  var historial = new Object();
+	  //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
+	  historial.SesionId = id;
+	  historial.UsuarioId = id;
+	  historial.UsuarioDice = req.body.queryResult.queryText;
+	  historial.NombreIntento= req.body.queryResult.intent.displayName;
+	  historial.BotResponde= respuesta;	
+
+	//Envio de objeto con mensaje a Mongo Atlas
 	let newHistorial = new Historial(historial);
 	  newHistorial.save(function (err) {
 	  if (err) return handleError(err);
