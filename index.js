@@ -37,7 +37,7 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics();
 		  });
 	 } else { //Envio de información directa webhook a Dialogflow	
-	      let responseJson = {};
+	      /*let responseJson = {};
 	      // Define the text response
 	      responseJson.fulfillmentText = req.body.queryResult.fulfillmentText;
 	      // Optional: add rich messages for integrations (https://dialogflow.com/docs/rich-messages)
@@ -50,7 +50,8 @@ app.post("/webhook",(req, res) =>{
 	      }
 	      // Send the response to Dialogflow
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
-	      res.json(responseJson);
+	      res.json(responseJson);*/
+		sendResponse(req); 
 		sendAnalytics();
 	 }
 		
