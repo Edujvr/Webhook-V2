@@ -21,9 +21,10 @@ app.post("/webhook",(req, res) =>{
   const chatbase2= require('@google/chatbase');
   const id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   const id2 = 123;
-  let session = (req.body.session) ? req.body.session : undefined;
+  let session = (req.body.session);
   var respuesta = req.body.queryResult.fulfillmentText;
-  console.log(req.body.session);
+  const sessionId= session.substr(-36,36)
+  console.log(sessionId);
 	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
