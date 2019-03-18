@@ -47,7 +47,7 @@ app.post("/webhook",(req, res) =>{
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 	  var historial = new Object();
 	  //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
-	  historial.SesionId = id2;
+	  historial.SesionId = sessionId;
 	  historial.UsuarioId = id;
 	  historial.UsuarioDice = req.body.queryResult.queryText;
 	  historial.NombreIntento= req.body.queryResult.intent.displayName;
