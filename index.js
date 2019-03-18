@@ -62,7 +62,7 @@ app.post("/webhook",(req, res) =>{
 	
 	// Creación mensaje Set de Usuario
 	var messageSet = chatbase.newMessageSet()
-	  .setApiKey("19498c02-69aa-45b3-bba2-4cc7c02a5b3a") // Chatbase API key
+	  .setApiKey("25a20150-b9b6-470c-9289-c793cb04b33c") // Chatbase API key
 	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
 	  .setVersion('2.0'); // La versión que el bot desplegado es
 
@@ -96,7 +96,7 @@ app.post("/webhook",(req, res) =>{
 	
 	// Creación mensaje Set del Bot
 	var messageSet2 = chatbase.newMessageSet()
-	  .setApiKey("19498c02-69aa-45b3-bba2-4cc7c02a5b3a") // Chatbase API key
+	  .setApiKey("25a20150-b9b6-470c-9289-c793cb04b33c") // Chatbase API key
 	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
 	  .setVersion('2.0'); // La versión que el bot desplegado es
 	
