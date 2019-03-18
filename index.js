@@ -19,7 +19,8 @@ app.post("/webhook",(req, res) =>{
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
-  const id = 1234;
+  const id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
+  const id2 = 123;
   let session = (req.body.session) ? req.body.session : undefined;
   var respuesta = req.body.queryResult.fulfillmentText;
   console.log(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id);
@@ -45,7 +46,7 @@ app.post("/webhook",(req, res) =>{
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 	  var historial = new Object();
 	  //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
-	  historial.SesionId = id;
+	  historial.SesionId = id2;
 	  historial.UsuarioId = id;
 	  historial.UsuarioDice = req.body.queryResult.queryText;
 	  historial.NombreIntento= req.body.queryResult.intent.displayName;
@@ -68,7 +69,7 @@ app.post("/webhook",(req, res) =>{
 	if (action == "nothandled") {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId('1234') // ID de usuario en la plataforma de chat 
+	  .setUserId(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id) // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -76,7 +77,7 @@ app.post("/webhook",(req, res) =>{
 	} else {
 	  messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId('1234') // ID de usuario en la plataforma de chat 
+	  .setUserId(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id) // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -101,7 +102,7 @@ app.post("/webhook",(req, res) =>{
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
-	  .setUserId('1234') // ID de usuario la misma que arriba
+	  .setUserId(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id) // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setMessage(respuesta); // Mensaje de respuesta del Bot
 	
