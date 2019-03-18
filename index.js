@@ -22,7 +22,7 @@ app.post("/webhook",(req, res) =>{
   const id = 1234;
   let session = (req.body.session) ? req.body.session : undefined;
   var respuesta = req.body.queryResult.fulfillmentText;
-  console.log(req.body.queryResult.outputContexts[0].parameters);
+  console.log(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id);
 	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
