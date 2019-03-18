@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const dbURI =
-  "mongodb://edu:root123@cluster0-shard-00-00-wydxk.mongodb.net:27017,cluster0-shard-00-01-wydxk.mongodb.net:27017,cluster0-shard-00-02-wydxk.mongodb.net:27017/prueba?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+  "mongodb://pichinchabots:p1ch1nch42018@cluster0-shard-00-00-x5fei.gcp.mongodb.net:27017,cluster0-shard-00-01-x5fei.gcp.mongodb.net:27017,cluster0-shard-00-02-x5fei.gcp.mongodb.net:27017/conversaciones?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
 
 const options = {
   reconnectTries: Number.MAX_VALUE,
