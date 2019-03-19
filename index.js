@@ -29,15 +29,12 @@ app.post("/webhook",(req, res) =>{
   var idUser = String(id);
   console.log(outputContexts);
 	
-/*	
-	if(outputContexts=='generic'){
-		id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
-  		idUser = String(id);
-	}else{
+	
+	if(outputContexts=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
   		idUser = String(id);
 	}
-*/	
+  console.log(id);	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
 	console.log(req.body.queryResult.parameters.UsuariosRed);
