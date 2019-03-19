@@ -120,6 +120,7 @@ app.post("/webhook",(req, res) =>{
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
 	    console.log('Entrada 1');
+	    console.log(responseToUser);
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
