@@ -21,6 +21,7 @@ app.post("/webhook",(req, res) =>{
   const chatbase2= require('@google/chatbase');
   const id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   const id2 = 123;
+  var idUser = String(id);
   let session = (req.body.session);
   var respuesta = req.body.queryResult.fulfillmentText;
   const sessionId= session.substr(-36,36)
@@ -70,7 +71,7 @@ app.post("/webhook",(req, res) =>{
 	if (action == "nothandled") {
 	messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id) // ID de usuario en la plataforma de chat 
+	  .setUserId(idUser) // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -78,7 +79,7 @@ app.post("/webhook",(req, res) =>{
 	} else {
 	  messageSet.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeUser() // Marca como mensaje que viene del Usuario
-	  .setUserId(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id) // ID de usuario en la plataforma de chat 
+	  .setUserId(idUser) // ID de usuario en la plataforma de chat 
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setIntent(req.body.queryResult.intent.displayName) // La intención decodificada a partir del mensaje del usuario
 	  .setMessage(req.body.queryResult.queryText) // Mensaje de Usuario
@@ -103,7 +104,7 @@ app.post("/webhook",(req, res) =>{
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
-	  .setUserId(req.body.queryResult.outputContexts[0].parameters.facebook_sender_id) // ID de usuario la misma que arriba
+	  .setUserId(idUser) // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
 	  .setMessage(respuesta); // Mensaje de respuesta del Bot
 	
