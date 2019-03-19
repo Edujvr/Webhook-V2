@@ -39,7 +39,7 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics();
 		  });
 	 } else { //Envio de información directa webhook a Dialogflow	
-		sendResponse(res); 
+		sendResponse(respuesta); 
 		sendAnalytics();
 	 }
 		
