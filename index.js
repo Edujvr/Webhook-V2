@@ -28,13 +28,15 @@ app.post("/webhook",(req, res) =>{
   var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
   console.log(outputContexts);
+  console.log(req.body.queryResult.outputContexts);
 	
-	
+	/*
 	if(outputContexts=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
   		idUser = String(id);
 	}
-  console.log(id);	
+  	console.log(id);	
+	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
 	console.log(req.body.queryResult.parameters.UsuariosRed);
@@ -124,7 +126,7 @@ app.post("/webhook",(req, res) =>{
 	    console.error(error);
 	});
 	
-}	
+}	*/
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
 	    // if the response is a string send it as a response to the user
