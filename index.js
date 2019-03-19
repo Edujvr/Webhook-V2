@@ -64,7 +64,7 @@ app.post("/webhook",(req, res) =>{
 	var messageSet = chatbase.newMessageSet()
 	  .setApiKey("25a20150-b9b6-470c-9289-c793cb04b33c") // Chatbase API key
 	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
-	  .setVersion('2.0'); // La versión que el bot desplegado es
+	  .setVersion('2.1'); // La versión que el bot desplegado es
 
 	// Mensaje del Usuario
 	if (action == "nothandled") {
@@ -98,7 +98,7 @@ app.post("/webhook",(req, res) =>{
 	var messageSet2 = chatbase.newMessageSet()
 	  .setApiKey("25a20150-b9b6-470c-9289-c793cb04b33c") // Chatbase API key
 	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
-	  .setVersion('2.0'); // La versión que el bot desplegado es
+	  .setVersion('2.1'); // La versión que el bot desplegado es
 	
 	// Mensaje del Bot
 	const botMessage = messageSet2.newMessage() // Crea una nueva instancia de Mensaje
@@ -119,12 +119,14 @@ app.post("/webhook",(req, res) =>{
 }	
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
+	    console.log('Entrada 1');
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
+	      console.log('Entrada 2');
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
 	      // Define the text response
