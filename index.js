@@ -25,7 +25,7 @@ app.post("/webhook",(req, res) =>{
   let session = (req.body.session);
   var respuesta = req.body.queryResult.fulfillmentText;
   const sessionId= session.substr(-36,36)
-  const id ='0';
+  var id =0;
   var idUser= null;
   console.log(outputContexts);
 	
