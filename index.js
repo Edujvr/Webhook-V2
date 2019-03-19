@@ -20,12 +20,11 @@ app.post("/webhook",(req, res) =>{
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
   const id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
-  const id2 = 123;
   var idUser = String(id);
   let session = (req.body.session);
   var respuesta = req.body.queryResult.fulfillmentText;
   const sessionId= session.substr(-36,36)
-  console.log(sessionId);
+  console.log(idUser);
 	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
@@ -46,20 +45,19 @@ app.post("/webhook",(req, res) =>{
 		
 	function sendAnalytics () {	
 	//Creción del Objeto Json para almacenar en Mongo Atlas
-	  var historial = new Object();
-	  //historial.UsuarioId = req.body.originalRequest.data.sender.id; //falta definir con ID usuario de workplace
-	  historial.SesionId = sessionId;
-	  historial.UsuarioId = id;
-	  historial.UsuarioDice = req.body.queryResult.queryText;
-	  historial.NombreIntento= req.body.queryResult.intent.displayName;
-	  historial.BotResponde= respuesta;	
+		var historial = new Object();
+		historial.SesionId = sessionId;
+		historial.UsuarioId = id;
+		historial.UsuarioDice = req.body.queryResult.queryText;
+		historial.NombreIntento= req.body.queryResult.intent.displayName;
+		historial.BotResponde= respuesta;	
+		console.log(historial);
 
 	//Envio de objeto con mensaje a Mongo Atlas
-	let newHistorial = new Historial(historial);
-	  newHistorial.save(function (err) {
-	  if (err) return handleError(err);
-	  // saved!
-	});
+		let newHistorial = new Historial(historial);
+		newHistorial.save(function (err) {
+			if (err) return handleError(err);
+		});
 	
 	// Creación mensaje Set de Usuario
 	var messageSet = chatbase.newMessageSet()
@@ -120,15 +118,12 @@ app.post("/webhook",(req, res) =>{
 }	
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
-	    console.log('Entrada 1');
-	    console.log(responseToUser);
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
-	      console.log('Entrada 2');
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
 	      // Define the text response
