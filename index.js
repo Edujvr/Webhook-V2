@@ -35,7 +35,7 @@ app.post("/webhook",(req, res) =>{
 		      res.status(500).send(err);
 		    }
 			respuesta = colaboradores.Nombre +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
-			sendResponse(req.body);
+			sendResponse(req.body.queryResult);
 			sendAnalytics();
 		  });
 	 } else { //Envio de información directa webhook a Dialogflow	
