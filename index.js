@@ -24,16 +24,23 @@ app.post("/webhook",(req, res) =>{
   let session = (req.body.session);
   var respuesta = req.body.queryResult;
   const sessionId= session.substr(-36,36)
-  var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
-  var idUser = String(id);
+  var id = 'undefined';
+  var contador= 0;
+  //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
+  //var idUser = String(id);
   console.log(req.body.queryResult.outputContexts);	
 	
-	if(nombreContexto=='generalista'){
+	while(id=='undefined'){
+		id=req.body.queryResult.outputContexts[contador].parameters.facebook_sender_id;
+		contador=contador+1;
+	}
+	
+	/*if(nombreContexto=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
   		idUser = String(id);
 	}
   	console.log(id);	
-	
+	*/
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action=='query'){
 	console.log(req.body.queryResult.parameters.UsuariosRed);
