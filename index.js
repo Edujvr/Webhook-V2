@@ -27,11 +27,12 @@ app.post("/webhook",(req, res) =>{
   var id = 'undefined';
   var contador= 0;
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
-  //var idUser = String(id);
+  var idUser = String(id);
   console.log(req.body.queryResult.outputContexts);	
 	
 	while(id=='undefined'){
 		id=req.body.queryResult.outputContexts[contador].parameters.facebook_sender_id;
+		idUser = String(id);
 		contador=contador+1;
 	}
 	console.log(id);
