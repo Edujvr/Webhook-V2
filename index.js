@@ -26,7 +26,7 @@ app.post("/webhook",(req, res) =>{
   const sessionId= session.substr(-36,36)
   var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
-  //console.log(req.body.queryResult);	
+  console.log(req.body.queryResult.outputContexts);	
 	
 	if(nombreContexto=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
