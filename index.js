@@ -19,22 +19,32 @@ app.post("/webhook",(req, res) =>{
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
-  const outputContexts= req.body.queryResult.outputContexts[0].name;
-  const nombreContexto= outputContexts.substr(-11,11)	
+  //const outputContexts= req.body.queryResult.outputContexts[0].name;
+  //const nombreContexto= outputContexts.substr(-11,11)	
   let session = (req.body.session);
   var respuesta = req.body.queryResult;
   const sessionId= session.substr(-36,36)
-  var id = 'undefined';
+  var id = '1';
   var contador= 0;
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
   //console.log(req.body.queryResult.outputContexts);	
   var contextos = req.body.queryResult.outputContexts;
-  var len = contextos.length
+  var i,len = contextos.length
   console.log(len);
   console.log(contextos);
 	
-	
+	for(i=0;i<len;i++){
+		const outputContexts= req.body.queryResult.outputContexts[i].name;
+		const nombreContexto= outputContexts.substr(-11,11)
+		if(nombreContexto==='generic'){
+			id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
+			idUser = String(id);
+		}else{
+			console.log('No fue este')
+		}
+		console.log(id);
+	}
 	/*
 	while(id=='undefined'){
 		id=req.body.queryResult.outputContexts[contador].parameters.facebook_sender_id;
