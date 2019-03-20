@@ -28,7 +28,7 @@ app.post("/webhook",(req, res) =>{
   const sessionId= session.substr(-36,36)
   var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
-  console.log(req.body.queryResult);	
+  //console.log(req.body.queryResult);	
 	
 	if(nombreContexto=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
@@ -114,7 +114,7 @@ app.post("/webhook",(req, res) =>{
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
 	  .setUserId(idUser) // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setMessage(respuesta); // Mensaje de respuesta del Bot
+	  .setMessage(req.body.queryResult.fulfillmentText); // Mensaje de respuesta del Bot
 	
 	// Envio de mensaje a Chatbase
 	messageSet2.sendMessageSet()
@@ -135,6 +135,7 @@ app.post("/webhook",(req, res) =>{
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
+	      console.log(responseToUser)
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
 	      // Define the text response
