@@ -31,6 +31,7 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult.outputContexts);	
   var len = outputContexts.length
   console.log(len);
+  console.log(outputContexts);
 	
 	
 	/*
