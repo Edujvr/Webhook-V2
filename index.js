@@ -29,18 +29,17 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult.outputContexts);	
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length
-  console.log(len);
-  console.log(contextos);
+  //console.log(len);
+  //console.log(contextos);
 	
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
 		const nombreContexto= outputContexts.substr(-7,7)
-		console.log(nombreContexto);
 		if(nombreContexto =='generic'){
 			id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
 			idUser = String(id);
 		}else{
-			console.log('No fue este')
+			console.log('extrayendo')
 		}
 		console.log(id);
 	}
