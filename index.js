@@ -34,6 +34,7 @@ app.post("/webhook",(req, res) =>{
 		id=req.body.queryResult.outputContexts[contador].parameters.facebook_sender_id;
 		contador=contador+1;
 	}
+	console.log(id);
 	
 	/*if(nombreContexto=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
