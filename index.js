@@ -37,7 +37,8 @@ app.post("/webhook",(req, res) =>{
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
 		const nombreContexto= outputContexts.substr(-11,11)
-		if(nombreContexto==='generic'){
+		console.log(nombreContexto);
+		if(nombreContexto =='generic'){
 			id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
 			idUser = String(id);
 		}else{
