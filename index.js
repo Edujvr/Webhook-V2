@@ -126,14 +126,12 @@ app.post("/webhook",(req, res) =>{
 }	
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
-	    //console.log(responseToUser)
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
-	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	      //console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
-	      console.log(responseToUser)
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
 	      // Define the text response
@@ -147,7 +145,7 @@ app.post("/webhook",(req, res) =>{
 		responseJson.outputContexts = responseToUser.outputContexts;
 	      }
 	      // Send the response to Dialogflow
-	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	      //console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson);
 	    }
 	  }
