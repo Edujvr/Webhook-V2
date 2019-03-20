@@ -19,8 +19,6 @@ app.post("/webhook",(req, res) =>{
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
-  //const outputContexts= req.body.queryResult.outputContexts[0].name;
-  //const nombreContexto= outputContexts.substr(-11,11)	
   let session = (req.body.session);
   var respuesta = req.body.queryResult;
   const sessionId= session.substr(-36,36)
@@ -46,17 +44,6 @@ app.post("/webhook",(req, res) =>{
 		}
 		console.log(id);
 	}
-	/*
-	while(id=='undefined'){
-		id=req.body.queryResult.outputContexts[contador].parameters.facebook_sender_id;
-		idUser = String(id);
-		contador=contador+1;
-		console.log(contador)
-	}
-	console.log(id);
-	contador=0;
-	*/
-
 
 	/*if(nombreContexto=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
