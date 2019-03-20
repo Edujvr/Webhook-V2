@@ -29,9 +29,10 @@ app.post("/webhook",(req, res) =>{
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
   //console.log(req.body.queryResult.outputContexts);	
-  var len = outputContexts.length
+  var contextos = req.body.queryResult.outputContexts;
+  var len = contextos.length
   console.log(len);
-  console.log(outputContexts);
+  console.log(contextos);
 	
 	
 	/*
