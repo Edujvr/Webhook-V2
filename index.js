@@ -29,7 +29,11 @@ app.post("/webhook",(req, res) =>{
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
   //console.log(req.body.queryResult.outputContexts);	
+  var len = outputContexts.length
+  console.log(len);
 	
+	
+	/*
 	while(id=='undefined'){
 		id=req.body.queryResult.outputContexts[contador].parameters.facebook_sender_id;
 		idUser = String(id);
@@ -38,6 +42,9 @@ app.post("/webhook",(req, res) =>{
 	}
 	console.log(id);
 	contador=0;
+	*/
+
+
 	/*if(nombreContexto=='generalista'){
 		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
   		idUser = String(id);
