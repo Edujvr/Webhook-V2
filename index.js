@@ -24,7 +24,7 @@ app.post("/webhook",(req, res) =>{
   const outputContexts= req.body.queryResult.outputContexts[0].name;
   const nombreContexto= outputContexts.substr(-11,11)	
   let session = (req.body.session);
-  var respuesta = req.body.queryResult.fulfillmentText;
+  var respuesta = req.body.queryResult;
   const sessionId= session.substr(-36,36)
   var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
@@ -128,6 +128,7 @@ app.post("/webhook",(req, res) =>{
 }	
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
+	    console.log(responseToUser)
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
