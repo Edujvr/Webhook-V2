@@ -19,8 +19,6 @@ app.post("/webhook",(req, res) =>{
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
-  //const id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
-  //var idUser = String(id);
   const outputContexts= req.body.queryResult.outputContexts[0].name;
   const nombreContexto= outputContexts.substr(-11,11)	
   let session = (req.body.session);
@@ -60,8 +58,8 @@ app.post("/webhook",(req, res) =>{
 		historial.UsuarioId = id;
 		historial.UsuarioDice = req.body.queryResult.queryText;
 		historial.NombreIntento= req.body.queryResult.intent.displayName;
-		historial.BotResponde= respuesta;	
-		console.log(historial);
+		historial.BotResponde= req.body.queryResult.fulfillmentText;	
+		//console.log(historial);
 
 	//Envio de objeto con mensaje a Mongo Atlas
 		let newHistorial = new Historial(historial);
