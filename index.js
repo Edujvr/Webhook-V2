@@ -29,7 +29,7 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult.outputContexts);	
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length
-  console.log(req.body.originalDetectIntentRequest.payload.data);
+  console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments);
   //console.log(contextos);
 	
 	for(i=0;i<len;i++){
