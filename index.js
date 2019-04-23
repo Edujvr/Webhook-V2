@@ -66,15 +66,15 @@ app.post("/webhook",(req, res) =>{
 	 } else if (action == "nothandled") {
 		// crear un objeto de transporte reutilizable usando SMTP transport
 		var transporter = nodemailer.createTransport({
-		    service: 'Gmail',
+		    service: 'Outlook',
 		    auth: {
-			user: 'edujvr.k15@gmail.com',
-			pass: 'kingsct2012'
+			user: 'edu.k15@hotmail.com',
+			pass: 'kingsct172326469'
 		    }
 		});
 		// configura los datos del correo
 		var mailOptions = {
-		    from: 'Edu Jvr <edujvr.k15@gmail.com>', to: 'etandazo@pichincha.com',
+		    from: 'Edu Jvr <edu.k15@hotmail.com>', to: 'etandazo@pichincha.com',
 		    subject: 'Chatbot consulta no contestada',
 		    text: 'Hola Mundo',
 		    html: '<b>Hola Mundo</b>'
