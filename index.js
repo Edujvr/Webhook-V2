@@ -79,7 +79,7 @@ app.post("/webhook",(req, res) =>{
 			    from: '<edujvr.k15@gmail.com>',
 			    to: 'etandazo@pichincha.com',
 			    subject: 'Chatbot consulta no contestada',
-			    html: '<h1> Hi! </h1>'
+			    html: '<h1> El usuario pregunto: </h1>'+ req.body.queryResult.queryText
 			  }
 
 			  transporter.sendMail(mailOptions, (err, info) => {
