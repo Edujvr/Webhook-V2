@@ -63,7 +63,7 @@ app.post("/webhook",(req, res) =>{
 			sendResponse(respuesta);
 			sendAnalytics();
 		  });
-	 } else if (action == "nothandled") {
+	 }/* else if (action == "nothandled") {
 			let transporter = nodemailer.createTransport({
 			    service: 'Gmail',
 			    auth: {
@@ -90,7 +90,7 @@ app.post("/webhook",(req, res) =>{
 			  })
 		sendResponse(respuesta); 
 		sendAnalytics();
-	 } else { //Envio de información directa webhook a Dialogflow	
+	 } */else { //Envio de información directa webhook a Dialogflow	
 		sendResponse(respuesta); 
 		sendAnalytics();
 	 }
