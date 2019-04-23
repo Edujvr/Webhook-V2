@@ -63,7 +63,7 @@ app.post("/webhook",(req, res) =>{
 			sendResponse(respuesta);
 			sendAnalytics();
 		  });
-	 } else if (action == "nothandled") {
+	 }/* else if (action == "nothandled") {
 		// crear un objeto de transporte reutilizable usando SMTP transport
 		var transporter = nodemailer.createTransport({
 		    service: 'Outlook',
@@ -74,7 +74,7 @@ app.post("/webhook",(req, res) =>{
 		});
 		// configura los datos del correo
 		var mailOptions = {
-		    from: 'Edu Jvr <edu.k15@hotmail.com>', to: 'etandazo@pichincha.com',
+		    from: 'Edu Jvr <edu.k15@hotmail.com>', to: 'edu.k15@hotmail.com',
 		    subject: 'Chatbot consulta no contestada',
 		    text: 'Hola Mundo',
 		    html: '<b>Hola Mundo</b>'
@@ -86,7 +86,7 @@ app.post("/webhook",(req, res) =>{
 		    }
 		    console.log('Mensaje enviado: ' + info.response);
 		}); 
-	 } else { //Envio de información directa webhook a Dialogflow	
+	 }*/ else { //Envio de información directa webhook a Dialogflow	
 		sendResponse(respuesta); 
 		sendAnalytics();
 	 }
