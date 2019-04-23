@@ -87,29 +87,9 @@ app.post("/webhook",(req, res) =>{
 
 			    res.statusCode = 200
 			    res.end('Email sent!')
-			  })/*
-		// crear un objeto de transporte reutilizable usando SMTP transport
-		var transporter = nodemailer.createTransport({
-		    service: 'Outlook',
-		    auth: {
-			user: 'edu.k15@hotmail.com',
-			pass: 'kingsct172326469'
-		    }
-		});
-		// configura los datos del correo
-		var mailOptions = {
-		    from: 'Edu Jvr <edu.k15@hotmail.com>', to: 'edu.k15@hotmail.com',
-		    subject: 'Chatbot consulta no contestada',
-		    text: 'Hola Mundo',
-		    html: '<b>Hola Mundo</b>'
-		};
-		// Envía el correo con el objeto de transporte definido anteriormente
-		transporter.sendMail(mailOptions, function(error, info){
-		    if(error){
-			return console.log(error);
-		    }
-		    console.log('Mensaje enviado: ' + info.response);
-		}); */
+			  })
+		sendResponse(respuesta); 
+		sendAnalytics();
 	 } else { //Envio de información directa webhook a Dialogflow	
 		sendResponse(respuesta); 
 		sendAnalytics();
