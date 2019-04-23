@@ -63,7 +63,31 @@ app.post("/webhook",(req, res) =>{
 			sendResponse(respuesta);
 			sendAnalytics();
 		  });
-	 }/* else if (action == "nothandled") {
+	 } else if (action == "nothandled") {
+			let transporter = nodemailer.createTransport({
+			    service: 'Gmail',
+			    auth: {
+			      type: 'OAuth2',
+			      user: 'edujvr.k15@gmail.com',
+			      clientId: '302919125596-e1roihqdf4gkuf8rrhd708uih3o2efen.apps.googleusercontent.com',
+			      clientSecret: '5JrKDFXzjA8fl57pgcLZgwUH',
+			      refreshToken: '1/HF8MdT3XzwEBLrBG8nFLAiWm-Uz0QVgkEhfH1DQbwVgDVpXZbxOL0OEfOcmzip7Z'
+			    }
+			  })
+
+			  let mailOptions = {
+			    from: '<edujvr.k15@gmail.com>',
+			    to: 'etandazo@pichincha.com',
+			    subject: 'Chatbot consulta no contestada',
+			    html: '<h1> Hi! </h1>'
+			  }
+
+			  transporter.sendMail(mailOptions, (err, info) => {
+			    if (err) throw new Error(err)
+
+			    res.statusCode = 200
+			    res.end('Email sent!')
+			  })/*
 		// crear un objeto de transporte reutilizable usando SMTP transport
 		var transporter = nodemailer.createTransport({
 		    service: 'Outlook',
@@ -85,8 +109,8 @@ app.post("/webhook",(req, res) =>{
 			return console.log(error);
 		    }
 		    console.log('Mensaje enviado: ' + info.response);
-		}); 
-	 }*/ else { //Envio de información directa webhook a Dialogflow	
+		}); */
+	 } else { //Envio de información directa webhook a Dialogflow	
 		sendResponse(respuesta); 
 		sendAnalytics();
 	 }
