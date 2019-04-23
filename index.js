@@ -74,7 +74,7 @@ app.post("/webhook",(req, res) =>{
 		});
 		// configura los datos del correo
 		var mailOptions = {
-		    from: 'Eduardo Tandazo <etandazo@pichincha.com>', to: 'etandazo@pichincha.com, tim.mail@foo.com',
+		    from: 'Eduardo Tandazo <etandazo@pichincha.com>', to: 'etandazo@pichincha.com',
 		    subject: 'Chatbot consulta no contestada',
 		    text: 'Hola Mundo',
 		    html: '<b>Hola Mundo</b>'
