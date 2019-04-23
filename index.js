@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.listen(process.env.PORT || 8080);
 var request = require('request');
+var nodemailer = require('nodemailer');
 const Colaboradores = require("./models/Colaboradores");
 const Historial = require("./models/Historial");
 // db instance connection
@@ -51,7 +52,7 @@ app.post("/webhook",(req, res) =>{
   	console.log(id);	
 	*/
 	//Consulta nombre de Generalista en Mongo Atlas 
-	if(action=='query'){
+	if(action == 'query'){
 	console.log(req.body.queryResult.parameters.UsuariosRed);
 		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 		query.findOne(function (err, colaboradores) {
@@ -62,6 +63,29 @@ app.post("/webhook",(req, res) =>{
 			sendResponse(respuesta);
 			sendAnalytics();
 		  });
+	 } else if (action == "nothandled") {
+		// crear un objeto de transporte reutilizable usando SMTP transport
+		var transporter = nodemailer.createTransport({
+		    service: 'Gmail',
+		    auth: {
+			user: 'edujvr.k15@gmail.com',
+			pass: 'kingsct2012'
+		    }
+		});
+		// configura los datos del correo
+		var mailOptions = {
+		    from: 'Eduardo Tandazo <etandazo@pichincha.com>', to: 'etandazo@pichincha.com, tim.mail@foo.com',
+		    subject: 'Chatbot consulta no contestada',
+		    text: 'Hola Mundo',
+		    html: '<b>Hola Mundo</b>'
+		};
+		// Envía el correo con el objeto de transporte definido anteriormente
+		transporter.sendMail(mailOptions, function(error, info){
+		    if(error){
+			return console.log(error);
+		    }
+		    console.log('Mensaje enviado: ' + info.response);
+		}); 
 	 } else { //Envio de información directa webhook a Dialogflow	
 		sendResponse(respuesta); 
 		sendAnalytics();
