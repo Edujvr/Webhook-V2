@@ -35,7 +35,11 @@ app.post("/webhook",(req, res) =>{
   var email, nameW;
   console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments);
   //console.log(contextos);
-	
+	graph.setAccessToken(access_token);	
+	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+			email=res.email;
+			nameW=res.name	
+		});
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
 		const nombreContexto= outputContexts.substr(-7,7)
@@ -50,10 +54,12 @@ app.post("/webhook",(req, res) =>{
 	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
-		graph.setAccessToken(access_token);	
-		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
-			email=res.email;
-			nameW=res.name			
+		//graph.setAccessToken(access_token);	
+		//graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+		//	email=res.email;
+		//	nameW=res.name	
+		console.log(nameW);
+		 console.log(email);
 			var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 			query.findOne(function (err, colaboradores) {
 			    if (err) {
@@ -64,7 +70,7 @@ app.post("/webhook",(req, res) =>{
 				sendAnalytics();
 			  });
 			
-		});		
+		//});		
 	 } else if (action == "nothandled") {
 		 console.log(nameW);
 		 console.log(email);
