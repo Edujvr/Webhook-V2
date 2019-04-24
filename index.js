@@ -1,15 +1,16 @@
 'use estrict'
 
+const Colaboradores = require("./models/Colaboradores");
+const Historial = require("./models/Historial");
+const bodyParser = require("body-parser");
 const express = require('express');
 const app = express();
-const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.listen(process.env.PORT || 8080);
-var request = require('request');
 var nodemailer = require('nodemailer');
-const Colaboradores = require("./models/Colaboradores");
-const Historial = require("./models/Historial");
+var request = require('request');
+var graph = require('fbgraph');
 // db instance connection
 require("./config/db");
 
@@ -23,13 +24,15 @@ app.post("/webhook",(req, res) =>{
   let session = (req.body.session);
   var respuesta = req.body.queryResult;
   const sessionId= session.substr(-36,36)
+  var access_token = 'DQVJ2eHdaZAjV5a1dOdGVLNjN1TG9xeEZAhZAlRQOGRvN3dzRXd6SHFCTXN5X3J5T29fazVxNXFJOFFOel9QenhaYVVOM2g0ZADM2MnBlSGdzZAG1Ra2g5eXo5NGJ5a2FraE45Um5mZAmpuMXR6LU4zVV81ZAkRPbndsb1pfSDVwQXJVaWVXVUZAYcDJkNVpHTHgyQjBsMy1qZA1F0UVN6ZAjhFandzYXpnR01qQWlQa2FCZAHAzZA2h2WUtSc2lhWEphYko4S0V1TGpGbTRJb0JkQjRPU216MwZDZD';
   var id = '1';
   var contador= 0;
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
   //console.log(req.body.queryResult.outputContexts);	
   var contextos = req.body.queryResult.outputContexts;
-  var i,len = contextos.length
+  var i,len = contextos.length;
+  var email;
   console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments);
   //console.log(contextos);
 	
@@ -53,6 +56,12 @@ app.post("/webhook",(req, res) =>{
 	*/
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
+		graph.setAccessToken(access_token);	
+		graph.get(idPrueba+"?fields=name,first_name,last_name,email", function(err, res){
+			console.log(res);
+			email=res.email;
+			console.log(email);
+		});
 	console.log(req.body.queryResult.parameters.UsuariosRed);
 		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 		query.findOne(function (err, colaboradores) {
