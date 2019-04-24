@@ -36,10 +36,13 @@ app.post("/webhook",(req, res) =>{
   console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments);
   //console.log(contextos);
 	graph.setAccessToken(access_token);	
-	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+	var graphObject = graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
-			nameW=res.name	
+			nameW=res.name;	
 		});
+	console.log(graphObject.request);
+	console.log(nameW);
+	console.log(email);
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
 		const nombreContexto= outputContexts.substr(-7,7)
@@ -59,7 +62,7 @@ app.post("/webhook",(req, res) =>{
 		//	email=res.email;
 		//	nameW=res.name	
 		console.log(nameW);
-		 console.log(email);
+		console.log(email);
 			var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 			query.findOne(function (err, colaboradores) {
 			    if (err) {
@@ -89,7 +92,7 @@ app.post("/webhook",(req, res) =>{
 			    from: '<edujvr.k15@gmail.com>',
 			    to: 'etandazo@pichincha.com',
 			    subject: 'Chatbot consulta no contestada',
-			    html: '<h1> El usuario '+nameW+' con email'+email+' pregunto: </h1>'+ req.body.queryResult.queryText
+			    html: '<h1> El usuario '+nameW+' con email '+email+' pregunto: </h1>'+ req.body.queryResult.queryText
 			  }
 
 			  transporter.sendMail(mailOptions, (err, info) => {
