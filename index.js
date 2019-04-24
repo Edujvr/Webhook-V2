@@ -51,10 +51,9 @@ app.post("/webhook",(req, res) =>{
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
 		graph.setAccessToken(access_token);	
-		var graphObject=graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
-			nameW=res.name
-			
+			nameW=res.name			
 			var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 			query.findOne(function (err, colaboradores) {
 			    if (err) {
@@ -65,11 +64,7 @@ app.post("/webhook",(req, res) =>{
 				sendAnalytics();
 			  });
 			
-		});
-		console.log(graphObject.res);
-		console.log(nameW);
-		//console.log(req.body.queryResult.parameters.UsuariosRed);
-		
+		});		
 	 }/* else if (action == "nothandled") {
 			let transporter = nodemailer.createTransport({
 			    service: 'Gmail',
