@@ -32,7 +32,7 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult.outputContexts);	
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
-  var email;
+  var email, nameW;
   console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments);
   //console.log(contextos);
 	
@@ -60,6 +60,7 @@ app.post("/webhook",(req, res) =>{
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			console.log(res);
 			email=res.email;
+			nameW=res.name
 			console.log(email);
 		});
 	console.log(req.body.queryResult.parameters.UsuariosRed);
@@ -68,7 +69,7 @@ app.post("/webhook",(req, res) =>{
 		    if (err) {
 		      res.status(500).send(err);
 		    }
-			respuesta = res.name +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
+			respuesta = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
 			sendResponse(respuesta);
 			sendAnalytics();
 		  });
