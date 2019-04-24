@@ -65,7 +65,9 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});		
-	 }/* else if (action == "nothandled") {
+	 } else if (action == "nothandled") {
+		 console.log(nameW);
+		 console.log(email);
 			let transporter = nodemailer.createTransport({
 			    service: 'Gmail',
 			    auth: {
@@ -81,7 +83,7 @@ app.post("/webhook",(req, res) =>{
 			    from: '<edujvr.k15@gmail.com>',
 			    to: 'etandazo@pichincha.com',
 			    subject: 'Chatbot consulta no contestada',
-			    html: '<h1> El usuario pregunto: </h1>'+ req.body.queryResult.queryText
+			    html: '<h1> El usuario '+nameW+' con email'+email+' pregunto: </h1>'+ req.body.queryResult.queryText
 			  }
 
 			  transporter.sendMail(mailOptions, (err, info) => {
