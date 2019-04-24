@@ -81,10 +81,10 @@ app.post("/webhook",(req, res) =>{
 			  })
 
 			  let mailOptions = {
-			    from: '<edujvr.k15@gmail.com>',
+			    from: '<etandazo@pichincha.com>',
 			    to: 'etandazo@pichincha.com',
 			    subject: 'Chatbot consulta no contestada',
-			    html: '<h1> El usuario '+nameW+' con email '+email+' pregunto: </h1>'+ req.body.queryResult.queryText
+			    html: 'El usuario '+nameW+' con email '+email+' pregunto: '+ req.body.queryResult.queryText + ' Saludos ' + ' Tu asistente Virtual '
 			  }
 
 			  transporter.sendMail(mailOptions, (err, info) => {
