@@ -55,7 +55,7 @@ app.post("/webhook",(req, res) =>{
 			email=res.email;
 			nameW=res.name
 		});
-		console.log(graphObject);
+		console.log(graphObject.res);
 		console.log(nameW);
 		//console.log(req.body.queryResult.parameters.UsuariosRed);
 		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
