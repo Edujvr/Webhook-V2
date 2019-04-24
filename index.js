@@ -100,7 +100,7 @@ app.post("/webhook",(req, res) =>{
 			  })
 		sendResponse(respuesta); 
 		sendAnalytics();
-	 } */else { //Envio de información directa webhook a Dialogflow	
+	 } else { //Envio de información directa webhook a Dialogflow	
 		sendResponse(respuesta); 
 		sendAnalytics();
 	 }
