@@ -57,7 +57,7 @@ app.post("/webhook",(req, res) =>{
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
 		graph.setAccessToken(access_token);	
-		graph.get(idPrueba+"?fields=name,first_name,last_name,email", function(err, res){
+		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			console.log(res);
 			email=res.email;
 			console.log(email);
