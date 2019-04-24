@@ -54,19 +54,22 @@ app.post("/webhook",(req, res) =>{
 		var graphObject=graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name
+			
+			var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
+			query.findOne(function (err, colaboradores) {
+			    if (err) {
+			      res.status(500).send(err);
+			    }
+				respuesta = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
+				sendResponse(respuesta);
+				sendAnalytics();
+			  });
+			
 		});
 		console.log(graphObject.res);
 		console.log(nameW);
 		//console.log(req.body.queryResult.parameters.UsuariosRed);
-		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
-		query.findOne(function (err, colaboradores) {
-		    if (err) {
-		      res.status(500).send(err);
-		    }
-			respuesta = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
-			sendResponse(respuesta);
-			sendAnalytics();
-		  });
+		
 	 }/* else if (action == "nothandled") {
 			let transporter = nodemailer.createTransport({
 			    service: 'Gmail',
