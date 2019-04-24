@@ -58,12 +58,12 @@ app.post("/webhook",(req, res) =>{
 	if(action == 'query'){
 		graph.setAccessToken(access_token);	
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
-			console.log(res);
 			email=res.email;
 			nameW=res.name
 			console.log(email);
+			console.log(nameW);
 		});
-	console.log(req.body.queryResult.parameters.UsuariosRed);
+	//console.log(req.body.queryResult.parameters.UsuariosRed);
 		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 		query.findOne(function (err, colaboradores) {
 		    if (err) {
