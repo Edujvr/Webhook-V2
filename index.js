@@ -47,23 +47,17 @@ app.post("/webhook",(req, res) =>{
 		}
 		console.log(id);
 	}
-
-	/*if(nombreContexto=='generalista'){
-		id = req.body.queryResult.outputContexts[1].parameters.facebook_sender_id;
-  		idUser = String(id);
-	}
-  	console.log(id);	
-	*/
+	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
 		graph.setAccessToken(access_token);	
-		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+		var graphObject=graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name
-			console.log(email);
-			console.log(nameW);
 		});
-	//console.log(req.body.queryResult.parameters.UsuariosRed);
+		console.log(graphObject);
+		console.log(nameW);
+		//console.log(req.body.queryResult.parameters.UsuariosRed);
 		var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
 		query.findOne(function (err, colaboradores) {
 		    if (err) {
