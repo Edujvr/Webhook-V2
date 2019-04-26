@@ -23,6 +23,7 @@ app.post("/webhook",(req, res) =>{
   const chatbase2= require('@google/chatbase');
   let session = (req.body.session);
   var respuesta = req.body.queryResult;
+  var respuestaBot = req.body.queryResult.fulfillmentText;
   const sessionId= session.substr(-36,36)
   var access_token = 'DQVJ2eHdaZAjV5a1dOdGVLNjN1TG9xeEZAhZAlRQOGRvN3dzRXd6SHFCTXN5X3J5T29fazVxNXFJOFFOel9QenhaYVVOM2g0ZADM2MnBlSGdzZAG1Ra2g5eXo5NGJ5a2FraE45Um5mZAmpuMXR6LU4zVV81ZAkRPbndsb1pfSDVwQXJVaWVXVUZAYcDJkNVpHTHgyQjBsMy1qZA1F0UVN6ZAjhFandzYXpnR01qQWlQa2FCZAHAzZA2h2WUtSc2lhWEphYko4S0V1TGpGbTRJb0JkQjRPU216MwZDZD';
   var id = '1';
@@ -59,9 +60,9 @@ app.post("/webhook",(req, res) =>{
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				respuesta = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
+				respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
 				console.log(req.body.queryResult.fulfillmentText);
-				sendResponse(respuesta);
+				sendResponse(respuestaBot);
 				sendAnalytics();
 			  });
 			
@@ -109,8 +110,7 @@ app.post("/webhook",(req, res) =>{
 		historial.UsuarioId = id;
 		historial.UsuarioDice = req.body.queryResult.queryText;
 		historial.NombreIntento= req.body.queryResult.intent.displayName;
-		historial.BotResponde= respuesta;
-		//historial.BotResponde= req.body.queryResult.fulfillmentText;	
+		historial.BotResponde= respuestaBot;	
 		//console.log(historial);
 
 	//Envio de objeto con mensaje a Mongo Atlas
@@ -164,7 +164,7 @@ app.post("/webhook",(req, res) =>{
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
 	  .setUserId(idUser) // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setMessage(respuesta); // Mensaje de respuesta del Bot
+	  .setMessage(respuestaBot); // Mensaje de respuesta del Bot
 	
 	// Envio de mensaje a Chatbase
 	messageSet2.sendMessageSet()
