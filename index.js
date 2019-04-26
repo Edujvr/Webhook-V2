@@ -109,7 +109,8 @@ app.post("/webhook",(req, res) =>{
 		historial.UsuarioId = id;
 		historial.UsuarioDice = req.body.queryResult.queryText;
 		historial.NombreIntento= req.body.queryResult.intent.displayName;
-		historial.BotResponde= req.body.queryResult.fulfillmentText;	
+		historial.BotResponde= respuesta;
+		//historial.BotResponde= req.body.queryResult.fulfillmentText;	
 		//console.log(historial);
 
 	//Envio de objeto con mensaje a Mongo Atlas
@@ -163,7 +164,7 @@ app.post("/webhook",(req, res) =>{
 	  .setAsTypeAgent() // Marca como mensaje que viene del Bot
 	  .setUserId(idUser) // ID de usuario la misma que arriba
 	  .setTimestamp(Date.now().toString()) // Tiempo obtenido del sistema
-	  .setMessage(req.body.queryResult.fulfillmentText); // Mensaje de respuesta del Bot
+	  .setMessage(respuesta); // Mensaje de respuesta del Bot
 	
 	// Envio de mensaje a Chatbase
 	messageSet2.sendMessageSet()
