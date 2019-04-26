@@ -61,7 +61,6 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			    }
 				respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
-				console.log(req.body.queryResult.fulfillmentText);
 				sendResponse(respuestaBot);
 				sendAnalytics();
 			  });
@@ -104,6 +103,7 @@ app.post("/webhook",(req, res) =>{
 	 }
 		
 	function sendAnalytics () {	
+		console.log(respuestaBot);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		var historial = new Object();
 		historial.SesionId = sessionId;
