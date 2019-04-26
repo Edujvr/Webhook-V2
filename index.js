@@ -180,7 +180,7 @@ app.post("/webhook",(req, res) =>{
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
-	      //console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
