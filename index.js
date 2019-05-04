@@ -55,12 +55,12 @@ app.post("/webhook",(req, res) =>{
 			nameW=res.name	
 			//console.log(nameW);
 			console.log(email);
-			var query  = Colaboradores.where({ UsuarioRed: req.body.queryResult.parameters.UsuariosRed });
+			var query  = Colaboradores.where({ Email: email });
 			query.findOne(function (err, colaboradores) {
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				respuestaBot = nameW +" Tu consultor es " + colaboradores.Email //+" Tu nombre " +usuarioName
+				respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
 				sendResponse(respuestaBot);
 				sendAnalytics();
 			  });
