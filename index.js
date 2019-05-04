@@ -60,7 +60,7 @@ app.post("/webhook",(req, res) =>{
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
+				respuestaBot = nameW +" Tu consultor es " + colaboradores.Email //+" Tu nombre " +usuarioName
 				sendResponse(respuestaBot);
 				sendAnalytics();
 			  });
