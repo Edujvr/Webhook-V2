@@ -13,6 +13,10 @@ const ColaboradoresSchema = new Schema({
   NombreConsultor: {
     type: String,
     required:true
+  },
+  Mail: {
+    type: String,
+    required:true
   }
 });
 
