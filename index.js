@@ -62,7 +62,7 @@ app.post("/webhook",(req, res) =>{
 			    }
 				respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
 				sendResponse(respuestaBot);
-				sendAnalytics();
+				sendAnalytics(nameW);
 			  });
 			
 		});		
@@ -95,19 +95,24 @@ app.post("/webhook",(req, res) =>{
 			    res.end('Email sent!')
 			  })
 		sendResponse(respuesta); 
-		sendAnalytics();
+		sendAnalytics(nameW);
 		});	
 	 } else { //Envio de información directa webhook a Dialogflow	
-		sendResponse(respuesta); 
-		sendAnalytics();
+		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+			email=res.email;
+			nameW=res.name	
+			sendResponse(respuesta); 
+			sendAnalytics(nameW);
+		});
 	 }
 		
-	function sendAnalytics () {	
+	function sendAnalytics (nameUser) {	
 		console.log(respuestaBot);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		var historial = new Object();
 		historial.SesionId = sessionId;
 		historial.UsuarioId = id;
+		historial.NombreUsuario= nameUser;
 		historial.UsuarioDice = req.body.queryResult.queryText;
 		historial.NombreIntento= req.body.queryResult.intent.displayName;
 		historial.BotResponde= respuestaBot;	
