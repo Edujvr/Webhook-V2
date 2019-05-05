@@ -10,6 +10,10 @@ const HistorialSchema = new Schema({
         type: Number,
         required:true
       },
+  NombreUsuario:{
+        type: String,
+        required:true
+  },
   UsuarioDice:{
         type: String,
         required:true
