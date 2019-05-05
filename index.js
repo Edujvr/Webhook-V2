@@ -107,7 +107,7 @@ app.post("/webhook",(req, res) =>{
 	 }
 		
 	function sendAnalytics (nameUser) {	
-		console.log(respuestaBot);
+		//console.log(respuestaBot);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		var historial = new Object();
 		historial.SesionId = sessionId;
