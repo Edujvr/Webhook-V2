@@ -111,7 +111,7 @@ app.post("/webhook",(req, res) =>{
 	console.log(req.body.queryResult.fulfillmentMessages);
 		//console.log(respuestaBot);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
-		if ((action == "encuesta")||(action == "encuesta2")) {	
+		if (action == "encuesta") {	
 			var historial = new Object();
 			historial.SesionId = sessionId;
 			historial.UsuarioId = id;
