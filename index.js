@@ -111,6 +111,16 @@ app.post("/webhook",(req, res) =>{
 	//console.log(req.body.queryResult.fulfillmentMessages);
 		//console.log(respuestaBot);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
+		if (action=="encuesta") {	
+			var historial = new Object();
+			historial.SesionId = sessionId;
+			historial.UsuarioId = id;
+			historial.NombreUsuario= nameUser;
+			historial.UsuarioDice = req.body.queryResult.queryText;
+			historial.NombreIntento= req.body.queryResult.intent.displayName;
+			historial.BotRespode= req.body.queryResult.fulfillmentMessages[2].text.text[0];
+		//console.log(historial);
+		} else {
 			var historial = new Object();
 			historial.SesionId = sessionId;
 			historial.UsuarioId = id;
@@ -118,7 +128,7 @@ app.post("/webhook",(req, res) =>{
 			historial.UsuarioDice = req.body.queryResult.queryText;
 			historial.NombreIntento= req.body.queryResult.intent.displayName;
 			historial.BotResponde= respuestaBot;
-
+		}
 	//Envio de objeto con mensaje a Mongo Atlas
 		let newHistorial = new Historial(historial);
 		newHistorial.save(function (err) {
