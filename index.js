@@ -136,6 +136,7 @@ app.post("/webhook",(req, res) =>{
 		newHistorial.save(function (err) {
 			if (err) return handleError(err);
 		});
+		console.log(newHistorial)
 	
 	// Creación mensaje Set de Usuario
 	var messageSet = chatbase.newMessageSet()
