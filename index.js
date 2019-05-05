@@ -119,7 +119,7 @@ app.post("/webhook",(req, res) =>{
 			historial.UsuarioDice = req.body.queryResult.queryText;
 			historial.NombreIntento= req.body.queryResult.intent.displayName;
 			historial.BotRespode= req.body.queryResult.fulfillmentMessages[2].text.text[0];
-		//console.log(historial);
+		console.log(historial);
 		} else {
 			var historial = new Object();
 			historial.SesionId = sessionId;
