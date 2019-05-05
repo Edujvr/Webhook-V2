@@ -118,8 +118,8 @@ app.post("/webhook",(req, res) =>{
 			historial.NombreUsuario= nameUser;
 			historial.UsuarioDice = req.body.queryResult.queryText;
 			historial.NombreIntento= req.body.queryResult.intent.displayName;
-			historial.BotRespode= 'prueba';
-		//console.log(historial);
+			historial.BotRespode= req.body.queryResult.fulfillmentMessages[2].text.text[0];
+		console.log(historial);
 		} else {
 			console.log("Entro Aqui")
 			var historial = new Object();
@@ -129,6 +129,7 @@ app.post("/webhook",(req, res) =>{
 			historial.UsuarioDice = req.body.queryResult.queryText;
 			historial.NombreIntento= req.body.queryResult.intent.displayName;
 			historial.BotResponde= respuestaBot;
+		  console.log(historial);
 		}
 	//Envio de objeto con mensaje a Mongo Atlas
 		let newHistorial = new Historial(historial);
