@@ -118,7 +118,7 @@ app.post("/webhook",(req, res) =>{
 			historial.NombreUsuario= nameUser;
 			historial.UsuarioDice = req.body.queryResult.queryText;
 			historial.NombreIntento= req.body.queryResult.intent.displayName;
-			historial.BotRespode= req.body.queryResult.fulfillmentMessages[2].text.text[0];
+			historial.BotRespode= 'prueba';
 		//console.log(historial);
 		} else {
 			console.log("Entro Aqui")
