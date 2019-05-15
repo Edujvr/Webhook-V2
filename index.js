@@ -17,8 +17,6 @@ require("./config/db");
 //Creación del metodo que escucha las llamadas POST y obtiene los parametros
 
 app.post("/webhook",(req, res) =>{   
-//  console.log(req.body.queryResult.fulfillmentMessages[2].text.text[0]);
-//  console.log(req.body.queryResult.fulfillmentText);
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
@@ -68,7 +66,7 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});		
-	 } else if (action == "nothandled") {
+	 } /*else if (action == "nothandled") {
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
@@ -99,7 +97,7 @@ app.post("/webhook",(req, res) =>{
 		sendResponse(respuesta); 
 		sendAnalytics(nameW);
 		});	
-	 } else { //Envio de información directa webhook a Dialogflow	
+	 } */else { //Envio de información directa webhook a Dialogflow	
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
