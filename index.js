@@ -66,7 +66,15 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});		
-	 } /*else if (action == "nothandled") {
+	 } else if(action == "agradecer"){
+	 	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+			email=res.email;
+			nameW=res.name	
+			sendResponse(respuesta); 
+			sendAgradecer(nameW);
+		});
+	 } 
+	/*else if (action == "nothandled") {
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
@@ -111,9 +119,9 @@ app.post("/webhook",(req, res) =>{
 		agradecer.SesionId = sessionId;
 		agradecer.UsuarioId = id;
 		agradecer.UsuarioGenerador = nameUser;
-		agradecer.UsuarioReceptor=req.body.queryResult.outputContexts.parameters;
-		agradecer.Comportamiento = req.body.queryResult.outputContexts.parameters;
-		agradecer.Descripcion= req.body.queryResult.outputContexts.parameters;
+		agradecer.UsuarioReceptor=req.body.queryResult.outputContexts.parameters.UsuariosRed.original;
+		agradecer.Comportamiento = req.body.queryResult.outputContexts.parameters.Comportamiento.original;
+		agradecer.Descripcion= req.body.queryResult.outputContexts.parameters.any.original;
 		agradecer.ArchivoAdjunto=req.body.queryResult.outputContexts.parameters;
 		console.log(agradecer)
 	}
