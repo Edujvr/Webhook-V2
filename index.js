@@ -33,7 +33,7 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  console.log(req.body.queryResult.outputContexts[0].parameters.'UsuariosRed.original');
+  console.log(req.body.queryResult.outputContexts[0].parameters);
   //console.log(contextos);
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
@@ -119,9 +119,9 @@ app.post("/webhook",(req, res) =>{
 		agradecer.SesionId = sessionId;
 		agradecer.UsuarioId = id;
 		agradecer.UsuarioGenerador = nameUser;
-		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed.original;
-		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento.original;
-		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.any.original;
+		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
+		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.any;
 		agradecer.Adjunto = req.body.queryResult.outputContexts[0].parameters.any;
 		console.log(agradecer)
 	}
