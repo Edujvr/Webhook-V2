@@ -111,10 +111,10 @@ app.post("/webhook",(req, res) =>{
 		agradecer.SesionId = sessionId;
 		agradecer.UsuarioId = id;
 		agradecer.UsuarioGenerador = nameUser;
-		agradecer.UsuarioReceptor=;
-		agradecer.Comportamiento = ;
-		agradecer.Descripcion= ;
-		agradecer.ArchivoAdjunto=;
+		agradecer.UsuarioReceptor=req.body.queryResult.outputContexts.parameters;
+		agradecer.Comportamiento = req.body.queryResult.outputContexts.parameters;
+		agradecer.Descripcion= req.body.queryResult.outputContexts.parameters;
+		agradecer.ArchivoAdjunto=req.body.queryResult.outputContexts.parameters;
 		console.log(agradecer)
 	}
 		
