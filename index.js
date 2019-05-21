@@ -115,6 +115,7 @@ app.post("/webhook",(req, res) =>{
 		agradecer.Comportamiento = ;
 		agradecer.Descripcion= ;
 		agradecer.ArchivoAdjunto=;
+		console.log(agradecer)
 	}
 		
 	function sendAnalytics (nameUser) {
