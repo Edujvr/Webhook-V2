@@ -122,7 +122,7 @@ app.post("/webhook",(req, res) =>{
 		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed.original;
 		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento.original;
 		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.any.original;
-		agradecer.req.body.queryResult.outputContexts[0].parameters.any;
+		agradecer.Adjunto = req.body.queryResult.outputContexts[0].parameters.any;
 		console.log(agradecer)
 	}
 		
