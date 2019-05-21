@@ -33,7 +33,7 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  //console.log(req.body.queryResult);
+  console.log(req.body.queryResult.outputContexts.parameters);
   //console.log(contextos);
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
@@ -105,6 +105,17 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics(nameW);
 		});
 	 }
+	
+	function sendAgradecer (nameUser){
+		var agradecer = new Object();
+		agradecer.SesionId = sessionId;
+		agradecer.UsuarioId = id;
+		agradecer.UsuarioGenerador = nameUser;
+		agradecer.UsuarioReceptor=;
+		agradecer.Comportamiento = ;
+		agradecer.Descripcion= ;
+		agradecer.ArchivoAdjunto=;
+	}
 		
 	function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
