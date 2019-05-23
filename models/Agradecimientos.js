@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AgradecimientoSchema = new Schema({
+const AgradecimientosSchema = new Schema({
+  createdOn: {
+        type: Date,
+        default: Date.now
+  },
   SesionId:{
       type: String,
       required:true,
@@ -28,11 +32,7 @@ const AgradecimientoSchema = new Schema({
   },
   ArchivoAdjunto: {
         type: String
-  },
-  createdOn: {
-        type: Date,
-        default: Date.now
   }
 });
 
-module.exports = mongoose.model("Agradecimientos", AgradecimientoSchema);
+module.exports = mongoose.model("Agradecimientos", AgradecimientosSchema);
