@@ -126,10 +126,10 @@ app.post("/webhook",(req, res) =>{
 		agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(agradecer)
 		
-		let newAgradecimiento = new Agradecimiento(agradecer);
+		/*let newAgradecimiento = new Agradecimiento(agradecer);
 		newAgradecimiento.save(function (err) {
 			if (err) return handleError(err);
-		});
+		});*/
 	}
 		
 	function sendAnalytics (nameUser) {
