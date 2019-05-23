@@ -121,7 +121,7 @@ app.post("/webhook",(req, res) =>{
 		agradecer.UsuarioGenerador = nameUser;
 		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
 		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
-		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.any;
+		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.Descripcion;
 		agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(agradecer)
 		
