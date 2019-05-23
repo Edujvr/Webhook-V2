@@ -34,7 +34,6 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url);
   //console.log(contextos);
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
