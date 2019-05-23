@@ -33,7 +33,7 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-
+  console.log(req.body.queryResult);
   //console.log(contextos);
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
@@ -67,7 +67,6 @@ app.post("/webhook",(req, res) =>{
 			
 		});		
 	 } else if(action == "agradecer"){
-		console.log(req.body.queryResult.parameters);
 	 	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
