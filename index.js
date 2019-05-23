@@ -2,6 +2,7 @@
 
 const Colaboradores = require("./models/Colaboradores");
 const Historial = require("./models/Historial");
+const Agradecimiento = require("./models/Agradecimientos");
 const bodyParser = require("body-parser");
 const express = require('express');
 const app = express();
@@ -122,8 +123,13 @@ app.post("/webhook",(req, res) =>{
 		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
 		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
 		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.any;
-		agradecer.Adjunto = req.body.queryResult.outputContexts[0].parameters.any;
+		agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(agradecer)
+		
+		let newAgradecimiento = new Agradecimiento(agradecer);
+		newAgradecimiento.save(function (err) {
+			if (err) return handleError(err);
+		});
 	}
 		
 	function sendAnalytics (nameUser) {
