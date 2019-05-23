@@ -67,7 +67,7 @@ app.post("/webhook",(req, res) =>{
 			
 		});		
 	 } else if(action == "agradecer"){
-		console.log(req.body.queryResult.outputContexts[i].parameters);
+		console.log(req.body.queryResult.outputContexts[0].parameters);
 	 	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
