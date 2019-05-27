@@ -3,6 +3,7 @@
 const Colaboradores = require("./models/Colaboradores");
 const Historial = require("./models/Historial");
 const Agencias = require("./models/Agencias");
+const Reclamos = require("./models/Reclamos");
 const Agradecimiento = require("./models/Agradecimientos");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -76,6 +77,21 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			    }
 				respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "-" + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			  });
+			
+		});	
+	 } else if(action == "reclamos"){
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name	
+			var query  = Reclamos.where({ SUBTIPO: req.body.queryResult.parameters.ReclamosTipos });
+			query.findOne(function (err, reclamos) {
+			    if (err) {
+			      res.status(500).send(err);
+			    }
+				console.log(reclamos);
+				respuestaBot = reclamos.SUBTIPO 
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
