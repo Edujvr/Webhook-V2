@@ -75,7 +75,7 @@ app.post("/webhook",(req, res) =>{
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: " + agencias.PROVINCIA + ", " + agencias.CIUDAD + ", " + agencias.DIRECCION + " Referencia: " + agencias.REFERENCIA + " Teléfonos: " + agencias.TELF_1 + ", " + agencias.TELF_2 + " Horarios: Semana: " + agencias.H_SEMANA + ", Sábado: " + agencias.H_SABADO + ", Domingo: " + agencias.H_DOMINGO
+				respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n\n" + agencias.PROVINCIA + ", " + agencias.CIUDAD + ", " + agencias.DIRECCION + " Referencia: " + agencias.REFERENCIA + " Teléfonos: " + agencias.TELF_1 + ", " + agencias.TELF_2 + " Horarios: Semana: " + agencias.H_SEMANA + ", Sábado: " + agencias.H_SABADO + ", Domingo: " + agencias.H_DOMINGO
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
