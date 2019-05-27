@@ -35,7 +35,7 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  console.log(req.body.queryResult);
+  //console.log(req.body.queryResult);
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
