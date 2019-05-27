@@ -2,6 +2,7 @@
 
 const Colaboradores = require("./models/Colaboradores");
 const Historial = require("./models/Historial");
+const Agencias = require("./models/Agencias");
 const Agradecimiento = require("./models/Agradecimientos");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -34,7 +35,7 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  //console.log(contextos);
+  console.log(req.body.queryResult);
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
@@ -66,6 +67,20 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});		
+	 }  else if(action == "agencias"){
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name	
+			var query  = Agencias.where({ NOMBRE: email });
+			query.findOne(function (err, agencias) {
+			    if (err) {
+			      res.status(500).send(err);
+			    }
+				respuestaBot ="La Agencia " + agencias.NOMBRE 
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			  });
+			
+		});	
 	 } else if(action == "agradecer"){
 	 	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
@@ -133,7 +148,6 @@ app.post("/webhook",(req, res) =>{
 		
 	function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
-	//console.log(respuestaBot);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
 			respuestaBot=String(req.body.queryResult.fulfillmentMessages[2].text.text[0])
