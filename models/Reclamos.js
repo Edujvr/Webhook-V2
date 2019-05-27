@@ -7,7 +7,7 @@ const ReclamoSchema = new Schema({
     type: String,
     required:true
   },
-  VENTANA DE AYUDA: {
+  "VENTANA DE AYUDA": {
     type: String,
     required:true
   }
