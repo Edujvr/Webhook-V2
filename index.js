@@ -70,12 +70,12 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "agencias"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			var query  = Agencias.where({ NOMBRE: email });
+			var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
 			query.findOne(function (err, agencias) {
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				respuestaBot ="La Agencia " + agencias.NOMBRE 
+				respuestaBot ="La Agencia " + agencias.NOMBRE +"esta en: " + agencias.DIRECCION
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
