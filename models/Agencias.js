@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AgenciaSchema = new Schema({
-  Nombre:{
+  NOMBRE:{
     type: String,
     required:true
   },
