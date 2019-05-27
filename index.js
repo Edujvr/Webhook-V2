@@ -84,7 +84,8 @@ app.post("/webhook",(req, res) =>{
 		});	
 	 } else if(action == "reclamos"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
-			nameW=res.name	
+			nameW=res.name
+			console.log(req.body.queryResult.parameters.ReclamosTipos);
 			var query  = Reclamos.where({ SUBTIPO: req.body.queryResult.parameters.ReclamosTipos });
 			query.findOne(function (err, reclamos) {
 			    if (err) {
