@@ -71,6 +71,7 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "agencias"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
+			console.log(req.body.queryResult.parameters.NombreAgencia)
 			var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
 			query.findOne(function (err, agencias) {
 			    if (err) {
