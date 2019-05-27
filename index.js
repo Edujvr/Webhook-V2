@@ -37,7 +37,7 @@ app.post("/webhook",(req, res) =>{
   var i,len = contextos.length;
   var email, nameW;
   //console.log(req.body.queryResult);
-  console.log(req.body.queryResult.parameters);
+  //console.log(req.body.queryResult.parameters);
 	
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
@@ -73,7 +73,6 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "agencias"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			console.log(req.body.queryResult.parameters.NombreAgencia)
 			var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
 			query.findOne(function (err, agencias) {
 			    if (err) {
@@ -95,7 +94,7 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			    }
 				console.log(reclamos);
-				respuestaBot = reclamos.SUBTIPO 
+				//respuestaBot = reclamos.SUBTIPO 
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
