@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ReclamoSchema = new Schema({
-  SUBTIPO:{
+  TIPO:{
     type: String,
     required:true
   },
