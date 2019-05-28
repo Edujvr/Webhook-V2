@@ -88,13 +88,12 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name
 			console.log(req.body.queryResult.parameters.ReclamosTipos);
-			var query  = Reclamos.where({ SUBTIPO: req.body.queryResult.parameters.ReclamosTipos });
+			var query  = Reclamos.where({ TIPO: req.body.queryResult.parameters.ReclamosTipos });
 			query.findOne(function (err, reclamos) {
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				console.log(reclamos);
-				//respuestaBot = reclamos.SUBTIPO 
+				respuestaBot = reclamos.VENTANA_DE_AYUDA 
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
