@@ -93,7 +93,7 @@ app.post("/webhook",(req, res) =>{
 			    if (err) {
 			      res.status(500).send(err);
 			    }
-				respuestaBot = reclamos.VENTANA_DE_AYUDA 
+				respuestaBot = reclamos.AYUDA 
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
