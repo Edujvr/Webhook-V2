@@ -94,7 +94,7 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			    }
 				respuestaBot = reclamos.AYUDA
-				console.log(respuestaBot)
+				console.log(reclamos)
 				//sendResponse(respuestaBot);
 				//sendAnalytics(nameW);
 			  });
