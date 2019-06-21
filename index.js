@@ -91,7 +91,7 @@ app.post("/webhook",(req, res) =>{
 			nameW=res.name	
 			var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
 			query.findOne(function (err, administradores) {
-			    respuestaBot="Agencia "+ administradores.NOMBRE:
+			    respuestaBot="Agencia "+ administradores.NOMBRE+":";
 			    if (err) {
 			      res.status(500).send(err);
 			    }else if(administradores.ADMINISTRADOR_COMERCIAL !="nan"){
