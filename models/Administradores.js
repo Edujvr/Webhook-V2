@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AdministradorSchema = new Schema({
+const AdministradoresSchema = new Schema({
   NOMBRE:{
     type: String,
     required:true
@@ -56,4 +56,4 @@ const AdministradorSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Administrador", AdministradorSchema);
+module.exports = mongoose.model("Administradores", AdministradoresSchema);
