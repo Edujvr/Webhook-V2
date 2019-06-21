@@ -86,20 +86,27 @@ app.post("/webhook",(req, res) =>{
 			
 		});	
 	 }   else if(action == "administradores"){
-		 console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
+		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
 			var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
 			query.findOne(function (err, administradores) {
+			    respuestaBot="Agencia "+ administradores.NOMBRE:
 			    if (err) {
 			      res.status(500).send(err);
 			    }else if(administradores.ADMINISTRADOR_COMERCIAL !="nan"){
+			    	respuestaBot ="/nAdministrador Comercial: " administradores.ADMINISTRADOR_COMERCIAL +"/nCEL: "+ administradores.CEL_ADMINISTRADOR_COMERCIAL+"/nEXT: "+administradores.EXT_ADMINISTRADOR_COMERCIAL;
+			    }else if(administradores.ADMINISTRADOR_SERVICIOS !="nan"){
+			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
+			    }else if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS !="nan"){
+			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
+			    }else if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS !="nan"){
 			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
 			    }	console.log(respuestaBot)
 				//console.log(administradores)
 				//console.log(query)
 				//respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
-				//sendResponse(respuestaBot);
+				sendResponse(respuestaBot);
 				//sendAnalytics(nameW);
 			  });
 			
