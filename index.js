@@ -90,13 +90,16 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
 			var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia });
-			query.findOne(function (err, agencias) {
+			query.findOne(function (err, administradores) {
 			    if (err) {
 			      res.status(500).send(err);
-			    }   console.log(Administradores)
+			    }if else(administradores.NOMBRE=="nan"){
+			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
+			    }	console.log(respuestaBot)
+				//console.log(Administradores)
 				//respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
-				sendResponse(respuestaBot);
-				sendAnalytics(nameW);
+				//sendResponse(respuestaBot);
+				//sendAnalytics(nameW);
 			  });
 			
 		});	
