@@ -94,7 +94,7 @@ app.post("/webhook",(req, res) =>{
 			    if (err) {
 			      res.status(500).send(err);
 			    }else if(administradores.ADMINISTRADOR_COMERCIAL=="nan"){
-			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL*/
+			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
 			    }	console.log(respuestaBot)
 				//console.log(administradores)
 				//console.log(query)
