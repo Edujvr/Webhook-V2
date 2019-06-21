@@ -95,7 +95,7 @@ app.post("/webhook",(req, res) =>{
 			    if (err) {
 			      res.status(500).send(err);
 			    }else if(administradores.ADMINISTRADOR_COMERCIAL !="nan"){
-			    	respuestaBot ="/nAdministrador Comercial: " administradores.ADMINISTRADOR_COMERCIAL +"/nCEL: "+ administradores.CEL_ADMINISTRADOR_COMERCIAL+"/nEXT: "+administradores.EXT_ADMINISTRADOR_COMERCIAL;
+			    	respuestaBot ="/nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "/nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "/nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
 			    }else if(administradores.ADMINISTRADOR_SERVICIOS !="nan"){
 			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
 			    }else if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS !="nan"){
