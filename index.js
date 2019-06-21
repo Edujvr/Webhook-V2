@@ -84,6 +84,21 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
+	 }   else if(action == "administradores"){
+		 console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name	
+			var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia });
+			query.findOne(function (err, agencias) {
+			    if (err) {
+			      res.status(500).send(err);
+			    }   console.log(Adnibistradires)
+				//respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			  });
+			
+		});	
 	 } else if(action == "reclamos"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name
