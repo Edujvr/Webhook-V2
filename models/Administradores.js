@@ -7,37 +7,52 @@ const AdministradorSchema = new Schema({
     required:true
   },
   ADMINISTRADOR_COMERCIAL : {
-    type: String
+    type: String,
+    required:true
   },
   CEL_ADMINISTRADOR_COMERCIAL : {
-    type: String
+    type: String,
+    required:true
   },
   EXT_ADMINISTRADOR_COMERCIAL : {
-    type: String
-  },  ADMINISTRADOR_SERVICIOS : {
-    type: String
+    type: String,
+    required:true
+  },  
+  ADMINISTRADOR_SERVICIOS : {
+    type: String,
+    required:true
   },
   CEL_ADMINISTRADOR_SERVICIOS : {
-    type: String
+    type: String,
+    required:true
   },
   EXT_ADMINISTRADOR_SERVICIOS : {
-    type: String
-  },  ADMINISTRADOR_COMERCIAL_SERVICIOS : {
-    type: String
+    type: String,
+    required:true
+  },  
+  ADMINISTRADOR_COMERCIAL_SERVICIOS : {
+    type: String,
+    required:true
   },
   CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS : {
-    type: String
+    type: String,
+    required:true
   },
   EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS : {
-    type: String
-  },  ESPECIALISTA_COMERCIAL_SERVICIOS : {
-    type: String
+    type: String,
+    required:true
+  },  
+  ESPECIALISTA_COMERCIAL_SERVICIOS : {
+    type: String,
+    required:true
   },
   CEL_ESPECIALISTA_COMERCIAL_SERVICIOS : {
-    type: String
+    type: String,
+    required:true
   },
   EXT_ESPECIALISTA_COMERCIAL_SERVICIOS  : {
-    type: String
+    type: String,
+    required:true
   }
 });
 
