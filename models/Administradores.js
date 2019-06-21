@@ -6,51 +6,51 @@ const AdministradorSchema = new Schema({
     type: String,
     required:true
   },
-  ADMINISTRADOR_COMERCIAL : {
+  ADMINISTRADOR_COMERCIAL:{
     type: String,
     required:true
   },
-  CEL_ADMINISTRADOR_COMERCIAL : {
+  CEL_ADMINISTRADOR_COMERCIAL:{
     type: String,
     required:true
   },
-  EXT_ADMINISTRADOR_COMERCIAL : {
+  EXT_ADMINISTRADOR_COMERCIAL:{
     type: String,
     required:true
   },  
-  ADMINISTRADOR_SERVICIOS : {
+  ADMINISTRADOR_SERVICIOS:{
     type: String,
     required:true
   },
-  CEL_ADMINISTRADOR_SERVICIOS : {
+  CEL_ADMINISTRADOR_SERVICIOS:{
     type: String,
     required:true
   },
-  EXT_ADMINISTRADOR_SERVICIOS : {
+  EXT_ADMINISTRADOR_SERVICIOS:{
     type: String,
     required:true
   },  
-  ADMINISTRADOR_COMERCIAL_SERVICIOS : {
+  ADMINISTRADOR_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
   },
-  CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS : {
+  CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
   },
-  EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS : {
+  EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
   },  
-  ESPECIALISTA_COMERCIAL_SERVICIOS : {
+  ESPECIALISTA_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
   },
-  CEL_ESPECIALISTA_COMERCIAL_SERVICIOS : {
+  CEL_ESPECIALISTA_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
   },
-  EXT_ESPECIALISTA_COMERCIAL_SERVICIOS  : {
+  EXT_ESPECIALISTA_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
   }
