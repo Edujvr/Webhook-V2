@@ -3,6 +3,7 @@
 const Colaboradores = require("./models/Colaboradores");
 const Historial = require("./models/Historial");
 const Agencias = require("./models/Agencias");
+const Administradores = require("./models/Administradores");
 const Reclamos = require("./models/Reclamos");
 const Agradecimiento = require("./models/Agradecimientos");
 const bodyParser = require("body-parser");
