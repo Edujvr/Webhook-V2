@@ -93,7 +93,7 @@ app.post("/webhook",(req, res) =>{
 			query.findOne(function (err, administradores) {
 			    if (err) {
 			      res.status(500).send(err);
-			    }if else(administradores.NOMBRE=="nan"){
+			    }else if(administradores.NOMBRE=="nan"){
 			    	respuestaBot = administradores.ADMINISTRADOR_COMERCIAL + administradores.CEL_ADMINISTRADOR_COMERCIAL
 			    }	console.log(respuestaBot)
 				//console.log(Administradores)
