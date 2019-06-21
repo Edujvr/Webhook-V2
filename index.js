@@ -94,13 +94,13 @@ app.post("/webhook",(req, res) =>{
 			    respuestaBot="Agencia "+ administradores.NOMBRE+":";
 			    if (err) {
 			      res.status(500).send(err);
-			    }else if(administradores.ADMINISTRADOR_COMERCIAL !="nan"){
+			    }if(administradores.ADMINISTRADOR_COMERCIAL !="nan"){
 			    	respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
-			    }else if(administradores.ADMINISTRADOR_SERVICIOS !="nan"){
+			    }if(administradores.ADMINISTRADOR_SERVICIOS !="nan"){
 			    	respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
-			    }else if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS !="nan"){
+			    }if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS !="nan"){
 			    	respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
-			    }else if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS !="nan"){
+			    }if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS !="nan"){
 			    	respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
 			    }	//console.log(respuestaBot)
 				//respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
