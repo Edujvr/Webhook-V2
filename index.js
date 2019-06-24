@@ -51,21 +51,19 @@ app.post("/webhook",(req, res) =>{
 			console.log('extrayendo')
 		}
 		console.log(id);
-	}
-	
+	}	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){	
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
 			//console.log(nameW);
-			console.log(email);
+			//console.log(email);
 			var query  = Colaboradores.where({ Mail: email });
 			query.findOne(function (err, colaboradores) {
 			    if (err) {
 			      res.status(500).send(err);
-			    }
-				respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
+			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
@@ -78,14 +76,13 @@ app.post("/webhook",(req, res) =>{
 			query.findOne(function (err, agencias) {
 			    if (err) {
 			      res.status(500).send(err);
-			    }
-				respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
+			    }	respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
 			
 		});	
-	 }   else if(action == "administradores"){
+	 } else if(action == "administradores"){
 		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
@@ -102,9 +99,28 @@ app.post("/webhook",(req, res) =>{
 			    	respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
 			    }if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS !="nan"){
 			    	respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-			    }	//console.log(respuestaBot)
-				//respuestaBot = "La Agencia " + agencias.NOMBRE + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
-				sendResponse(respuestaBot);
+			    }sendResponse(respuestaBot);
+			     sendAnalytics(nameW);
+			  });
+			
+		});	
+	 } else if(action == "gerentes"){
+		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name	
+			var query  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
+			query.findOne(function (err, gerentes) {
+			    respuestaBot="Agencia "+ gerentes.NOMBRE+":";
+			    if (err) {
+			      res.status(500).send(err);
+			    }if(gerentes.GERENTE_AGENCIA !="nan"){
+			    	respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
+			    }if(gerentes.NOMBRE_REGIONAL_NEGOCIO !="nan"){
+			    	respuestaBot =respuestaBot+"\nGerente Regional de Negocio: " + gerentes.NOMBRE_REGIONAL_NEGOCIO + "\nCEL: " + gerentes.CEL_NOMBRE_REGIONAL_NEGOCIO + "\nEXT: " + gerentes.EXT_NOMBRE_REGIONAL_NEGOCIO;
+			    }if(gerentes.NOMBRE_REGIONAL_CANALES_SERV !="nan"){
+			    	respuestaBot =respuestaBot+"\nNombre Regional Canales y Servicios: " + gerentes.NOMBRE_REGIONAL_CANALES_SERV + "\nCEL: " + gerentes.CEL_NOMBRE_REGIONAL_CANALES_SERV + "\nEXT: " + gerentes.EXT_NOMBRE_REGIONAL_CANALES_SERV;
+			    }	sendResponse(respuestaBot);
+			    	console.log(respuestaBot)
 				//sendAnalytics(nameW);
 			  });
 			
@@ -117,9 +133,7 @@ app.post("/webhook",(req, res) =>{
 			query.findOne(function (err, reclamos) {
 			    if (err) {
 			      res.status(500).send(err);
-			    }
-				respuestaBot = reclamos.AYUDA +"\n\nPara más información ingresa en el siguiente link: http://bit.ly/2IRBCzG "
-				console.log(respuestaBot)
+			    }	respuestaBot = reclamos.AYUDA +"\n\nPara más información ingresa en el siguiente link: http://bit.ly/2IRBCzG "
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
