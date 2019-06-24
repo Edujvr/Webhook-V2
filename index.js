@@ -109,7 +109,7 @@ app.post("/webhook",(req, res) =>{
 		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			var query  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
+			var query  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.GerenteNombreAgencia.NombreAgencia});
 			query.findOne(function (err, gerentes) {
 			    respuestaBot="Agencia "+ gerentes.NOMBRE+":";
 			    if (err) {
