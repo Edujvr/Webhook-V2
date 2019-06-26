@@ -189,6 +189,7 @@ app.post("/webhook",(req, res) =>{
 	 }
 	
 	function sendAgradecer (nameUser){
+		console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments)
 		var agradecer = new Object();
 		agradecer.SesionId = sessionId;
 		agradecer.UsuarioId = id;
@@ -196,9 +197,10 @@ app.post("/webhook",(req, res) =>{
 		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
 		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
 		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.Descripcion;
-		agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		if(req.body.originalDetectIntentRequest.payload.data.message.attachments!= null){
+			agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		   }
 		console.log(agradecer)
-		
 		/*let newAgradecimiento = new Agradecimiento(agradecer);
 		newAgradecimiento.save(function (err) {
 			if (err) return handleError(err);
