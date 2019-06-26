@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AgradecimientosSchema = new Schema({
+const AgradecimientoSchema = new Schema({
   createdOn: {
         type: Date,
         default: Date.now
@@ -35,4 +35,4 @@ const AgradecimientosSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Agradecimientos", AgradecimientosSchema);
+module.exports = mongoose.model("Agradecimiento", AgradecimientoSchema);
