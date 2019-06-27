@@ -116,10 +116,6 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			    }if(gerentes.GERENTE_AGENCIA !="nan"){
 			    	respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
-			    }if(gerentes.NOMBRE_REGIONAL_NEGOCIO !="nan"){
-			    	respuestaBot =respuestaBot+"\nGerente Regional de Negocio: " + gerentes.NOMBRE_REGIONAL_NEGOCIO + "\nCEL: " + gerentes.CEL_NOMBRE_REGIONAL_NEGOCIO + "\nEXT: " + gerentes.EXT_NOMBRE_REGIONAL_NEGOCIO;
-			    }if(gerentes.NOMBRE_REGIONAL_CANALES_SERV !="nan"){
-			    	respuestaBot =respuestaBot+"\nNombre Regional Canales y Servicios: " + gerentes.NOMBRE_REGIONAL_CANALES_SERV + "\nCEL: " + gerentes.CEL_NOMBRE_REGIONAL_CANALES_SERV + "\nEXT: " + gerentes.EXT_NOMBRE_REGIONAL_CANALES_SERV;
 			    }	sendResponse(respuestaBot);
 			    	console.log(respuestaBot)
 				//sendAnalytics(nameW);
