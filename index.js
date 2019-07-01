@@ -41,6 +41,12 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult);
   //console.log(req.body.queryResult.parameters);
 	
+	if(req.body.queryResult.parameters!=null){
+		console.log("si existe parametros")
+	}else{
+		console.log("NO existe parametros")
+	}
+	
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
