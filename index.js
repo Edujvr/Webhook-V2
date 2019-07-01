@@ -42,6 +42,7 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult.parameters);
 	
 	if(req.body.queryResult.parameters!=null){
+		console.log(req.body.queryResult.parameters)
 		console.log("si existe parametros")
 	}else{
 		console.log("NO existe parametros")
