@@ -41,7 +41,7 @@ app.post("/webhook",(req, res) =>{
   //console.log(req.body.queryResult);
   //console.log(req.body.queryResult.parameters);
 	
-	if(req.body.queryResult.parameters.nombreAgencia!=undefined){
+	if(req.body.queryResult.parameters.BoletoAereo!=undefined){
 		console.log(req.body.queryResult.parameters.nombreAgencia)
 		console.log("si existe parametros")
 	}else{
