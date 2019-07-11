@@ -69,6 +69,7 @@ app.post("/webhook",(req, res) =>{
 			//console.log(email);
 			var query  = Colaboradores.where({ Mail: email });
 			query.findOne(function (err, colaboradores) {
+			    console.log(colaboradores)
 			    if (err) {
 			      res.status(500).send(err);
 			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
