@@ -73,7 +73,7 @@ app.post("/webhook",(req, res) =>{
 				console.log(colaboradores.length)
 				console.log(colaboradores[0].Nombre)
 			    	console.log(colaboradores[1].Nombre)
-			    else{
+			    }else{
 				console.log(colaboradores.length)
 			    	console.log("es menor que uno")
 			    }
