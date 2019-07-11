@@ -69,7 +69,8 @@ app.post("/webhook",(req, res) =>{
 			//console.log(email);
 			var query  = Colaboradores.where({ Mail: email });
 			query.find(function (err, colaboradores) {
-			    console.log(colaboradores)
+			    console.log(colaboradores[0].Nombre)
+			    console.log(colaboradores[1].Nombre)
 			    if (err) {
 			      res.status(500).send(err);
 			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
