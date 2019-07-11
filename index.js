@@ -69,8 +69,14 @@ app.post("/webhook",(req, res) =>{
 			//console.log(email);
 			var query  = Colaboradores.where({ Mail: email });
 			query.find(function (err, colaboradores) {
-			    console.log(colaboradores[0].Nombre)
-			    console.log(colaboradores[1].Nombre)
+			    if(colaboradores.length > 1){
+				console.log(colaboradores.length)
+				console.log(colaboradores[0].Nombre)
+			    	console.log(colaboradores[1].Nombre)
+			    else{
+				console.log(colaboradores.length)
+			    	console.log("es menor que uno")
+			    }
 			    if (err) {
 			      res.status(500).send(err);
 			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
