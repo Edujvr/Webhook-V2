@@ -68,7 +68,7 @@ app.post("/webhook",(req, res) =>{
 			//console.log(nameW);
 			//console.log(email);
 			var query  = Colaboradores.where({ Mail: email });
-			query.findOne(function (err, colaboradores) {
+			query.find(function (err, colaboradores) {
 			    console.log(colaboradores)
 			    if (err) {
 			      res.status(500).send(err);
