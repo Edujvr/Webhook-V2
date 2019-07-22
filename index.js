@@ -88,10 +88,11 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			console.log(req.body.queryResult)
+			console.log(req.body.queryResult.fulfillmentMessages[1])
 			respuestaBot =req.body.queryResult.fulfillmentText;
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
+				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
 				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.name}}],
 			} 
 			sendResponse(respuesta);
