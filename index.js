@@ -88,6 +88,8 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
+			console.log(req.body.queryResult.fulfillmentText)
+			respuestaBot=req.body.queryResult.fulfillmentText,
 			let respuesta={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.name}}],
