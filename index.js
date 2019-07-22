@@ -322,7 +322,7 @@ app.post("/webhook",(req, res) =>{
 		responseJson.outputContexts = responseToUser.outputContexts;
 	      }
 	      // Send the response to Dialogflow
-	      //console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson);
 	    }
 	  }
