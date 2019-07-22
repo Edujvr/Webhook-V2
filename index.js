@@ -308,7 +308,7 @@ app.post("/webhook",(req, res) =>{
 	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
-		    console.log('Aqui fue')
+	      console.log(responseToUser.outputContexts)
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
 	      // Define the text response
