@@ -38,15 +38,8 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  //console.log(req.body.queryResult);
+  console.log(req.body.queryResult);
   //console.log(req.body.queryResult.parameters);
-	
-	if(req.body.queryResult.parameters.BoletoAereo!=undefined){
-		console.log(req.body.queryResult.parameters)
-		console.log("si existe parametros")
-	}else{
-		console.log("NO existe parametros")
-	}
 	
 	graph.setAccessToken(access_token);	
 	for(i=0;i<len;i++){
@@ -68,15 +61,7 @@ app.post("/webhook",(req, res) =>{
 			//console.log(nameW);
 			//console.log(email);
 			var query  = Colaboradores.where({ Mail: email });
-			query.find(function (err, colaboradores) {
-			    if(colaboradores.length > 1){
-				console.log(colaboradores.length)
-				console.log(colaboradores[0].Nombre)
-			    	console.log(colaboradores[1].Nombre)
-			    }else{
-				console.log(colaboradores.length)
-			    	console.log("es menor que uno")
-			    }
+			query.findOne(function (err, colaboradores) {
 			    if (err) {
 			      res.status(500).send(err);
 			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
@@ -88,8 +73,6 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			console.log(req.body.queryResult.fulfillmentMessages[1])
-			respuestaBot =req.body.queryResult.fulfillmentText;
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
