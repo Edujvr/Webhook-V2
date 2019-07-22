@@ -38,7 +38,7 @@ app.post("/webhook",(req, res) =>{
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  console.log(req.body.queryResult);
+  //console.log(req.body.queryResult);
   //console.log(req.body.queryResult.parameters);
 	
 	graph.setAccessToken(access_token);	
@@ -76,7 +76,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name':'Nombres','lifespan':3,'parameters':{'nombre': res.name}}],
+				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.name}}],
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
