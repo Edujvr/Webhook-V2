@@ -88,7 +88,7 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			console.log(req.body.queryResult.fulfillmentText)
+			console.log(req.body.queryResult)
 			respuestaBot =req.body.queryResult.fulfillmentText;
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
