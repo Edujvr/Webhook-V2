@@ -76,7 +76,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name':'Nombres','lifespan':3,'parameters':{'nombre': String(nameW)}}]
+				outputContexts : [{'name':'Nombres','lifespanCount':3,'parameters':{'nombre': String(nameW)}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
