@@ -86,11 +86,11 @@ app.post("/webhook",(req, res) =>{
 			
 		});		
 	 }  else if(action == "salida"){
-	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
+	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
 			respuestaBot={
 				fulfillmentText : respuestaBot,
-				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.first_name}}],
+				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.name}}],
 			} 
 			sendResponse(respuestaBot);
 			sendAnalytics(nameW);
