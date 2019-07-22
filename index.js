@@ -89,8 +89,8 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name	
 			respuestaBot={
-				fulfillmentText=respuestaBot,
-				outputContexts= [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.first_name}}],
+				fulfillmentText : respuestaBot,
+				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespan':3,'parameters':{'nombre': res.first_name}}],
 			} 
 			sendResponse(respuestaBot);
 			sendAnalytics(nameW);
