@@ -34,7 +34,7 @@ app.post("/webhook",(req, res) =>{
   var contador= 0;
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
   var idUser = String(id);
-  //console.log(req.body.queryResult.outputContexts);	
+  console.log(req.body.queryResult.outputContexts);	
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
@@ -76,7 +76,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name':'salidacajeros-paso1-followup','lifespanCount':3,'parameters':{'nombre': String(nameW)}}]
+				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':3,'parameters':{'nombre': String(nameW)}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
@@ -301,14 +301,14 @@ app.post("/webhook",(req, res) =>{
 }	
 	//Envio de información webhook a Dialogflow Messenger
 	function sendResponse (responseToUser) {
-		console.log(responseToUser)
+		//console.log(responseToUser)
 	    // if the response is a string send it as a response to the user
 	    if (typeof responseToUser === 'string') {
 	      let responseJson = {fulfillmentText: responseToUser}; // displayed response
-	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	      //console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson); // Send response to Dialogflow
 	    } else {
-	      console.log(responseToUser.outputContexts)
+	      //console.log(responseToUser.outputContexts)
 	      // If the response to the user includes rich responses or contexts send them to Dialogflow
 	      let responseJson = {};
 	      // Define the text response
@@ -322,7 +322,7 @@ app.post("/webhook",(req, res) =>{
 		responseJson.outputContexts = responseToUser.outputContexts;
 	      }
 	      // Send the response to Dialogflow
-	      console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
+	     // console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
 	      res.json(responseJson);
 	    }
 	  }
