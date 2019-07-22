@@ -74,7 +74,7 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
 			let respuesta =/*{
-				fulfillmentText :*/ req.body.queryResult.fulfillmentText,/*
+				fulfillmentText :*/ req.body.queryResult.fulfillmentText/*
 				//fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
 				outputContexts : [{'name':'Nombres','lifespanCount':3,'parameters':{'nombre': String(nameW)}}]
 			} */
