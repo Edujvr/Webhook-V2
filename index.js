@@ -73,11 +73,11 @@ app.post("/webhook",(req, res) =>{
 	 }  else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
-			let respuesta =/*{
-				fulfillmentText :*/ req.body.queryResult.fulfillmentText/*
-				//fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name':'Nombres','lifespanCount':3,'parameters':{'nombre': String(nameW)}}]
-			} */
+			let respuesta ={
+				fulfillmentText : req.body.queryResult.fulfillmentText,
+				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+				//outputContexts : [{'name':'Nombres','lifespanCount':3,'parameters':{'nombre': String(nameW)}}]
+			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
 			
