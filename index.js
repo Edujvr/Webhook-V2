@@ -60,7 +60,7 @@ app.post("/webhook",(req, res) =>{
 			nameW=res.name	
 			//console.log(nameW);
 			//console.log(email);
-			var query  = Colaboradores.where({ Mail: email });
+			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email.toUpperCase() });
 			query.findOne(function (err, colaboradores) {
 			    if (err) {
 			      res.status(500).send(err);
