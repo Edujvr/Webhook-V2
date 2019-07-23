@@ -62,9 +62,10 @@ app.post("/webhook",(req, res) =>{
 			//console.log(email);
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email.toUpperCase() });
 			query.findOne(function (err, colaboradores) {
-			    if (err) {
+			    console.log(colaboradores)
+			   if (err) {
 			      res.status(500).send(err);
-			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NombreConsultor //+" Tu nombre " +usuarioName
+			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NOMBRE_CONSULTOR //+" Tu nombre " +usuarioName
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
