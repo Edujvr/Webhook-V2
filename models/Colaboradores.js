@@ -2,19 +2,31 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ColaboradoresSchema = new Schema({
-  Nombre:{
+  NOMBRE:{
         type: String,
         required:true
   },
-  UsuarioRed: {
+  PUESTO: {
     type: String,
     required:true
   },
-  NombreConsultor: {
+  CODIGO_EMPLEADO: {
     type: String,
     required:true
   },
-  Mail: {
+  NUMERO_IDENTIFICACION: {
+    type: String,
+    required:true
+  },
+  EMAIL_EMPLEADO: {
+    type: String,
+    required:true
+  },
+  NOMBRE_SUPERVISOR: {
+    type: String,
+    required:true
+  },
+  NOMBRE_CONSULTOR: {
     type: String,
     required:true
   }
