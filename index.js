@@ -97,7 +97,7 @@ app.post("/webhook",(req, res) =>{
 				console.log('Entro en null')
 			   	respuestaBot = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
-					"messages": [
+					fulfillmentMessages: [
 						      {
 							"text": {
 							  "text": [
@@ -139,7 +139,7 @@ app.post("/webhook",(req, res) =>{
 							},
 							"lang": "es"
 						      }
-						    ],
+						    ]",
 					outputContexts :req.body.queryResult.outputContexts
 				}
 				sendResponse(respuestaBot);
