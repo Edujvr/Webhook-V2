@@ -87,15 +87,16 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name
 			let ident = String(req.body.queryResult.parameters.cedula);
-			console.log(ident);
 			var query  = Colaboradores.where({ NUMERO_IDENTIFICACION:ident });
 			query.findOne(function (err, colaboradores) {
-			console.log(colaboradores)
 			   if (err) {
 			      res.status(500).send(err);
 			   }else if(colaboradores==null){
-				console.log('Entro en null')
-			   	respuestaBot = {
+				respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
+				respuestaBot = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
 					fulfillmentMessages: [
 						      {
@@ -142,10 +143,6 @@ app.post("/webhook",(req, res) =>{
 						    ],
 					outputContexts :req.body.queryResult.outputContexts
 				}
-				sendResponse(respuestaBot);
-				sendAnalytics(nameW);
-			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
-				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos,"
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			    }else{
