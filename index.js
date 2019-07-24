@@ -78,7 +78,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':3,'parameters':{'nombre': String(contexto)}}]
+				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':3,'parameters':{'nombre': String(contexto)+','}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
