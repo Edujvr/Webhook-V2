@@ -93,7 +93,11 @@ app.post("/webhook",(req, res) =>{
 			console.log(colaboradores)
 			   if (err) {
 			      res.status(500).send(err);
-			    }if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
+			   }else if(colaboradores=='null'){
+			   	respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
 				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
