@@ -96,7 +96,8 @@ app.post("/webhook",(req, res) =>{
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
-				respuestaBot = {
+				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos, FORMATOS_DOCUMENTOS_DE_SALIDA_BANCO.docx"
+				let respuesta = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
 					fulfillmentMessages: [
 						      {
@@ -143,7 +144,7 @@ app.post("/webhook",(req, res) =>{
 						    ],
 					outputContexts :req.body.queryResult.outputContexts
 				}
-				sendResponse(respuestaBot);
+				sendResponse(respuesta);
 				sendAnalytics(nameW);
 			    }else{
 			    	respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
