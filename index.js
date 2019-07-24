@@ -139,7 +139,7 @@ app.post("/webhook",(req, res) =>{
 							},
 							"lang": "es"
 						      }
-						    ]",
+						    ],
 					outputContexts :req.body.queryResult.outputContexts
 				}
 				sendResponse(respuestaBot);
