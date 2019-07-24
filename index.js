@@ -93,7 +93,8 @@ app.post("/webhook",(req, res) =>{
 			console.log(colaboradores)
 			   if (err) {
 			      res.status(500).send(err);
-			    }	respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE
+			    }if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS')	
+				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			  });
