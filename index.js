@@ -62,7 +62,6 @@ app.post("/webhook",(req, res) =>{
 			//console.log(email);
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email.toUpperCase() });
 			query.findOne(function (err, colaboradores) {
-			    console.log(colaboradores)
 			   if (err) {
 			      res.status(500).send(err);
 			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NOMBRE_CONSULTOR //+" Tu nombre " +usuarioName
@@ -85,17 +84,19 @@ app.post("/webhook",(req, res) =>{
 			
 		});	
 	 }   else if(action == "salida_paso2"){
-	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
+	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name
-			let ident = req.body.queryResult.parameters.cedula
-			let contexto=res.first_name
-			let respuesta ={
-				fulfillmentText : req.body.queryResult.fulfillmentText,
-				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':3,'parameters':{'nombre': String(contexto)+','}}]
-			} 
-			sendResponse(respuesta);
-			sendAnalytics(nameW);
+			let ident = String(req.body.queryResult.parameters.cedula);
+			console.log(ident);
+			var query  = Colaboradores.where({ NUMERO_IDENTIFICACION:ident });
+			query.findOne(function (err, colaboradores) {
+			console.log(colaboradores)
+			   if (err) {
+			      res.status(500).send(err);
+			    }	respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			  });
 			
 		});	
 	 } else if(action == "agencias"){
