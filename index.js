@@ -95,11 +95,57 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			   }else if(colaboradores==null){
 				console.log('Entro en null')
-			   	respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
+			   	respuestaBot = {
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					"messages": [
+						      {
+							"text": {
+							  "text": [
+							    "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos,"
+							  ]
+							},
+							"platform": "FACEBOOK",
+							"lang": "es"
+						      },
+						      {
+							"payload": {
+							  "facebook": {
+							    "attachment": {
+							      "type": "file",
+							      "payload": {
+								"url": "https://storage.googleapis.com/documentos_pibot/Demo/FORMATOS_DOCUMENTOS_DE_SALIDA_BANCO.docx"
+							      }
+							    }
+							  }
+							},
+							"platform": "FACEBOOK",
+							"lang": "es"
+						      },
+						      {
+							"quickReplies": {
+							  "title": "Luego continua por aquí con este proceso:",
+							  "quickReplies": [
+							    "Continuar"
+							  ]
+							},
+							"platform": "FACEBOOK",
+							"lang": "es"
+						      },
+						      {
+							"text": {
+							  "text": [
+							    "Ahora, por favor imprime y llena los siguiente documentos, luego continua por aquí con este proceso:\n<Compartir documentos>"
+							  ]
+							},
+							"lang": "es"
+						      }
+						    ],
+					outputContexts :req.body.queryResult.outputContexts
+				}
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
-				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE
+				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos,"
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			    }else{
