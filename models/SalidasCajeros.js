@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const SalidaCajeroSchema = new Schema({
+const SalidaCajerosSchema = new Schema({
   createdOn: {
         type: Date,
         default: Date.now
@@ -44,4 +44,4 @@ const SalidaCajeroSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("SalidaCajero", SalidaCajeroSchema);
+module.exports = mongoose.model("SalidaCajeros", SalidaCajerosSchema);
