@@ -269,7 +269,38 @@ app.post("/webhook",(req, res) =>{
 		sendResponse(respuesta); 
 		sendAnalytics(nameW);
 		});	
-	 } */else { //Envio de información directa webhook a Dialogflow	
+	 } */else if (action == "correo") {
+		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+			email=res.email;
+			nameW=res.name	
+			let transporter = nodemailer.createTransport({
+			    service: 'Gmail',
+			    auth: {
+			      type: 'OAuth2',
+			      user: 'edujvr.k15@gmail.com',
+			      clientId: '302919125596-e1roihqdf4gkuf8rrhd708uih3o2efen.apps.googleusercontent.com',
+			      clientSecret: '5JrKDFXzjA8fl57pgcLZgwUH',
+			      refreshToken: '1/HF8MdT3XzwEBLrBG8nFLAiWm-Uz0QVgkEhfH1DQbwVgDVpXZbxOL0OEfOcmzip7Z'
+			    }
+			  })
+
+			  let mailOptions = {
+			    from: '<edujvr.k15@gmail.com>',
+			    to: email,
+			    subject: 'Chatbot consulta no contestada',
+			    html: 'Correo de prueba'
+			  }
+
+			  transporter.sendMail(mailOptions, (err, info) => {
+			    if (err) throw new Error(err)
+
+			    res.statusCode = 200
+			    res.end('Email sent!')
+			  })
+		sendResponse(respuesta); 
+		sendAnalytics(nameW);
+		});	
+	 } else { //Envio de información directa webhook a Dialogflow	
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
