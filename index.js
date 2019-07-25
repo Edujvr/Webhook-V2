@@ -7,6 +7,7 @@ const Administradores = require("./models/Administradores");
 const Gerentes = require("./models/Gerentes");
 const Reclamos = require("./models/Reclamos");
 const Agradecimiento = require("./models/Agradecimiento");
+const SalidaCajero = require("./models/SalidaCajeros");
 const bodyParser = require("body-parser");
 const express = require('express');
 const app = express();
@@ -280,15 +281,15 @@ app.post("/webhook",(req, res) =>{
 	function sendSalidaCajero (nameUser){
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
-		cajero.idLS = id;
-		cajero.nombreLS = id;
-		cajero.correoLS = nameUser;
+		cajero.IdLS = id;
+		cajero.NombreLS = id;
+		cajero.CorreoLS = nameUser;
 		cajero.idCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
-		cajero.nombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
-		cajero.motivoSalida = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
-		cajero.fechaSalida = req.body.queryResult.outputContexts[0].parameters.Descripcion;
-		cajero.adjCartaRenuncia = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
-		cajero.adjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		//cajero.NombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
+		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.Descripcion;
+		cajero.AdjCartaRenuncia = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(cajero)
 		/*let newAgradecimiento = new Agradecimiento(agradecer);
 		newAgradecimiento.save(function (err) {
