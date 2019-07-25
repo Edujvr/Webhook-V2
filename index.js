@@ -278,17 +278,18 @@ app.post("/webhook",(req, res) =>{
 	 }
 	
 	function sendSalidaCajero (nameUser){
-		var agradecer = new Object();
-		agradecer.SesionId = sessionId;
-		agradecer.UsuarioId = id;
-		agradecer.UsuarioGenerador = nameUser;
-		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
-		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
-		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.Descripcion;
-		if(req.body.originalDetectIntentRequest.payload.data.message.attachments!= null){
-			agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
-		   }
-		console.log(agradecer)
+		var cajero = new Object();
+		cajero.SesionId = sessionId;
+		cajero.idLS = id;
+		cajero.nombreLS = id;
+		cajero.correoLS = nameUser;
+		cajero.idCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		cajero.nombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		cajero.motivoSalida = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
+		cajero.fechaSalida = req.body.queryResult.outputContexts[0].parameters.Descripcion;
+		cajero.adjCartaRenuncia = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		cajero.adjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		console.log(cajero)
 		/*let newAgradecimiento = new Agradecimiento(agradecer);
 		newAgradecimiento.save(function (err) {
 			if (err) return handleError(err);
