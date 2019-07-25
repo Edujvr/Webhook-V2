@@ -156,15 +156,11 @@ app.post("/webhook",(req, res) =>{
 		});	
 	 } else if(action == "salida_paso_final"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
+			console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments)
 			nameW=res.name	
-			var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
-			query.findOne(function (err, agencias) {
-			    if (err) {
-			      res.status(500).send(err);
-			    }	respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
-				sendResponse(respuestaBot);
-				sendAnalytics(nameW);
-			  });
+			sendResponse(respuestaBot);
+			sendSalidaCajero(nameW);
+			//sendAnalytics(nameW);
 			
 		});	
 	 } else if(action == "agencias"){
@@ -280,6 +276,24 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics(nameW);
 		});
 	 }
+	
+	function sendSalidaCajero (nameUser){
+		var agradecer = new Object();
+		agradecer.SesionId = sessionId;
+		agradecer.UsuarioId = id;
+		agradecer.UsuarioGenerador = nameUser;
+		agradecer.UsuarioReceptor= req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		agradecer.Comportamiento = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
+		agradecer.Descripcion= req.body.queryResult.outputContexts[0].parameters.Descripcion;
+		if(req.body.originalDetectIntentRequest.payload.data.message.attachments!= null){
+			agradecer.Adjunto = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		   }
+		console.log(agradecer)
+		/*let newAgradecimiento = new Agradecimiento(agradecer);
+		newAgradecimiento.save(function (err) {
+			if (err) return handleError(err);
+		});*/
+	}
 	
 	function sendAgradecer (nameUser){
 		console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments)
