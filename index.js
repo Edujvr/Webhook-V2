@@ -154,6 +154,19 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
+	 } else if(action == "salida_paso_final"){
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name	
+			var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
+			query.findOne(function (err, agencias) {
+			    if (err) {
+			      res.status(500).send(err);
+			    }	respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CIUDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Semana: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			  });
+			
+		});	
 	 } else if(action == "agencias"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
