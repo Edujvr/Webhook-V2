@@ -78,7 +78,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':6,'parameters':{'nombre': String(contexto)+','}}]
+				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':2,'parameters':{'nombre': String(contexto)+','}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
@@ -143,7 +143,7 @@ app.post("/webhook",(req, res) =>{
 							"lang": "es"
 						      }
 						    ],
-					outputContexts :req.body.queryResult.outputContexts
+					outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso2-followup','lifespanCount':5,'parameters':{'NombreCajero': colaboradores.NOMBRE}}]
 				}
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
@@ -330,8 +330,8 @@ app.post("/webhook",(req, res) =>{
 		cajero.IdLS = id;
 		cajero.NombreLS = nameUser;
 		cajero.CorreoLS = email;
-		cajero.idCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
-		//cajero.NombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
+		cajero.NombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
 		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[0].parameters.AdjCartaRenuncia;
