@@ -155,12 +155,27 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
+	 } else if(action == "salida_paso5"){
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name;
+			email=res.email;
+			let respuesta ={
+				fulfillmentText : req.body.queryResult.fulfillmentText,
+				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+				outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso5-followup','lifespanCount':3,'parameters':{AdjCartaRenuncia : req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url}}]
+			} 
+			sendResponse(respuesta);
+			sendAnalytics(nameW);
+			//sendAnalytics(nameW);
+			
+		});	
 	 } else if(action == "salida_paso_final"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments)
-			nameW=res.name	
+			nameW=res.name;
+			email=res.email;
 			sendResponse(respuestaBot);
-			sendSalidaCajero(nameW);
+			sendSalidaCajero(nameW, email);
 			//sendAnalytics(nameW);
 			
 		});	
@@ -309,16 +324,16 @@ app.post("/webhook",(req, res) =>{
 		});
 	 }
 	
-	function sendSalidaCajero (nameUser){
+	function sendSalidaCajero (nameUser, email){
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
 		cajero.IdLS = id;
-		cajero.NombreLS = id;
-		cajero.CorreoLS = nameUser;
-		cajero.idCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		cajero.NombreLS = nameUser;
+		cajero.CorreoLS = email;
+		cajero.idCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
 		//cajero.NombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
-		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.Comportamiento;
-		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.Descripcion;
+		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
+		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 		cajero.AdjCartaRenuncia = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(cajero)
