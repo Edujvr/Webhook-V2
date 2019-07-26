@@ -331,10 +331,10 @@ app.post("/webhook",(req, res) =>{
 		cajero.NombreLS = nameUser;
 		cajero.CorreoLS = email;
 		cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
-		cajero.NombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
+		cajero.NombreCajero = req.body.queryResult.outputContexts[1].parameters.NombreCajero;
 		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
-		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[0].parameters.AdjCartaRenuncia;
+		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[2].parameters.AdjCartaRenuncia;
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(cajero)
 		/*let newAgradecimiento = new Agradecimiento(agradecer);
