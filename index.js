@@ -337,10 +337,10 @@ app.post("/webhook",(req, res) =>{
 		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(cajero)
-		/*let newAgradecimiento = new Agradecimiento(agradecer);
+		let newAgradecimiento = new SalidaCajeros(cajero);
 		newAgradecimiento.save(function (err) {
 			if (err) return handleError(err);
-		});*/
+		});
 	}
 	
 	function sendAgradecer (nameUser){
