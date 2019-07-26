@@ -78,7 +78,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':3,'parameters':{'nombre': String(contexto)+','}}]
+				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':6,'parameters':{'nombre': String(contexto)+','}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
@@ -334,7 +334,7 @@ app.post("/webhook",(req, res) =>{
 		//cajero.NombreCajero = req.body.queryResult.outputContexts[0].parameters.UsuariosRed;
 		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
-		cajero.AdjCartaRenuncia = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[0].parameters.AdjCartaRenuncia;
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(cajero)
 		/*let newAgradecimiento = new Agradecimiento(agradecer);
