@@ -346,12 +346,12 @@ app.post("/webhook",(req, res) =>{
 			cajero.AdjFormularioSalida.data = body;
 			cajero.AdjFormularioSalida.contentType = 'image/png';
 			console.log(cajero)
+				let newAgradecimiento = new SalidaCajeros(cajero);
+				newAgradecimiento.save(function (err) {
+					if (err) return handleError(err);
+				});
 			}
 		});		
-		let newAgradecimiento = new SalidaCajeros(cajero);
-		newAgradecimiento.save(function (err) {
-			if (err) return handleError(err);
-		});
 	}
 	
 	function sendAgradecer (nameUser){
