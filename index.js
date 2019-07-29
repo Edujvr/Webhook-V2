@@ -306,7 +306,12 @@ app.post("/webhook",(req, res) =>{
 			    from: '<edujvr.k15@gmail.com>',
 			    to: email,
 			    subject: 'Chatbot consulta no contestada',
-			    html: 'Correo de prueba'
+			    html: 'Correo de prueba',
+			    attachments: [
+			       {
+				path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.docx'
+			       }
+			    ]
 			  }
 
 			  transporter.sendMail(mailOptions, (err, info) => {
