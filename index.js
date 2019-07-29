@@ -311,7 +311,7 @@ app.post("/webhook",(req, res) =>{
 			    html: 'Por favor imprime y llena el siguiente documento',
 			    attachments: [
 			       {
-				path: 'https://cdn.fbsbx.com/v/t59.2708-21/64330168_2567407433292173_3488212351495176192_n.pdf/PRUEBA.pdf?_nc_cat=102&_nc_oc=AQlTWecy0OO10afSb2kbdWfoj-geQ9r_3vze3DCpid5i3cwF7qAAP7KFLokaW66woY3uK02crGghyUu68P8K0cQY&_nc_ht=cdn.fbsbx.com&oh=d53cca24ccc53f78542a3bb6d1edce83&oe=5D40DD0D'
+				path: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.15752-9/67406472_342909533278303_3831993194703224832_n.jpg?_nc_cat=102&_nc_oc=AQmZoo0GLnJDvv6rGtfTdd0h3YPpcSCym9jXyVWnyXt-7SZdTy4XHAFm0qWc8M9szihnUl7ShaNzUBugC0CjuClH&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent-atl3-1.xx&oh=89c2b8018956b78540ea66ca06feeb2a&oe=5DE3CF9B'
 			       }
 			    ]
 			  }
