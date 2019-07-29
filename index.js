@@ -334,7 +334,7 @@ app.post("/webhook",(req, res) =>{
 		});
 	 }
 	
-	function senEmail(email){
+	function sendEmail(email){
 		let transporter = nodemailer.createTransport({
 			service: 'Gmail',
 			auth: {
