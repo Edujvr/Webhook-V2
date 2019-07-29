@@ -107,7 +107,7 @@ app.post("/webhook",(req, res) =>{
 						      {
 							"text": {
 							  "text": [
-							    "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos,"
+							    "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\nAhora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
 							  ]
 							},
 							"platform": "FACEBOOK",
