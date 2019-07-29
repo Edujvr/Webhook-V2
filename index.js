@@ -311,7 +311,7 @@ app.post("/webhook",(req, res) =>{
 			    html: 'Por favor imprime y llena el siguiente documento',
 			    attachments: [
 			       {
-				path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.docx'
+				path: 'https://cdn.fbsbx.com/v/t59.2708-21/64330168_2567407433292173_3488212351495176192_n.pdf/PRUEBA.pdf?_nc_cat=102&_nc_oc=AQlTWecy0OO10afSb2kbdWfoj-geQ9r_3vze3DCpid5i3cwF7qAAP7KFLokaW66woY3uK02crGghyUu68P8K0cQY&_nc_ht=cdn.fbsbx.com&oh=d53cca24ccc53f78542a3bb6d1edce83&oe=5D40DD0D'
 			       }
 			    ]
 			  }
