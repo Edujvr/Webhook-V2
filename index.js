@@ -89,7 +89,9 @@ app.post("/webhook",(req, res) =>{
 		});	
 	 }   else if(action == "salida_paso2"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
-			nameW=res.name
+			nameW=res.name;
+			email=res.email;
+			sendEmail(email);
 			let ident = String(req.body.queryResult.parameters.cedula);
 			var query  = Colaboradores.where({ NUMERO_IDENTIFICACION:ident });
 			query.findOne(function (err, colaboradores) {
@@ -305,8 +307,8 @@ app.post("/webhook",(req, res) =>{
 			  let mailOptions = {
 			    from: '<edujvr.k15@gmail.com>',
 			    to: email,
-			    subject: 'Chatbot consulta no contestada',
-			    html: 'Correo de prueba',
+			    subject: 'Proceso Salida Documento ',
+			    html: 'Por favor imprime y llena el siguiente documento',
 			    attachments: [
 			       {
 				path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.docx'
@@ -331,6 +333,35 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics(nameW);
 		});
 	 }
+	
+	function senEmail(email){
+		let transporter = nodemailer.createTransport({
+			service: 'Gmail',
+			auth: {
+				type: 'OAuth2',
+				user: 'edujvr.k15@gmail.com',
+				clientId: '302919125596-e1roihqdf4gkuf8rrhd708uih3o2efen.apps.googleusercontent.com',
+				clientSecret: '5JrKDFXzjA8fl57pgcLZgwUH',
+				refreshToken: '1/HF8MdT3XzwEBLrBG8nFLAiWm-Uz0QVgkEhfH1DQbwVgDVpXZbxOL0OEfOcmzip7Z'
+			    }
+		})
+		let mailOptions = {
+			from: '<edujvr.k15@gmail.com>',
+			to: email,
+			subject: 'Proceso Salida Documento ',
+			html: 'Por favor imprime y llena el siguiente documento',
+			attachments: [
+				{
+					path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.docx'
+				}
+			    ]
+		}
+		transporter.sendMail(mailOptions, (err, info) => {
+			if (err) throw new Error(err)
+			    res.statusCode = 200
+			    res.end('Email sent!')
+		})
+	}
 	
 	function sendSalidaCajero (nameUser, email){
 		var cajero = new Object();
