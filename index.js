@@ -337,7 +337,7 @@ app.post("/webhook",(req, res) =>{
 		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
-		cajero.AdjFormularioSalida.data = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		console.log(cajero)
 		let newAgradecimiento = new SalidaCajeros(cajero);
 		newAgradecimiento.save(function (err) {
