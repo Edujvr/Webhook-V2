@@ -91,7 +91,6 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
-			sendEmail(email);
 			let ident = String(req.body.queryResult.parameters.cedula);
 			var query  = Colaboradores.where({ NUMERO_IDENTIFICACION:ident });
 			query.findOne(function (err, colaboradores) {
@@ -102,6 +101,7 @@ app.post("/webhook",(req, res) =>{
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
+				sendEmail(email);
 				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos, FORMATOS_DOCUMENTOS_DE_SALIDA_BANCO.docx"
 				let respuesta = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
