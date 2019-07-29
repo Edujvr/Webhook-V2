@@ -78,8 +78,9 @@ app.post("/webhook",(req, res) =>{
 			nameW=res.name
 			let contexto=res.first_name
 			let respuesta ={
-				fulfillmentText : req.body.queryResult.fulfillmentText,
-				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+				//fulfillmentText : req.body.queryResult.fulfillmentText,
+				fulfillmentText :"Hola " +contexto+", lamentamos la baja y nos comprometemos a conseguir el reemplazo idóneo a la brevedad posible. \nPor favor ayúdame completando la siguiente información:\n\nCédula del colaborador que sale",
+				//fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
 				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':2,'parameters':{'nombre': String(contexto)+','}}]
 			} 
 			sendResponse(respuesta);
