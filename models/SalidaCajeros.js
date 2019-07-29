@@ -43,8 +43,8 @@ const SalidaCajerosSchema = new Schema({
         required:true
   },
   AdjFormularioSalida: {
-        type: String,
-        required:true
+        data: Buffer, 
+        contentType: String
   }
 });
 
