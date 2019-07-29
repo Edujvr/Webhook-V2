@@ -329,7 +329,7 @@ app.post("/webhook",(req, res) =>{
 	function sendSalidaCajero (nameUser, email){
 		request({
 			//url: req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url,
-			url:https://vivetotalmentepalacio.mx/wp-content/uploads/2017/12/Principal-interna-9.jpg,
+			url:'https://vivetotalmentepalacio.mx/wp-content/uploads/2017/12/Principal-interna-9.jpg',
 			encoding: 'binary'
 		}, function(error, response, body) {
 			if (!error && response.statusCode === 200) {
