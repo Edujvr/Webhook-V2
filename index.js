@@ -327,30 +327,21 @@ app.post("/webhook",(req, res) =>{
 	 }
 	
 	function sendSalidaCajero (nameUser, email){
-		request({
-			//url: req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url,
-			url:'https://vivetotalmentepalacio.mx/wp-content/uploads/2017/12/Principal-interna-9.jpg',
-			encoding: 'binary'
-		}, function(error, response, body) {
-			if (!error && response.statusCode === 200) {
-				body = new Buffer(body, 'binary');
-			var cajero = new Object();
-			cajero.SesionId = sessionId;
-			cajero.IdLS = id;
-			cajero.NombreLS = nameUser;
-			cajero.CorreoLS = email;
-			cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
-			cajero.NombreCajero = req.body.queryResult.outputContexts[2].parameters.NombreCajero;
-			cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
-			cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
-			cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
-			cajero.AdjFormularioSalida.data = body;
-			console.log(cajero)
-				let newAgradecimiento = new SalidaCajeros(cajero);
-				newAgradecimiento.save(function (err) {
-					if (err) return handleError(err);
-				});
-			}
+		var cajero = new Object();
+		cajero.SesionId = sessionId;
+		cajero.IdLS = id;
+		cajero.NombreLS = nameUser;
+		cajero.CorreoLS = email;
+		cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
+		cajero.NombreCajero = req.body.queryResult.outputContexts[2].parameters.NombreCajero;
+		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
+		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
+		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
+		cajero.AdjFormularioSalida.data = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		console.log(cajero)
+		let newAgradecimiento = new SalidaCajeros(cajero);
+		newAgradecimiento.save(function (err) {
+			if (err) return handleError(err);
 		});		
 	}
 	
