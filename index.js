@@ -17,6 +17,8 @@ app.listen(process.env.PORT || 8080);
 var nodemailer = require('nodemailer');
 var request = require('request');
 var graph = require('fbgraph');
+var fs = require('fs');
+
 // db instance connection
 require("./config/db");
 
@@ -325,6 +327,7 @@ app.post("/webhook",(req, res) =>{
 	 }
 	
 	function sendSalidaCajero (nameUser, email){
+		var imgPath = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
 		cajero.IdLS = id;
@@ -335,7 +338,8 @@ app.post("/webhook",(req, res) =>{
 		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
-		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		cajero.AdjFormularioSalida.data = fs.readFileSync(imgPath);
+		cajero.AdjFormularioSalida.contentType = 'image/png';
 		console.log(cajero)
 		let newAgradecimiento = new SalidaCajeros(cajero);
 		newAgradecimiento.save(function (err) {
