@@ -352,7 +352,7 @@ app.post("/webhook",(req, res) =>{
 			html: 'Por favor imprime y llena el siguiente documento',
 			attachments: [
 				{
-					path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.docx'
+					path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.pdf'
 				}
 			    ]
 		}
