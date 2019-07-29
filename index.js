@@ -328,7 +328,8 @@ app.post("/webhook",(req, res) =>{
 	
 	function sendSalidaCajero (nameUser, email){
 		request({
-			url: req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url,
+			//url: req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url,
+			url:https://vivetotalmentepalacio.mx/wp-content/uploads/2017/12/Principal-interna-9.jpg,
 			encoding: 'binary'
 		}, function(error, response, body) {
 			if (!error && response.statusCode === 200) {
@@ -344,7 +345,6 @@ app.post("/webhook",(req, res) =>{
 			cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 			cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
 			cajero.AdjFormularioSalida.data = body;
-			cajero.AdjFormularioSalida.contentType = 'image/png';
 			console.log(cajero)
 				let newAgradecimiento = new SalidaCajeros(cajero);
 				newAgradecimiento.save(function (err) {
