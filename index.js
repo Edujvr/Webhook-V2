@@ -167,7 +167,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso5-followup','lifespanCount':3,'parameters':{AdjCartaRenuncia : req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url}}]
+				outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso6-followup','lifespanCount':3,'parameters':{AdjCartaRenuncia : req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
@@ -371,6 +371,7 @@ app.post("/webhook",(req, res) =>{
 		cajero.CorreoLS = email;
 		cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
 		cajero.NombreCajero = req.body.queryResult.outputContexts[2].parameters.NombreCajero;
+		cajero.CausaSalida = req.body.queryResult.outputContexts[0].parameters.CausasSalida;
 		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
