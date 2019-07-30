@@ -160,7 +160,7 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
-	 } else if(action == "salida_paso5"){
+	 } else if(action == "salida_paso6"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
