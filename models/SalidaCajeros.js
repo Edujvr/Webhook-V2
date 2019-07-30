@@ -30,6 +30,10 @@ const SalidaCajerosSchema = new Schema({
         type: String,
         required:true
   },
+  CausaSalida:{
+        type: String,
+        required:true
+  },
   MotivoSalida:{
         type: String,
         required:true
