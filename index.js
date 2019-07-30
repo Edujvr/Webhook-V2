@@ -121,7 +121,7 @@ app.post("/webhook",(req, res) =>{
 							    "attachment": {
 							      "type": "file",
 							      "payload": {
-								"url": "https://storage.googleapis.com/documentos_pibot/Demo/FORMATOS_DOCUMENTOS_DE_SALIDA_BANCO.docx"
+								"url": "https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.pdf"
 							      }
 							    }
 							  }
