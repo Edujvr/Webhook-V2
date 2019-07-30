@@ -148,7 +148,7 @@ app.post("/webhook",(req, res) =>{
 							"lang": "es"
 						      }
 						    ],
-					outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso2-followup','lifespanCount':5,'parameters':{'NombreCajero': colaboradores.NOMBRE}}]
+					outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso2-followup','lifespanCount':6,'parameters':{'NombreCajero': colaboradores.NOMBRE}}]
 				}
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
