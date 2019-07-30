@@ -168,7 +168,7 @@ app.post("/webhook",(req, res) =>{
 			let respuesta ={
 				fulfillmentText : req.body.queryResult.fulfillmentText,
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso6-followup-2','lifespanCount':3,'parameters':{AdjCartaRenuncia : req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url}}]
+				outputContexts : [{'name': req.body.session+'/contexts/salidaCajeros-Paso6-followup-2','lifespanCount':3,'parameters':{AdjCartaRenuncia : req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url}}]
 			} 
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
