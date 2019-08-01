@@ -166,12 +166,12 @@ app.post("/webhook",(req, res) =>{
 			email=res.email;
 			var miFechaSalida = new Date()
 			miFechaSalida = req.body.queryResult.parameters.date
-			console.log(miFechaSalida)
+			console.log(miFechaSalida.getDate())
 			var miFechaActual = new Date()
 			miFechaActual.setDate(miFechaActual.getDate() + 15);
-			console.log(miFechaActual)
+			console.log(miFechaActual.getDate())
 			
-			if(miFechaSalida <=miFechaActual){
+			if(miFechaSalida.getDate() <= miFechaActual.getDate()){
 				respuesta='Fecha valida'
 			}else{
 				respuesta='Fecha mal ingresada'
