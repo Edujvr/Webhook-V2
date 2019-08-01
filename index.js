@@ -169,7 +169,7 @@ app.post("/webhook",(req, res) =>{
 			miFechaActual.setDate(miFechaActual.getDate() + 15);
 			console.log(miFechaActual)
 
-			//sendResponse(respuesta);
+			sendResponse(respuesta);
 			//sendAnalytics(nameW);
 		});	
 	 }  else if(action == "salida_paso6"){
