@@ -166,8 +166,8 @@ app.post("/webhook",(req, res) =>{
 			email=res.email;
 			console.log(req.body.queryResult.parameters.date);
 			var miFechaActual = new Date()
-			var fechaMax = miFechaActual.setDate(miFechaActual.getDate() + 15);
-			console.log(fechaMax)
+			miFechaActual.setDate(miFechaActual.getDate() + 15);
+			console.log(miFechaActual)
 
 			//sendResponse(respuesta);
 			//sendAnalytics(nameW);
