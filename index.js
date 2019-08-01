@@ -166,8 +166,10 @@ app.post("/webhook",(req, res) =>{
 			email=res.email;
 			var fecha = String(req.body.queryResult.parameters.date)
 			var miFechaSalida = new Date(fecha.substr(0,3),fecha.substr(5,6),fecha.substr(8,9),0,0,0)
-			console.log(fecha.substr(0,3)+fecha.substr(5,6)+fecha.substr(8,9))
-			console.log(miFechaSalida)
+			console.log(fecha.substr(0,3))
+			console.log(fecha.substr(5,6))
+			console.log(fecha.substr(8,9))
+			//console.log(miFechaSalida)
 			var miFechaActual = new Date()
 			miFechaActual.setDate(miFechaActual.getDate() + 15);
 			console.log(miFechaActual)
