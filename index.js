@@ -164,7 +164,9 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
-			console.log(req.body.queryResult.parameters.date);
+			var miFechaSalida = new Date()
+			miFechaSalida = req.body.queryResult.parameters.date
+			console.log(miFechaSalida)
 			var miFechaActual = new Date()
 			miFechaActual.setDate(miFechaActual.getDate() + 15);
 			console.log(miFechaActual)
