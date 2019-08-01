@@ -160,7 +160,18 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
-	 } else if(action == "salida_paso6"){
+	 }  else if(action == "salida_paso5"){
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name;
+			email=res.email;
+			console.log(req.body.queryResult.parameters.date);
+			var miFechaActual = new Date()
+			console.log(miFechaActual)
+
+			//sendResponse(respuesta);
+			//sendAnalytics(nameW);
+		});	
+	 }  else if(action == "salida_paso6"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			console.log( req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url);
 			nameW=res.name;
