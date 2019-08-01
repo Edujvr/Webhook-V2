@@ -166,7 +166,8 @@ app.post("/webhook",(req, res) =>{
 			email=res.email;
 			console.log(req.body.queryResult.parameters.date);
 			var miFechaActual = new Date()
-			console.log(miFechaActual)
+			var fechaMax = miFechaActual.setDate(miFechaActual.getDate() + 15);
+			console.log(fechaMax)
 
 			//sendResponse(respuesta);
 			//sendAnalytics(nameW);
@@ -384,7 +385,7 @@ app.post("/webhook",(req, res) =>{
 		cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
 		cajero.NombreCajero = req.body.queryResult.outputContexts[2].parameters.NombreCajero;
 		cajero.CausaSalida = req.body.queryResult.outputContexts[0].parameters.CausasSalida;
-		cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
+		//cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
 		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
 		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
