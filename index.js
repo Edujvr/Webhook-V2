@@ -170,6 +170,12 @@ app.post("/webhook",(req, res) =>{
 			var miFechaActual = new Date()
 			miFechaActual.setDate(miFechaActual.getDate() + 15);
 			console.log(miFechaActual)
+			
+			if(miFechaSalida >miFechaActual){
+				respuesta='Fecha valida'
+			}else{
+				respuesta='Fecha mal ingresada'
+			}
 
 			sendResponse(respuesta);
 			//sendAnalytics(nameW);
