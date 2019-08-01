@@ -164,14 +164,14 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
-			var miFechaSalida = new Date()
-			miFechaSalida = req.body.queryResult.parameters.date
-			console.log(miFechaSalida)
+			var fecha = req.body.queryResult.parameters.date
+			var miFechaSalida = new Date(fecha.substr(0,3),fecha.substr(5,6),fecha.substr(8,9),0,0,0)	
+			console.log(miFechaSalida.getDate())
 			var miFechaActual = new Date()
 			miFechaActual.setDate(miFechaActual.getDate() + 15);
 			console.log(miFechaActual.getDate())
 			
-			if(miFechaSalida <= miFechaActual.getDate()){
+			if(miFechaSalida.getDate() <= miFechaActual.getDate()){
 				respuesta='Fecha valida'
 			}else{
 				respuesta='Fecha mal ingresada'
