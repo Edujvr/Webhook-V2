@@ -165,13 +165,13 @@ app.post("/webhook",(req, res) =>{
 			nameW=res.name;
 			email=res.email;
 			var fecha = String(req.body.queryResult.parameters.date)
-			var miFechaSalida = new Date(fecha.substr(0,4),fecha.substr(5,2)-1,fecha.substr(8,2),0,0,0)
-			console.log(fecha)
-			console.log(miFechaSalida)
-			var miFechaActual = new Date()
-			miFechaActual.setDate(miFechaActual.getDate() + 15);
-			console.log(miFechaActual)
-			if(miFechaSalida <= miFechaActual){
+			var FechaSalida = new Date(fecha.substr(0,4),fecha.substr(5,2)-1,fecha.substr(8,2),0,0,0)
+			var FechaActualMax = new Date()
+			FechaActualMax.setDate(FechaActualMax.getDate() + 15);
+			var FechaActualMin = new Date()
+			FechaActualMin.setDate(FechaActualMin.getDate() - 15);
+			console.log(FechaActualMin)
+			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
 				respuesta='Fecha valida'
 			}else{
 				respuesta='Fecha mal ingresada'
