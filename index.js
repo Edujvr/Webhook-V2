@@ -174,7 +174,7 @@ app.post("/webhook",(req, res) =>{
 			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
 				respuestaBot='Ahora por favor toma foto a la carta de renuncia firmada que te proporcionamos arriba y cárgala en este feed'
 			}else{
-				respuestaBot='Lo siento la fecha ingresada no esta en el rango permitido para notificar la salida, por favor comunicate co tu generalista'  
+				respuestaBot='Lo siento la fecha ingresada no esta en el rango permitido para notificar la salida, por favor ingresalo nuevamente con el siguiente formato dd-mm-yyyy \nO comunicate co tu generalista'  
 			}
 			sendResponse(respuestaBot);
 			sendAnalytics(nameW);
