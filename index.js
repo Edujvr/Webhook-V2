@@ -172,12 +172,12 @@ app.post("/webhook",(req, res) =>{
 			FechaActualMin.setDate(FechaActualMin.getDate() - 15);
 			console.log(FechaActualMin)
 			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
-				respuesta='Fecha valida'
+				respuestaBot='Ahora por favor toma foto a la carta de renuncia firmada que te proporcionamos arriba y cárgala en este feed'
 			}else{
-				respuesta='Fecha mal ingresada'
+				respuestaBot='Lo siento la fecha ingresada no esta en el rango permitido para notificar la salida, por favor comunicate co tu generalista'  
 			}
-			sendResponse(respuesta);
-			//sendAnalytics(nameW);
+			sendResponse(respuestaBot);
+			sendAnalytics(nameW);
 		});	
 	 }  else if(action == "salida_paso6"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
