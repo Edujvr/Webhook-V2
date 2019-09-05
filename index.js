@@ -105,49 +105,61 @@ app.post("/webhook",(req, res) =>{
 				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos, FORMATOS_DOCUMENTOS_DE_SALIDA_BANCO.docx"
 				let respuesta = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages: [
-						      {
-							"text": {
-							  "text": [
-							    "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\nAhora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
-							  ]
-							},
-							"platform": "FACEBOOK",
-							"lang": "es"
+					"fulfillmentMessages": [
+						    {
+						      "text": {
+							"text": [
+							  "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\nPor favor indica la causa de salida del colaborador:"
+							]
 						      },
-						      {
-							"payload": {
-							  "facebook": {
-							    "attachment": {
-							      "type": "file",
-							      "payload": {
-								"url": "https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.pdf"
-							      }
-							    }
+						      "platform": "FACEBOOK",
+						      "lang": "es"
+						    },
+						    {
+						      "card": {
+							"title": "Motivo de Salida",
+							"buttons": [
+							  {
+							    "text": "Renuncia voluntaria"
+							  },
+							  {
+							    "text": "Despido"
+							  },
+							  {
+							    "text": "Fallecimiento"
 							  }
-							},
-							"platform": "FACEBOOK",
-							"lang": "es"
+							]
 						      },
-						      {
-							"quickReplies": {
-							  "title": "Luego continua por aquí con este proceso:",
-							  "quickReplies": [
-							    "Continuar"
-							  ]
-							},
-							"platform": "FACEBOOK",
-							"lang": "es"
+						      "platform": "FACEBOOK",
+						      "lang": "es"
+						    },
+						    {
+						      "card": {
+							"title": "Motivo de Salida",
+							"buttons": [
+							  {
+							    "text": "Visto bueno"
+							  },
+							  {
+							    "text": "Fin contrato eventual"
+							  },
+							  {
+							    "text": "Fin periodo prueba"
+							  }
+							]
 						      },
-						      {
-							"text": {
-							  "text": [
-							    "Ahora, por favor imprime y llena los siguiente documentos, luego continua por aquí con este proceso:\n<Compartir documentos>"
-							  ]
-							},
-							"lang": "es"
-						      }
-						    ],
+						      "platform": "FACEBOOK",
+						      "lang": "es"
+						    },
+						    {
+						      "text": {
+							"text": [
+							  "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\nPor favor indica la causa de salida del colaborador:\nMotivo de Salida: Renuncia voluntaria, Despido, Fallecimiento\nMotivo de Salida: Visto bueno, Fin contrato eventual, Fin periodo prueba"
+							]
+						      },
+						      "lang": "es"
+						    }
+						  ],
 					outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso2-followup','lifespanCount':6,'parameters':{'NombreCajero': colaboradores.NOMBRE}}]
 				}
 				sendResponse(respuesta);
