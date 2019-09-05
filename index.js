@@ -384,6 +384,22 @@ app.post("/webhook",(req, res) =>{
 	}
 	
 	function sendSalidaCajero (nameUser, email){
+		for(i=0;i<len;i++){
+			const outputContexts= req.body.queryResult.outputContexts[i].name;
+			const nombreContexto= outputContexts.substr(-7,7)
+			if(nombreContexto =='generic'){
+				
+			}else if(nombreContexto =='salidacajeros-paso6-followup-2'){
+				
+			}else if(nombreContexto =='salidacajeros-paso2-followup'){
+				
+			}else{
+				console.log('extrayendo')
+			}
+			//console.log(id);
+		}
+		
+		
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
 		cajero.IdLS = id;
