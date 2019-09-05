@@ -172,6 +172,79 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
+	 } else if(action == "salida_paso3"){
+	 	graph.get(id+"?fields=name,email", function(err, res){
+			nameW=res.name;
+			email=res.email;
+			let ident = String(req.body.queryResult.parameters.cedula);
+			var query  = Colaboradores.where({ NUMERO_IDENTIFICACION:ident });
+			query.findOne(function (err, colaboradores) {
+			   if (err) {
+			      res.status(500).send(err);
+			   }else if(colaboradores==null){
+				respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
+				sendEmail(email);
+				respuestaBot = "Ahora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
+				let respuesta = {
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages: [
+						      {
+							"text": {
+							  "text": [
+							    "Ahora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
+							  ]
+							},
+							"platform": "FACEBOOK",
+							"lang": "es"
+						      },
+						      {
+							"payload": {
+							  "facebook": {
+							    "attachment": {
+							      "type": "file",
+							      "payload": {
+								"url": "https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.pdf"
+							      }
+							    }
+							  }
+							},
+							"platform": "FACEBOOK",
+							"lang": "es"
+						      },
+						      {
+							"quickReplies": {
+							  "title": "Luego continua por aquí con este proceso:",
+							  "quickReplies": [
+							    "Continuar"
+							  ]
+							},
+							"platform": "FACEBOOK",
+							"lang": "es"
+						      },
+						      {
+							"text": {
+							  "text": [
+							    "Ahora, por favor imprime y llena los siguiente documentos, luego continua por aquí con este proceso:\n<Compartir documentos>"
+							  ]
+							},
+							"lang": "es"
+						      }
+						    ],
+					outputContexts : req.body.queryResult.outputContexts
+				}
+				sendResponse(respuesta);
+				sendAnalytics(nameW);
+			    }else{
+			    	respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			    }
+			  });
+			
+		});	
 	 }  else if(action == "salida_paso5"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
