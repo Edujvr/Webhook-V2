@@ -101,8 +101,8 @@ app.post("/webhook",(req, res) =>{
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			   }else if(colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES' || colaboradores.PUESTO =='EJECUTIVO SERVICIOS TRANSACCIONALES SR' || colaboradores.PUESTO =='ESPECIALISTA INTELIGENCIA DE NEGOCIOS'){	
-				sendEmail(email);
-				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Ahora, por favor imprime y llena los siguiente documentos, FORMATOS_DOCUMENTOS_DE_SALIDA_BANCO.docx"
+				//sendEmail(email);
+				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\nPor favor indica la causa de salida del colaborador:\nMotivo de Salida: Renuncia voluntaria, Despido, Fallecimiento\nMotivo de Salida: Visto bueno, Fin contrato eventual, Fin periodo prueba"
 				let respuesta = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
 					"fulfillmentMessages": [
