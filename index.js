@@ -458,12 +458,12 @@ app.post("/webhook",(req, res) =>{
 	}
 	
 	function sendSalidaCajero (nameUser, email){
-		console.log(req.body.queryResult)
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
 		cajero.IdLS = id;
 		cajero.NombreLS = nameUser;
 		cajero.CorreoLS = email;
+		console.log(len)
 		for(i=0;i<len;i++){
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
 			const nombreContexto= outputContexts.substr(-7,7)
