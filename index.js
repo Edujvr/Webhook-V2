@@ -232,9 +232,7 @@ app.post("/webhook",(req, res) =>{
 			    	respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
-			    }
-			  });
-			
+			    }	
 		});	
 	 }  else if(action == "salida_paso5"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
