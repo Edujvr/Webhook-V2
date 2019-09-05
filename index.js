@@ -52,7 +52,7 @@ app.post("/webhook",(req, res) =>{
 			id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
 			idUser = String(id);
 		}else{
-			console.log('extrayendo')
+			//console.log('extrayendo')
 		}
 		//console.log(id);
 	}	
@@ -458,6 +458,7 @@ app.post("/webhook",(req, res) =>{
 	}
 	
 	function sendSalidaCajero (nameUser, email){
+		console.log(req.body.queryResult)
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
 		cajero.IdLS = id;
@@ -467,16 +468,18 @@ app.post("/webhook",(req, res) =>{
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
 			const nombreContexto= outputContexts.substr(-7,7)
 			if(nombreContexto =='generic'){
+				console.log("Entro 1")
 				cajero.IdCajero = String(req.body.queryResult.outputContexts[i].parameters.cedula);
 				cajero.CausaSalida = req.body.queryResult.outputContexts[i].parameters.CausasSalida;
 				cajero.FechaSalida = req.body.queryResult.outputContexts[i].parameters.date;
 			}else if(nombreContexto =='salidacajeros-paso6-followup-2'){
-				console.log("Entro")
+				console.log("Entro 2")
 				cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[i].parameters.AdjCartaRenuncia;
 			}else if(nombreContexto =='salidacajeros-paso2-followup'){
+				console.log("Entro 3")
 				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
 			}else{
-				console.log('extrayendo')
+				//console.log('extrayendo')
 			}
 		}
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
