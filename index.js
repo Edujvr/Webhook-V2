@@ -471,6 +471,7 @@ app.post("/webhook",(req, res) =>{
 				cajero.CausaSalida = req.body.queryResult.outputContexts[i].parameters.CausasSalida;
 				cajero.FechaSalida = req.body.queryResult.outputContexts[i].parameters.date;
 			}else if(nombreContexto =='salidacajeros-paso6-followup-2'){
+				console.log("Entro")
 				cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[i].parameters.AdjCartaRenuncia;
 			}else if(nombreContexto =='salidacajeros-paso2-followup'){
 				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
