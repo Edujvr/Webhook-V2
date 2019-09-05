@@ -467,21 +467,21 @@ app.post("/webhook",(req, res) =>{
 		for(i=0;i<len;i++){
 		//while(i<=len){
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
-			const nombreContexto= outputContexts.substr(-7,7)
+			const nombreContexto= outputContexts.substr(-10,10)
 			console.log(nombreContexto)
-			if(nombreContexto =='generic'){
+			if(nombreContexto =='ts/generic'){
 				console.log("Entro 1")
 				cajero.IdCajero = String(req.body.queryResult.outputContexts[i].parameters.cedula);
 				cajero.CausaSalida = req.body.queryResult.outputContexts[i].parameters.CausasSalida;
 				cajero.FechaSalida = req.body.queryResult.outputContexts[i].parameters.date;
 				//i=i+1;
 				continue;
-			}if(nombreContexto =='salidacajeros-paso6-followup-2'){
+			}if(nombreContexto =='followup-2'){
 				console.log("Entro 2")
 				cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[i].parameters.AdjCartaRenuncia;
 				//i=i+1;
 				continue;
-			}if(nombreContexto =='salidacajeros-paso2-followup'){
+			}if(nombreContexto =='2-followup'){
 				console.log("Entro 3")
 				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
 				//i=i+1;
