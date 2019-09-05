@@ -177,7 +177,7 @@ app.post("/webhook",(req, res) =>{
 			nameW=res.name;
 			email=res.email;
 			if(2>1){	
-				sendEmail(email);
+				//sendEmail(email);
 				respuestaBot = "Ahora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
 				let respuesta = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
@@ -472,12 +472,15 @@ app.post("/webhook",(req, res) =>{
 				cajero.IdCajero = String(req.body.queryResult.outputContexts[i].parameters.cedula);
 				cajero.CausaSalida = req.body.queryResult.outputContexts[i].parameters.CausasSalida;
 				cajero.FechaSalida = req.body.queryResult.outputContexts[i].parameters.date;
+				continue;
 			}if(nombreContexto =='salidacajeros-paso6-followup-2'){
 				console.log("Entro 2")
 				cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[i].parameters.AdjCartaRenuncia;
+				continue;
 			}if(nombreContexto =='salidacajeros-paso2-followup'){
 				console.log("Entro 3")
 				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
+				continue;
 			}
 		}
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
