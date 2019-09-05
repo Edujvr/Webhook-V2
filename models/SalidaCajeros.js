@@ -43,12 +43,10 @@ const SalidaCajerosSchema = new Schema({
         required:true
   },
   AdjCartaRenuncia:{
-        type: String,
-        required:true
+        type: String
   },
   AdjFormularioSalida: {
-        type: String,
-        required:true
+        type: String
   }
 });
 
