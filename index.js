@@ -463,10 +463,12 @@ app.post("/webhook",(req, res) =>{
 		cajero.IdLS = id;
 		cajero.NombreLS = nameUser;
 		cajero.CorreoLS = email;
-		console.log(len)
-		for(i=0;i<len;i++){
+		var i=0;
+		//for(i=0;i<len;i++){
+		while(i<=len){
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
 			const nombreContexto= outputContexts.substr(-7,7)
+			console.log(nombreContexto)
 			if(nombreContexto =='generic'){
 				console.log("Entro 1")
 				cajero.IdCajero = String(req.body.queryResult.outputContexts[i].parameters.cedula);
@@ -481,7 +483,7 @@ app.post("/webhook",(req, res) =>{
 				console.log("Entro 3")
 				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
 				continue;
-			}
+			}i=i+1;
 		}
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
 		console.log(cajero)
