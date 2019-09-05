@@ -104,7 +104,7 @@ app.post("/webhook",(req, res) =>{
 				//sendEmail(email);
 				respuestaBot = "Lamentamos la Baja de " + colaboradores.NOMBRE+ "\n Por favor indica la causa de salida del colaborador:\nMotivo de Salida: Renuncia voluntaria, Despido, Fallecimiento\nMotivo de Salida: Visto bueno, Fin contrato eventual, Fin periodo prueba"
 				let respuesta = {
-					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentText : respuestaBot,
 					"fulfillmentMessages": [
 						    {
 						      "text": {
