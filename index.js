@@ -458,34 +458,27 @@ app.post("/webhook",(req, res) =>{
 	}
 	
 	function sendSalidaCajero (nameUser, email){
-		for(i=0;i<len;i++){
-			const outputContexts= req.body.queryResult.outputContexts[i].name;
-			const nombreContexto= outputContexts.substr(-7,7)
-			if(nombreContexto =='generic'){
-				
-			}else if(nombreContexto =='salidacajeros-paso6-followup-2'){
-				
-			}else if(nombreContexto =='salidacajeros-paso2-followup'){
-				
-			}else{
-				console.log('extrayendo')
-			}
-			//console.log(id);
-		}
-		
-		
 		var cajero = new Object();
 		cajero.SesionId = sessionId;
 		cajero.IdLS = id;
 		cajero.NombreLS = nameUser;
 		cajero.CorreoLS = email;
-		cajero.IdCajero = String(req.body.queryResult.outputContexts[0].parameters.cedula);
-		cajero.NombreCajero = req.body.queryResult.outputContexts[2].parameters.NombreCajero;
-		cajero.CausaSalida = req.body.queryResult.outputContexts[0].parameters.CausasSalida;
-		//cajero.MotivoSalida = req.body.queryResult.outputContexts[0].parameters.MotivoSalida;
-		cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
-		cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
-		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;
+		for(i=0;i<len;i++){
+			const outputContexts= req.body.queryResult.outputContexts[i].name;
+			const nombreContexto= outputContexts.substr(-7,7)
+			if(nombreContexto =='generic'){
+				cajero.IdCajero = String(req.body.queryResult.outputContexts[i].parameters.cedula);
+				cajero.CausaSalida = req.body.queryResult.outputContexts[i].parameters.CausasSalida;
+				cajero.FechaSalida = req.body.queryResult.outputContexts[0].parameters.date;
+			}else if(nombreContexto =='salidacajeros-paso6-followup-2'){
+				cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[1].parameters.AdjCartaRenuncia;
+			}else if(nombreContexto =='salidacajeros-paso2-followup'){
+				cajero.NombreCajero = req.body.queryResult.outputContexts[2].parameters.NombreCajero;
+			}else{
+				console.log('extrayendo')
+			}
+		}
+		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
 		console.log(cajero)
 		let newAgradecimiento = new SalidaCajeros(cajero);
 		newAgradecimiento.save(function (err) {
