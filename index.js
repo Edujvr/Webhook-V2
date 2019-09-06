@@ -469,24 +469,18 @@ app.post("/webhook",(req, res) =>{
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
 			const nombreContexto= outputContexts.substr(-10,10)
 			console.log(nombreContexto)
-			if(nombreContexto =='ts/generic'){
-				console.log("Entro 1")
+			if(nombreContexto =='2-followup'){
+				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
+				continue;
+			}if(nombreContexto =='ts/generic'){
 				cajero.IdCajero = String(req.body.queryResult.outputContexts[i].parameters.cedula);
 				cajero.CausaSalida = req.body.queryResult.outputContexts[i].parameters.CausasSalida;
 				cajero.FechaSalida = req.body.queryResult.outputContexts[i].parameters.date;
-				//i=i+1;
 				continue;
 			}if(nombreContexto =='followup-2'){
-				console.log("Entro 2")
 				cajero.AdjCartaRenuncia = req.body.queryResult.outputContexts[i].parameters.AdjCartaRenuncia;
-				//i=i+1;
 				continue;
-			}if(nombreContexto =='2-followup'){
-				console.log("Entro 3")
-				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
-				//i=i+1;
-				continue;
-			}//i=i+1;
+			}
 		}
 		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
 		console.log(cajero)
