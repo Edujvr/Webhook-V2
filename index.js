@@ -343,7 +343,16 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
-	 } else if(action == "reclamos"){
+	 }//Consulta de centro de costos a la base de Mongo Atlas
+	else if(action == "cc"){
+		 //console.log(req.body.queryResult.parameters)
+	 	if(req.body.queryResult.parameters.number == undefined || req.body.queryResult.parameters.number == ''){
+			 graph.get(id+"?fields=name,email", function(err, res){
+				nameW=res.name
+				sendResponse(respuestaBot);				
+				sendAnalytics(nameW);
+			});
+	}else if(action == "reclamos"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name
 			console.log(req.body.queryResult.parameters.ReclamosTipos);
