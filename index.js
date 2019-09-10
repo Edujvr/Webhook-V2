@@ -284,29 +284,59 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics(nameW);
 		});	
 	 }  else if(action == "salida_paso6"){
+		var CausaSalida = getCausa(); 
 	 	graph.get(id+"?fields=name,email", function(err, res){
-			console.log( req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url);
+			//console.log( req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url);
 			nameW=res.name;
 			email=res.email;
-			let respuesta ={
-				fulfillmentText : req.body.queryResult.fulfillmentText,
-				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-				outputContexts : [{'name': req.body.session+'/contexts/salidaCajeros-Paso6-followup-2','lifespanCount':3,'parameters':{AdjCartaRenuncia : req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url}}]
+			if(CausaSalida == 'Renuncia voluntaria'){
+				let respuesta ={
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+			}else if(CausaSalida == 'Despido'){
+				let respuesta ={
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+			}else if(CausaSalida == 'Fallecimiento'){
+				let respuesta ={
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso5-followup','lifespanCount':3}]
+				}
+			}else if(CausaSalida == 'Visto bueno'){
+				let respuesta ={
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+			}else if(CausaSalida == 'Fin contrato eventual'){
+				let respuesta ={
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+			}else{
+				let respuesta ={
+					fulfillmentText : req.body.queryResult.fulfillmentText,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso6-followup-2','lifespanCount':3}]
+				}
 			} 
 			sendResponse(respuesta);
-			sendAnalytics(nameW);
-			//sendAnalytics(nameW);
-			
+			sendAnalytics(nameW);			
 		});	
 	 } else if(action == "salida_paso_final"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
-			console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments)
+			//console.log(req.body.originalDetectIntentRequest.payload.data.message.attachments)
 			nameW=res.name;
 			email=res.email;
 			sendResponse(respuestaBot);
 			sendSalidaCajero(nameW, email);
 			//sendAnalytics(nameW);
-			
 		});	
 	 }//Proceso Busqueda de agencia por nombre en la base de datos Mongo Atlas 
 	else if(action == "agencias"){
