@@ -288,7 +288,8 @@ app.post("/webhook",(req, res) =>{
 			//sendAnalytics(nameW);
 			
 		});	
-	 } else if(action == "agencias"){
+	 }//Busqueda de agencia por nombre en la base de datos Mongo Atlas 
+	else if(action == "agencias"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
 			var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
@@ -301,7 +302,8 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
-	 } else if(action == "administradores"){
+	 }//Busqueda de administrador de agencia por nombre en la base de datos Mongo Atlas
+	else if(action == "administradores"){
 		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
@@ -323,7 +325,8 @@ app.post("/webhook",(req, res) =>{
 			  });
 			
 		});	
-	 } else if(action == "gerentes"){
+	 }//Busqueda de gerente por nombre en la base de datos Mongo Atlas
+	else if(action == "gerentes"){
 		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name	
