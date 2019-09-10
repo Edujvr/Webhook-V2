@@ -173,6 +173,16 @@ app.post("/webhook",(req, res) =>{
 			
 		});	
 	 } else if(action == "salida_paso3"){
+		var documento,CausaSalida;
+		for(i=0;i<len;i++){
+			const outputContexts= req.body.queryResult.outputContexts[i].name;
+			const nombreContexto= outputContexts.substr(-7,7)
+			if(nombreContexto =='generic'){
+				CausaSalida=req.body.queryResult.outputContexts[i].parameters.CausasSalida;
+			}else{
+				//console.log('extrayendo')
+			}
+		}
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
@@ -428,7 +438,7 @@ app.post("/webhook",(req, res) =>{
 		});
 	 }
 	
-	function sendEmail(email){
+	function sendEmail(email, documento){
 		let transporter = nodemailer.createTransport({
 			service: 'Gmail',
 			auth: {
@@ -446,7 +456,7 @@ app.post("/webhook",(req, res) =>{
 			html: 'Por favor imprime y llena el siguiente documento',
 			attachments: [
 				{
-					path: 'https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.pdf'
+					path: documento
 				}
 			    ]
 		}
