@@ -288,10 +288,9 @@ app.post("/webhook",(req, res) =>{
 			//sendAnalytics(nameW);
 			
 		});	
-	 }//Busqueda de agencia por nombre en la base de datos Mongo Atlas 
+	 }//Proceso Busqueda de agencia por nombre en la base de datos Mongo Atlas 
 	else if(action == "agencias"){
-		 //console.log(req.body.queryResult.parameters)
-	 	if(req.body.queryResult.parameters.NombreAgencia == undefined || req.body.queryResult.parameters.NombreAgencia == ''){
+		if(req.body.queryResult.parameters.NombreAgencia == undefined || req.body.queryResult.parameters.NombreAgencia == ''){
 			 graph.get(id+"?fields=name,email", function(err, res){
 				nameW=res.name
 				sendResponse(respuestaBot);				
@@ -311,7 +310,7 @@ app.post("/webhook",(req, res) =>{
 				
 			});	
 		 }
-	 }//Busqueda de administrador de agencia por nombre en la base de datos Mongo Atlas
+	 }//Proceso Busqueda de administrador de agencia por nombre en la base de datos Mongo Atlas
 	else if(action == "administradores"){
 		if(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia == undefined || req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia == ''){
 			graph.get(id+"?fields=name,email", function(err, res){
@@ -340,7 +339,7 @@ app.post("/webhook",(req, res) =>{
 				  });		
 			}); 
 		} 
-	 }//Busqueda de gerente por nombre en la base de datos Mongo Atlas
+	 }//Proceso busqueda de gerente por nombre en la base de datos Mongo Atlas
 	else if(action == "gerentes"){
 	 	if(req.body.queryResult.parameters.GerenteNombreAgencia.NombreAgencia == undefined || req.body.queryResult.parameters.GerenteNombreAgencia.NombreAgencia == ''){
 			graph.get(id+"?fields=name,email", function(err, res){
@@ -363,7 +362,7 @@ app.post("/webhook",(req, res) =>{
 				  });			
 			});
 		}
-	 }//Consulta de centro de costos a la base de Mongo Atlas
+	 }//Proceso de busqueda de agencia por centro de costos a la base de Mongo Atlas
 	else if(action == "cc"){
 		 //console.log(req.body.queryResult.parameters)
 	 	if(req.body.queryResult.parameters.number == undefined || req.body.queryResult.parameters.number == ''){
@@ -389,7 +388,7 @@ app.post("/webhook",(req, res) =>{
 				
 			});	
 		 }
-	 }//Consulta de jefaturas a la base de datos Mongo Atlas
+	 }//Proceso de Busqueda de jefaturas a la base de datos Mongo Atlas
 	else if(action == "jefaturas"){
 		 //console.log(req.body.queryResult.parameters)
 	 	if(req.body.queryResult.parameters.JefaturaNombreAgencia.NombreAgencia == undefined || req.body.queryResult.parameters.JefaturaNombreAgencia.NombreAgencia == ''){
@@ -427,7 +426,8 @@ app.post("/webhook",(req, res) =>{
 				});
 			});	
 		 }
-	 }else if(action == "reclamos"){
+	 }//Proceso de busqueda de reclamos en la base de datos Mongo Atlas
+	else if(action == "reclamos"){
 	 	if(req.body.queryResult.parameters.ReclamosTipos == '' || req.body.queryResult.parameters.ReclamosTipos == undefined){
 			graph.get(id+"?fields=name,email", function(err, res){
 				nameW=res.name
