@@ -475,42 +475,14 @@ app.post("/webhook",(req, res) =>{
 				
 			});	
 		}	
-	 }else if(action == "reclamos"){
-	 	if(req.body.queryResult.parameters.ReclamosTipos == '' || req.body.queryResult.parameters.ReclamosTipos == undefined){
-			graph.get(id+"?fields=name,email", function(err, res){
-				nameW=res.name
-				sendResponse(respuestaBot);				
-				sendAnalytics(nameW);
-			});
-		}else{
-			graph.get(id+"?fields=name,email", function(err, res){
-				nameW=res.name
-				var query  = Reclamos.where({ TIPO: req.body.queryResult.parameters.ReclamosTipos });
-				query.findOne(function (err, reclamos) {
-					if (err) {
-					  res.status(500).send(err);
-					}else if(reclamos.AYUDA=="VACIO"){
-						respuestaBot = "TIPO:" + reclamos.TIPOA +"\nSUBTIPO:"+ reclamos.TIPO +"\n\nPara más información ingresa en el siguiente link: http://bit.ly/2IRBCzG "
-					}else if(reclamos.TIPO == "COPIAS DEPÓSITOS,CHEQUES,RET. REVISIÓN INT. ESP. TIEMPO Y VOL." || reclamos.TIPO == "SOLICITUD DOCUMENTACIÓN REVISIÓN INTERNA"){
-						respuestaBot = "TIPO:COPIAS \nSUBTIPO:COPIAS DEPÓSITOS,CHEQUES,RET. REVISIÓN INT. ESP. TIEMPO Y VOL. \n\nIngresar solo requerimientos para revisión interna,  especiales por tiempo o volumen, es decir a partir de la 11va copia.  Estos casos están sujetos a verificación por parte del Área de Auditoria o Entes de Control. Favor enviar por mail al solucionador, únicamente con el detalle de documentos en formato Excel,  en base al estado de cuenta del cliente.  En comentarios indicar el total de documentos requeridos. \n\nTIPO:DOCUMENTOS REVISIÓN INTERNA \nSUBTIPO:SOLICITUD DOCUMENTACIÓN REVISIÓN INTERNA \n\nA través de este subtipo las unidades de Atención al Cientes, Riesgos, Negocios, Cumplimiento, Auditoría y Pague Ya, pueden solicitar Copias de: Estados de cuenta TC, Contratos y habilitantes firmados TC firmados por clientes,  Auditorias de entrega de estados de cuenta TC \n\nPara más información ingresa en el siguiente link: http://bit.ly/2IRBCzG "
-					}else if(reclamos.TIPO == "COPIAS ESTADOS CTA. REQUERIMIENTOS ESPECIALES TIEMPO Y VOLUMEN" || reclamos.TIPO == "MOVIMIENTOS AHORROS REQUERIMIENTOS ESPECIALES POR TIEMPO Y VOLUMEN"){
-						respuestaBot = "TIPO:COPIAS \nSUBTIPO:COPIAS ESTADOS CTA. REQUERIMIENTOS ESPECIALES TIEMPO Y VOLUMEN \n\nPor este subtipo aplica solicitar movimientos de cuentas corrientes. Ingresar requerimientos de movimientos cuya fecha sea antes de la migración del 5 de abril del 2012 . Previo al ingreso deben validar la fecha de apertura de la cuenta y que conste activa en los meses requeridos. \n\nTIPO:COPIAS  \nSUBTIPO:MOVIMIENTOS AHORROS REQUERIMIENTOS ESPECIALES POR TIEMPO Y VOLUMEN \n\nReq. de personas naturales ingresa el Call Center,  Req. de personas jurídicas ingresa el Balcón de Servicios . Por este subtipo aplica solicitar movimientos de estado de cuentas de ahorro. Ingresar requerimientos de movimientos cuya fecha sea antes de la migración del 5 de abril del 2012 para atrás. Previo al ingreso deben validar la fecha de apertura de la cuenta y que conste activa en los meses requeridos. Considerar que solo se puede entregar movimientos hasta 10 años. \n\nPara más información ingresa en el siguiente link: http://bit.ly/2IRBCzG "
-					}else{
-						respuestaBot = "TIPO:" + reclamos.TIPOA +"\nSUBTIPO:"+ reclamos.TIPO +"\n\n"+ reclamos.AYUDA +"\n\nPara más información ingresa en el siguiente link: http://bit.ly/2IRBCzG "
-					}sendResponse(respuestaBot);
-					sendAnalytics(nameW);
-				  });
-				
-			});	
-		}	
-	 } else if(action == "agradecer"){
+	 }else if(action == "agradecer"){
 	 	graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
 			sendResponse(respuesta); 
 			sendAgradecer(nameW);
 		});
-	 } else { //Envio de información directa webhook a Dialogflow	
+	 }else { //Envio de información directa webhook a Dialogflow	
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
