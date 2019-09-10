@@ -186,10 +186,28 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
-			if(2>1){	
-				//sendEmail(email);
-				respuestaBot = "Ahora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
-				let respuesta = {
+			if(CausaSalida == 'Renuncia voluntaria'){
+				documento='https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA_1.docx'
+				sendEmail(email,documento);
+			}else if(CausaSalida == 'Despido'){
+				documento='https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA_2.docx'
+				sendEmail(email,documento);
+			}else if(CausaSalida == 'Fallecimiento'){
+				documento='https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA_3.docx' 
+				sendEmail(email,documento);
+			}else if(CausaSalida == 'Visto bueno'){
+				documento='https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA_4.docx' 
+				sendEmail(email,documento);
+			}else if(CausaSalida == 'Fin contrato eventual'){
+				documento='https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA_5.docx' 
+				sendEmail(email,documento);
+			}else{
+				documento='https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA_6.docx'
+				sendEmail(email,documento);
+			}
+			//sendEmail(email);
+			respuestaBot = "Ahora, por favor imprime y llena los siguientes documentos que también fueron enviados a tu correo,"
+			let respuesta = {
 					fulfillmentText : req.body.queryResult.fulfillmentText,
 					fulfillmentMessages: [
 						      {
@@ -207,7 +225,7 @@ app.post("/webhook",(req, res) =>{
 							    "attachment": {
 							      "type": "file",
 							      "payload": {
-								"url": "https://storage.googleapis.com/documentos_pibot/Demo/DOCUMENTOS_DE_SALIDA.pdf"
+								"url": documento
 							      }
 							    }
 							  }
@@ -238,11 +256,11 @@ app.post("/webhook",(req, res) =>{
 				}
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
-			    }else{
+			    /*}else{
 			    	respuestaBot = "Lo sentimos, no es posible procesar tu pedido; posiblemente la persona reportada no es Ejecutivo de Servicios Transaccionales o tú no estás registrado como su línea de supervisión. Por favor toma contacto con tu generalista "
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
-			    }	
+			    }*/	
 		});	
 	 }  else if(action == "salida_paso5"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
@@ -490,74 +508,6 @@ app.post("/webhook",(req, res) =>{
 			sendResponse(respuesta); 
 			sendAgradecer(nameW);
 		});
-	 } 
-	/*else if (action == "nothandled") {
-		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
-			email=res.email;
-			nameW=res.name	
-			let transporter = nodemailer.createTransport({
-			    service: 'Gmail',
-			    auth: {
-			      type: 'OAuth2',
-			      user: 'edujvr.k15@gmail.com',
-			      clientId: '302919125596-e1roihqdf4gkuf8rrhd708uih3o2efen.apps.googleusercontent.com',
-			      clientSecret: '5JrKDFXzjA8fl57pgcLZgwUH',
-			      refreshToken: '1/HF8MdT3XzwEBLrBG8nFLAiWm-Uz0QVgkEhfH1DQbwVgDVpXZbxOL0OEfOcmzip7Z'
-			    }
-			  })
-
-			  let mailOptions = {
-			    from: '<edujvr.k15@gmail.com>',
-			    to: 'etandazo@pichincha.com',
-			    subject: 'Chatbot consulta no contestada',
-			    html: 'El usuario '+nameW+' con email '+email+ '<br>'+ ' pregunto: '+ req.body.queryResult.queryText +  '<br><br>'+' Saludos ' +  '<br>'+' Tu asistente Virtual '
-			  }
-
-			  transporter.sendMail(mailOptions, (err, info) => {
-			    if (err) throw new Error(err)
-
-			    res.statusCode = 200
-			    res.end('Email sent!')
-			  })
-		sendResponse(respuesta); 
-		sendAnalytics(nameW);
-		});	
-	 } */else if (action == "correo") {
-		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
-			email=res.email;
-			nameW=res.name	
-			let transporter = nodemailer.createTransport({
-			    service: 'Gmail',
-			    auth: {
-			      type: 'OAuth2',
-			      user: 'edujvr.k15@gmail.com',
-			      clientId: '302919125596-e1roihqdf4gkuf8rrhd708uih3o2efen.apps.googleusercontent.com',
-			      clientSecret: '5JrKDFXzjA8fl57pgcLZgwUH',
-			      refreshToken: '1/HF8MdT3XzwEBLrBG8nFLAiWm-Uz0QVgkEhfH1DQbwVgDVpXZbxOL0OEfOcmzip7Z'
-			    }
-			  })
-
-			  let mailOptions = {
-			    from: '<edujvr.k15@gmail.com>',
-			    to: email,
-			    subject: 'Proceso Salida Documento ',
-			    html: 'Por favor imprime y llena el siguiente documento',
-			    attachments: [
-			       {
-				path: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.15752-9/67406472_342909533278303_3831993194703224832_n.jpg?_nc_cat=102&_nc_oc=AQmZoo0GLnJDvv6rGtfTdd0h3YPpcSCym9jXyVWnyXt-7SZdTy4XHAFm0qWc8M9szihnUl7ShaNzUBugC0CjuClH&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent-atl3-1.xx&oh=89c2b8018956b78540ea66ca06feeb2a&oe=5DE3CF9B'
-			       }
-			    ]
-			  }
-
-			  transporter.sendMail(mailOptions, (err, info) => {
-			    if (err) throw new Error(err)
-
-			    res.statusCode = 200
-			    res.end('Email sent!')
-			  })
-		sendResponse(respuesta); 
-		sendAnalytics(nameW);
-		});	
 	 } else { //Envio de información directa webhook a Dialogflow	
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
