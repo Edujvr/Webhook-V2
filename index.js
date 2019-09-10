@@ -173,7 +173,7 @@ app.post("/webhook",(req, res) =>{
 			
 		});	
 	 } else if(action == "salida_paso3"){
-		var documento,CausaSalida;
+		/*var documento,CausaSalida;
 		for(i=0;i<len;i++){
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
 			const nombreContexto= outputContexts.substr(-7,7)
@@ -182,7 +182,9 @@ app.post("/webhook",(req, res) =>{
 			}else{
 				//console.log('extrayendo')
 			}
-		}
+		}*/
+		var CausaSalida = getCausa();
+		console.log(CausaSalida);
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
@@ -544,6 +546,17 @@ app.post("/webhook",(req, res) =>{
 			    res.statusCode = 200
 			    res.end('Email sent!')
 		})
+	}
+	
+	function getCausa(){
+		var CausaSalida;
+		for(i=0;i<len;i++){
+			const outputContexts= req.body.queryResult.outputContexts[i].name;
+			const nombreContexto= outputContexts.substr(-7,7)
+			if(nombreContexto =='generic'){
+				CausaSalida=req.body.queryResult.outputContexts[i].parameters.CausasSalida;
+			}
+		}return CausaSalida;
 	}
 	
 	function sendSalidaCajero (nameUser, email){
