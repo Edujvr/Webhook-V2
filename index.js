@@ -313,27 +313,33 @@ app.post("/webhook",(req, res) =>{
 		 }
 	 }//Busqueda de administrador de agencia por nombre en la base de datos Mongo Atlas
 	else if(action == "administradores"){
-		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
-	 	graph.get(id+"?fields=name,email", function(err, res){
-			nameW=res.name	
-			var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
-			query.findOne(function (err, administradores) {
-			    respuestaBot="Agencia "+ administradores.NOMBRE+":";
-			    if (err) {
-			      res.status(500).send(err);
-			    }if(administradores.ADMINISTRADOR_COMERCIAL !="nan"){
-			    	respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
-			    }if(administradores.ADMINISTRADOR_SERVICIOS !="nan"){
-			    	respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
-			    }if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS !="nan"){
-			    	respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
-			    }if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS !="nan"){
-			    	respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-			    }sendResponse(respuestaBot);
-			     sendAnalytics(nameW);
-			  });
-			
-		});	
+		if(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia == undefined || req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia == ''){
+			graph.get(id+"?fields=name,email", function(err, res){
+				nameW=res.name
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			});
+		}else{
+			graph.get(id+"?fields=name,email", function(err, res){
+				nameW=res.name	
+				var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
+				query.findOne(function (err, administradores) {
+					respuestaBot="Agencia "+ administradores.NOMBRE+":";
+					if (err) {
+					  res.status(500).send(err);
+					}if(administradores.ADMINISTRADOR_COMERCIAL != 'N/A'){
+						respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
+					}if(administradores.ADMINISTRADOR_SERVICIOS != 'N/A'){
+						respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
+					}if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS != 'N/A'){
+						respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
+					}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
+						respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
+					}sendResponse(respuestaBot);
+					 sendAnalytics(nameW);
+				  });		
+			}); 
+		} 
 	 }//Busqueda de gerente por nombre en la base de datos Mongo Atlas
 	else if(action == "gerentes"){
 		//console.log(req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia)
