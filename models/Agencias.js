@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AgenciaSchema = new Schema({
+  CC:{
+    type: String,
+    required:true
+  },
   NOMBRE:{
     type: String,
     required:true
