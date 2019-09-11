@@ -557,42 +557,42 @@ app.post("/webhook",(req, res) =>{
 				let respuesta ={
 					fulfillmentText : BotResponde,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+					outputContexts : [{'name': req.body.session+'/contexts/flujo2','lifespanCount':1}]
 				}
 				return respuesta;
 			}else if(CausaSalida == 'Despido'){
 				let respuesta ={
 					fulfillmentText : BotResponde,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+					outputContexts : [{'name': req.body.session+'/contexts/flujo2','lifespanCount':1}]
 				}
 				return respuesta;
 			}else if(CausaSalida == 'Fallecimiento'){
 				let respuesta ={
 					fulfillmentText : BotResponde,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso5-followup','lifespanCount':2}]
+					outputContexts : [{'name': req.body.session+'/contexts/flujo3','lifespanCount':1}]
 				}
 				return respuesta;
 			}else if(CausaSalida == 'Visto bueno'){
 				let respuesta ={
 					fulfillmentText : BotResponde,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+					outputContexts : [{'name': req.body.session+'/contexts/flujo2','lifespanCount':1}]
 				}
 				return respuesta;
 			}else if(CausaSalida == 'Fin contrato eventual'){
 				let respuesta ={
 					fulfillmentText : BotResponde,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+					outputContexts : [{'name': req.body.session+'/contexts/flujo2','lifespanCount':1}]
 				}
 				return respuesta;
 			}else{
 				let respuesta ={
 					fulfillmentText : BotResponde,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso6-followup-2','lifespanCount':3}]
+					outputContexts : [{'name': req.body.session+'/contexts/flujo1','lifespanCount':1}]
 				}
 				return respuesta;
 			} 				
