@@ -265,6 +265,7 @@ app.post("/webhook",(req, res) =>{
 			    }*/	
 		});	
 	 }  else if(action == "salida_paso5"){
+		var CausaSalida = getCausa(); 
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
@@ -276,11 +277,12 @@ app.post("/webhook",(req, res) =>{
 			FechaActualMin.setDate(FechaActualMin.getDate() - 15);
 			console.log(FechaActualMin)
 			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
-				respuestaBot='Ahora por favor toma foto a la carta de renuncia firmada que te proporcionamos arriba y cárgala en este feed'
+				respuestaBot='Ahora por favor toma foto a la hoja de salida que te proporcionamos arriba y cárgala en este feed.'
+				respuesta=getContext(CausaSalida,respuestaBot);
 			}else{
 				respuestaBot='Lo siento la fecha ingresada no esta en el rango permitido para notificar la salida, por favor ingresalo nuevamente con el siguiente formato dd-mm-yyyy \nO comunicate co tu generalista'  
 			}
-			sendResponse(respuestaBot);
+			sendResponse(respuesta);
 			sendAnalytics(nameW);
 		});	
 	 }  else if(action == "salida_paso6"){
@@ -289,7 +291,7 @@ app.post("/webhook",(req, res) =>{
 			//console.log( req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url);
 			nameW=res.name;
 			email=res.email;
-			if(CausaSalida == 'Renuncia voluntaria'){
+			/*if(CausaSalida == 'Renuncia voluntaria'){
 				let respuesta ={
 					fulfillmentText : req.body.queryResult.fulfillmentText,
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
@@ -325,7 +327,7 @@ app.post("/webhook",(req, res) =>{
 					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
 					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso6-followup-2','lifespanCount':3}]
 				}
-			} 
+			} */
 			sendResponse(respuesta);
 			sendAnalytics(nameW);			
 		});	
@@ -548,6 +550,52 @@ app.post("/webhook",(req, res) =>{
 			    res.statusCode = 200
 			    res.end('Email sent!')
 		})
+	}
+	
+	function getContext(CausaSalida, BotResponde){
+			if(CausaSalida == 'Renuncia voluntaria'){
+				let respuesta ={
+					fulfillmentText : BotResponde,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+				return respuesta;
+			}else if(CausaSalida == 'Despido'){
+				let respuesta ={
+					fulfillmentText : BotResponde,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+				return respuesta;
+			}else if(CausaSalida == 'Fallecimiento'){
+				let respuesta ={
+					fulfillmentText : BotResponde,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso5-followup','lifespanCount':2}]
+				}
+				return respuesta;
+			}else if(CausaSalida == 'Visto bueno'){
+				let respuesta ={
+					fulfillmentText : BotResponde,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+				return respuesta;
+			}else if(CausaSalida == 'Fin contrato eventual'){
+				let respuesta ={
+					fulfillmentText : BotResponde,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
+				}
+				return respuesta;
+			}else{
+				let respuesta ={
+					fulfillmentText : BotResponde,
+					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso6-followup-2','lifespanCount':3}]
+				}
+				return respuesta;
+			} 				
 	}
 	
 	function getCausa(){
