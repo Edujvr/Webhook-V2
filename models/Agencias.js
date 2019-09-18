@@ -15,7 +15,7 @@ const AgenciaSchema = new Schema({
     type: String,
     required:true
   },
-  CIUDAD: {
+  CUIDAD: {
     type: String,
     required:true
   },
