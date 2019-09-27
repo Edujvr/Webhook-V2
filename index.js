@@ -356,9 +356,9 @@ app.post("/webhook",(req, res) =>{
 					if (err) {
 					  res.status(500).send(err);
 					}	respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
-				var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});	
+				//var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});	
 					/////////////////////
-					 query1.findOne(function (err, gerentes) {
+					/* query1.findOne(function (err, gerentes) {
 					//respuestaBot="Agencia "+ gerentes.NOMBRE+":";
 					if (err) {
 					  res.status(500).send(err);
@@ -379,7 +379,7 @@ app.post("/webhook",(req, res) =>{
 							respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
 						}
 					
-					
+					*/
 					///////////////////////
 					sendResponse(respuestaBot);
 					sendAnalytics(nameW);
