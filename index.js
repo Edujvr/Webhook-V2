@@ -348,13 +348,6 @@ app.post("/webhook",(req, res) =>{
 				sendResponse(respuestaBot);				
 				sendAnalytics(nameW);
 			});
-		}else if(action == "agencias"){
-		if(req.body.queryResult.parameters.NombreAgencia == undefined || req.body.queryResult.parameters.NombreAgencia == ''){
-			 graph.get(id+"?fields=name,email", function(err, res){
-				nameW=res.name
-				sendResponse(respuestaBot);				
-				sendAnalytics(nameW);
-			});
 		}else{
 			graph.get(id+"?fields=name,email", function(err, res){
 				nameW=res.name	
@@ -362,37 +355,35 @@ app.post("/webhook",(req, res) =>{
 				query.findOne(function (err, agencias) {
 					if (err) {
 					  res.status(500).send(err);
-					}	respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
-					var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
-					 query1.findOne(function (err, gerentes) {
-					//respuestaBot="Agencia "+ gerentes.NOMBRE+":";
-					if (err) {
-					  res.status(500).send(err);
-					}respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
-							
-						var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
-						query2.findOne(function (err, administradores) {
-							respuestaBot=respuestaBot+"\n"
-							if (err) {
-							  res.status(500).send(err);
-							}if(administradores.ADMINISTRADOR_COMERCIAL != 'N/A'){
-								respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
-							}if(administradores.ADMINISTRADOR_SERVICIOS != 'N/A'){
-								respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
-							}if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS != 'N/A'){
-								respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
-							}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
-								respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-							}
-						sendResponse(respuestaBot);
-						sendAnalytics(nameW);
-						})
-				
-					})
-				})
-			}
-		}//Proceso Busqueda de administrador de agencia por nombre en la base de datos Mongo Atlas
-		else if(action == "agencias"){
+					}respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
+						var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
+						query1.findOne(function (err, gerentes) {
+						if (err) {
+						  res.status(500).send(err);
+						}respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
+							var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
+							query2.findOne(function (err, administradores) {
+								respuestaBot=respuestaBot+"\n"
+								if (err) {
+								  res.status(500).send(err);
+								}if(administradores.ADMINISTRADOR_COMERCIAL != 'N/A'){
+									respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
+								}if(administradores.ADMINISTRADOR_SERVICIOS != 'N/A'){
+									respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
+								}if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS != 'N/A'){
+									respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
+								}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
+									respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
+								}
+							sendResponse(respuestaBot);
+							sendAnalytics(nameW);
+							});
+						});
+				});
+			});
+		}
+	}//Proceso Busqueda de administrador de agencia por nombre en la base de datos Mongo Atlas
+	else if(action == "agencias"){
 		if(req.body.queryResult.parameters.NombreAgencia == undefined || req.body.queryResult.parameters.NombreAgencia == ''){
 			 graph.get(id+"?fields=name,email", function(err, res){
 				nameW=res.name
