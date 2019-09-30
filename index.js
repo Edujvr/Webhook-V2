@@ -275,15 +275,14 @@ app.post("/webhook",(req, res) =>{
 			FechaActualMax.setDate(FechaActualMax.getDate() + 15);
 			var FechaActualMin = new Date()
 			FechaActualMin.setDate(FechaActualMin.getDate() - 15);
-			console.log(FechaActualMin.getTime())
-			console.log(FechaActualMax.getTime())
-			console.log(FechaSalida.getTime())
+			console.log(FechaActualMin)
+			console.log(FechaActualMax)
+			console.log(FechaSalida)
 			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
-				console.log("Comparación")
 				respuestaBot='Ahora por favor toma foto a la hoja de salida que te proporcionamos arriba y cárgala en este feed.'
 				respuesta=getContext(CausaSalida,respuestaBot);
 			}else{
-				respuestaBot='Lo siento la fecha ingresada no esta en el rango permitido para notificar la salida, por favor comunicarse con su generalista'  
+				respuesta='Lo siento la fecha ingresada no esta en el rango permitido para notificar la salida, por favor comunicarse con su generalista'  
 			}
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
