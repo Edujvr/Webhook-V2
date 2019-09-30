@@ -358,7 +358,7 @@ app.post("/webhook",(req, res) =>{
 					}respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
 						var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
 						query1.findOne(function (err, gerentes) {
-						respuestaBot=respuestaBot + "\nLineas de Supervisión "+ gerentes.NOMBRE+":";
+						respuestaBot=respuestaBot + "\nLineas de Supervisión:";
 						if (err) {
 						  res.status(500).send(err);
 						}respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
