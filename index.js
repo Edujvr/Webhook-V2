@@ -264,7 +264,7 @@ app.post("/webhook",(req, res) =>{
 				sendAnalytics(nameW);
 			    }*/	
 		});	
-	 }  else if(action == "salida_paso5"){
+	 }  else if(action == "salida_paso4"){
 		var CausaSalida = getCausa(); 
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
