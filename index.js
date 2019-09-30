@@ -361,7 +361,7 @@ app.post("/webhook",(req, res) =>{
 						respuestaBot=respuestaBot + "\nLineas de Supervisión:";
 						if (err) {
 						  res.status(500).send(err);
-						}respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
+						}respuestaBot = respuestaBot+"\n\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
 							var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
 							query2.findOne(function (err, administradores) {
 								respuestaBot=respuestaBot+"\n"
