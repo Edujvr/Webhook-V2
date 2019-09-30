@@ -275,9 +275,6 @@ app.post("/webhook",(req, res) =>{
 			FechaActualMax.setDate(FechaActualMax.getDate() + 15);
 			var FechaActualMin = new Date()
 			FechaActualMin.setDate(FechaActualMin.getDate() - 15);
-			console.log(FechaActualMin)
-			console.log(FechaActualMax)
-			console.log(FechaSalida)
 			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
 				respuestaBot='Ahora por favor toma foto a la hoja de salida que te proporcionamos arriba y cárgala en este feed.'
 				respuesta=getContext(CausaSalida,respuestaBot);
