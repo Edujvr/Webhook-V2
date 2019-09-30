@@ -265,17 +265,19 @@ app.post("/webhook",(req, res) =>{
 			    }*/	
 		});	
 	 }  else if(action == "salida_paso5"){ 
+		var CausaSalida = getCausa();
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
 			var fecha = String(req.body.queryResult.parameters.date)
 			var FechaSalida = new Date(fecha.substr(0,4),fecha.substr(5,2)-1,fecha.substr(8,2),0,0,0)
 			var FechaActualMax = new Date()
-			console.log(req.body.queryResult.parameters)
 			FechaActualMax.setDate(FechaActualMax.getDate() + 15);
 			var FechaActualMin = new Date()
 			FechaActualMin.setDate(FechaActualMin.getDate() - 15);
 			console.log(FechaActualMin)
+			console.log(FechaActualMax)
+			console.log(FechaSalida)
 			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
 				respuestaBot='Ahora por favor toma foto a la hoja de salida que te proporcionamos arriba y cárgala en este feed.'
 				respuesta=getContext(CausaSalida,respuestaBot);
