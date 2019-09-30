@@ -278,7 +278,8 @@ app.post("/webhook",(req, res) =>{
 			console.log(FechaActualMin)
 			console.log(FechaActualMax)
 			console.log(FechaSalida)
-			if(FechaSalida <= FechaActualMax && FechaSalida >= FechaActualMin){
+			if(FechaSalida.getTime() <= FechaActualMax.getTime() && FechaSalida.getTime() >= FechaActualMin.getTime()){
+				console.log("Comparación")
 				respuestaBot='Ahora por favor toma foto a la hoja de salida que te proporcionamos arriba y cárgala en este feed.'
 				respuesta=getContext(CausaSalida,respuestaBot);
 			}else{
