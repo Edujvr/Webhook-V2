@@ -68,7 +68,7 @@ app.post("/webhook",(req, res) =>{
 			      res.status(500).send(err);
 			    }else{
 				    var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
-				    query.findOne(function (err, generalistas) {
+				    query1.findOne(function (err, generalistas) {
 					    if (err) {
 						    res.status(500).send(err);
 					    }else{
