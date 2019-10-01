@@ -1,6 +1,7 @@
 'use estrict'
 
 const Colaboradores = require("./models/Colaboradores");
+const Generalistas = require("./models/Generalistas");
 const Historial = require("./models/Historial");
 const Agencias = require("./models/Agencias");
 const Administradores = require("./models/Administradores");
