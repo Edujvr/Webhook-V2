@@ -72,7 +72,7 @@ app.post("/webhook",(req, res) =>{
 					    if (err) {
 						    res.status(500).send(err);
 					    }else{
-						    respuestaBot = nameW +" su consultor es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. " + generalistas.CEL + "\nDir. " + generalistas.UBICACION 
+						    respuestaBot = nameW +" su consultor es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION 
 						    sendResponse(respuestaBot);
 						    sendAnalytics(nameW);	
 					    }				    			    
