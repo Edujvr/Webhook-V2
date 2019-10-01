@@ -70,7 +70,7 @@ app.post("/webhook",(req, res) =>{
 						    res.status(500).send(err);
 					    }else{
 						    //respuestaBot = nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
-						    let respuesta = {
+						    let respuestaBot = {
 							    fulfillmentText :nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto",
 							    fulfillmentMessages: [
 								    {
@@ -101,7 +101,7 @@ app.post("/webhook",(req, res) =>{
 								    }
 							    ]
 						    }
-						    sendResponse(respuesta);
+						    sendResponse(respuestaBot);
 						    sendAnalytics(nameW);	
 					    }				    			    
 				    });
