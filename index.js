@@ -37,12 +37,10 @@ app.post("/webhook",(req, res) =>{
   var id = '1';
   var contador= 0;
   //var id = req.body.queryResult.outputContexts[0].parameters.facebook_sender_id;
-  var idUser = String(id);
-  //console.log(req.body.queryResult.outputContexts);	
+  var idUser = String(id);	
   var contextos = req.body.queryResult.outputContexts;
   var i,len = contextos.length;
   var email, nameW;
-  //console.log(req.body.queryResult);
   //console.log(req.body.queryResult.parameters);
 	
 	graph.setAccessToken(access_token);	
@@ -55,7 +53,6 @@ app.post("/webhook",(req, res) =>{
 		}else{
 			//console.log('extrayendo')
 		}
-		//console.log(id);
 	}	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){	
@@ -91,8 +88,7 @@ app.post("/webhook",(req, res) =>{
 				outputContexts : [{'name': req.body.session+'/contexts/salidacajeros-paso1-followup','lifespanCount':2,'parameters':{'nombre': String(contexto)+','}}]
 			} 
 			sendResponse(respuesta);
-			sendAnalytics(nameW);
-			
+			sendAnalytics(nameW);			
 		});	
 	 }   else if(action == "salida_paso2"){
 	 	graph.get(id+"?fields=name,email", function(err, res){
@@ -176,22 +172,10 @@ app.post("/webhook",(req, res) =>{
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			    }
-			  });
-			
+			  });			
 		});	
 	 } else if(action == "salida_paso3"){
-		/*var documento,CausaSalida;
-		for(i=0;i<len;i++){
-			const outputContexts= req.body.queryResult.outputContexts[i].name;
-			const nombreContexto= outputContexts.substr(-7,7)
-			if(nombreContexto =='generic'){
-				CausaSalida=req.body.queryResult.outputContexts[i].parameters.CausasSalida;
-			}else{
-				//console.log('extrayendo')
-			}
-		}*/
 		var CausaSalida = getCausa();
-		console.log(CausaSalida);
 	 	graph.get(id+"?fields=name,email", function(err, res){
 			nameW=res.name;
 			email=res.email;
