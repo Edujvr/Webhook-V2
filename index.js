@@ -61,17 +61,23 @@ app.post("/webhook",(req, res) =>{
 		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 			email=res.email;
 			nameW=res.name	
-			//console.log(nameW);
-			//console.log(email);
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email.toUpperCase() });
 			query.findOne(function (err, colaboradores) {
 			   if (err) {
 			      res.status(500).send(err);
-			    }	respuestaBot = nameW +" Tu consultor es " + colaboradores.NOMBRE_CONSULTOR //+" Tu nombre " +usuarioName
-				sendResponse(respuestaBot);
-				sendAnalytics(nameW);
-			  });
-			
+			    }else{
+				    var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
+				    query.findOne(function (err, generalistas) {
+					    if (err) {
+						    res.status(500).send(err);
+					    }else{
+						    respuestaBot = nameW +" su consultor es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. " + generalistas.CEL + "\nDir. " + generalistas.UBICACION 
+						    sendResponse(respuestaBot);
+						    sendAnalytics(nameW);	
+					    }				    			    
+				    });
+			    }
+			});
 		});		
 	 }  else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
