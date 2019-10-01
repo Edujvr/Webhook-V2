@@ -69,8 +69,38 @@ app.post("/webhook",(req, res) =>{
 					    if (err) {
 						    res.status(500).send(err);
 					    }else{
-						    respuestaBot = nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION + "\n\n\n\n\n\n\n\n\n\n\n\nPrincipales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n•	Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n•Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
-						    sendResponse(respuestaBot);
+						    //respuestaBot = nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+						    let respuesta = {
+							    "fulfillmentMessages": [
+								    {
+									    "text": {
+										    "text": [
+											    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION
+										    ]
+									    },
+									    "platform": "FACEBOOK",
+									    "lang": "es"
+								    },
+								    {
+									    "text": {
+										    "text": [
+											    "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+										    ]
+									    },
+									    "platform": "FACEBOOK",
+									    "lang": "es"
+								    },
+								    {
+									    "text": {
+										    "text": [
+											    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\nExt. "+ generalistas.EXT + "\nCel. 0" + generalistas.CEL + "\nDir. " + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+										    ]
+									    },
+									    "lang": "es"
+								    }
+							    ]
+						    }
+						    sendResponse(respuesta);
 						    sendAnalytics(nameW);	
 					    }				    			    
 				    });
