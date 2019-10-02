@@ -33,19 +33,21 @@ const SalidaCajerosSchema = new Schema({
   CausaSalida:{
         type: String,
         required:true
-  }/*,
-  MotivoSalida:{
-        type: String,
-        required:true
-  }*/,
+  },
   FechaSalida:{
         type: String,
         required:true
   },
-  AdjCartaRenuncia:{
+  AdjHojaSalida:{
         type: String
   },
-  AdjFormularioSalida: {
+  AdjAutDebito:{
+        type: String
+  },
+  CartaExamSalida:{
+        type: String
+  },
+  CartaTermContrato:{
         type: String
   }
 });
