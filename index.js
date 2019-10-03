@@ -312,43 +312,6 @@ app.post("/webhook",(req, res) =>{
 			//console.log( req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url);
 			nameW=res.name;
 			email=res.email;
-			/*if(CausaSalida == 'Renuncia voluntaria'){
-				let respuesta ={
-					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
-				}
-			}else if(CausaSalida == 'Despido'){
-				let respuesta ={
-					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
-				}
-			}else if(CausaSalida == 'Fallecimiento'){
-				let respuesta ={
-					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso5-followup','lifespanCount':3}]
-				}
-			}else if(CausaSalida == 'Visto bueno'){
-				let respuesta ={
-					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
-				}
-			}else if(CausaSalida == 'Fin contrato eventual'){
-				let respuesta ={
-					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso7A-followup','lifespanCount':3}]
-				}
-			}else{
-				let respuesta ={
-					fulfillmentText : req.body.queryResult.fulfillmentText,
-					fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
-					outputContexts : [{'name': req.body.session+'/contexts/SalidaCajeros-Paso6-followup-2','lifespanCount':3}]
-				}
-			} */
 			sendResponse(respuesta);
 			sendAnalytics(nameW);			
 		});	
@@ -657,12 +620,9 @@ app.post("/webhook",(req, res) =>{
 		cajero.IdLS = id;
 		cajero.NombreLS = nameUser;
 		cajero.CorreoLS = email;
-		var i=0;
-		for(i=0;i<len;i++){
-		//while(i<=len){
+		for(var i=0;i<len;i++){
 			const outputContexts= req.body.queryResult.outputContexts[i].name;
 			const nombreContexto= outputContexts.substr(-10,10)
-			console.log(nombreContexto)
 			if(nombreContexto =='2-followup'){
 				cajero.NombreCajero = req.body.queryResult.outputContexts[i].parameters.NombreCajero;
 				continue;
@@ -676,10 +636,10 @@ app.post("/webhook",(req, res) =>{
 				continue;
 			}
 		}
-		cajero.AdjFormularioSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
+		cajero.AdjHojaSalida = req.body.originalDetectIntentRequest.payload.data.message.attachments[0].payload.url;		
 		console.log(cajero)
-		let newAgradecimiento = new SalidaCajeros(cajero);
-		newAgradecimiento.save(function (err) {
+		let newSalidaCajero = new SalidaCajeros(cajero);
+		newSalidaCajero.save(function (err) {
 			if (err) return handleError(err);
 		});		
 	}
