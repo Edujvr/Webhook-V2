@@ -118,7 +118,7 @@ app.post("/webhook",(req, res) =>{
 				   res.status(500).send(err);
 			    }else{
 				    respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO
-			    }sendResponse(respuesta);
+			    }sendResponse(respuestaBot);
 			     sendAnalytics(nameW);
 			});
 		});	
