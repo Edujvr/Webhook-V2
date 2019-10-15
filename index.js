@@ -120,6 +120,7 @@ app.post("/webhook",(req, res) =>{
 				    respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO
 			    }sendResponse(respuesta);
 			     sendAnalytics(nameW);
+			});
 		});	
 	 }else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
