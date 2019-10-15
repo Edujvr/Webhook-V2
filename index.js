@@ -112,7 +112,7 @@ app.post("/webhook",(req, res) =>{
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			email=res.email;
 			nameW=res.name	
-			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
+			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email.toUpperCase() });
 			query.findOne(function (err, colaboradores) {
 			   if (err) {
 				   res.status(500).send(err);
