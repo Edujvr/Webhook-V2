@@ -108,7 +108,20 @@ app.post("/webhook",(req, res) =>{
 			    }
 			});
 		});		
-	 }  else if(action == "salida"){
+	 }else if(action == "codigo"){
+	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
+			email=res.email;
+			nameW=res.name	
+			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
+			query.findOne(function (err, colaboradores) {
+			   if (err) {
+				   res.status(500).send(err);
+			    }else{
+				    respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO
+			    }sendResponse(respuesta);
+			     sendAnalytics(nameW);
+		});	
+	 }else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
 			let contexto=res.first_name
