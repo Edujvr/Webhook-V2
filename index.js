@@ -117,6 +117,8 @@ app.post("/webhook",(req, res) =>{
 				query.findOne(function (err, colaboradores) {
 					if (err) {
 						res.status(500).send(err);
+					}else if(colaboradores==undefined){
+						 respuestaBot= respuestaBot;
 					}else{
 						respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO
 					}sendResponse(respuestaBot);
