@@ -359,20 +359,21 @@ app.post("/webhook",(req, res) =>{
 				query.findOne(function (err, agencias) {
 					if (err) {
 					  res.status(500).send(err);
-					}respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
+					}else{
+						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
 						var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
 						query1.findOne(function (err, gerentes) {
-						if (err) {
-							res.status(500).send(err);
-						}else if(gerentes==undefined){
-							sendResponse(respuestaBot);
-							sendAnalytics(nameW);
-						}else{
-							respuestaBot=respuestaBot + "\n\nLineas de Supervisión:";
-							respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
-							var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
-							query2.findOne(function (err, administradores) {
-								respuestaBot=respuestaBot+"\n"
+							if (err) {
+								res.status(500).send(err);
+							}else if(gerentes==undefined){
+								sendResponse(respuestaBot);
+								sendAnalytics(nameW);
+							}else{
+								respuestaBot=respuestaBot + "\n\nLineas de Supervisión:";
+								respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
+								var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
+								query2.findOne(function (err, administradores) {
+									respuestaBot=respuestaBot+"\n"
 									if (err) {
 									  res.status(500).send(err);
 									}if(administradores.ADMINISTRADOR_COMERCIAL != 'N/A'){
@@ -387,9 +388,9 @@ app.post("/webhook",(req, res) =>{
 								sendResponse(respuestaBot);
 								sendAnalytics(nameW);
 								});
-							 } 
-						}	
-					});
+							 } 	
+						});
+					 }
 				});
 			});
 		}
