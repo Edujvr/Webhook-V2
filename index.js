@@ -406,20 +406,25 @@ app.post("/webhook",(req, res) =>{
 			graph.get(id+"?fields=name,email", function(err, res){
 				nameW=res.name	
 				var query  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.AdministradorNombreAgencia.NombreAgencia});
-				query.findOne(function (err, administradores) {
-					respuestaBot="Agencia "+ administradores.NOMBRE+":";
-					if (err) {
-					  res.status(500).send(err);
-					}if(administradores.ADMINISTRADOR_COMERCIAL != 'N/A'){
-						respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
-					}if(administradores.ADMINISTRADOR_SERVICIOS != 'N/A'){
-						respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
-					}if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS != 'N/A'){
-						respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
-					}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
-						respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-					}sendResponse(respuestaBot);
-					 sendAnalytics(nameW);
+				query.findOne(function (err, administradores){
+					if(administradores==undefined){
+						sendResponse(respuestaBot);
+						sendAnalytics(nameW);
+					}else{
+						respuestaBot="Agencia "+ administradores.NOMBRE+":";
+						if (err) {
+							res.status(500).send(err);
+						}if(administradores.ADMINISTRADOR_COMERCIAL != 'N/A'){
+							respuestaBot =respuestaBot+"\nAdministrador Comercial: " + administradores.ADMINISTRADOR_COMERCIAL + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL;
+						}if(administradores.ADMINISTRADOR_SERVICIOS != 'N/A'){
+							respuestaBot =respuestaBot+"\nAdministrador Servicios: " + administradores.ADMINISTRADOR_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_SERVICIOS;
+						}if(administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS != 'N/A'){
+							respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
+						}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
+							respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
+						}sendResponse(respuestaBot);
+						 sendAnalytics(nameW);
+					}					
 				  });		
 			}); 
 		} 
@@ -436,14 +441,19 @@ app.post("/webhook",(req, res) =>{
 				nameW=res.name	
 				var query  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.GerenteNombreAgencia.NombreAgencia});
 				query.findOne(function (err, gerentes) {
-					respuestaBot="Agencia "+ gerentes.NOMBRE+":";
-					if (err) {
-					  res.status(500).send(err);
-					}if(gerentes.GERENTE_AGENCIA != 'N/A'){
-						respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
-					}	sendResponse(respuestaBot);
+					if(gerentes==undefined){
+						sendResponse(respuestaBot);
 						sendAnalytics(nameW);
-				  });			
+					}else{
+						respuestaBot="Agencia "+ gerentes.NOMBRE+":";
+						if (err) {
+						  res.status(500).send(err);
+						}if(gerentes.GERENTE_AGENCIA != 'N/A'){
+							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
+						}	sendResponse(respuestaBot);
+							sendAnalytics(nameW);
+					}
+				});			
 			});
 		}
 	 }//Proceso de busqueda de agencia por centro de costos a la base de Mongo Atlas
