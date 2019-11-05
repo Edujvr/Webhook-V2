@@ -109,8 +109,10 @@ app.post("/webhook",(req, res) =>{
 			});
 		});		
 	 }else if(action == "prueba"){
-	 	var graphObject = graph.get(id+"?fields=name,email,first_name", function(err, res){});
-		 console.log(graphObject.name);
+	 	var graphObject = graph.get(id+"?fields=name,email,first_name", function(err, res){
+			return res.name
+		});
+		 console.log(graphObject);
 	 }else if(action == "codigo"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			email=res.email;
