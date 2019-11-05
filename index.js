@@ -572,9 +572,9 @@ app.post("/webhook",(req, res) =>{
 	
 	function getID(){
 		graph.get(id+"?fields=name,email,first_name", function(err, res){
-			if (error) {
+			if (res.name='') {
 				console.log('Error sending message: ', error);
-			} else if (res.body.error) {
+			}else if(res.body.error) {
 				return res.name
 			}
 		});
