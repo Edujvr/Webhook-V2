@@ -109,10 +109,8 @@ app.post("/webhook",(req, res) =>{
 			});
 		});		
 	 }else if(action == "prueba"){
-	 	var graphObject = graph.get(id+"?fields=name,email,first_name", function(err, res){
-			return res.name
-		});
-		 console.log(graphObject);
+	 	var ID= getID()
+		console.log(ID);
 	 }else if(action == "codigo"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			email=res.email;
@@ -571,6 +569,12 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics(nameW);
 		});
 	 }
+	
+	function getID(){
+		graph.get(id+"?fields=name,email,first_name", function(err, res){
+			return res.name
+		});
+	}
 	
 	function sendEmail(email, documento){
 		let transporter = nodemailer.createTransport({
