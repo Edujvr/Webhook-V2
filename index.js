@@ -109,9 +109,6 @@ app.post("/webhook",(req, res) =>{
 			    }
 			});
 		});		
-	 }else if(action == "prueba"){
-	 	getID()
-		console.log(aux);
 	 }else if(action == "codigo"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			email=res.email;
@@ -570,14 +567,6 @@ app.post("/webhook",(req, res) =>{
 			sendAnalytics(nameW);
 		});
 	 }
-	
-	function getID(){
-		graph.get(id+"?fields=name,email,first_name", function(err, res){
-			aux=res.name;
-			console.log(aux);
-		});
-		return aux;
-	}
 	
 	function sendEmail(email, documento){
 		let transporter = nodemailer.createTransport({
