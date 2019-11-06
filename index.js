@@ -476,13 +476,17 @@ app.post("/webhook",(req, res) =>{
 				console.log(cc)
 				var query  = Agencias.where({ CC: cc});
 				query.findOne(function (err, agencias) {
-					if (err) {
+					if(agencias==undefined){
+						sendResponse(respuestaBot);
+						sendAnalytics(nameW);
+					}else if (err) {
 					  res.status(500).send(err);
-					}	respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
-					sendResponse(respuestaBot);
-					sendAnalytics(nameW);
-				  });
-				
+					}else{
+						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO
+						sendResponse(respuestaBot);
+						sendAnalytics(nameW);
+					}
+				  });	
 			});	
 		 }
 	 }//Proceso de Busqueda de jefaturas a la base de datos Mongo Atlas
