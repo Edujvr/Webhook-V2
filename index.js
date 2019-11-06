@@ -110,7 +110,7 @@ app.post("/webhook",(req, res) =>{
 			});
 		});		
 	 }else if(action == "prueba"){
-	 	var graphObject = getID()
+	 	getID()
 		console.log(aux);
 	 }else if(action == "codigo"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
@@ -574,6 +574,7 @@ app.post("/webhook",(req, res) =>{
 	function getID(){
 		graph.get(id+"?fields=name,email,first_name", function(err, res){
 			aux=res.name;
+			console.log(aux);
 		});
 		return aux;
 	}
