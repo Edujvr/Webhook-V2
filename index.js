@@ -502,14 +502,14 @@ app.post("/webhook",(req, res) =>{
 			graph.get(id+"?fields=name,email", function(err, res){
 				nameW=res.name
 				var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.JefaturaNombreAgencia.NombreAgencia});
-				query1.findOne(function (err, gerentes) {
-					respuestaBot="Agencia "+ gerentes.NOMBRE+":";
+				query1.findOne(function (err, gerentes) {				
 					if(gerentes==undefined){
 						sendResponse(respuestaBot);
 						sendAnalytics(nameW);
 					}else if (err) {
 					  res.status(500).send(err);
-					}respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
+					}respuestaBot="Agencia "+ gerentes.NOMBRE+":";
+					respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
 							
 					var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.JefaturaNombreAgencia.NombreAgencia});
 					query2.findOne(function (err, administradores) {
