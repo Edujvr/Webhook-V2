@@ -109,8 +109,8 @@ app.post("/webhook",(req, res) =>{
 			});
 		});		
 	 }else if(action == "prueba"){
-	 	var nombre= getID()
-		console.log(nombre);
+	 	var graphObject = getID()
+		console.log(graphObject[name]);
 	 }else if(action == "codigo"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			email=res.email;
@@ -571,9 +571,9 @@ app.post("/webhook",(req, res) =>{
 	 }
 	
 	function getID(){
-		graph.get(id+"?fields=name,email,first_name", function(err, res){
-			return res.name;
+		var graphObject = graph.get(id+"?fields=name,email,first_name", function(err, res){
 		});
+		return graphObject;
 	}
 	
 	function sendEmail(email, documento){
