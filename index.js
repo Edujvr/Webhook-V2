@@ -504,7 +504,10 @@ app.post("/webhook",(req, res) =>{
 				var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.JefaturaNombreAgencia.NombreAgencia});
 				query1.findOne(function (err, gerentes) {
 					respuestaBot="Agencia "+ gerentes.NOMBRE+":";
-					if (err) {
+					if(gerentes==undefined){
+						sendResponse(respuestaBot);
+						sendAnalytics(nameW);
+					}else if (err) {
 					  res.status(500).send(err);
 					}respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
 							
