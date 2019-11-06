@@ -574,6 +574,7 @@ app.post("/webhook",(req, res) =>{
 	function getID(){
 		var graphObject = graph.get(id+"?fields=name,email,first_name", function(err, res){
 		});
+		graphObject.request.abort();
 		return graphObject;
 	}
 	
