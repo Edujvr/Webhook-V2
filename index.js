@@ -123,7 +123,7 @@ app.post("/webhook",(req, res) =>{
 						 respuestaBot= respuestaBot;
 					}else{
 						console.log(objetivos.INDICADOR)
-						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR
+						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR.toReplace(",","\n")
 					}sendResponse(respuestaBot);
 					sendAnalytics(nameW);
 				});
