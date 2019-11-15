@@ -122,7 +122,7 @@ app.post("/webhook",(req, res) =>{
 					}else if(objetivos==undefined){
 						 respuestaBot= respuestaBot;
 					}else{
-						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR('\n')
+						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR.split('')
 					}sendResponse(respuestaBot);
 					sendAnalytics(nameW);
 				});
