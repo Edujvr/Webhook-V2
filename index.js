@@ -122,8 +122,8 @@ app.post("/webhook",(req, res) =>{
 					}else if(objetivos==undefined){
 						 respuestaBot= respuestaBot;
 					}else{
-						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR
-						for(var i=0; i <= objetivos.INDICADOR.length; i++){
+						respuestaBot = nameW +" Tu calificación fue: " 
+						for(var i=0; i < objetivos.INDICADOR.length; i++){
 							respuestaBot= respuestaBot + "\n"
 							respuestaBot= respuestaBot + objetivos.INDICADOR[i]
 						}
