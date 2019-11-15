@@ -1,6 +1,7 @@
 'use estrict'
 
 const Colaboradores = require("./models/Colaboradores");
+const Objetivos = require("./models/Objetivos");
 const Generalistas = require("./models/Generalistas");
 const Historial = require("./models/Historial");
 const Agencias = require("./models/Agencias");
@@ -109,6 +110,26 @@ app.post("/webhook",(req, res) =>{
 			    }
 			});
 		});		
+	 }else if(action == "objetivos"){
+	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
+			email=res.email;
+			nameW=res.name
+			if(email != "" && email != undefined && email != null){
+				var query  = Objetivos.where({ MAIL: email });
+				query.findOne(function (err, objetivos) {
+					if (err) {
+						res.status(500).send(err);
+					}else if(colaboradores==undefined){
+						 respuestaBot= respuestaBot;
+					}else{
+						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR
+					}sendResponse(respuestaBot);
+					sendAnalytics(nameW);
+				});
+			}else{
+				sendRespose(respuestaBot)
+			}
+		});	
 	 }else if(action == "codigo"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			email=res.email;
