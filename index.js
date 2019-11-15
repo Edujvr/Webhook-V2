@@ -119,7 +119,7 @@ app.post("/webhook",(req, res) =>{
 				query.findOne(function (err, objetivos) {
 					if (err) {
 						res.status(500).send(err);
-					}else if(colaboradores==undefined){
+					}else if(objetivos==undefined){
 						 respuestaBot= respuestaBot;
 					}else{
 						respuestaBot = nameW +" Tu calificación fue: " +  objetivos.INDICADOR
