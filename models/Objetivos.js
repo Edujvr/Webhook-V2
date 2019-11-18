@@ -6,7 +6,7 @@ const ObjetivosSchema = new Schema({
     type: String,
     required:true
   },
-  INDICADOR: {
+  INDICADORES: {
     type: Array,
     required:true
   }
