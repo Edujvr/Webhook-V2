@@ -123,9 +123,9 @@ app.post("/webhook",(req, res) =>{
 						 respuestaBot= respuestaBot;
 					}else{
 						respuestaBot = nameW +" Tu calificación fue: " 
-						for(var i=0; i < objetivos.INDICADOR.length; i++){
+						for(var i=0; i < objetivos.INDICADORES.length; i++){
 							respuestaBot= respuestaBot + "\n"
-							respuestaBot= respuestaBot + objetivos.INDICADOR[i]
+							respuestaBot= respuestaBot + objetivos.INDICADORES[i]
 						}
 					}sendResponse(respuestaBot);
 					sendAnalytics(nameW);
