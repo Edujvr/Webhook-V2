@@ -78,7 +78,7 @@ app.post("/webhook",(req, res) =>{
 								    {
 									    "text": {
 										    "text": [
-											    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION"
+											    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION
 										    ]
 									    },
 									    "platform": "FACEBOOK",
