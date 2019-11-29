@@ -126,7 +126,7 @@ app.post("/webhook",(req, res) =>{
 						for(var i=0; i < objetivos.INDICADORES.length; i++){
 							respuestaBot= respuestaBot + "\n"
 							respuestaBot= respuestaBot + objetivos.INDICADORES[i]
-						}
+						}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí (https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n)"
 					}sendResponse(respuestaBot);
 					sendAnalytics(nameW);
 				});
