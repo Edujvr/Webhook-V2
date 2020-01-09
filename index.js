@@ -746,6 +746,9 @@ app.post("/webhook",(req, res) =>{
 	//console.log(req.body.queryResult.fulfillmentMessages);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
+			if(nameUser==undefined){
+				nameUser='4u.pichincha.com'
+			}
 			respuestaBot=String(req.body.queryResult.fulfillmentMessages[2].text.text[0])
 			var historial = new Object();
 			historial.SesionId = sessionId;
@@ -755,6 +758,9 @@ app.post("/webhook",(req, res) =>{
 			historial.NombreIntento= req.body.queryResult.intent.displayName;
 			historial.BotResponde= respuestaBot;
 		} else {
+			if(nameUser==undefined){
+				nameUser='4u.pichincha.com'
+			}
 			var historial = new Object();
 			historial.SesionId = sessionId;
 			historial.UsuarioId = id;
