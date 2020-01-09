@@ -50,8 +50,13 @@ app.post("/webhook",(req, res) =>{
 		const outputContexts= req.body.queryResult.outputContexts[i].name;
 		const nombreContexto= outputContexts.substr(-7,7)
 		if(nombreContexto =='generic'){
-			id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
-			idUser = String(id);
+			if(req.body.queryResult.outputContexts[i].parameters.facebook_sender_id==undefined){
+				id=0;
+			
+			}else{
+				id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
+				idUser = String(id);
+			}
 		}else{
 			//console.log('extrayendo')
 		}
@@ -759,6 +764,7 @@ app.post("/webhook",(req, res) =>{
 			historial.BotResponde= respuestaBot;
 		}
 	//Envio de objeto con mensaje a Mongo Atlas
+		console.log(historial);
 		let newHistorial = new Historial(historial);
 		newHistorial.save(function (err) {
 			if (err) return handleError(err);
