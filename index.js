@@ -51,8 +51,7 @@ app.post("/webhook",(req, res) =>{
 		const nombreContexto= outputContexts.substr(-7,7)
 		if(nombreContexto =='generic'){
 			if(req.body.queryResult.outputContexts[i].parameters.facebook_sender_id==undefined){
-				id=0;
-			
+				id=0;			
 			}else{
 				id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
 				idUser = String(id);
@@ -63,7 +62,7 @@ app.post("/webhook",(req, res) =>{
 	}	
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
-		if(id=1){
+		if(id==1){
 			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
 			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 			sendAnalytics(nameW);
@@ -122,7 +121,7 @@ app.post("/webhook",(req, res) =>{
 			});
 		}	
 	 }else if(action == "objetivos"){
-		if(id=1){
+		if(id==1){
 			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
 			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 			sendAnalytics(nameW);
@@ -152,7 +151,7 @@ app.post("/webhook",(req, res) =>{
 			});	
 		}
 	 }else if(action == "codigo"){//Consulta el código único de colaborador
-		if(id=1){
+		if(id==1){
 			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
 			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 			sendAnalytics(nameW);
