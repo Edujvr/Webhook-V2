@@ -62,103 +62,122 @@ app.post("/webhook",(req, res) =>{
 		}
 	}	
 	//Consulta nombre de Generalista en Mongo Atlas 
-	if(action == 'query'){	
-		graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
-			email=res.email;
-			nameW=res.name	
-			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
-			query.findOne(function (err, colaboradores) {
-			   if (err) {
-			      res.status(500).send(err);
-			    }else{
-				    var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
-				    query1.findOne(function (err, generalistas) {
-					    if (err) {
-						    res.status(500).send(err);
-					    }else{
-						    respuestaBot = nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
-						    let respuesta = {
-							    fulfillmentText :nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto",
-							    fulfillmentMessages: [
-								    {
-									    "text": {
-										    "text": [
-											    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION
-										    ]
-									    },
-									    "platform": "FACEBOOK",
-									    "lang": "es"
-								    },
-								    {
-									    "text": {
-										    "text": [
-											    "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
-										    ]
-									    },
-									    "platform": "FACEBOOK",
-									    "lang": "es"
-								    },
-								    {
-									    "text": {
-										    "text": [
-											    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
-										    ]
-									    },
-									    "lang": "es"
-								    }
-							    ]
-						    }
-						    sendResponse(respuesta);
-						    sendAnalytics(nameW);	
-					    }				    			    
-				    });
-			    }
-			});
-		});		
-	 }else if(action == "objetivos"){
-	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
-			email=res.email;
-			nameW=res.name
-			if(email != "" && email != undefined && email != null){
-				var query  = Objetivos.where({ MAIL: email });
-				query.findOne(function (err, objetivos) {
-					if (err) {
-						res.status(500).send(err);
-					}else if(objetivos==undefined){
-						 respuestaBot= respuestaBot;
-					}else{
-						respuestaBot = nameW +" Tu calificación fue: " 
-						for(var i=0; i < objetivos.INDICADORES.length; i++){
-							respuestaBot= respuestaBot + "\n"
-							respuestaBot= respuestaBot + objetivos.INDICADORES[i]
-						}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí 👇👇 https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n"
-					}sendResponse(respuestaBot);
-					sendAnalytics(nameW);
-				});
-			}else{
-				sendRespose(respuestaBot)
-			}
-		});	
-	 }else if(action == "codigo"){
-	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
-			email=res.email;
-			nameW=res.name
-			if(email != "" && email != undefined && email != null){
+	if(action == 'query'){
+		if(id=1){
+			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+			sendAnalytics(nameW);
+		}else{
+			graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
+				email=res.email;
+				nameW=res.name	
 				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
 				query.findOne(function (err, colaboradores) {
-					if (err) {
-						res.status(500).send(err);
-					}else if(colaboradores==undefined){
-						 respuestaBot= respuestaBot;
-					}else{
-						respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO
-					}sendResponse(respuestaBot);
-					sendAnalytics(nameW);
+				   if (err) {
+				      res.status(500).send(err);
+				    }else{
+					    var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
+					    query1.findOne(function (err, generalistas) {
+						    if (err) {
+							    res.status(500).send(err);
+						    }else{
+							    respuestaBot = nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+							    let respuesta = {
+								    fulfillmentText :nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto",
+								    fulfillmentMessages: [
+									    {
+										    "text": {
+											    "text": [
+												    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION
+											    ]
+										    },
+										    "platform": "FACEBOOK",
+										    "lang": "es"
+									    },
+									    {
+										    "text": {
+											    "text": [
+												    "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+											    ]
+										    },
+										    "platform": "FACEBOOK",
+										    "lang": "es"
+									    },
+									    {
+										    "text": {
+											    "text": [
+												    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+											    ]
+										    },
+										    "lang": "es"
+									    }
+								    ]
+							    }
+							    sendResponse(respuesta);
+							    sendAnalytics(nameW);	
+						    }				    			    
+					    });
+				    }
 				});
-			}else{
-				sendRespose(respuestaBot)
-			}
-		});	
+			});
+		}	
+	 }else if(action == "objetivos"){
+		if(id=1){
+			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+			sendAnalytics(nameW);
+		}else{
+			graph.get(id+"?fields=name,email,first_name", function(err, res){
+				email=res.email;
+				nameW=res.name
+				if(email != "" && email != undefined && email != null){
+					var query  = Objetivos.where({ MAIL: email });
+					query.findOne(function (err, objetivos) {
+						if (err) {
+							res.status(500).send(err);
+						}else if(objetivos==undefined){
+							 respuestaBot= respuestaBot;
+						}else{
+							respuestaBot = nameW +" Tu calificación fue: " 
+							for(var i=0; i < objetivos.INDICADORES.length; i++){
+								respuestaBot= respuestaBot + "\n"
+								respuestaBot= respuestaBot + objetivos.INDICADORES[i]
+							}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí 👇👇 https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n"
+						}sendResponse(respuestaBot);
+						sendAnalytics(nameW);
+					});
+				}else{
+					sendRespose(respuestaBot)
+				}
+			});	
+		}
+	 }else if(action == "codigo"){//Consulta el código único de colaborador
+		if(id=1){
+			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+			sendAnalytics(nameW);
+		}else{
+			graph.get(id+"?fields=name,email,first_name", function(err, res){
+				email=res.email;
+				nameW=res.name
+				if(email != "" && email != undefined && email != null){ //Validación que se pudo extraer el correo del colaborador
+					var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+					query.findOne(function (err, colaboradores) {
+						if (err) {
+							res.status(500).send(err);
+						}else if(colaboradores==undefined){
+							 respuestaBot= respuestaBot;
+						}else{
+							respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+						}sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+						sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
+					});
+				}else{
+					sendRespose(respuestaBot);
+					sendAnalytics(nameW);
+				}
+			});					
+		}
 	 }else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
