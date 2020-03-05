@@ -120,6 +120,12 @@ app.post("/webhook",(req, res) =>{
 				});
 			});
 		}	
+	 }else if(action == "prueba"){
+		 console.log(req.body)
+		 console.log(req.body.queryResult)
+		 console.log(req.body.queryResult.outputContexts)
+		 sendResponse(respuestaBot);
+		 sendAnalytics(nameW);
 	 }else if(action == "objetivos"){
 		if(id==1){
 			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
