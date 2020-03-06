@@ -790,7 +790,11 @@ app.post("/webhook",(req, res) =>{
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {  
 			if(colaborador==undefined||colaborador==[]||colaborador==''){
-				nameUser= usrPortal + 'no registrado en la Base ' 
+				if(usrPortal==''){
+					nameUser = 'Usuario no disponible en Mi Portal'
+				}else{
+					nameUser = usrPortal + ' no registrado en la Base'
+				}
 			}else{
 				nameUser = colaborador[0].NOMBRE
 			}
