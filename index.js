@@ -156,9 +156,26 @@ app.post("/webhook",(req, res) =>{
 		}
 	 }else if(action == "codigo"){//Consulta el código único de colaborador
 		if(id==1){
-			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+			//console.log(req.body.originalDetectIntentRequest.payload.user)
+			/*respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
 			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-			sendAnalytics(nameW);
+			sendAnalytics(nameW);*/
+			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+			email=usrPortal+'@pichincha.com'
+			console.log(email)
+			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+			query.findOne(function (err, colaboradores) {
+				console.log(colaboradores)
+				if (err) {
+					res.status(500).send(err);
+				}else if(colaboradores==undefined){
+					respuestaBot= respuestaBot;
+				}else{
+					respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+				}sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+					 sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
+			});
+			
 		}else{
 			graph.get(id+"?fields=name,email,first_name", function(err, res){
 				email=res.email;
