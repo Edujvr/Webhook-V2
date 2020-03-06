@@ -798,7 +798,7 @@ app.post("/webhook",(req, res) =>{
 						nameUser=usrPortal + 'no registra en la Base de Datos';
 					}else{
 						nameUser=colaboradores.NOMBRE
-					}
+					}return nameUser;
 				});
 		}else{
 			nameUser='No usuario en Mi Portal'
