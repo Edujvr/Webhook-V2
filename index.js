@@ -166,12 +166,12 @@ app.post("/webhook",(req, res) =>{
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 			query.findOne(function (err, colaboradores) {
 				console.log(colaboradores)
-				nameW=colaboradores.NOMBRE
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores==undefined){
 					respuestaBot= respuestaBot;
 				}else{
+					nameW=colaboradores.NOMBRE
 					respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
 				}sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 					 sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
