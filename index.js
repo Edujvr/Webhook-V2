@@ -809,16 +809,16 @@ app.post("/webhook",(req, res) =>{
 		//nameUser=consultaDB(query)
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {              
-			console.log('Paso1');
+			//console.log('Paso1');
 			//console.log(colaborador[0].NOMBRE);
 			const nameUser = colaborador[0].NOMBRE
 		    return nameUser
 		 });
-		console.log(respuesta[0].NOMBRE)
-		console.log(respuesta)
+		//console.log(respuesta[0].NOMBRE)
+		//console.log(respuesta)
 	}
 		
-	function sendAnalytics (nameUser) {
+	async function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
@@ -838,8 +838,8 @@ app.post("/webhook",(req, res) =>{
 		} else {
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
-				nameUser = getUserMiPortal();
-				console.log('Paso2');
+				nameUser = await getUserMiPortal();
+				console.log(nameUser);
 				nameUser='no vale'
 				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 				email=usrPortal+'@pichincha.com'
