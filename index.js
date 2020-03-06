@@ -802,15 +802,19 @@ app.post("/webhook",(req, res) =>{
 		let nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
-		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
-		console.log(colaborador)
+		/*const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
 			nameUser=colaborador.NOMBRE
-			return nameUser
-		});
+		});*/
 		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		//nameUser=consultaDB(query)
-		//console.log(respuesta)
-		console.log(nameUser)
+		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }).
+		then(colaborador => {              
+			console.log(colaborador[0].NOMBRE);
+			const a = colaborador[0].NOMBRE
+		    return a
+		 });
+		
+		console.log(respuesta.NOMBRE)
 		return nameUser;
 	}
 		
