@@ -799,7 +799,7 @@ app.post("/webhook",(req, res) =>{
 	}
 	
 	async function getUserMiPortal() {
-		let nameUser;
+		var nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
 		/*const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
@@ -811,13 +811,9 @@ app.post("/webhook",(req, res) =>{
 		then(colaborador => {              
 			//console.log('Paso1');
 			//console.log(colaborador[0].NOMBRE);
-			//const nameUser = colaborador[0].NOMBRE
-		    
+			nameUser = colaborador[0].NOMBRE
 		 });
-		console.log(respuesta[0].NOMBRE)
-		nameUser = respuesta[0].NOMBRE
 		return nameUser
-		//console.log(respuesta)
 	}
 		
 	async function sendAnalytics (nameUser) {
