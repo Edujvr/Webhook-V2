@@ -809,11 +809,12 @@ app.post("/webhook",(req, res) =>{
 		//nameUser=consultaDB(query)
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {              
-			console.log(colaborador[0].NOMBRE);
+			console.log('Paso1');
+			//console.log(colaborador[0].NOMBRE);
 			const nameUser = colaborador[0].NOMBRE
 		    return nameUser
 		 });
-		console.log(nameUser)
+		console.log(respuesta[0].NOMBRE)
 	}
 		
 	function sendAnalytics (nameUser) {
@@ -837,7 +838,7 @@ app.post("/webhook",(req, res) =>{
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
 				nameUser = getUserMiPortal();
-				console.log(nameUser);
+				console.log('Paso2');
 				nameUser='no vale'
 				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 				email=usrPortal+'@pichincha.com'
