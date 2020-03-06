@@ -783,20 +783,29 @@ app.post("/webhook",(req, res) =>{
 		});*/
 	}
 	
+	function consultaDB(query){
+		Console.log('entro1')
+		let nameUser;
+		query.findOne(function (err, colaboradores) {
+			Console.log('entro2')
+			if (err) {
+				res.status(500).send(err);
+			}else if(colaboradores==undefined){
+				nameUser=usrPortal+'no registra en la Base de Datos'
+				return nameUser;
+			}else{
+				nameUser=colaboradores.NOMBRE
+				return nameUser;
+			}
+		});	
+	}
+	
 	function getUserMiPortal() {
-		var nameUser;
-		var usrPortal = req.body.originalDetectIntentRequest.payload.user
+		let nameUser;
+		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-					query.findOne(function (err, colaboradores) {
-						if (err) {
-							res.status(500).send(err);
-						}else if(colaboradores==undefined){
-							 nameUser=usrPortal+'no registra en la Base de Datos'
-						}else{
-							nameUser=colaboradores.NOMBRE
-						}
-					});
+		nameUser=consultaDB(query)
 		console.log("Sale")
 		return nameUser;
 	}
