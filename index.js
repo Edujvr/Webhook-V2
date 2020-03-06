@@ -63,9 +63,59 @@ app.post("/webhook",(req, res) =>{
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
 		if(id==1){
-			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
-			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-			sendAnalytics(nameW);
+			//respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+			//sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+			//sendAnalytics(nameW);
+			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+			email=usrPortal+'@pichincha.com'
+			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
+			query.findOne(function (err, colaboradores) {
+				if (err) {
+					res.status(500).send(err);
+				}else{
+					var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
+					query1.findOne(function (err, generalistas) {
+						if (err) {
+							    res.status(500).send(err);
+						    }else{
+							    respuestaBot = nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+							    let respuesta = {
+								    fulfillmentText :nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto",
+								    fulfillmentMessages: [
+									    {
+										    "text": {
+											    "text": [
+												    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION
+											    ]
+										    },
+										    "platform": "FACEBOOK",
+										    "lang": "es"
+									    },
+									    {
+										    "text": {
+											    "text": [
+												    "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+											    ]
+										    },
+										    "platform": "FACEBOOK",
+										    "lang": "es"
+									    },
+									    {
+										    "text": {
+											    "text": [
+												    nameW +" su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION + "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"
+											    ]
+										    },
+										    "lang": "es"
+									    }
+								    ]
+							    }
+							    sendResponse(respuesta);
+							    sendAnalytics(nameW);	
+						    }				    			    
+					    });
+				    }
+				});	
 		}else{
 			graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
 				email=res.email;
