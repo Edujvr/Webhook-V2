@@ -792,11 +792,9 @@ app.post("/webhook",(req, res) =>{
 				res.status(500).send(err);
 			}else if(colaboradores==undefined){
 				nameUser=usrPortal+'no registra en la Base de Datos'
-				return nameUser;
 			}else{
 				nameUser=colaboradores.NOMBRE
-				return nameUser;
-			}
+			}console.log(nameUser)
 		});	
 	}
 	
