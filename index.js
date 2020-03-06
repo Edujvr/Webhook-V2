@@ -804,6 +804,8 @@ app.post("/webhook",(req, res) =>{
 		email = usrPortal+'@pichincha.com'
 		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
 		console.log(colaborador)
+			nameUser=colaborador.NOMBRE
+			return nameUser
 		});
 		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		//nameUser=consultaDB(query)
