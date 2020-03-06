@@ -811,10 +811,12 @@ app.post("/webhook",(req, res) =>{
 		then(colaborador => {              
 			//console.log('Paso1');
 			//console.log(colaborador[0].NOMBRE);
-			const nameUser = colaborador[0].NOMBRE
-		    return nameUser
+			//const nameUser = colaborador[0].NOMBRE
+		    
 		 });
-		//console.log(respuesta[0].NOMBRE)
+		console.log(respuesta[0].NOMBRE)
+		nameUser = respuesta[0].NOMBRE
+		return nameUser
 		//console.log(respuesta)
 	}
 		
