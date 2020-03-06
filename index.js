@@ -126,9 +126,26 @@ app.post("/webhook",(req, res) =>{
 		 sendAnalytics(nameW);
 	 }else if(action == "objetivos"){
 		if(id==1){
-			respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
-			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-			sendAnalytics(nameW);
+			//respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+			//sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+			//sendAnalytics(nameW);
+			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+			email=usrPortal+'@pichincha.com'
+			var query  = Objetivos.where({ MAIL: email });
+			query.findOne(function (err, objetivos) {
+				if (err) {
+					res.status(500).send(err);
+				}else if(objetivos==undefined){
+					respuestaBot= respuestaBot;
+				}else{
+					respuestaBot = nameW +" Tu calificación fue: " 
+					for(var i=0; i < objetivos.INDICADORES.length; i++){
+						respuestaBot= respuestaBot + "\n"
+						respuestaBot= respuestaBot + objetivos.INDICADORES[i]
+					}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí 👇👇 https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n"
+				}sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			});
 		}else{
 			graph.get(id+"?fields=name,email,first_name", function(err, res){
 				email=res.email;
@@ -156,13 +173,8 @@ app.post("/webhook",(req, res) =>{
 		}
 	 }else if(action == "codigo"){//Consulta el código único de colaborador
 		if(id==1){
-			//console.log(req.body.originalDetectIntentRequest.payload.user)
-			/*respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
-			sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-			sendAnalytics(nameW);*/
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com'
-			//console.log(email)
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 			query.findOne(function (err, colaboradores) {
 				if (err) {
