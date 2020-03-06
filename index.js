@@ -169,9 +169,9 @@ app.post("/webhook",(req, res) =>{
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores==undefined){
-					nameW=email;
+					//nameW=email;
 					respuestaBot= respuestaBot;
-					sendAnalytics(nameW);
+					//sendAnalytics(nameW);
 				}else{
 					nameW=colaboradores.NOMBRE
 					respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
@@ -789,7 +789,20 @@ app.post("/webhook",(req, res) =>{
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
 			if(nameUser==undefined){
-				nameUser='4u.pichincha.com'
+				//nameUser='4u.pichincha.com'
+				var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+				email=usrPortal+'@pichincha.com'
+				console.log(email)
+				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+				query.findOne(function (err, colaboradores) {
+					if (err) {
+						res.status(500).send(err);
+					}else if(colaboradores==undefined){
+						nameUser='Nombre no encontrado';
+					}else{
+						nameUser=colaboradores.NOMBRE
+					}
+				});
 			}
 			respuestaBot=String(req.body.queryResult.fulfillmentMessages[2].text.text[0])
 			var historial = new Object();
@@ -801,7 +814,20 @@ app.post("/webhook",(req, res) =>{
 			historial.BotResponde= respuestaBot;
 		} else {
 			if(nameUser==undefined){
-				nameUser='4u.pichincha.com'
+				//nameUser='4u.pichincha.com'
+				var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+				email=usrPortal+'@pichincha.com'
+				console.log(email)
+				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+				query.findOne(function (err, colaboradores) {
+					if (err) {
+						res.status(500).send(err);
+					}else if(colaboradores==undefined){
+						nameUser='Nombre no encontrado';
+					}else{
+						nameUser=colaboradores.NOMBRE
+					}
+				});
 			}
 			var historial = new Object();
 			historial.SesionId = sessionId;
