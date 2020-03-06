@@ -165,7 +165,6 @@ app.post("/webhook",(req, res) =>{
 			//console.log(email)
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 			query.findOne(function (err, colaboradores) {
-				//console.log(colaboradores)
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores==undefined){
@@ -790,10 +789,9 @@ app.post("/webhook",(req, res) =>{
 		if(req.body.originalDetectIntentRequest.payload.user != undefined && req.body.originalDetectIntentRequest.payload.user != ""){
 			var usrPortal = req.body.originalDetectIntentRequest.payload.user;
 			email = usrPortal+'@pichincha.com';
-			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-			console.log(query)
-			query.findOne(function (err, colaboradores) {
-				console.log('query:'+colaboradores)
+			var consulta  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+			consulta.findOne(function (err, colaboradores) {
+				console.log('entro aqui')
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores==undefined){
