@@ -809,8 +809,8 @@ app.post("/webhook",(req, res) =>{
 		});
 		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		//nameUser=consultaDB(query)
-		console.log(respuesta)
-		console.log("Sale")
+		//console.log(respuesta)
+		console.log(nameUser)
 		return nameUser;
 	}
 		
