@@ -169,7 +169,9 @@ app.post("/webhook",(req, res) =>{
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores==undefined){
+					nameW=email;
 					respuestaBot= respuestaBot;
+					sendAnalytics(nameW);
 				}else{
 					nameW=colaboradores.NOMBRE
 					respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
