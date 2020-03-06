@@ -787,19 +787,16 @@ app.post("/webhook",(req, res) =>{
 		var nameUser;
 		var usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
-		var consulta  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-		consulta.findOne(function (err, colaboradores) {
-			if (err) {
-				res.status(500).send(err);
-			}else if(colaboradores == undefined){
-				nameUser=usrPortal + 'no registra en la Base de Datos'
-				console.log(nameUser+'Debe ser')
-				return nameUser
-			}else{
-				nameUser=colaboradores.NOMBRE
-				return nameUser
-			}
-		});
+		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+					query.findOne(function (err, colaboradores) {
+						if (err) {
+							res.status(500).send(err);
+						}else if(colaboradores==undefined){
+							 nameUser=usrPortal+'no registra en la Base de Datos'
+						}else{
+							nameUser=colaboradores.NOMBRE
+						}
+					});
 		console.log("Sale")
 		return nameUser;
 	}
