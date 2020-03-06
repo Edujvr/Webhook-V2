@@ -121,9 +121,7 @@ app.post("/webhook",(req, res) =>{
 			});
 		}	
 	 }else if(action == "prueba"){
-		 console.log(req.body)
-		 console.log(req.body.queryResult)
-		 console.log(req.body.queryResult.outputContexts)
+		 console.log(req.body.originalDetectIntentRequest)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(nameW);
 	 }else if(action == "objetivos"){
