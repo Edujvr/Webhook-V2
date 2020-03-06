@@ -166,6 +166,7 @@ app.post("/webhook",(req, res) =>{
 			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 			query.findOne(function (err, colaboradores) {
 				console.log(colaboradores)
+				nameW=colaboradores.NOMBRE
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores==undefined){
