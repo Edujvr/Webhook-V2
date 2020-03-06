@@ -790,12 +790,11 @@ app.post("/webhook",(req, res) =>{
 			var usrPortal = req.body.originalDetectIntentRequest.payload.user
 			email = usrPortal+'@pichincha.com'
 			var consulta  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-			console.log(consulta)
 			consulta.findOne(function (err, colaboradores) {
 				console.log('entro aqui')
 				if (err) {
 					res.status(500).send(err);
-				}else if(colaboradores==undefined){
+				}else if(colaboradores == undefined){
 					nameUser=usrPortal + 'no registra en la Base de Datos';
 					console.log(nameUser+'Debe ser')
 					return nameUser
@@ -828,7 +827,7 @@ app.post("/webhook",(req, res) =>{
 		} else {
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
-				nameUser=getUserMiPortal();
+				nameUser = getUserMiPortal();
 				console.log(nameUser);
 				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 				email=usrPortal+'@pichincha.com'
@@ -853,7 +852,7 @@ app.post("/webhook",(req, res) =>{
 			historial.BotResponde= respuestaBot;
 		}
 	//Envio de objeto con mensaje a Mongo Atlas
-		//console.log(historial);
+		console.log(historial);
 		let newHistorial = new Historial(historial);
 		newHistorial.save(function (err) {
 			if (err) return handleError(err);
