@@ -810,12 +810,9 @@ app.post("/webhook",(req, res) =>{
 		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {              
 			console.log(colaborador[0].NOMBRE);
-			const a = colaborador[0].NOMBRE
-		    return a
+			const nameUser = colaborador[0].NOMBRE
+		    return nameUser
 		 });
-		console.log(respuesta)
-		console.log(respuesta.NOMBRE)
-		return nameUser;
 	}
 		
 	function sendAnalytics (nameUser) {
