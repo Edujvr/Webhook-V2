@@ -815,6 +815,7 @@ app.post("/webhook",(req, res) =>{
 		    return nameUser
 		 });
 		console.log(respuesta[0].NOMBRE)
+		console.log(respuesta)
 	}
 		
 	function sendAnalytics (nameUser) {
