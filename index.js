@@ -788,8 +788,12 @@ app.post("/webhook",(req, res) =>{
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
-		then(colaborador => {              
-			nameUser = colaborador[0].NOMBRE
+		then(colaborador => {  
+			if(colaborador==undefined){
+				nameUser= usrPortal + 'no registrado en la Base ' 
+			}else{
+				nameUser = colaborador[0].NOMBRE
+			}
 		 });
 		return nameUser
 	}
