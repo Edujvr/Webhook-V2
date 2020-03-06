@@ -796,9 +796,11 @@ app.post("/webhook",(req, res) =>{
 						res.status(500).send(err);
 					}else if(colaboradores==undefined){
 						nameUser=usrPortal + 'no registra en la Base de Datos';
+						return nameUser;
 					}else{
 						nameUser=colaboradores.NOMBRE
-					}return nameUser;
+						return nameUser;
+					}
 				});
 		}else{
 			nameUser='No usuario en Mi Portal'
@@ -824,6 +826,7 @@ app.post("/webhook",(req, res) =>{
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
 				nameUser=getUserMiPortal();
+				console.log(nameUser):
 				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 				email=usrPortal+'@pichincha.com'
 				console.log(email)
