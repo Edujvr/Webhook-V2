@@ -789,10 +789,11 @@ app.post("/webhook",(req, res) =>{
 		email = usrPortal+'@pichincha.com'
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {  
+			console.log(colaborador)
 			if(colaborador==undefined){
 				nameUser= usrPortal + 'no registrado en la Base ' 
 			}else{
-				nameUser = colaborador[0].NOMBRE
+				--nameUser = colaborador[0].NOMBRE
 			}
 		 });
 		return nameUser
