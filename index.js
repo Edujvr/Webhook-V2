@@ -787,7 +787,8 @@ app.post("/webhook",(req, res) =>{
 	function getUserMiPortal() {
 		var nameUser;
 		console.log(req.body.originalDetectIntentRequest.payload.user);
-		if(req.body.originalDetectIntentRequest.payload.user != undefined && req.body.originalDetectIntentRequest.payload.user != ""){
+		if(req.body.originalDetectIntentRequest.payload.user!=undefined || req.body.originalDetectIntentRequest.payload.user !=""){
+			Console.log('Si entra aqui')
 			var usrPortal = req.body.originalDetectIntentRequest.payload.user;
 			email = usrPortal+'@pichincha.com';
 				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
