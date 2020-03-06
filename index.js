@@ -813,6 +813,7 @@ app.post("/webhook",(req, res) =>{
 		if(action == "encuesta") {
 			if(nameUser==undefined){
 				nameUser=getUserMiPortal();
+				console.log(nameUser);
 			}
 			respuestaBot=String(req.body.queryResult.fulfillmentMessages[2].text.text[0])
 			var historial = new Object();
@@ -826,7 +827,7 @@ app.post("/webhook",(req, res) =>{
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
 				nameUser=getUserMiPortal();
-				console.log(nameUser):
+				console.log(nameUser);
 				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 				email=usrPortal+'@pichincha.com'
 				console.log(email)
