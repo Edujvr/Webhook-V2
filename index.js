@@ -788,21 +788,22 @@ app.post("/webhook",(req, res) =>{
 		var nameUser;
 		console.log(req.body.originalDetectIntentRequest.payload.user);
 		if(req.body.originalDetectIntentRequest.payload.user!=undefined || req.body.originalDetectIntentRequest.payload.user !=""){
-			console.log('Si entra aqui')
 			var usrPortal = req.body.originalDetectIntentRequest.payload.user;
 			email = usrPortal+'@pichincha.com';
-				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-				query.findOne(function (err, colaboradores) {
+			console.log(email)
+				var query5  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+				query5.findOne(function (err, colaboradores) {
 					console.log('query:'+colaboradores)
 					if (err) {
 						res.status(500).send(err);
 					}else if(colaboradores==undefined){
 						nameUser=usrPortal + 'no registra en la Base de Datos';
 						console.log(nameUser+'Debe ser')
+						return nameUser
 					}else{
 						nameUser=colaboradores.NOMBRE
-						;
-					}return nameUser
+						return nameUser
+					}
 				});
 		}else{
 			nameUser='No usuario en Mi Portal'
