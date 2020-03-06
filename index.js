@@ -783,26 +783,33 @@ app.post("/webhook",(req, res) =>{
 			if (err) return handleError(err);
 		});*/
 	}
+	
+	function getUserMiPortal() {
+		var nameUser
+		if(req.body.originalDetectIntentRequest.payload.user == undefined ||req.body.originalDetectIntentRequest.payload.user == ""){
+			var usrPortal = req.body.originalDetectIntentRequest.payload.user;
+			email = usrPortal+'@pichincha.com';
+				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+				query.findOne(function (err, colaboradores) {
+					if (err) {
+						res.status(500).send(err);
+					}else if(colaboradores==undefined){
+						nameUser=usrPortal + 'no registra en la Base de Datos';
+					}else{
+						nameUser=colaboradores.NOMBRE
+					}
+				});
+		}else{
+			nameUser='No usuario en Mi Portal'
+		}return nameUser;
+	}
 		
 	function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
 			if(nameUser==undefined){
-				//nameUser='4u.pichincha.com'
-				var usrPortal=req.body.originalDetectIntentRequest.payload.user;
-				email=usrPortal+'@pichincha.com'
-				console.log(email)
-				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-				query.findOne(function (err, colaboradores) {
-					if (err) {
-						res.status(500).send(err);
-					}else if(colaboradores==undefined){
-						nameUser='Nombre no encontrado';
-					}else{
-						nameUser=colaboradores.NOMBRE
-					}
-				});
+				nameUser=getUserMiPortal();
 			}
 			respuestaBot=String(req.body.queryResult.fulfillmentMessages[2].text.text[0])
 			var historial = new Object();
@@ -815,7 +822,8 @@ app.post("/webhook",(req, res) =>{
 		} else {
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
-				var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+				nameUser=getUserMiPortal();
+				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 				email=usrPortal+'@pichincha.com'
 				console.log(email)
 				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
@@ -827,7 +835,7 @@ app.post("/webhook",(req, res) =>{
 					}else{
 						nameUser=colaboradores.NOMBRE
 					}
-				});
+				});*/
 			}
 			var historial = new Object();
 			historial.SesionId = sessionId;
