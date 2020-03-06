@@ -807,7 +807,7 @@ app.post("/webhook",(req, res) =>{
 		});*/
 		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		//nameUser=consultaDB(query)
-		const respuesta = wait Colaboradores.find({ EMAIL_EMPLEADO: email }).
+		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {              
 			console.log(colaborador[0].NOMBRE);
 			const nameUser = colaborador[0].NOMBRE
