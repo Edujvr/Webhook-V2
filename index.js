@@ -793,7 +793,7 @@ app.post("/webhook",(req, res) =>{
 			if(colaborador==undefined){
 				nameUser= usrPortal + 'no registrado en la Base ' 
 			}else{
-				--nameUser = colaborador[0].NOMBRE
+				//nameUser = colaborador[0].NOMBRE
 			}
 		 });
 		return nameUser
