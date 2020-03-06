@@ -802,7 +802,7 @@ app.post("/webhook",(req, res) =>{
 		let nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
-		Colaboradores.findOne({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
+		Colaboradores.find({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
 		console.log(colaborador)
 		});
 		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
