@@ -832,7 +832,7 @@ app.post("/webhook",(req, res) =>{
 		} else {
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
-				//nameUser = getUserMiPortal();
+				nameUser = getUserMiPortal();
 				console.log(nameUser);
 				nameUser='no vale'
 				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
@@ -858,7 +858,7 @@ app.post("/webhook",(req, res) =>{
 			historial.BotResponde= respuestaBot;
 		}
 	//Envio de objeto con mensaje a Mongo Atlas
-		console.log(historial);
+		//console.log(historial);
 		let newHistorial = new Historial(historial);
 		newHistorial.save(function (err) {
 			if (err) return handleError(err);
