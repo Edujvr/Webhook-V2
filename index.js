@@ -783,34 +783,12 @@ app.post("/webhook",(req, res) =>{
 		});*/
 	}
 	
-	function consultaDB(query){
-		console.log('entro1')
-		let nameUser;
-		query.findOne(function (err, colaboradores) {
-			console.log('entro2')
-			if (err) {
-				res.status(500).send(err);
-			}else if(colaboradores==undefined){
-				nameUser=usrPortal+'no registra en la Base de Datos'
-			}else{
-				nameUser=colaboradores.NOMBRE
-			}console.log(nameUser)
-		});	
-	}
-	
 	async function getUserMiPortal() {
 		var nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
-		/*const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }, function (err, colaborador) {
-			nameUser=colaborador.NOMBRE
-		});*/
-		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-		//nameUser=consultaDB(query)
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {              
-			//console.log('Paso1');
-			//console.log(colaborador[0].NOMBRE);
 			nameUser = colaborador[0].NOMBRE
 		 });
 		return nameUser
@@ -837,21 +815,6 @@ app.post("/webhook",(req, res) =>{
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
 				nameUser = await getUserMiPortal();
-				console.log(nameUser);
-				nameUser='no vale'
-				/*var usrPortal=req.body.originalDetectIntentRequest.payload.user;
-				email=usrPortal+'@pichincha.com'
-				console.log(email)
-				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-				query.findOne(function (err, colaboradores) {
-					if (err) {
-						res.status(500).send(err);
-					}else if(colaboradores==undefined){
-						nameUser='Nombre no encontrado';
-					}else{
-						nameUser=colaboradores.NOMBRE
-					}
-				});*/
 			}
 			var historial = new Object();
 			historial.SesionId = sessionId;
@@ -862,7 +825,7 @@ app.post("/webhook",(req, res) =>{
 			historial.BotResponde= respuestaBot;
 		}
 	//Envio de objeto con mensaje a Mongo Atlas
-		//console.log(historial);
+		console.log(historial);
 		let newHistorial = new Historial(historial);
 		newHistorial.save(function (err) {
 			if (err) return handleError(err);
