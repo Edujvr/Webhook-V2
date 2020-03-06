@@ -785,17 +785,16 @@ app.post("/webhook",(req, res) =>{
 	
 	function getUserMiPortal() {
 		var nameUser;
-		//console.log(req.body.originalDetectIntentRequest.payload.user);
+		console.log(req.body.originalDetectIntentRequest.payload.user)
 		if(req.body.originalDetectIntentRequest.payload.user != undefined && req.body.originalDetectIntentRequest.payload.user != ""){
 			var usrPortal = req.body.originalDetectIntentRequest.payload.user
 			email = usrPortal+'@pichincha.com'
 			var consulta  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 			consulta.findOne(function (err, colaboradores) {
-				console.log('entro aqui')
 				if (err) {
 					res.status(500).send(err);
 				}else if(colaboradores == undefined){
-					nameUser=usrPortal + 'no registra en la Base de Datos';
+					nameUser=usrPortal + 'no registra en la Base de Datos'
 					console.log(nameUser+'Debe ser')
 					return nameUser
 				}else{
