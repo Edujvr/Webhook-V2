@@ -784,10 +784,10 @@ app.post("/webhook",(req, res) =>{
 	}
 	
 	function consultaDB(query){
-		Console.log('entro1')
+		console.log('entro1')
 		let nameUser;
 		query.findOne(function (err, colaboradores) {
-			Console.log('entro2')
+			console.log('entro2')
 			if (err) {
 				res.status(500).send(err);
 			}else if(colaboradores==undefined){
