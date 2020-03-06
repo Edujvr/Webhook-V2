@@ -798,7 +798,7 @@ app.post("/webhook",(req, res) =>{
 		});	
 	}
 	
-	function getUserMiPortal() {
+	async function getUserMiPortal() {
 		let nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
@@ -807,12 +807,13 @@ app.post("/webhook",(req, res) =>{
 		});*/
 		//var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		//nameUser=consultaDB(query)
-		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }).
+		const respuesta = wait Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {              
 			console.log(colaborador[0].NOMBRE);
 			const nameUser = colaborador[0].NOMBRE
 		    return nameUser
 		 });
+		console.log(nameUser)
 	}
 		
 	function sendAnalytics (nameUser) {
