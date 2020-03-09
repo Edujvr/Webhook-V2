@@ -845,11 +845,11 @@ app.post("/webhook",(req, res) =>{
 		});*/
 	}
 	
-	function getUserMiPortal() {
+	async function getUserMiPortal() {
 		var nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
-		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }).
+		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {  
 			if(colaborador==undefined||colaborador==[]||colaborador==''){
 				if(usrPortal==''){
@@ -864,7 +864,7 @@ app.post("/webhook",(req, res) =>{
 		return nameUser
 	}
 		
-	async function sendAnalytics (nameUser) {
+	function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
@@ -884,7 +884,7 @@ app.post("/webhook",(req, res) =>{
 		} else {
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
-				nameUser = await getUserMiPortal();
+				nameUser = getUserMiPortal();
 			}
 			var historial = new Object();
 			historial.SesionId = sessionId;
