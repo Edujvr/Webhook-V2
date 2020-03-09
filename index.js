@@ -845,11 +845,11 @@ app.post("/webhook",(req, res) =>{
 		});*/
 	}
 	
-	async function getUserMiPortal() {
+	function getUserMiPortal() {
 		var nameUser;
 		let usrPortal = req.body.originalDetectIntentRequest.payload.user
 		email = usrPortal+'@pichincha.com'
-		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
+		const respuesta = Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {  
 			if(colaborador==undefined||colaborador==[]||colaborador==''){
 				if(usrPortal==''){
