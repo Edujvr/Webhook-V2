@@ -885,6 +885,7 @@ app.post("/webhook",(req, res) =>{
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
 				nameUser = getUserMiPortal();
+				console.log(nameUser)
 			}
 			var historial = new Object();
 			historial.SesionId = sessionId;
@@ -895,7 +896,7 @@ app.post("/webhook",(req, res) =>{
 			historial.BotResponde= respuestaBot;
 		}
 	//Envio de objeto con mensaje a Mongo Atlas
-		console.log(historial);
+		//console.log(historial);
 		let newHistorial = new Historial(historial);
 		newHistorial.save(function (err) {
 			if (err) return handleError(err);
