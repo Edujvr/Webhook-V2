@@ -864,7 +864,7 @@ app.post("/webhook",(req, res) =>{
 		return nameUser
 	}
 		
-	function sendAnalytics (nameUser) {
+	async function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
 		if(action == "encuesta") {
@@ -884,7 +884,7 @@ app.post("/webhook",(req, res) =>{
 		} else {
 			if(nameUser==undefined){
 				//nameUser='4u.pichincha.com'
-				nameUser = getUserMiPortal();
+				nameUser = await getUserMiPortal();
 				console.log(nameUser)
 			}
 			var historial = new Object();
