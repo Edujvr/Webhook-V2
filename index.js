@@ -27,7 +27,7 @@ require("./config/db");
 
 //Creación del metodo que escucha las llamadas POST y obtiene los parametros
 
-app.post("/webhook",(req, res) =>{   
+async app.post("/webhook",(req, res) =>{   
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
