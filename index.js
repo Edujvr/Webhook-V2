@@ -26,7 +26,7 @@ var fs = require('fs');
 require("./config/db");
 
 //Creación del metodo que escucha las llamadas POST y obtiene los parametros
-app.post("/webhook", async(req, res) =>{   
+app.post("/webhook",(req, res) =>{   
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
@@ -126,7 +126,7 @@ app.post("/webhook", async(req, res) =>{
 				      res.status(500).send(err);
 				    }else{
 					    var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
-					    query1.findOne(function (err, generalistas) {
+					    query1.findOne(async function (err, generalistas) {
 						    if (err) {
 							    res.status(500).send(err);
 						    }else{
