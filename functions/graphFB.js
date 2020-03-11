@@ -4,7 +4,7 @@ module.exports = {
 	async graphID(id){
 		console.log('entro')
 		graph.setAccessToken(access_token);
-		var graphObject = graph.get("zuck", function(err, res) {
+		var graphObject = graph.get(id, function(err, res) {
 		    console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
 		});
 		//console.log(graphObject)
