@@ -5,11 +5,12 @@ module.exports = {
 		console.log('entro')
 		graph.setAccessToken(access_token);
 		graph.get(id+"?fields=name,email")
-			.then(function(res){
-			     return res;
-			      )}.cathc(function(res){
-			     console.log('No hay')
-			      )}
+		.then(function(res){
+			return res;
+		})
+		.cathc(function(res){
+			console.log('No hay')
+		}}
 			  
 			  /*, function(err, res){
 			console.log(res);
