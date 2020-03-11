@@ -4,7 +4,7 @@ module.exports = {
 	async graphID(id){
 		console.log('entro')
 		graph.setAccessToken(access_token);
-		async.graph.get(id+"?fields=name,email", function(err, res){
+		graph.get(id+"?fields=name,email", function(err, res){
 			console.log(res);
 		});
 		return res;
