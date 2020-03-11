@@ -10,7 +10,7 @@ module.exports = {
 		})
 		.cathc(function(res){
 			console.log('No hay')
-		}}
+		})
 			  
 			  /*, function(err, res){
 			console.log(res);
