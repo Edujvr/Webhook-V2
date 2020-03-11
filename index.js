@@ -114,7 +114,7 @@ app.post("/webhook",async(req, res) =>{
 		}	
 	 }else if(action == "prueba"){
 		 const data =await graphID(id)
-		 console.log(data.name)
+		 console.log(data.res.name)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(nameW);
 	 }else if(action == "objetivos"){
