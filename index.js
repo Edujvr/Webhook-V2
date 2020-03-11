@@ -11,6 +11,7 @@ const Reclamos = require("./models/Reclamos");
 const Agradecimiento = require("./models/Agradecimiento");
 const SalidaCajeros = require("./models/SalidaCajeros");
 const {modGeneralista} = require("./functions/modelMongo");
+const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
 const express = require('express');
 const app = express();
