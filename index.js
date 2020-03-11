@@ -114,9 +114,9 @@ app.post("/webhook",async(req, res) =>{
 		}	
 	 }else if(action == "prueba"){
 		 const data =await graphID(id)
-		 console.log(data)
+		 //console.log(data)
 		 sendResponse(respuestaBot);
-		 sendAnalytics(nameW);
+		 sendAnalytics(data.name);
 	 }else if(action == "objetivos"){
 		if(id==1){
 			//respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
