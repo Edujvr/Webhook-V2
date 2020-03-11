@@ -5,12 +5,10 @@ module.exports = {
 		console.log(id)
 		graph.setAccessToken(access_token);
 		await graph.get(id+"?fields=name,email", function(err, res){
-			let data ={
+			var data ={
 				nombre:res.name,
 				email:res.email
 			}
-			console.log(data)
-			return data;
-		});
+		});return data;
 	}
 }
