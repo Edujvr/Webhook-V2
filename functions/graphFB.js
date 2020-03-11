@@ -6,6 +6,7 @@ module.exports = {
 		graph.setAccessToken(access_token);
 		graph.get(id+"?fields=name,email", function(err, res){
 			return res;
-		});	
-	}console.log('salio')
+		});
+		console.log('salio')
+	}
 }
