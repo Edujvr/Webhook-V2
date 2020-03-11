@@ -5,9 +5,9 @@ module.exports = {
 		console.log('entro')
 		graph.setAccessToken(access_token);
 		var graphObject = graph.get(id, function(err, res) {
-		    console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+		    //console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
 		});
-		//console.log(graphObject)
+		console.log(graphObject.res)
 		//return graph.get(id+"?fields=name,email")
 		/*
 		graph.get(id+"?fields=name,email",async function(err, res){
