@@ -5,6 +5,6 @@ module.exports = {
 	async graphID(id){
 		await graph.get(id+"?fields=name,email", function(err, res){
 			return res;
-		}).then(res => ({return res}))
+		}).then(res => ({console.log(res)}))
 	}
 };
