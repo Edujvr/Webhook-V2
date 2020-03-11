@@ -4,11 +4,7 @@ module.exports = {
 	async graphID(id){
 		console.log(id)
 		graph.setAccessToken(access_token);
-		await graph.get(id+"?fields=name,email", function(err, res){
-			var data ={
-				nombre:res.name,
-				email:res.email
-			}
+		const data = await graph.get(id+"?fields=name,email")
 		});return data;
 	}
 }
