@@ -5,6 +5,6 @@ module.exports = {
 		console.log(id)
 		graph.setAccessToken(access_token);
 		const data = await graph.get(id+"?fields=name,email")
-		});return data;
+		return data;
 	}
 }
