@@ -9,7 +9,6 @@ module.exports = {
 				email:res.email
 			}
 			return data;
-		}
-
+		)};
 	}
 }
