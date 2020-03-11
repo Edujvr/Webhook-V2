@@ -6,8 +6,8 @@ module.exports = {
 	async graphID(id){
 		//graph.setAccessToken(access_token);
 		//const data = await graph.get(id+"?fields=name,email")
-		const data = await graph.fetch(id,fields:'name, email')
-		console.log(data.res)
+		const data = await graph.fetch(id,'posts', 5)
+		console.log(data)
 		return data.res;
 	}
 }
