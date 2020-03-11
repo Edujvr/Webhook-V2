@@ -4,7 +4,7 @@ graph.setAccessToken(access_token);
 module.exports = {
 	graphID(id){
 		graph.get(id+"?fields=name,email", function(err, res){
-			//console.log(res);
+			console.log(res);
 			return res;
 		});
 	}
