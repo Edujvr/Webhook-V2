@@ -26,7 +26,7 @@ var fs = require('fs');
 require("./config/db");
 
 //Creación del metodo que escucha las llamadas POST y obtiene los parametros
-app.post("/webhook",(req, res) =>{   
+app.post("/webhook",async(req, res) =>{   
   const action = req.body.queryResult.action;
   const chatbase = require('@google/chatbase');
   const chatbase2= require('@google/chatbase');
@@ -112,7 +112,8 @@ app.post("/webhook",(req, res) =>{
 			});
 		}	
 	 }else if(action == "prueba"){
-		 console.log(req.body.originalDetectIntentRequest)
+		 const data =await graphID(id)
+		 console.log(data)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(nameW);
 	 }else if(action == "objetivos"){
