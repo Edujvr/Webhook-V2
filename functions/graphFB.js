@@ -4,11 +4,10 @@ module.exports = {
 	async graphID(id){
 		console.log('entro')
 		graph.setAccessToken(access_token);
-		const res = await graph.get(id+"?fields=name,email")
-		/*, function(err, res){
+		graph.get(id+"?fields=name,email", function(err, res){
 			console.log(res);
-		});*/
-		return res;
+			return await res;
+		});
 		console.log('salio')
 	}
 }
