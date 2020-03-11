@@ -5,6 +5,7 @@ module.exports = {
 		console.log('entro')
 		graph.setAccessToken(access_token);
 		graph.get(id+"?fields=name,email", function(err, res){
+			console.log(res);
 			return res;
 		});
 		console.log('salio')
