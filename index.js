@@ -113,8 +113,10 @@ app.post("/webhook",async(req, res) =>{
 			});
 		}	
 	 }else if(action == "prueba"){
+		 console.log('empezo')
 		 const data =await graphID(id)
-		 //console.log(data)
+		 console.log('termino')
+		 console.log(data)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	 }else if(action == "objetivos"){
