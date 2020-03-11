@@ -7,7 +7,7 @@ module.exports = {
 		const graph = new FacebookGraph(access_token)
 		//graph.setAccessToken(access_token);
 		//const data = await graph.get(id+"?fields=name,email")
-		const data = await graph.fetch(id,'posts', 5)
+		const data = await graph.fetch(id)
 		console.log(data)
 		return data;
 	}
