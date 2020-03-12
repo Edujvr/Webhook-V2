@@ -5,7 +5,7 @@ module.exports = {
 	async graphID(id){
 		graph.get(id+"?fields=name,email",async function(err, res){
 			//const data = await res;
-			return await data;
+			return await res;
 		});
 	}
 };
