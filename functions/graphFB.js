@@ -3,11 +3,9 @@ const access_token = 'DQVJ2eHdaZAjV5a1dOdGVLNjN1TG9xeEZAhZAlRQOGRvN3dzRXd6SHFCTX
 graph.setAccessToken(access_token);
 module.exports = {
 	async graphID(id){
-		var deferred = Q.deferred();
-		graph.get(id+"?fields=name,email", function(err, res){
-			deferred.resolve(res);
-			//return res;
+		graph.get(id+"?fields=name,email",async function(err, res){
+			const data = await res;
+			return data;
 		});
-		return deferred.promise
 	}
 };
