@@ -4,7 +4,6 @@ const access_token = 'DQVJ2eHdaZAjV5a1dOdGVLNjN1TG9xeEZAhZAlRQOGRvN3dzRXd6SHFCTX
 graph.setAccessToken(access_token);
 module.exports = {
 	async graphID(id){
-		var deferred = Q.deferred();
 		graph.get(id+"?fields=name,email",setTimeout( function(err, res){
 			return res;
 			//if (err) deferred.reject(err);
