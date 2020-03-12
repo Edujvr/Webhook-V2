@@ -3,17 +3,8 @@ const access_token = 'DQVJ2eHdaZAjV5a1dOdGVLNjN1TG9xeEZAhZAlRQOGRvN3dzRXd6SHFCTX
 graph.setAccessToken(access_token);
 module.exports = {
 	async graphID(id){
-		graph.get(id+"?fields=name,email")
-			.then(function(res){
-				return res
-			})
-			.catch(function(err){
-				return res
-			})
-			  
-			  
-			  
-			  /*,async function(err, res){
-		});*/
+		graph.get(id+"?fields=name,email,function(err, res){
+			res.send(res)
+		});
 	}
 };
