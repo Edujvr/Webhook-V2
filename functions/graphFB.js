@@ -8,7 +8,7 @@ module.exports = {
 			return res;
 			//if (err) deferred.reject(err);
                 	//deferred.resolve(res);
-		}, 1000));
+		}, 100));
 		return deferred.promise
 	}
 };
