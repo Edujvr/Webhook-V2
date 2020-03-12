@@ -5,11 +5,11 @@ graph.setAccessToken(access_token);
 module.exports = {
 	async graphID(id){
 		var deferred = Q.deferred();
-		graph.get(id+"?fields=name,email",async function(err, res){
-			//await res.send(res)
-			if (err) deferred.reject(err);
-                	deferred.resolve(res);
-		});
+		graph.get(id+"?fields=name,email",setTimeout( function(err, res){
+			return res;
+			//if (err) deferred.reject(err);
+                	//deferred.resolve(res);
+		}, 1000));
 		return deferred.promise
 	}
 };
