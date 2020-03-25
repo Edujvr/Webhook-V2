@@ -75,7 +75,7 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(function (err, colaboradores) {
 			if (err) {
 				res.status(500).send(err);
-			}else if(colaboradores==undefined || colaboradores == '' || colaboradores == []){
+			}else if(colaboradores == undefined || colaboradores == '' || colaboradores == []){
 				sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 				sendAnalytics(nameW);
 			}else{
@@ -101,51 +101,30 @@ app.post("/webhook",async(req, res) =>{
 		 sendAnalytics(data.name);
 	}else if(action == "objetivos"){
 		if(id==1){
-			//respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
-			//sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-			//sendAnalytics(nameW);
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
-			email=usrPortal+'@pichincha.com'
-			var query  = Objetivos.where({ MAIL: email });
-			query.findOne(function (err, objetivos) {
-				if (err) {
-					res.status(500).send(err);
-				}else if(objetivos==undefined){
-					respuestaBot= respuestaBot;
-				}else{
-					respuestaBot = nameW +" Tu calificación fue: " 
-					for(var i=0; i < objetivos.INDICADORES.length; i++){
-						respuestaBot= respuestaBot + "\n"
-						respuestaBot= respuestaBot + objetivos.INDICADORES[i]
-					}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí 👇👇 https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n"
-				}sendResponse(respuestaBot);
-				sendAnalytics(nameW);
-			});
+			email=usrPortal+'@pichincha.com';	
 		}else{
-			graph.get(id+"?fields=name,email,first_name", function(err, res){
-				email=res.email;
-				nameW=res.name
-				if(email != "" && email != undefined && email != null){
-					var query  = Objetivos.where({ MAIL: email });
-					query.findOne(function (err, objetivos) {
-						if (err) {
-							res.status(500).send(err);
-						}else if(objetivos==undefined){
-							 respuestaBot= respuestaBot;
-						}else{
-							respuestaBot = nameW +" Tu calificación fue: " 
-							for(var i=0; i < objetivos.INDICADORES.length; i++){
-								respuestaBot= respuestaBot + "\n"
-								respuestaBot= respuestaBot + objetivos.INDICADORES[i]
-							}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí 👇👇 https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n"
-						}sendResponse(respuestaBot);
-						sendAnalytics(nameW);
-					});
-				}else{
-					sendResponse(respuestaBot)
-				}
-			});	
+			const data = await graphID(id);
+			email=data.email;
 		}
+		nameW = await getUserMiPortal(email);
+		var query  = Objetivos.where({ MAIL: email });
+		query.findOne(function (err, objetivos) {
+			if (err) {
+				res.status(500).send(err);
+			}else if(objetivos == undefined || objetivos == '' || objetivos == []){
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			}else{
+				respuestaBot = nameW +" Tu calificación fue: " 
+				for(var i=0; i < objetivos.INDICADORES.length; i++){
+					respuestaBot= respuestaBot + "\n"
+					respuestaBot= respuestaBot + objetivos.INDICADORES[i]
+				}respuestaBot= respuestaBot + "\n\nCualquier inquietud consulta a tu línea de supervisión \nMás detalle de tus resultados Clic Aquí 👇👇 https://pichinchanetbp.bpichincha.com/divisiones/reddeagencias/resultados/indicadores-de-gesti%C3%B3n"
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			}
+		});
 	 }else if(action == "codigo"){//Consulta el código único de colaborador
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
@@ -159,7 +138,7 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(function (err, colaboradores) {
 			if (err) {
 				res.status(500).send(err);
-			}else if(colaboradores==undefined || colaboradores == '' || colaboradores == []){
+			}else if(colaboradores == undefined || colaboradores == '' || colaboradores == []){
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			}else{
@@ -756,7 +735,7 @@ app.post("/webhook",async(req, res) =>{
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => { 
 			if(colaborador == undefined || colaborador == '' || colaborador == []){
-				nameUser = email + ' no registrado en la Base';
+				nameUser = email + ' no encontrado en la Base';
 			}else{
 				nameUser = colaborador[0].NOMBRE;
 			}
