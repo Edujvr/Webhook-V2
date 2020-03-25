@@ -75,7 +75,7 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(function (err, colaboradores) {
 			if (err) {
 				res.status(500).send(err);
-			}else if(colaboradores==undefined){
+			}else if(colaboradores==undefined || colaboradores == '' || colaboradores == []){
 				sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 				sendAnalytics(nameW);
 			}else{
@@ -159,7 +159,7 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(function (err, colaboradores) {
 			if (err) {
 				res.status(500).send(err);
-			}else if(colaboradores==undefined){
+			}else if(colaboradores==undefined || colaboradores == '' || colaboradores == []){
 				sendRespose(respuestaBot);
 				sendAnalytics(nameW);
 			}else{
@@ -755,8 +755,7 @@ app.post("/webhook",async(req, res) =>{
 		var nameUser;
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => { 
-			console.log(colaborador)
-			if(colaborador==undefined){
+			if(colaborador == undefined || colaborador == '' || colaborador == []){
 				nameUser = email + ' no registrado en la Base';
 			}else{
 				nameUser = colaborador[0].NOMBRE;
