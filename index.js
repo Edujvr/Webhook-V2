@@ -65,13 +65,12 @@ app.post("/webhook",async(req, res) =>{
 	if(action == 'query'){
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
-			email=usrPortal+'@pichincha.com';
-			nameW = await getUserMiPortal(email);
+			email=usrPortal+'@pichincha.com';	
 		}else{
 			const data = await graphID(id);
 			email=data.email;
-			nameW = await getUserMiPortal(email);
 		}
+		nameW = await getUserMiPortal(email);
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
 		query.findOne(function (err, colaboradores) {
 			if (err) {
@@ -151,12 +150,11 @@ app.post("/webhook",async(req, res) =>{
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com';
-			nameW = await getUserMiPortal(email);
 		}else{
 			const data = await graphID(id);
 			email=data.email;
-			nameW = await getUserMiPortal(email);
 		}
+		nameW = await getUserMiPortal(email);
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		query.findOne(function (err, colaboradores) {
 			if (err) {
