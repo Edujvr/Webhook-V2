@@ -66,11 +66,11 @@ app.post("/webhook",async(req, res) =>{
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com';
-			nameW = await getUserMiPortal();
+			nameW = await getUserMiPortal(email);
 		}else{
 			const data = await graphID(id);
 			email=data.email;
-			nameW=data.name;
+			nameW = await getUserMiPortal(email);
 		}
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
 		query.findOne(function (err, colaboradores) {
@@ -151,11 +151,11 @@ app.post("/webhook",async(req, res) =>{
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com';
-			nameW = await getUserMiPortal();
+			nameW = await getUserMiPortal(email);
 		}else{
 			const data = await graphID(id);
 			email=data.email;
-			nameW=data.name;
+			nameW = await getUserMiPortal(email);
 		}
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
 		query.findOne(function (err, colaboradores) {
@@ -753,20 +753,14 @@ app.post("/webhook",async(req, res) =>{
 		});*/
 	}
 	
-	async function getUserMiPortal() {
+	async function getUserMiPortal(email) {
 		var nameUser;
-		let usrPortal = req.body.originalDetectIntentRequest.payload.user
-		email = usrPortal+'@pichincha.com'
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
 		then(colaborador => {  
-			if(colaborador==undefined||colaborador==[]||colaborador==''){
-				if(usrPortal==''){
-					nameUser = 'Usuario no disponible en Mi Portal'
-				}else{
-					nameUser = usrPortal + ' no registrado en la Base'
-				}
+			if(colaborador==undefined){
+				nameUser = email + ' no registrado en la Base';
 			}else{
-				nameUser = colaborador[0].NOMBRE
+				nameUser = colaborador[0].NOMBRE;
 			}
 		 });
 		return nameUser
