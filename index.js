@@ -142,7 +142,7 @@ app.post("/webhook",async(req, res) =>{
 						sendAnalytics(nameW);
 					});
 				}else{
-					sendRespose(respuestaBot)
+					sendResponse(respuestaBot)
 				}
 			});	
 		}
@@ -160,7 +160,7 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else if(colaboradores==undefined || colaboradores == '' || colaboradores == []){
-				sendRespose(respuestaBot);
+				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			}else{
 				respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
