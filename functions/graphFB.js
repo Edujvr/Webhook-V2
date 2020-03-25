@@ -9,8 +9,5 @@ module.exports = {
 		const zuck = await graph.get(id+"?fields=name,email");
 		console.log(zuck);
 		return zuck;
-		/*graph.get(id+"?fields=name,email", function(err, res, next){
-			res.send('name');
-		});*/
 	}
 };
