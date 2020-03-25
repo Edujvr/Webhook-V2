@@ -100,7 +100,7 @@ app.post("/webhook",async(req, res) =>{
 		 console.log(data)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
-	 }else if(action == "objetivos"){
+	}else if(action == "objetivos"){
 		if(id==1){
 			//respuestaBot = "Lo siento esta funcionalidad aún no se encuentra activa en Mi Portal por favor intenta desde workplace" //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
 			//sendResponse(respuestaBot);//Envio de respuesta al Colaborador
@@ -150,44 +150,26 @@ app.post("/webhook",async(req, res) =>{
 	 }else if(action == "codigo"){//Consulta el código único de colaborador
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
-			email=usrPortal+'@pichincha.com'
-			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-			query.findOne(function (err, colaboradores) {
-				if (err) {
-					res.status(500).send(err);
-				}else if(colaboradores==undefined){
-					//nameW=email;
-					respuestaBot= respuestaBot;
-					//sendAnalytics(nameW);
-				}else{
-					nameW=colaboradores.NOMBRE
-					respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
-				}sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-					 sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
-			});
-			
+			email=usrPortal+'@pichincha.com';
+			nameW = await getUserMiPortal();
 		}else{
-			graph.get(id+"?fields=name,email,first_name", function(err, res){
-				email=res.email;
-				nameW=res.name
-				if(email != "" && email != undefined && email != null){ //Validación que se pudo extraer el correo del colaborador
-					var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
-					query.findOne(function (err, colaboradores) {
-						if (err) {
-							res.status(500).send(err);
-						}else if(colaboradores==undefined){
-							 respuestaBot= respuestaBot;
-						}else{
-							respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
-						}sendResponse(respuestaBot);//Envio de respuesta al Colaborador
-						sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
-					});
-				}else{
-					sendRespose(respuestaBot);
-					sendAnalytics(nameW);
-				}
-			});					
+			const data = await graphID(id);
+			email=data.email;
+			nameW=data.name;
 		}
+		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+		query.findOne(function (err, colaboradores) {
+			if (err) {
+				res.status(500).send(err);
+			}else if(colaboradores==undefined){
+				sendRespose(respuestaBot);
+				sendAnalytics(nameW);
+			}else{
+				respuestaBot = nameW +" tu código de empleado es " +  colaboradores.CODIGO_EMPLEADO //Extrae el código del empleado y lo adjunta en la respuesta del Chatbot
+				sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+				sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
+			}
+		});
 	 }else if(action == "salida"){
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
