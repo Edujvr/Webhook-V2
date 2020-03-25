@@ -65,10 +65,11 @@ app.post("/webhook",async(req, res) =>{
 	if(action == 'query'){
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
-			email=usrPortal+'@pichincha.com'
+			email=usrPortal+'@pichincha.com';
 		}else{
 			const data = await graphID(id);
-			email=data.email
+			email=data.email;
+			nameW=data.name;
 		}
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
 		query.findOne(function (err, colaboradores) {
