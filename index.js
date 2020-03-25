@@ -66,53 +66,31 @@ app.post("/webhook",async(req, res) =>{
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com'
-			var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
-			query.findOne(function (err, colaboradores) {
-				if (err) {
-					res.status(500).send(err);
-				}else{
-					var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
-					query1.findOne(async function (err, generalistas) {
-						if (err) {
-							    res.status(500).send(err);
-						    }else{
-							    const parte1 = nameW + " su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION;
-							    const parte2 = "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"; 
-							    const respuesta = await modGeneralista(parte1 , parte2);
-							    respuestaBot = parte1 + parte2;
-							    sendResponse(respuesta);
-							    sendAnalytics(nameW);	
-						    }
-					    });
-				    }
-				});	
 		}else{
-			graph.get(id+"?fields=name,first_name,last_name,email", function(err, res){
-				email=res.email;
-				nameW=res.name	
-				var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
-				query.findOne(function (err, colaboradores) {
-				   if (err) {
-				      res.status(500).send(err);
-				    }else{
-					    var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
-					    query1.findOne(async function (err, generalistas) {
-						    if (err) {
-							    res.status(500).send(err);
-						    }else{
-							    const parte1 = nameW + " su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION;
-							    const parte2 = "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"; 
-							    const respuesta = await modGeneralista(parte1 , parte2);
-							    respuestaBot = parte1 + parte2;
-							    sendResponse(respuesta);
-							    sendAnalytics(nameW);	
-						    }
-					    });
-				    }
+			const data = await graphID(id);
+			email=data.email
+		}
+		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
+		query.findOne(function (err, colaboradores) {
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
+				query1.findOne(async function (err, generalistas) {
+					if (err) {
+						res.status(500).send(err);
+					}else{
+						const parte1 = nameW + " su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION;
+						const parte2 = "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"; 
+						const respuesta = await modGeneralista(parte1 , parte2);
+						respuestaBot = parte1 + parte2;
+						sendResponse(respuesta);
+						sendAnalytics(nameW);	
+					}
 				});
-			});
-		}	
-	 }else if(action == "prueba"){
+			}
+		});
+	}else if(action == "prueba"){
 		 const data = await graphID(id);
 		 console.log(data)
 		 sendResponse(respuestaBot);
