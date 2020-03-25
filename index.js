@@ -76,6 +76,9 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(function (err, colaboradores) {
 			if (err) {
 				res.status(500).send(err);
+			}else if(colaboradores==undefined){
+				sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+				sendAnalytics(nameW);
 			}else{
 				var query1 = Generalistas.where({ID: colaboradores.NOMBRE_CONSULTOR});
 				query1.findOne(async function (err, generalistas) {
