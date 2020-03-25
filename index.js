@@ -66,6 +66,7 @@ app.post("/webhook",async(req, res) =>{
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com';
+			nameW = await getUserMiPortal();
 		}else{
 			const data = await graphID(id);
 			email=data.email;
