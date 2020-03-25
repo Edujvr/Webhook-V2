@@ -754,7 +754,8 @@ app.post("/webhook",async(req, res) =>{
 	async function getUserMiPortal(email) {
 		var nameUser;
 		const respuesta = await Colaboradores.find({ EMAIL_EMPLEADO: email }).
-		then(colaborador => {  
+		then(colaborador => { 
+			console.log(colaborador)
 			if(colaborador==undefined){
 				nameUser = email + ' no registrado en la Base';
 			}else{
