@@ -27,6 +27,10 @@ const AgenciaSchema = new Schema({
     type: String,
     required:true
   },
+  ESTADO: {
+    type: String,
+    required:true
+  },
   TELF_1: {
     type: String,
     required:true
