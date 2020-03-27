@@ -17,6 +17,10 @@ const GerentesSchema = new Schema({
   EXT_GERENTE_AGENCIA:{
     type: String,
     required:true
+  },
+  CONV_GERENTE_AGENCIA:{
+    type: String,
+    required:true
   }
 });
 
