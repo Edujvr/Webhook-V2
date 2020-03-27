@@ -391,7 +391,7 @@ app.post("/webhook",async(req, res) =>{
 								sendAnalytics(nameW);
 							}else{
 								respuestaBot=respuestaBot + "\n\nLineas de Supervisión:";
-								respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;	
+								respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;	
 								var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
 								query2.findOne(function (err, administradores) {
 									respuestaBot=respuestaBot+"\n"
@@ -470,7 +470,7 @@ app.post("/webhook",async(req, res) =>{
 						if (err) {
 						  res.status(500).send(err);
 						}if(gerentes.GERENTE_AGENCIA != 'N/A'){
-							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA;
+							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;
 						}	sendResponse(respuestaBot);
 							sendAnalytics(nameW);
 					}
