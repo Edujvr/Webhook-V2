@@ -53,6 +53,22 @@ const AdministradoresSchema = new Schema({
   EXT_ESPECIALISTA_COMERCIAL_SERVICIOS:{
     type: String,
     required:true
+  },  
+  PER_APERTURA_AGENCIA:{
+    type: String,
+    required:true
+  },
+  CEL_PER_APERTURA_AGENCIA:{
+    type: String,
+    required:true
+  },
+  EXT_PER_APERTURA_AGENCIA:{
+    type: String,
+    required:true
+  },
+  CONV_PER_APERTURA_AGENCIA:{
+    type: String,
+    required:true
   }
 });
 
