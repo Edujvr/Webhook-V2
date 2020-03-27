@@ -443,7 +443,7 @@ app.post("/webhook",async(req, res) =>{
 							respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
 						}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
 							respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-						}respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_"\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA;
+						}respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;
 						sendResponse(respuestaBot);
 						 sendAnalytics(nameW);
 					}					
