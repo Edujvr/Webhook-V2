@@ -381,7 +381,7 @@ app.post("/webhook",async(req, res) =>{
 					}else if(agencias==undefined){
 						 respuestaBot= respuestaBot;
 					}else{
-						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nEstado: " + agencias.ESTADO +  "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
+						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nEstado Agencia Por Contigencia COVID_19: " + agencias.ESTADO +  "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
 						var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
 						query1.findOne(function (err, gerentes) {
 							if (err) {
