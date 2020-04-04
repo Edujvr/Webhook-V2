@@ -5,12 +5,8 @@ const ColaboradoresSchema = new Schema({
   NOMBRE:{
         type: String,
         required:true
-  },
+  },/*
   PUESTO: {
-    type: String,
-    required:true
-  },
-  CODIGO_EMPLEADO: {
     type: String,
     required:true
   },
@@ -18,11 +14,15 @@ const ColaboradoresSchema = new Schema({
     type: String,
     required:true
   },
-  EMAIL_EMPLEADO: {
+    NOMBRE_SUPERVISOR: {
+    type: String,
+    required:true
+  },*/
+  CODIGO_EMPLEADO: {
     type: String,
     required:true
   },
-  NOMBRE_SUPERVISOR: {
+  EMAIL_EMPLEADO: {
     type: String,
     required:true
   },
