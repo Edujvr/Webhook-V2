@@ -101,13 +101,10 @@ app.post("/webhook",async(req, res) =>{
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
-	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
-			nameW=res.name
-			let contexto=res.first_name
+			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
 			sendResponse(respuesta);
-			sendAnalytics(nameW);
-		});
+			sendAnalytics(data.name);
 	}else if(action == "objetivos"){
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
