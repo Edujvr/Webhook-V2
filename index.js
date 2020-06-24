@@ -108,7 +108,8 @@ app.post("/webhook",async(req, res) =>{
 				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
 			} 
 			sendResponse(respuesta);
-			sendAnalytics(nameW);	
+			sendAnalytics(nameW);
+		});
 	}else if(action == "objetivos"){
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
