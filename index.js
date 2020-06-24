@@ -103,80 +103,45 @@ app.post("/webhook",async(req, res) =>{
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
 			let contexto=res.first_name
+			console.log("Entro")
 			let respuesta ={
 				fulfillmentText :"👈🏼<-Navega por todas las opciones ->👉🏼",
 				"fulfillmentMessages":[
-
 				    {
-
 				      "text": {
-
 					"text": [
-
 					  "👈🏼<-Navega por todas las opciones ->👉🏼"
-
 					]
-
 				      },
-
 				      "platform": "FACEBOOK"
-
 				    },
-
 						{
-
 				      "card": {
-
 					"title": "Chequeras",
-
 					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/Chequeras.png",
-
 					"buttons": [
-
 					 {
-
 					    "text": "Seleccionar",
-
 					    "postback": "ADMINISTRACION DE CHEQUERAS EN AGENCIAS"
-
 					  }
-
 					]
-
 				      },
-
 				      "platform": "FACEBOOK"
-
 				    },
-
 				    {
-
 				      "card": {
-
 					"title": "Giros Exterior/ISD",
-
 					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/GirosAlExterior.png",
-
 					"buttons": [
-
 					  {
-
 					    "text": "Seleccionar",
-
 					    "postback": "ESTANDAR DE TRABAJO GIROS AL EXTERIOR  EN DOLARES A LA RED DE AGENCIAS"
-
 					  }
-
 					]
-
 				      },
-
 				      "platform": "FACEBOOK"
-
 				    },
-
 				    {
-
 				      "card": {
 
 					"title": "Pre cancelaciones",
