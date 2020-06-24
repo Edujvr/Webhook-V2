@@ -1,5 +1,5 @@
 module.exports = {
-  async modProductosCROF{
+  async modProductosCROF(){
       let respuesta ={
 				fulfillmentText :"👈🏼<-Navega por todas las opciones ->👉🏼",
 				"fulfillmentMessages":[
