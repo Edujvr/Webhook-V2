@@ -104,7 +104,6 @@ app.post("/webhook",async(req, res) =>{
 	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
 			let contexto=res.first_name
-			console.log("Entro")
 			const respuesta = await modProductosCROF();
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
