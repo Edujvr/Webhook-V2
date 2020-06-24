@@ -99,6 +99,16 @@ app.post("/webhook",async(req, res) =>{
 		 console.log(data)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
+	}else if(action == "productosCROF"){
+	 	graph.get(id+"?fields=name,email,first_name", function(err, res){
+			nameW=res.name
+			let contexto=res.first_name
+			let respuesta ={
+				fulfillmentText :"👈🏼<-Navega por todas las opciones ->👉🏼",
+				fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+			} 
+			sendResponse(respuesta);
+			sendAnalytics(nameW);	
 	}else if(action == "objetivos"){
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
