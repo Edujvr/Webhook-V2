@@ -11,7 +11,7 @@ const Reclamos = require("./models/Reclamos");
 const Agradecimiento = require("./models/Agradecimiento");
 const SalidaCajeros = require("./models/SalidaCajeros");
 const {modGeneralista} = require("./functions/modelMongo");
-const {modproductosCROF} = require("./functions/modelProductosCROF");
+const {modProductosCROF} = require("./functions/modelProductosCROF");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -105,7 +105,7 @@ app.post("/webhook",async(req, res) =>{
 			nameW=res.name
 			let contexto=res.first_name
 			console.log("Entro")
-			const respuesta = await modproductosCROF();
+			const respuesta = await modProductosCROF();
 			sendResponse(respuesta);
 			sendAnalytics(nameW);
 		});
