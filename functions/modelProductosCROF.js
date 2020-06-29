@@ -27,7 +27,7 @@ module.exports = {
 				    {
 				      "card": {
 					"title": "Giros Exterior/ISD",
-					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/GirosAlExterior.png",
+					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/GirosAlExteriorFinal.png",
 					"buttons": [
 					  {
 					    "text": "Seleccionar",
@@ -40,7 +40,7 @@ module.exports = {
 				    {
 				      "card": {
 					"title": "Pre cancelaciones",
-					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/PrecancelacionInversion_final.png",
+					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/PrecancelacionInversionF.png",
 					"buttons": [
 					  {
 					    "text": "Seleccionar",
