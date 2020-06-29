@@ -133,7 +133,7 @@ module.exports = {
 				    {
 				      "card": {
 					"title": "Eliminación e Inclusión de Firmas",
-					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/EliminacionFirmas_final.png",
+					"imageUri": "https://storage.googleapis.com/imagenes-pibot/CROF/Eliminaci%C3%B3nFirmasF.png",
 					"buttons": [
 					  {
 					    "text": "Seleccionar",
