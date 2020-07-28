@@ -12,6 +12,6 @@ module.exports = {
 		graph.get(id+"?fields=name,email", function(err, res){
 			console.log(res.name);
 			console.log(res.email)
-		}
+		});
 	}
 };
