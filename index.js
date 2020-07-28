@@ -388,7 +388,8 @@ app.post("/webhook",async(req, res) =>{
 					}else if(agencias==undefined){
 						 respuestaBot= respuestaBot;
 					}else{
-						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nEstado Agencia Por Contigencia COVID_19: " + agencias.ESTADO +  "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
+						//respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nEstado Agencia Por Contigencia COVID_19: " + agencias.ESTADO +  "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
+						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
 						var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
 						query1.findOne(function (err, gerentes) {
 							if (err) {
@@ -398,7 +399,8 @@ app.post("/webhook",async(req, res) =>{
 								sendAnalytics(nameW);
 							}else{
 								respuestaBot=respuestaBot + "\n\nLineas de Supervisión:";
-								respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;	
+								//respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;	
+								respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 	
 								var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
 								query2.findOne(function (err, administradores) {
 									respuestaBot=respuestaBot+"\n"
@@ -412,7 +414,7 @@ app.post("/webhook",async(req, res) =>{
 										respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
 									}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
 										respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-									}respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;
+									}//respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;
 								sendResponse(respuestaBot);
 								sendAnalytics(nameW);
 								});
@@ -450,7 +452,7 @@ app.post("/webhook",async(req, res) =>{
 							respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
 						}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
 							respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-						}respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;
+						}//respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;
 						sendResponse(respuestaBot);
 						 sendAnalytics(nameW);
 					}					
@@ -478,7 +480,8 @@ app.post("/webhook",async(req, res) =>{
 						if (err) {
 						  res.status(500).send(err);
 						}if(gerentes.GERENTE_AGENCIA != 'N/A'){
-							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;
+							//respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;
+							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
 						}	sendResponse(respuestaBot);
 							sendAnalytics(nameW);
 					}
@@ -536,7 +539,8 @@ app.post("/webhook",async(req, res) =>{
 					  res.status(500).send(err);
 					}else{
 						respuestaBot="Agencia "+ gerentes.NOMBRE+":";
-						respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;
+						//respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;
+						respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA
 						var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.JefaturaNombreAgencia.NombreAgencia});
 						query2.findOne(function (err, administradores) {
 							respuestaBot=respuestaBot+"\n"
@@ -550,7 +554,7 @@ app.post("/webhook",async(req, res) =>{
 								respuestaBot =respuestaBot+"\nAdministrador Comercial y Servicios: " + administradores.ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ADMINISTRADOR_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ADMINISTRADOR_COMERCIAL_SERVICIOS;
 							}if(administradores.ESPECIALISTA_COMERCIAL_SERVICIOS != 'N/A'){
 								respuestaBot =respuestaBot+"\nEspecialista Comercial y Servicios: " + administradores.ESPECIALISTA_COMERCIAL_SERVICIOS + "\nCEL: " + administradores.CEL_ESPECIALISTA_COMERCIAL_SERVICIOS + "\nEXT: " + administradores.EXT_ESPECIALISTA_COMERCIAL_SERVICIOS;
-							}respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;	
+							}//respuestaBot =respuestaBot + "\n\nSituación de Emergencia: \nPersonal de Apertura Agencia: "+ administradores.PER_APERTURA_AGENCIA + "\nCEL: " + administradores.CEL_PER_APERTURA_AGENCIA + "\nEXT: " + administradores.EXT_PER_APERTURA_AGENCIA + "\nCONVENCIONAL: " + administradores.CONV_PER_APERTURA_AGENCIA;	
 							sendResponse(respuestaBot);
 								sendAnalytics(nameW);
 						});
