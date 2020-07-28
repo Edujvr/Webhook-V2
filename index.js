@@ -96,8 +96,20 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "prueba"){
-		 const data = await graphID(id);
-		 console.log(data)
+		 //const data = await graphID(id);
+		 //console.log(data)
+		const GRAPH_API_BASE = 'https://graph.facebook.com/v2.6';
+		 var graphapi =await request({
+		baseUrl: GRAPH_API_BASE,
+		url: '/' + id,
+		qs: {
+			'fields': 'first_name'
+		},
+		auth: {'bearer' : access_token}
+		},function(error,response,body){
+			 console.log(response,body);
+		});
+		console.log(graphapi);
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
