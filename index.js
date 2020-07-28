@@ -114,6 +114,7 @@ app.post("/webhook",async(req, res) =>{
 			email=data.email;
 		}
 		nameW = await getUserMiPortal(email);
+		console.log(email);
 		var query  = Objetivos.where({ MAIL: email });
 		query.findOne(function (err, objetivos) {
 			if (err) {
