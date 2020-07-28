@@ -96,6 +96,7 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "prueba"){
+		 console.log("validando la prueba");
 		 //const data = await graphID(id);
 		 //console.log(data)
 		const GRAPH_API_BASE = 'https://graph.facebook.com/v2.11';
@@ -107,7 +108,7 @@ app.post("/webhook",async(req, res) =>{
 		},
 		auth: {'bearer' : access_token}
 		},function(error,response,body){
-			 console.log(response,body);
+			 console.log(response);
 		});
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
