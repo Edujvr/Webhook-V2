@@ -98,7 +98,7 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "prueba"){
 		 //const data = await graphID(id);
 		 //console.log(data)
-		const GRAPH_API_BASE = 'https://graph.facebook.com/v2.6';
+		const GRAPH_API_BASE = 'https://graph.facebook.com/v2.11';
 		 var graphapi =await request({
 		baseUrl: GRAPH_API_BASE,
 		url: '/' + id,
