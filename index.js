@@ -99,7 +99,7 @@ app.post("/webhook",async(req, res) =>{
 		 //const data = await graphID(id);
 		 //console.log(data)
 		const GRAPH_API_BASE = 'https://graph.facebook.com/v2.11';
-		 var graphapi =await request({
+		request({
 		baseUrl: GRAPH_API_BASE,
 		url: '/' + id,
 		qs: {
@@ -109,7 +109,6 @@ app.post("/webhook",async(req, res) =>{
 		},function(error,response,body){
 			 console.log(response,body);
 		});
-		console.log(graphapi);
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
