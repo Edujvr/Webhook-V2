@@ -96,22 +96,16 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "prueba"){
-		 console.log("validando la prueba");
+		graph.get(id+"?fields=name,email,first_name", function(err, res){
+			nameW=res.name
+			console.log(res)
+			sendResponse(respuesta);
+			sendAnalytics(nameW);			
+		});	
 		 //const data = await graphID(id);
 		 //console.log(data)
-		const GRAPH_API_BASE = 'https://graph.facebook.com/v2.11';
-		request({
-		baseUrl: GRAPH_API_BASE,
-		url: '/' + id,
-		qs: {
-			'fields': 'first_name'
-		},
-		auth: {'bearer' : access_token}
-		},function(error,response,body){
-			 console.log(response);
-		});
-		 sendResponse(respuestaBot);
-		 sendAnalytics(data.name);
+		 //sendResponse(respuestaBot);
+		 //sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
