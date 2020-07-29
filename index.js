@@ -52,7 +52,7 @@ app.post("/webhook",async(req, res) =>{
 	if(req.body.originalDetectIntentRequest.payload.data.sender.id==undefined){
 		id=1;
 	}else{
-		id=req.body.originalDetectIntentRequest.payload.data.sende.id;
+		id=req.body.originalDetectIntentRequest.payload.data.sender.id;
 		idUser = String(id);
 	}
 		
@@ -93,8 +93,8 @@ app.post("/webhook",async(req, res) =>{
 		//console.log("Entro en la validación")
 		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
 		console.log(id)
-		 //const data = await graphID(id);
-		 //console.log(data)
+		 const data = await graphID(id);
+		 console.log(data)
 		 sendResponse(respuestaBot);
 		 //sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
