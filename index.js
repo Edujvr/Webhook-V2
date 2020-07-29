@@ -97,7 +97,7 @@ app.post("/webhook",async(req, res) =>{
 		});
 	}else if(action == "prueba"){
 		console.log("Entro en la validación")
-		//console.log(req.body)
+		console.log(req.body)
 		//console.log(id)
 		/*graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
@@ -108,7 +108,7 @@ app.post("/webhook",async(req, res) =>{
 		 //const data = await graphID(id);
 		 //console.log(data)
 		 sendResponse(respuestaBot);
-		 sendAnalytics(data.name);
+		 //sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
