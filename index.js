@@ -97,7 +97,7 @@ app.post("/webhook",async(req, res) =>{
 		});
 	}else if(action == "prueba"){
 		console.log("Entro en la validación")
-		console.log(req.body)
+		console.log(req.body.originalDetectIntentRequest)
 		//console.log(id)
 		/*graph.get(id+"?fields=name,email,first_name", function(err, res){
 			nameW=res.name
