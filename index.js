@@ -48,8 +48,8 @@ app.post("/webhook",async(req, res) =>{
   //console.log(req.body.queryResult.parameters);
 	
 	graph.setAccessToken(access_token);
-	//console.log(req.body.originalDetectIntentRequest)
-	if($.isEmptyObject(req.body.originalDetectIntentRequest.payload)){
+	console.log(req.body.originalDetectIntentRequest.payload)
+	if(req.body.originalDetectIntentRequest.payload==''){
 		id=1;
 	}else{
 		id=req.body.originalDetectIntentRequest.payload.data.sender.id;
