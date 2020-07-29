@@ -47,21 +47,15 @@ app.post("/webhook",async(req, res) =>{
   var aux;
   //console.log(req.body.queryResult.parameters);
 	
-	graph.setAccessToken(access_token);	
-	for(i=0;i<len;i++){
-		const outputContexts= req.body.queryResult.outputContexts[i].name;
-		const nombreContexto= outputContexts.substr(-7,7)
-		if(nombreContexto =='generic'){
-			if(req.body.queryResult.outputContexts[i].parameters.facebook_sender_id==undefined){
-				id=0;			
-			}else{
-				id=req.body.originalDetectIntentRequest.payload.data.sende.id;
-				idUser = String(id);
-			}
-		}else{
-			//console.log('extrayendo')
-		}
-	}	
+	graph.setAccessToken(access_token);
+	
+	if(req.body.originalDetectIntentRequest.payload.data.sende.id==undefined){
+		id=1;
+	}else{
+		id=req.body.originalDetectIntentRequest.payload.data.sende.id;
+		idUser = String(id);
+	}
+		
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
 		if(id==1){
