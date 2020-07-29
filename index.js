@@ -48,13 +48,13 @@ app.post("/webhook",async(req, res) =>{
   //console.log(req.body.queryResult.parameters);
 	
 	graph.setAccessToken(access_token);
-	console.log(req.body.originalDetectIntentRequest)
-	/*if(req.body.originalDetectIntentRequest.payload.data.sender.id==undefined){
+	//console.log(req.body.originalDetectIntentRequest)
+	if(req.body.originalDetectIntentRequest.payload==""){
 		id=1;
 	}else{
 		id=req.body.originalDetectIntentRequest.payload.data.sender.id;
 		idUser = String(id);
-	}*/
+	}
 		
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == 'query'){
