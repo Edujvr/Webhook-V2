@@ -55,7 +55,7 @@ app.post("/webhook",async(req, res) =>{
 			if(req.body.queryResult.outputContexts[i].parameters.facebook_sender_id==undefined){
 				id=0;			
 			}else{
-				id=req.body.queryResult.outputContexts[i].parameters.facebook_sender_id;
+				id=req.body.originalDetectIntentRequest.payload.data.sende.id;
 				idUser = String(id);
 			}
 		}else{
@@ -96,15 +96,9 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "prueba"){
-		console.log("Entro en la validación")
-		console.log(req.body.originalDetectIntentRequest.payload.data)
-		//console.log(id)
-		/*graph.get(id+"?fields=name,email,first_name", function(err, res){
-			nameW=res.name
-			console.log(res)
-			sendResponse(respuesta);
-			sendAnalytics(nameW);			
-		});	*/
+		//console.log("Entro en la validación")
+		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
+		console.log(id)
 		 //const data = await graphID(id);
 		 //console.log(data)
 		 sendResponse(respuestaBot);
