@@ -48,7 +48,7 @@ app.post("/webhook",async(req, res) =>{
   //console.log(req.body.queryResult.parameters);
 	
 	graph.setAccessToken(access_token);
-	console.log(req.body.originalDetectIntentRequest.payload.data.sender.id)
+	//console.log(req.body.originalDetectIntentRequest.payload.data.sender.id)
 	if(req.body.originalDetectIntentRequest.payload.data.sender.id==undefined){
 		id=1;
 	}else{
@@ -96,7 +96,7 @@ app.post("/webhook",async(req, res) =>{
 		 const data = await graphID(id);
 		 console.log(data)
 		 sendResponse(respuestaBot);
-		 //sendAnalytics(data.name);
+		 sendAnalytics(data.name);
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
