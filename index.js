@@ -45,14 +45,15 @@ app.post("/webhook",async(req, res) =>{
   var i,len = contextos.length;
   var email, nameW;
   var aux;
-  console.log(req.body.originalDetectIntentRequest);
+  console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
+  console.log(req.body.originalDetectIntentRequest.payload.data.sender);
 	
 	graph.setAccessToken(access_token);
 	//console.log("es"+Object.entries(req.body.originalDetectIntentRequest).length)
 	if(Object.entries(req.body.originalDetectIntentRequest.payload).length === 0){
 		id=1;
 	}else{
-		id=req.body.originalDetectIntentRequest.payload.data.sender.id;
+		//id=req.body.originalDetectIntentRequest.payload.data.sender.id;
 		console.log(id)
 		idUser = String(id);
 	}
