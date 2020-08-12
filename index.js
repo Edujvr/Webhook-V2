@@ -45,7 +45,7 @@ app.post("/webhook",async(req, res) =>{
   var i,len = contextos.length;
   var email, nameW;
   var aux;
-  //console.log(req.body.queryResult.parameters);
+  console.log(req.body.originalDetectIntentRequest);
 	
 	graph.setAccessToken(access_token);
 	console.log("es"+Object.entries(req.body.originalDetectIntentRequest).length)
