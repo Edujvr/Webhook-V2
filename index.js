@@ -45,8 +45,8 @@ app.post("/webhook",async(req, res) =>{
   var i,len = contextos.length;
   var email, nameW;
   var aux;
-  console.log(JSON.stringify(req));
-  //console.log(req.body.originalDetectIntentRequest.payload.data);
+  //console.log(JSON.stringify(req));
+  console.log(req.body.originalDetectIntentRequest.payload.data);
   //console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
   //console.log(req.body.originalDetectIntentRequest.payload.data.sender);
   //console.log(req.body.originalDetectIntentRequest.payload.data.message);
