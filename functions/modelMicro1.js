@@ -1,7 +1,7 @@
 module.exports = {
   async modMicro1(){
       let respuesta ={
-       "fulfillmentText":msj1 + msj2,
+       "fulfillmentText":"Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo.\nMi compañera Elizabeth te explicará cómo funciona este piloto con el siguiente video.\nVideo.\n¿List@ para empezar?[SI\NO]",
        "fulfillmentMessages":[
         {
           "text": {
