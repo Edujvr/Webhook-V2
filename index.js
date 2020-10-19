@@ -110,6 +110,7 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
+		console.log(email)
 		var query = Credife.where({EMAIL: email});
 		query.findOne(function (err, credife) {
 			if (err) {
