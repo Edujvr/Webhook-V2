@@ -60,7 +60,7 @@ app.post("/webhook",async(req, res) =>{
 	if(Object.entries(req.body.originalDetectIntentRequest.payload).length === 0){
 		id=1;
 	}else{
-		//id=req.body.originalDetectIntentRequest.payload.data.sender.id;
+		id=req.body.originalDetectIntentRequest.payload.data.sender.id;
 		console.log(id)
 		idUser = String(id);
 	}
