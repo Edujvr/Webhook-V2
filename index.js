@@ -132,6 +132,7 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
+			console.log(microfinanzas.CLIENTES[0])
 			if (err) {
 				res.status(500).send(err);
 			}else{
