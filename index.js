@@ -141,7 +141,6 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}else{
 					const cliente = microfinanzas.CLIENTES[0];
-					console.log(cliente)
 					const respuesta = await modMicro2(nameW,cliente);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
