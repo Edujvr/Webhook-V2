@@ -110,9 +110,9 @@ app.post("/webhook",async(req, res) =>{
 		//const data = await graphID(id);
 		//nameW= data.name;
 		//email=data.email;
-		var query = Credife.where({ EMAIL: "etandazo@pichincha.com" })
-		query.findOne(function (err, credife) {
-			console.log(credife);
+		var query = Objetivos.where({ EMAIL: "etandazo@pichincha.com" })
+		query.findOne(function (err, objetivos) {
+			console.log(objetivos);
 			if (err) {
 				res.status(500).send(err);
 			}else{
