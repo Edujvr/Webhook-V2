@@ -77,7 +77,6 @@ app.post("/webhook",async(req, res) =>{
 		nameW = await getUserMiPortal(email);
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
 		query.findOne(function (err, colaboradores) {
-			console.log(colaboradores)
 			if (err) {
 				res.status(500).send(err);
 			}else if(colaboradores == undefined || colaboradores == '' || colaboradores == []){
@@ -111,14 +110,12 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
-		console.log(email)
 		var query = Credife.where({EMAIL: email});
 		query.findOne(function (err, credife) {
+			console.log(credife);
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				console.log(credife);
-				//console.log(usuario.CLIENTES);
 				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
