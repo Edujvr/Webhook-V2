@@ -107,9 +107,9 @@ app.post("/webhook",async(req, res) =>{
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	}else if(action == "CobranzaValidacion"){
-		const data = await graphID(id);
-		nameW= data.name;
-		email=data.email;
+		//const data = await graphID(id);
+		//nameW= data.name;
+		//email=data.email;
 		var query = Credife.where({ EMAIL: "etandazo@pichincha.com" })
 		query.findOne(function (err, credife) {
 			console.log(credife);
