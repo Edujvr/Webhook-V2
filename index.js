@@ -14,6 +14,7 @@ const SalidaCajeros = require("./models/SalidaCajeros");
 const {modGeneralista} = require("./functions/modelMongo");
 const {modProductosCROF} = require("./functions/modelProductosCROF");
 const {modMicro1} = require("./functions/modelMicro1");
+const {modMicro2} = require("./functions/modelMicro2");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -126,6 +127,25 @@ app.post("/webhook",async(req, res) =>{
 				}
 			}
 		});
+	}else if(action == "CobranzaClientes"){
+		const data = await graphID(id);
+		nameW= data.name;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				if(microfinanzas==null || microfinanzas == undefined || microfinanzas == '' || microfinanzas == []){
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}else{
+					const respuesta = await modMicro2(nameW,microfinanzas.CLIENTES[0]);
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}
+			}
+		});
+		
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
