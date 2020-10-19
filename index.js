@@ -107,15 +107,18 @@ app.post("/webhook",async(req, res) =>{
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	}else if(action == "CobranzaValidacion"){
+		console.log("1")
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
 		var query = Credife.where({EMAIL:'etandazo@pichincha.com'});
 		query.findOne(function (err, credife) {
+			console.log("2")
 			console.log(credife);
 			if (err) {
 				res.status(500).send(err);
 			}else{
+				console.log("3")
 				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
