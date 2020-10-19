@@ -110,11 +110,11 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		email=data.email;
 		var query = Credife.where({EMAIL: email});
-		query.findOne(async function (err, usuario) {
+		query.findOne(async function (err, credife) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				console.log(usuario);
+				console.log(credife);
 				//console.log(usuario.CLIENTES);
 				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
 				sendResponse(respuesta);
