@@ -110,7 +110,7 @@ app.post("/webhook",async(req, res) =>{
 		//const data = await graphID(id);
 		//nameW= data.name;
 		//email=data.email;
-		var query = Objetivos.where({ EMAIL: "etandazo@pichincha.com" })
+		var query = Objetivos.where({ MAIL: "etandazo@pichincha.com" })
 		query.findOne(function (err, objetivos) {
 			console.log(objetivos);
 			if (err) {
