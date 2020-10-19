@@ -14,7 +14,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "Nombre: cliente.NombreCliente"
+              "Nombre: " + cliente.NombreCliente
             ]
           },
           "platform": "FACEBOOK"
@@ -30,7 +30,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "*DATOS PERSONALES*\n\nEdad: "+ cliente.Edad + "\nEstado Civil:" + cliente.EstadoCivil+ "\nHijos: " + cliente.Hijos + "\nVivienda: " + cliente.Vivienda
+              "*DATOS PERSONALES*\n\nEdad: "+ cliente.Edad + "\nEstado Civil: " + cliente.EstadoCivil+ "\nHijos: " + cliente.Hijos + "\nVivienda: " + cliente.Vivienda
             ]
           },
           "platform": "FACEBOOK"
@@ -38,7 +38,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "*DATOS ECONOMICOS*\n\nActividad económica:\nSector económico:\nMora del sector económico:\nCantidad de operaciones activas:\nMonto cuota:\nNumero de cuota\nSaldo Insoluto:\nCiclo:\nMora actual en días:\nFecha próximo pago:\nMora Histórica en los últimos 12 meses:"
+              "*DATOS ECONOMICOS*\n\nActividad económica: " + cliente.ActividadEconomica +"\nSector económico: " + cliente.SectorEconomico + "\nMora del sector económico: " + cliente.MoraSectorEconomicoDias + "\nCantidad de operaciones activas: " + cliente.CantidadOperacionesActivas + "\nMonto cuota: " + cliente.MontoCuotaDolar + "\nNumero de cuota: " + cliente.NumCuota + "\nSaldo Insoluto: " + cliente.SaldoInsolutoDolar + "\nCiclo: " + cliente.Ciclo + "\nMora actual en días: " + cliente.MoraActualDias + "\nFecha próximo pago: " + cliente.FechaProximoPago + "\nMora Histórica en los últimos 12 meses: " + cliente.MoraHistoricaDias 
             ]
           },
           "platform": "FACEBOOK"
@@ -46,7 +46,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "*FAMILIARES Y GARANTES*\n\nNombre Garante:\nSu garante es familia:\nTipo de garantía:\nNúmero de familiares con mora:\nNúmero de familiares con castigo:"
+              "*FAMILIARES Y GARANTES*\n\nNombre Garante:" + cliente.NombreGarante + "\nSu garante es familia: " + cliente.GaranteFamilia + "\nTipo de garantía: " + cliente.TipoGarantia + "\nNúmero de familiares con mora: " + cliente.NumeroFamiliaresMora + "\nNúmero de familiares con castigo: " + cliente.NumeroFamiliaresCastigo
             ]
           },
           "platform": "FACEBOOK"
