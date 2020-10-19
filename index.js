@@ -77,6 +77,7 @@ app.post("/webhook",async(req, res) =>{
 		nameW = await getUserMiPortal(email);
 		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });
 		query.findOne(function (err, colaboradores) {
+			console.log(colaboradores)
 			if (err) {
 				res.status(500).send(err);
 			}else if(colaboradores == undefined || colaboradores == '' || colaboradores == []){
