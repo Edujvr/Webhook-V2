@@ -111,7 +111,6 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		email=data.email;
 		var query = Credife.where({EMAIL: email});
-		console.log(query)
 		query.findOne(function (err, credife) {
 			if (err) {
 				res.status(500).send(err);
