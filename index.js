@@ -13,6 +13,7 @@ const Agradecimiento = require("./models/Agradecimiento");
 const SalidaCajeros = require("./models/SalidaCajeros");
 const {modGeneralista} = require("./functions/modelMongo");
 const {modProductosCROF} = require("./functions/modelProductosCROF");
+const {modMicro1} = require("./functions/modelMicro1");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -117,10 +118,10 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				if(microfinanzas== null){
-					const respuesta = "¡Lo siento! Por el momento este proceso solo está disponible para ejecutivos de microfinanzas"
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
+					const respuesta = await modProductosCROF();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}
