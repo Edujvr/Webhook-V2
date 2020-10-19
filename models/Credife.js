@@ -6,10 +6,35 @@ const CredifeSchema = new Schema({
     type: String,
     required:true
   },
-  CLIENTES: {
-    type: Array,
-    required:true
-  }
+  CLIENTES: [
+    {
+      OrdenCliente:String,
+      NombreCliente:String,
+      Edad:String,
+      EstadoCivil:String,
+      Edad:String,
+      EstadoCivil:String,
+      Hijos:String,
+      Vivienda:String,
+      ActividadEconomica:String,
+      SectorEconomico:String,
+      CantidadOperacionesActivas:String,
+      MontoCuotaDolar:String,
+      NumCuota:String,
+      SaldoInsolutoDolar:String,
+      Ciclo:String,
+      MoraActualDias:String,
+      FechaProximoPago:String,
+      MoraHistoricaDias:String,
+      NombreGarante:String,
+      GaranteFamilia:String,
+      TipoGarantia:String,
+      NumeroFamiliaresMora:String,
+      NumeroFamiliaresCastigo:String,
+      FraseMotivadora:String,
+      Confirmacion:String
+    }
+  ]
 });
 
 module.exports = mongoose.model("Credife", CredifeSchema);
