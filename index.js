@@ -48,7 +48,7 @@ app.post("/webhook",async(req, res) =>{
   var email, nameW;
   var aux;
   //console.log(JSON.stringify(req));
-  console.log(req.body.originalDetectIntentRequest.payload.data);
+  //console.log(req.body.originalDetectIntentRequest.payload.data);
   //console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
   //console.log(req.body.originalDetectIntentRequest.payload.data.sender);
   //console.log(req.body.originalDetectIntentRequest.payload.data.message);
@@ -109,13 +109,13 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "CobranzaValidacion"){
 		const data = await graphID(id);
 		email=data.email;
-		var query1 = Credife.where({EMAIL: email});
-		query1.findOne(async function (err, usuario) {
+		var query = Credife.where({EMAIL: email});
+		query.findOne(async function (err, usuario) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				console.log(usuario);
-				console.log(usuario.CLIENTES);
+				//console.log(usuario.CLIENTES);
 				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
