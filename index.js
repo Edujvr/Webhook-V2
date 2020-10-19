@@ -111,6 +111,7 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		email=data.email;
 		var query = Credife.where({EMAIL: email});
+		console.log(query)
 		query.findOne(function (err, credife) {
 			if (err) {
 				res.status(500).send(err);
@@ -120,13 +121,6 @@ app.post("/webhook",async(req, res) =>{
 				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
-				/*
-				const parte1 = nameW + " su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION;
-				const parte2 = "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"; 
-				const respuesta = await modGeneralista(parte1 , parte2);
-				respuestaBot = parte1 + parte2;
-				sendResponse(respuesta);
-				sendAnalytics(nameW);*/	
 			}
 		});
 	}else if(action == "productosCROF"){
