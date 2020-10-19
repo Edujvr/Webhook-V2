@@ -107,10 +107,10 @@ app.post("/webhook",async(req, res) =>{
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
 	}else if(action == "CobranzaValidacion"){
-		//const data = await graphID(id);
-		//nameW= data.name;
-		//email=data.email;
-		var query = Microfinanzas.where({EMAIL:'etandazo@pichincha.com'});
+		const data = await graphID(id);
+		nameW= data.name;
+		email=data.email;
+		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(function (err, microfinanzas){
 			console.log(microfinanzas);
 			if (err) {
