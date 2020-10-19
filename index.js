@@ -133,7 +133,6 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
-			console.log(microfinanzas)
 			if (err) {
 				res.status(500).send(err);
 			}else{
@@ -141,7 +140,9 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					const respuesta = await modMicro2(nameW,microfinanzas);
+					const cliente = microfinanzas[0];
+					console.log(cliente)
+					const respuesta = await modMicro2(nameW,cliente);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}
