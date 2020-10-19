@@ -130,6 +130,7 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "CobranzaClientes"){
 		const data = await graphID(id);
 		nameW= data.name;
+		email=data.email;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			console.log(microfinanzas)
