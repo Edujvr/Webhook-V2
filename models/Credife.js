@@ -5,7 +5,8 @@ const CredifeSchema = new Schema({
   EMAIL: {
     type: String,
     required:true
-  }, DATO:{
+  }, 
+  DATO: {
     type : String,
     required:true
   }
