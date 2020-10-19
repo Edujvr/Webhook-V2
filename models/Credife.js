@@ -31,7 +31,7 @@ const CredifeSchema = new Schema({
       NumeroFamiliaresCastigo:String,
       FraseMotivadora:String,
       Confirmacion:String
-    */}
+    }*/
   ]
 });
 
