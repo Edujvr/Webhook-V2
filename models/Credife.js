@@ -6,7 +6,7 @@ const CredifeSchema = new Schema({
     type: String,
     required:true
   },
-  CLIENTES: [String
+  CLIENTES: [{type:String}
     /*{
       OrdenCliente:String,
       NombreCliente:String,
