@@ -38,7 +38,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "*DATOS ECONOMICOS*\n\nActividad económica: " + cliente.ActividadEconomica +"\nSector económico: " + cliente.SectorEconomico + "\nMora del sector económico: " + cliente.MoraSectorEconomicoDias + "\nCantidad de operaciones activas: " + cliente.CantidadOperacionesActivas + "\nMonto cuota: " + cliente.MontoCuotaDolar + "\nNumero de cuota: " + cliente.NumCuota + "\nSaldo Insoluto: " + cliente.SaldoInsolutoDolar + "\nCiclo: " + cliente.Ciclo + "\nMora actual en días: " + cliente.MoraActualDias + "\nFecha próximo pago: " + cliente.FechaProximoPago + "\nMora Histórica en los últimos 12 meses: " + cliente.MoraHistoricaDias 
+              "*DATOS ECONOMICOS*\n\nActividad económica: " + cliente.ActividadEconomica +"\nSector económico: " + cliente.SectorEconomico + "\nMora del sector económico: " + cliente.MoraSectorEconomicoDias + "\nCantidad de operaciones activas: " + cliente.CantidadOperacionesActivas + "\nMonto cuota: $" + cliente.MontoCuotaDolar + "\nNumero de cuota: " + cliente.NumCuota + "\nSaldo Insoluto: $" + cliente.SaldoInsolutoDolar + "\nCiclo: " + cliente.Ciclo + "\nMora actual en días: " + cliente.MoraActualDias + "\nFecha próximo pago: " + cliente.FechaProximoPago + "\nMora Histórica en los últimos 12 meses: " + cliente.MoraHistoricaDias 
             ]
           },
           "platform": "FACEBOOK"
