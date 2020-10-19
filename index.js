@@ -116,9 +116,14 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
-				sendResponse(respuesta);
-				sendAnalytics(nameW);
+				if(microfinanzas== null){
+					const respuesta = "¡Lo siento! Por el momento este proceso solo está disponible para ejecutivos de microfinanzas"
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}else{
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}
 			}
 		});
 	}else if(action == "productosCROF"){
