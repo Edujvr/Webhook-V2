@@ -2,6 +2,7 @@
 
 const Colaboradores = require("./models/Colaboradores");
 const Objetivos = require("./models/Objetivos");
+const Credife = require("./models/Credife");
 const Generalistas = require("./models/Generalistas");
 const Historial = require("./models/Historial");
 const Agencias = require("./models/Agencias");
@@ -104,6 +105,24 @@ app.post("/webhook",async(req, res) =>{
 		 console.log(data)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
+	}else if(action == "CobranzaValidacion"){
+		const data = await graphID(id);
+		email=data.email;
+		var query1 = Credife.where({EMAIL: email});
+		query1.findOne(async function (err, usuario) {
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				console.log(usuario);
+				/*
+				const parte1 = nameW + " su Generalista es " + generalistas.NOMBRE_GENERALISTA +"\n"+ generalistas.EXT + "\n" + generalistas.CEL + "\n" + generalistas.UBICACION;
+				const parte2 = "Principales Funciones\n• Asesorar en aspectos laborales (Reglamento Interno)\n• Intervención en manejo de conflictos\n• Gestión de Clima laboral (Medición, planes de acción, seguimiento)\n• Asesorar sobre beneficios (Vacaciones, maternidad, permisos, etc.)\n• Gestionar requerimientos con áreas de especialidad en RRHH\n• Asesorar en procesos de selección, capacitación, desarrollo\n\nImportante: Si tu generalista no contesta su celular o extensión puedes escribirle un mensaje de WhatsApp o texto"; 
+				const respuesta = await modGeneralista(parte1 , parte2);
+				respuestaBot = parte1 + parte2;
+				sendResponse(respuesta);
+				sendAnalytics(nameW);*/	
+			}
+		});
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
