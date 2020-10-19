@@ -12,4 +12,4 @@ const CredifeSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Objetivos", CredifeSchema);
+module.exports = mongoose.model("Credife", CredifeSchema);
