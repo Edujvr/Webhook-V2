@@ -115,6 +115,7 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				console.log(usuario);
+				console.log(usuario.CLIENTES);
 				const respuesta = "Bienvenid@ al piloto de Estrategias de cobranza. Gracias por participar tus respuestas nos ayudarán muchisimo"
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
