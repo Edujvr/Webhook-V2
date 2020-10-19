@@ -6,7 +6,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              ejecutivo + ", aquí va tu" + cliente.OrdenCliente + "cliente"
+              ejecutivo + ", aquí va tu " + cliente.OrdenCliente + " cliente"
             ]
           },
           "platform": "FACEBOOK"
@@ -14,7 +14,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "Nombre: \"NOMBRE\""
+              "Nombre: cliente.NombreCliente"
             ]
           },
           "platform": "FACEBOOK"
@@ -30,7 +30,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "*DATOS PERSONALES*\n\nEdad:\nEstado Civil:\nHijos:\nVivienda:"
+              "*DATOS PERSONALES*\n\nEdad: "+ cliente.Edad + "\nEstado Civil:" + cliente.EstadoCivil+ "\nHijos: " + cliente.Hijos + "\nVivienda: " + cliente.Vivienda
             ]
           },
           "platform": "FACEBOOK"
