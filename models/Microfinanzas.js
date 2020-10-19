@@ -5,8 +5,8 @@ const MicrofinanzasSchema = new Schema({
   EMAIL: {
     type: String
   }, 
-  DATO: {
-    type : String
+  CLIENTES: {
+    type : Array
   }
 });
 
