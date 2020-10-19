@@ -2,7 +2,7 @@
 
 const Colaboradores = require("./models/Colaboradores");
 const Objetivos = require("./models/Objetivos");
-const Credife = require("./models/Credife");
+const Microfinanzas = require("./models/Microfinanzas");
 const Generalistas = require("./models/Generalistas");
 const Historial = require("./models/Historial");
 const Agencias = require("./models/Agencias");
