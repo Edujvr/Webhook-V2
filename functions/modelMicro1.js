@@ -18,20 +18,20 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        },
+        },/*
         {
           "payload": {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": ""//"https://storage.googleapis.com/videos_pibot/video-1556059174.mp4"
+                  "url": "https://storage.googleapis.com/videos_pibot/video-1556059174.mp4"
                 },
                 "type": "video"
               }
             }
           },
           "platform": "FACEBOOK"
-        },
+        }, */
         {
           "text": {
             "text": [
