@@ -111,7 +111,6 @@ app.post("/webhook",async(req, res) =>{
 		//nameW= data.name;
 		//email=data.email;
 		var query = Microfinanzas.where({EMAIL:'etandazo@pichincha.com'});
-		console.log(query)
 		query.findOne(function (err, microfinanzas){
 			console.log(microfinanzas);
 			if (err) {
