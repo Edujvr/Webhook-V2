@@ -108,10 +108,10 @@ app.post("/webhook",async(req, res) =>{
 		 sendAnalytics(data.name);
 	}else if(action == "CobranzaValidacion"){
 		const data = await graphID(id);
+		nameW= data.name;
 		email=data.email;
 		var query = Credife.where({EMAIL: email});
-		query.findOne(async function (err, credife) {
-			console.log(credife);
+		query.findOne(function (err, credife) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
