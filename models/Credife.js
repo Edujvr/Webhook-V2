@@ -1,15 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CredifeSchema = new Schema({
-  MAIL: {
-    type: String,
-    required:true
+const MicrofinanzasSchema = new Schema({
+  EMAIL: {
+    type: String
   }, 
   DATO: {
-    type : String,
-    required:true
+    type : String
   }
 });
 
-module.exports = mongoose.model("Credife", CredifeSchema);
+module.exports = mongoose.model("Microfinanzas", MicrofinanzasSchema);
