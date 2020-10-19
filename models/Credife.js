@@ -5,7 +5,8 @@ const CredifeSchema = new Schema({
   EMAIL: {
     type: String,
     required:true
-  },
+  }, DATO:{type : String}
+  /*
   CLIENTES: [
     {
       OrdenCliente:{type:String},
@@ -507,7 +508,7 @@ const CredifeSchema = new Schema({
       FraseMotivadora:{type:String},
       Confirmacion:{type:String}
     },
-  ]
+  ]*/
 });
 
 module.exports = mongoose.model("Credife", CredifeSchema);
