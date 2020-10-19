@@ -47,7 +47,7 @@ app.post("/webhook",async(req, res) =>{
   var email, nameW;
   var aux;
   //console.log(JSON.stringify(req));
-  console.log(req.body.originalDetectIntentRequest.payload.data);
+  //console.log(req.body.originalDetectIntentRequest.payload.data);
   //console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
   //console.log(req.body.originalDetectIntentRequest.payload.data.sender);
   //console.log(req.body.originalDetectIntentRequest.payload.data.message);
