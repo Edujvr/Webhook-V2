@@ -12,8 +12,6 @@ const CredifeSchema = new Schema({
       NombreCliente:String,
       Edad:String,
       EstadoCivil:String,
-      Edad:String,
-      EstadoCivil:String,
       Hijos:String,
       Vivienda:String,
       ActividadEconomica:String,
