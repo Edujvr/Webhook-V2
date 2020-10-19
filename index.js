@@ -110,7 +110,7 @@ app.post("/webhook",async(req, res) =>{
 		//const data = await graphID(id);
 		//nameW= data.name;
 		//email=data.email;
-		var query = Microfinanzas.where({MAIL:'etandazo@pichincha.com'});
+		var query = Microfinanzas.where({EMAIL:'etandazo@pichincha.com'});
 		console.log(query)
 		query.findOne(function (err, microfinanzas){
 			console.log(microfinanzas);
