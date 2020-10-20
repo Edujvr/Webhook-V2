@@ -181,6 +181,7 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				const frase = microfinanzas.CLIENTES[0].FraseMotivadora
+				console.log(frase);
 				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
 					respuesta = modMicro5(frase);
 					sendResponse(respuesta);
