@@ -17,6 +17,7 @@ const {modMicro1} = require("./functions/modelMicro1");
 const {modMicro2} = require("./functions/modelMicro2");
 const {modMicro3} = require("./functions/modelMicro3");
 const {modMicro4} = require("./functions/modelMicro4");
+const {modMicro5} = require("./functions/modelMicro5");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -174,17 +175,18 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
-		/*var query = Microfinanzas.where({EMAIL:email});
+		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
-					respuesta = modMicro3();
+					const frase = 
+					respuesta = modMicro5(microfinanzas.CLIENTES[0].FraseMotivadora);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					respuesta = modMicro4();
+					respuesta = modMicro5();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}
