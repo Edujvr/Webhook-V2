@@ -183,9 +183,12 @@ app.post("/webhook",async(req, res) =>{
 				const frase = microfinanzas.CLIENTES[0].FraseMotivadora
 				console.log(frase);
 				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
+					const _id = microfinanzas.CLIENTES[0]._id
+					Microfinanzas.findByIdAndUpdate(_id, { $set: { Confirmacion: 'SI' }} function (err, microfinanzas){
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
+					});
 				}else{
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
