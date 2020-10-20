@@ -191,8 +191,7 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}
 			}
-		});*/
-
+		});
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
