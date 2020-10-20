@@ -148,6 +148,27 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 		
+	}else if(action == "MicrofinanzasValidarPrimerCliente"){
+		const data = await graphID(id);
+		nameW= data.name;
+		email=data.email;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
+					respuesta = "¿Necesitas información adicional del cliente para ejecutar una estrategia de cobranza?";
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}else{
+					respuesta = "Cuéntanos, qué estrategia ";
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}
+			}
+		});
+
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
