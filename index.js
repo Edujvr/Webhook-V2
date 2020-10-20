@@ -180,13 +180,13 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
+				const frase = microfinanzas.CLIENTES[0].FraseMotivadora
 				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
-					const frase = 
-					respuesta = modMicro5(microfinanzas.CLIENTES[0].FraseMotivadora);
+					respuesta = modMicro5(frase);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					respuesta = modMicro5();
+					respuesta = modMicro5(frase);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}
