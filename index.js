@@ -66,7 +66,7 @@ app.post("/webhook",async(req, res) =>{
 		id=1;
 	}else{
 		id=req.body.originalDetectIntentRequest.payload.data.sender.id;
-		console.log(id)
+		//console.log(id)
 		idUser = String(id);
 	}
 		
@@ -162,7 +162,7 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				const num = numCliente(microfinanzas)
-				if(num=0){
+				if(num==0){
 					respuesta = modMicro3();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
@@ -717,7 +717,7 @@ app.post("/webhook",async(req, res) =>{
 				return i
 				break;
 			}else{
-			  	i++
+			  	i++;
 			}   
 		}
 	}
