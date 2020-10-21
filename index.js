@@ -188,14 +188,14 @@ app.post("/webhook",async(req, res) =>{
 				const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 				console.log(frase)
 				if(num ===19){
-					cosole.log("Entro1")
+					console.log("Entro1")
 					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					sendResponse(frase);
 					sendAnalytics(nameW);
 					});
 				}else{
-					cosole.log("Entro2")
+					console.log("Entro2")
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
