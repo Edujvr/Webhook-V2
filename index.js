@@ -185,10 +185,11 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				const num = await numCliente(microfinanzas)
+				const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 				if(num ===19){
 					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					sendResponse(respuesta);
+					sendResponse(frase);
 					sendAnalytics(nameW);
 					});
 				}else{
