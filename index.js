@@ -187,12 +187,12 @@ app.post("/webhook",async(req, res) =>{
 				const num = await numCliente(microfinanzas)
 				if(num ===19){
 					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[0].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 					});
 				}else{
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[0].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
@@ -752,8 +752,6 @@ app.post("/webhook",async(req, res) =>{
 			if(cliente.CLIENTES[i].Confirmacion=="NO"){
 				return i
 				break;
-			}else{
-			  	i++;
 			}   
 		}
 	}
