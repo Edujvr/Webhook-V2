@@ -150,8 +150,7 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}
 			}
-		});
-		
+		});	
 	}else if(action == "MicrofinanzasValidarPrimerCliente"){
 		const data = await graphID(id);
 		nameW= data.name;
@@ -214,6 +213,27 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}*/
+			}
+		});
+	}else if(action == "MicrofinanzasBucle"){
+		const data = await graphID(id);
+		nameW= data.name;
+		email=data.email;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				if(microfinanzas==null || microfinanzas == undefined || microfinanzas == '' || microfinanzas == []){
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}else{
+					const num = await numCliente(microfinanzas)
+					const cliente = microfinanzas.CLIENTES[num];
+					const respuesta = await modMicro2(nameW,cliente);
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}
 			}
 		});
 	}else if(action == "productosCROF"){
