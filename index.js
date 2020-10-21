@@ -143,7 +143,17 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					const cliente = microfinanzas.CLIENTES[0];
+					for(var i=0; i < microfinanzas.CLIENTES.length; i++){
+						if(microfinanzas.CLIENTES[i]){
+							cliente=microfinanzas.CLIENTES[i]
+							return i
+							break;
+						   }else{
+						   	i++
+						   }
+						   
+					}
+					//const cliente = microfinanzas.CLIENTES[0];
 					const respuesta = await modMicro2(nameW,cliente);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
