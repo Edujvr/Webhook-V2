@@ -125,8 +125,11 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}else{
 					const num = await numCliente(microfinanzas)
+					console.log(num)
 					if(num === 100){
 						respuesta =nameW+"Has completado con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+						sendResponse(respuesta);
+						sendAnalytics(nameW);
 					}else{
 						const respuesta = await modMicro1();
 						sendResponse(respuesta);
