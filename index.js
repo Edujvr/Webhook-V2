@@ -202,8 +202,12 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(frase);
 					sendAnalytics(nameW);
 					});
+				}else if(num === 100){
+					respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
 				}else{
-					console.log("Entro2")
+					//console.log("Entro2")
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
@@ -243,16 +247,11 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}else{
 					const num = await numCliente(microfinanzas)
-					if(num === 100){
-						respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
-						sendResponse(respuesta);
-						sendAnalytics(nameW);
-					}else{
-						const cliente = microfinanzas.CLIENTES[num];
-						const respuesta = await modMicro2(nameW,cliente);
-						sendResponse(respuesta);
-						sendAnalytics(nameW);
-					}
+					const cliente = microfinanzas.CLIENTES[num];
+					const respuesta = await modMicro2(nameW,cliente);
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+
 				}
 			}
 		});
