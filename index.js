@@ -165,12 +165,12 @@ app.post("/webhook",async(req, res) =>{
 				console.log(num)
 				if(num === 0){
 					console.log("Entro 1")
-					respuesta = modMicro3();
+					respuesta = await modMicro3();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
 					console.log("Entro 2")
-					respuesta = modMicro4();
+					respuesta = await modMicro4();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}
