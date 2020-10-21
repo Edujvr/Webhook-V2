@@ -144,10 +144,14 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}else{
 					const num = await numCliente(microfinanzas)
-					const cliente = microfinanzas.CLIENTES[num];
-					const respuesta = await modMicro2(nameW,cliente);
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
+					if(num === 100){
+						respuesta =nameW+"Has completado con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+					}else{
+						const cliente = microfinanzas.CLIENTES[num];
+						const respuesta = await modMicro2(nameW,cliente);
+						sendResponse(respuesta);
+						sendAnalytics(nameW);
+					}
 				}
 			}
 		});	
@@ -752,7 +756,7 @@ app.post("/webhook",async(req, res) =>{
 	
 	function numCliente(cliente){
 		for(var i=0; i < cliente.CLIENTES.length; i++){
-			console.log(cliente.CLIENTES[i].Confirmacion)
+			//console.log(cliente.CLIENTES[i].Confirmacion)
 			if(cliente.CLIENTES[i].Confirmacion=="NO"){
 				return i
 				break;
