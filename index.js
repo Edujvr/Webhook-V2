@@ -143,7 +143,7 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					const num = numCliente(microfinanzas)
+					const num = await numCliente(microfinanzas)
 					const cliente = microfinanzas.CLIENTES[num];
 					const respuesta = await modMicro2(nameW,cliente);
 					sendResponse(respuesta);
@@ -161,7 +161,7 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				const num = numCliente(microfinanzas)
+				const num = await numCliente(microfinanzas)
 				console.log(num)
 				if(num === 19){
 					//console.log("Entro 1")
@@ -185,11 +185,22 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				const frase = microfinanzas.CLIENTES[0].FraseMotivadora
+				const num = await numCliente(microfinanzas)
+				if(num ===19){
+					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[0].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}else{
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[0].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
+					respuesta = await modMicro5(frase);
+					sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}
+								
+				/*
+				const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
-					//microfinanzas.CLIENTES[0].Confirmacion.push({ Confirmacion: "SI" })
-					//const _id = microfinanzas._id
-					//Microfinanzas.update( microfinanzas._id ,{$set: {CLIENTES: {Confirmacion: "SI" }}} ,async function (err, microfinanzas){
 					console.log(microfinanzas._id)
 					console.log(microfinanzas.CLIENTES[0].NombreCliente)
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[0].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
@@ -202,7 +213,7 @@ app.post("/webhook",async(req, res) =>{
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
-				}
+				}*/
 			}
 		});
 	}else if(action == "productosCROF"){
