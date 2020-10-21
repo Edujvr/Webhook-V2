@@ -758,10 +758,10 @@ app.post("/webhook",async(req, res) =>{
 		for(var i=0; i < cliente.CLIENTES.length; i++){
 			//console.log(cliente.CLIENTES[i].Confirmacion)
 			if(cliente.CLIENTES[i].Confirmacion=="NO"){
-				return i
+				return i;
 				break;
 			}   
-		}
+		}return 100;
 	}
 	
 	function sendEmail(email, documento){
