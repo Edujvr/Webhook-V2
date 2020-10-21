@@ -163,7 +163,7 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				const num = numCliente(microfinanzas)
 				console.log(num)
-				if(num === 0){
+				if(num === 19){
 					//console.log("Entro 1")
 					respuesta = await modMicro3();
 					sendResponse(respuesta);
