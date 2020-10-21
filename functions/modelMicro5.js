@@ -1,7 +1,7 @@
 module.exports = {
   async modMicro5(frase){
       let respuesta ={
-       "fulfillmentText":"Frase, Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
+       "fulfillmentText":frase + ", Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
        "fulfillmentMessages":[
         {
           "text": {
@@ -23,7 +23,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "Frase, Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre"
+              frase + ", Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre"
             ]
           }
         }
