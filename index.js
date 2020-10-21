@@ -143,16 +143,6 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					for(var i=0; i < microfinanzas.CLIENTES.length; i++){
-						if(microfinanzas.CLIENTES[i]){
-							cliente=microfinanzas.CLIENTES[i]
-							return i
-							break;
-						   }else{
-						   	i++
-						   }
-						   
-					}
 					//const cliente = microfinanzas.CLIENTES[0];
 					const respuesta = await modMicro2(nameW,cliente);
 					sendResponse(respuesta);
@@ -170,7 +160,8 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
+				const num = numCliente(microfinanzas)
+				if(num=0){
 					respuesta = modMicro3();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
@@ -717,6 +708,18 @@ app.post("/webhook",async(req, res) =>{
 			sendAnalytics(nameW);
 		});
 	 }
+	
+	function numCliente(cliente){
+		for(var i=0; i < cliente.CLIENTES.length; i++){
+			console.log(cliente.CLIENTES[i].Confirmacion)
+			if(cliente.CLIENTES[i].Confirmacion=="NO"){
+				return i
+				break;
+			}else{
+			  	i++
+			}   
+		}
+	}
 	
 	function sendEmail(email, documento){
 		let transporter = nodemailer.createTransport({
