@@ -6,6 +6,79 @@ module.exports = {
         {
           "text": {
             "text": [
+              "Cuéntanos, qué estrategia de cobranza aplicarías con este cliente:\n1.- No requiere aplicar gestión\n2.- Preventivo cliente buen perfil\n3.- Preventivo cliente mal perfil\n4.- Mensaje preventivo refinanciado\n5.- Mensaje cliente con mora\n6.- Llamada\n7.- Visita\n8.- Visita con administrador\n9.- Otra estrategia de cobranzas"
+            ]
+          },
+          "platform": "FACEBOOK"
+        },
+        {
+          "payload": {
+            "facebook": {
+              "quick_replies": [
+                {
+                  "payload": "No requiere aplicar gestión",
+                  "title": "1",
+                  "content_type": "text"
+                },
+                {
+                  "content_type": "text",
+                  "payload": "Preventivo cliente buen perfil",
+                  "title": "2"
+                },
+                {
+                  "payload": "Preventivo cliente mal perfil",
+                  "content_type": "text",
+                  "title": "3"
+                },
+                {
+                  "payload": "Mensaje preventivo refinanciado",
+                  "content_type": "text",
+                  "title": "4"
+                },
+                {
+                  "content_type": "text",
+                  "title": "5",
+                  "payload": "Mensaje cliente con mora"
+                },
+                {
+                  "title": "6",
+                  "content_type": "text",
+                  "payload": "Llamada"
+                },
+                {
+                  "payload": "Visita",
+                  "content_type": "text",
+                  "title": "7"
+                },
+                {
+                  "title": "8",
+                  "payload": "Visita con administrador",
+                  "content_type": "text"
+                },
+                {
+                  "payload": "Otra estrategia de cobranzas",
+                  "content_type": "text",
+                  "title": "9"
+                }
+              ],
+              "text": "Selecciona un número"
+            }
+          },
+          "platform": "FACEBOOK"
+        },
+        {
+          "text": {
+            "text": [
+              "ok"
+            ]
+          }
+        }
+      ]
+        
+        /*[
+        {
+          "text": {
+            "text": [
               "Cuéntanos, qué estrategia de cobranza aplicarías con este cliente:"
             ]
           },
@@ -156,7 +229,7 @@ module.exports = {
             ]
           }
         }
-      ]
+      ]*/
     }
       return respuesta;
   } 
