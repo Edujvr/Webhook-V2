@@ -18,16 +18,19 @@ module.exports = {
                 {
                   "payload": "No requiere aplicar gestión",
                   "title": "1",
+                  "image_url":"image_url":"http://example.com/img/red.png",
                   "content_type": "text"
                 },
                 {
                   "content_type": "text",
                   "payload": "Preventivo cliente buen perfil",
+                  "image_url":"image_url":"http://example.com/img/red.png",
                   "title": "2"
                 },
                 {
                   "payload": "Preventivo cliente mal perfil",
                   "content_type": "text",
+                  "image_url":"image_url":"http://example.com/img/red.png",
                   "title": "3"
                 },
                 {
