@@ -18,19 +18,19 @@ module.exports = {
                 {
                   "payload": "No requiere aplicar gestión",
                   "title": "1",
-                  "image_url":"http://example.com/img/red.png",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "content_type": "text"
                 },
                 {
                   "content_type": "text",
                   "payload": "Preventivo cliente buen perfil",
-                  "image_url":"http://example.com/img/red.png",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "title": "2"
                 },
                 {
                   "payload": "Preventivo cliente mal perfil",
                   "content_type": "text",
-                  "image_url":"http://example.com/img/red.png",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "title": "3"
                 },
                 {
