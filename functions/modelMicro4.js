@@ -36,31 +36,37 @@ module.exports = {
                 {
                   "payload": "Mensaje preventivo refinanciado",
                   "content_type": "text",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "title": "4"
                 },
                 {
                   "content_type": "text",
                   "title": "5",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "payload": "Mensaje cliente con mora"
                 },
                 {
                   "title": "6",
                   "content_type": "text",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "payload": "Llamada"
                 },
                 {
                   "payload": "Visita",
                   "content_type": "text",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "title": "7"
                 },
                 {
                   "title": "8",
                   "payload": "Visita con administrador",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "content_type": "text"
                 },
                 {
                   "payload": "Otra estrategia de cobranzas",
                   "content_type": "text",
+                  "image_url":"https://storage.googleapis.com/imagenes-pibot/ColorBoton.png",
                   "title": "9"
                 }
               ],
