@@ -193,7 +193,7 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				const num = await numCliente(microfinanzas)
-				console.log(microfinanzas.Clientes.lenlength)
+				console.log(microfinanzas.CLIENTES.length)
 				if(num ===microfinanzas.Clientes.lenlength){
 					console.log("Entro1")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
