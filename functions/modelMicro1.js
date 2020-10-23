@@ -14,7 +14,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "Mi compañera Elizabeth te explicará cómo funciona este piloto con el siguiente video."
+              "Acá aparecera un video Tutorial"
             ]
           },
           "platform": "FACEBOOK"
