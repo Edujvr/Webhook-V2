@@ -17,6 +17,7 @@ const {modMicro1} = require("./functions/modelMicro1");
 const {modMicro2} = require("./functions/modelMicro2");
 const {modMicro3} = require("./functions/modelMicro3");
 const {modMicro4} = require("./functions/modelMicro4");
+const {modMicro4b} = require("./functions/modelMicro4b");
 const {modMicro5} = require("./functions/modelMicro5");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
