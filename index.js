@@ -169,7 +169,7 @@ app.post("/webhook",async(req, res) =>{
 				res.status(500).send(err);
 			}else{
 				const num = await numCliente(microfinanzas)
-				console.log(num)
+				//console.log(num)
 				if(num === 20){
 					console.log("Entro 1")
 					respuesta = await modMicro3();
@@ -195,12 +195,13 @@ app.post("/webhook",async(req, res) =>{
 				const num = await numCliente(microfinanzas)
 				console.log(microfinanzas.CLIENTES.length)
 				if((num+1) === microfinanzas.CLIENTES.length){
-					console.log("Entro1")
+					//console.log("Entro1")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
-					frase.replace('{usr_name}', nameW);
-					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
+					const fraseF = frase.replace('{usr_name}', nameW);
+					console.log(fraseF)
+					//respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					sendResponse(frase);
+					sendResponse(fraseF);
 					sendAnalytics(nameW);
 					});
 				}else if(num === 100){
@@ -210,9 +211,10 @@ app.post("/webhook",async(req, res) =>{
 				}else{
 					//console.log("Entro2")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
-					frase.replace('{usr_name}', nameW);
+					const fraseF=frase.replace('{usr_name}', nameW);
+					console.log(fraseF)
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					respuesta = await modMicro5(frase);
+					respuesta = await modMicro5(fraseF);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 					});
