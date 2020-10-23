@@ -197,6 +197,7 @@ app.post("/webhook",async(req, res) =>{
 				if((num+1) === microfinanzas.CLIENTES.length){
 					console.log("Entro1")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
+					frase.replace('{usr_name}', nameW);
 					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					sendResponse(frase);
@@ -209,6 +210,7 @@ app.post("/webhook",async(req, res) =>{
 				}else{
 					//console.log("Entro2")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
+					frase.replace('{usr_name}', nameW);
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 					respuesta = await modMicro5(frase);
 					sendResponse(respuesta);
