@@ -159,6 +159,21 @@ app.post("/webhook",async(req, res) =>{
 				}
 			}
 		});	
+	}else if(action == "MicrofinanzasInfoAdNO/SI"){
+		const data = await graphID(id);
+		nameW= data.name;
+		email=data.email;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				respuesta = await modMicro4();
+				sendResponse(respuesta);
+				sendAnalytics(nameW);
+
+			}
+		});
 	}else if(action == "MicrofinanzasValidarPrimerCliente"){
 		const data = await graphID(id);
 		nameW= data.name;
@@ -170,13 +185,11 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				const num = await numCliente(microfinanzas)
 				//console.log(num)
-				if(num === 20){
-					console.log("Entro 1")
+				if(num === 0){
 					respuesta = await modMicro3();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					console.log("Entro 2")
 					respuesta = await modMicro4();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
