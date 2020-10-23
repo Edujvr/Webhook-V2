@@ -6,6 +6,32 @@ module.exports = {
         {
           "text": {
             "text": [
+              "Cuéntanos, qué estrategia de cobranza aplicarías con este cliente:\n1.- No requiere gestión\n2.- Mensaje preventivo cliente buen perfil\n3.- Mensaje preventivo cliente mal perfil\n4.- Mensaje preventivo reestructurado\n5.- Mensaje cliente con mora\n6.- Llamada cliente\n7.- Llamada garante o familiar\n8.- Visita clientes\n9.- Visita garante o familiar\n10.- Visita con administrador a cliente\n11.- Visita con administrador a garante o familiar\n11.- Otra"
+            ]
+          },
+          "platform": "FACEBOOK"
+        },
+        {
+          "text": {
+            "text": [
+              "Escribe el número de  la estrategia que elegirías"
+            ]
+          },
+          "platform": "FACEBOOK"
+        },
+        {
+          "text": {
+            "text": [
+              "ok"
+            ]
+          }
+        }
+      ]
+        
+        /*[
+        {
+          "text": {
+            "text": [
               "Cuéntanos, qué estrategia de cobranza aplicarías con este cliente:\n1.- No requiere aplicar gestión\n2.- Preventivo cliente buen perfil\n3.- Preventivo cliente mal perfil\n4.- Mensaje preventivo refinanciado\n5.- Mensaje cliente con mora\n6.- Llamada\n7.- Visita\n8.- Visita con administrador\n9.- Otra estrategia de cobranzas"
             ]
           },
@@ -84,7 +110,7 @@ module.exports = {
         }
       ]
         
-        /*[
+        [
         {
           "text": {
             "text": [
