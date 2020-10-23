@@ -52,6 +52,14 @@ module.exports = {
           "platform": "FACEBOOK"
         },
         {
+          "text": {
+            "text": [
+              "Escribe OK para continuar"
+            ]
+          },
+          "platform": "FACEBOOK"
+        }/*,
+        {
           "quickReplies": {
             "title": "¡Listo!",
             "quickReplies": [
@@ -59,7 +67,7 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        },
+        }*/,
         {
           "text": {
             "text": [
