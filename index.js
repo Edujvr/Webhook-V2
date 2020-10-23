@@ -194,7 +194,7 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				const num = await numCliente(microfinanzas)
 				console.log(microfinanzas.CLIENTES.length)
-				if(num ===microfinanzas.CLIENTES.length){
+				if((num+1) === microfinanzas.CLIENTES.length){
 					console.log("Entro1")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 					respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
