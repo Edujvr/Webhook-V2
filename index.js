@@ -217,17 +217,17 @@ app.post("/webhook",async(req, res) =>{
 				console.log(microfinanzas.CLIENTES.length)
 				if((num+1) === microfinanzas.CLIENTES.length){
 					//console.log("Entro1")
-					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
-					const fraseF = frase.replace('{usr_name}', nameW);
-					console.log(fraseF)
+					//const frase = microfinanzas.CLIENTES[num].FraseMotivadora
+					//const fraseF = frase.replace('{usr_name}', nameW);
+					respuesta = await modMicro3();
+					//console.log(fraseF)
 					//respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					sendResponse(fraseF);
+					sendResponse(respuesta);
 					sendAnalytics(nameW);
 					});
 				}else if(num === 100){
-					respuesta = await modMicro3();
-					//respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+					respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
