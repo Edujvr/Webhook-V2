@@ -282,6 +282,12 @@ app.post("/webhook",async(req, res) =>{
 				}
 			}
 		});
+	}else if(action == "MicroFraseFinal"){
+		const data = await graphID(id);
+		nameW= data.name;
+		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+		sendResponse(respuesta);
+		sendAnalytics(nameW);
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
