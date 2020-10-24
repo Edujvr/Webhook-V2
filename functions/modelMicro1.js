@@ -1,12 +1,12 @@
 module.exports = {
   async modMicro1(){
       let respuesta ={
-       "fulfillmentText":"Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo.\nMi compañera Elizabeth te explicará cómo funciona este piloto con el siguiente video.\nVideo.\n¿List@ para empezar?[SI\NO]",
+       "fulfillmentText":"Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo.Te recomendamos usar tu computadora para una mejor experiencia\nMi compañera Elizabeth te explicará cómo funciona este piloto con el siguiente video.\nVideo.\n¿List@ para empezar?[SI\NO]",
        "fulfillmentMessages":[
         {
           "text": {
             "text": [
-              "Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo."
+              "Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo. Te recomendamos usar tu computadora para una mejor experiencia"
             ]
           },
           "platform": "FACEBOOK"
@@ -33,45 +33,21 @@ module.exports = {
           "platform": "FACEBOOK"
         }, */
         {
-          "text": {
-            "text": [
-              "¿List@ para empezar?"
-            ]
-          },
-          "platform": "FACEBOOK"
-        },
-        {
           "payload": {
             "facebook": {
-              "attachment": {
-                "payload": {
-                  "template_type": "list",
-                  "elements": [
-                    {
-                      "buttons": [
-                        {
-                          "type": "postback",
-                          "title": "SI",
-                          "payload": "Si, empezar"
-                        }
-                      ],
-                      "title": "Si, empezar"
-                    },
-                    {
-                      "buttons": [
-                        {
-                          "type": "postback",
-                          "title": "NO",
-                          "payload": "No, no me queda claro lo que tengo que hacer"
-                        }
-                      ],
-                      "title": "No, no me queda claro lo que tengo que hacer"
-                    }
-                  ],
-                  "top_element_style": "compact"
+              "text": "¿List@ para empezar?",
+              "quick_replies": [
+                {
+                  "content_type": "text",
+                  "payload": "Si, empezar",
+                  "title": "SI"
                 },
-                "type": "template"
-              }
+                {
+                  "content_type": "text",
+                  "payload": "No, no me queda claro",
+                  "title": "NO"
+                }
+              ]
             }
           },
           "platform": "FACEBOOK"
@@ -79,7 +55,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo.\nMi compañera Elizabeth te explicará cómo funciona este piloto con el siguiente video.\nVideo.\n¿List@ para empezar?[SI\NO]"
+              "Bienvenid@ al piloto de Estrategias de cobranzas. Gracias por participar, tus respuestas nos ayudarán muchisimo.Te recomendamos usar tu computadora para una mejor experiencia\nMi compañera Elizabeth te explicará cómo funciona este piloto con el siguiente video.\nVideo.\n¿List@ para empezar?[SI\NO]"
             ]
           }
         }
