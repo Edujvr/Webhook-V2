@@ -38,7 +38,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "*DATOS ECONOMICOS*\n\nActividad económica: " + cliente.ActividadEconomica +"\nSector económico: " + cliente.SectorEconomico + "\nMora del sector económico: " + cliente.MoraSectorEconomicoDias + "\nCantidad de operaciones activas: " + cliente.CantidadOperacionesActivas + "\nMonto cuota: $" + cliente.MontoCuotaDolar + "\nNumero de cuota: " + cliente.NumCuota + "\nSaldo Insoluto: $" + cliente.SaldoInsolutoDolar + "\nCiclo: " + cliente.Ciclo + "\nMora actual en días: " + cliente.MoraActualDias + "\nFecha próximo pago: " + cliente.FechaProximoPago + "\nMora Histórica en los últimos 12 meses: " + cliente.MoraHistorica12Meses 
+              "*DATOS ECONOMICOS*\n\nActividad económica: " + cliente.ActividadEconomica +"\nSector económico: " + cliente.SectorEconomico + "\nMora del sector económico: " + cliente.MoraSectorEconomicoDias +" días" + "\nCantidad de operaciones activas: " + cliente.CantidadOperacionesActivas + "\nMonto cuota: $" + cliente.MontoCuotaDolar + "\nNumero de cuota: " + cliente.NumCuota + "\nSaldo Insoluto: $" + cliente.SaldoInsolutoDolar + "\nCiclo: " + cliente.Ciclo + "\nMora actual: " + cliente.MoraActualDias + " días" + "\nFecha próximo pago: " + cliente.FechaProximoPago + "\nMora Histórica en los últimos 12 meses: " + cliente.MoraHistorica12Meses + "\nMora mes anterios: " + cliente.MoraMesAnterior +" días" + "\nReestructurado: " + cliente.Reestructurado 
             ]
           },
           "platform": "FACEBOOK"
