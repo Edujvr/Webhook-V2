@@ -117,13 +117,9 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		email=data.email;
 		let now= new Date();
-		let horaEcu= now.setHours(now.getHours() - 5)
-		console.log(now);
-		console.log(horaEcu);
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
-		console.log(usaTime)
-		console.log('USA time: '+ (new Date(usaTime)).toISOString())
-		//console.log(now.getTime())
+		var EcuTime = new Date(usaTime)).toISOString()
+		console.log(EcuTime)
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
@@ -142,7 +138,7 @@ app.post("/webhook",async(req, res) =>{
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
-						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": horaEcu}} ,async function (err, microfinanzas){
+						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
 							const respuesta = await modMicro1();
 							sendResponse(respuesta);
 							sendAnalytics(nameW);
