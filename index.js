@@ -144,24 +144,21 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
 		var EcuTime = (new Date(usaTime)).toISOString();
-		console.log(EcuTime)
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				console.log("Entro 0")
 				const num = await numCliente(microfinanzas)
-				console.log(num);
-				console.log(microfinanzas)
 				if(microfinanzas==null || microfinanzas == undefined || microfinanzas == '' || microfinanzas == []){
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
 					console.log("Entro 1")
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
-						console.log("Entro 3")
 						const cliente = microfinanzas.CLIENTES[num];
+						console.log(cliente)
+						console.log(num)
 						const respuesta = await modMicro2(nameW,cliente);
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
