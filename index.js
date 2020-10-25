@@ -150,12 +150,12 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
+				const num = await numCliente(microfinanzas)
 				if(microfinanzas==null || microfinanzas == undefined || microfinanzas == '' || microfinanzas == []){
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
-						const num = await numCliente(microfinanzas)
 						const cliente = microfinanzas.CLIENTES[num];
 						const respuesta = await modMicro2(nameW,cliente);
 						sendResponse(respuesta);
