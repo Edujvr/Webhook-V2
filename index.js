@@ -133,7 +133,7 @@ app.post("/webhook",async(req, res) =>{
 					let tiempo=now - microfinanzas.CLIENTES[num].HoraInicio ;
 					console.log(Math.floor((tiempo % 3600000) / 60000))
 					if(num === 100){
-						respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+						//respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
