@@ -286,6 +286,19 @@ app.post("/webhook",async(req, res) =>{
 	
 			});
 		});
+	}else if(action == "MicroOtraEstrategiaSave"){
+		const data = await graphID(id);
+		nameW= data.name;
+		var input = req.body.queryResult.queryText;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			const num = await numCliente(microfinanzas)
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.OtraEstrategiaCobranza": input}} ,async function (err, microfinanzas){
+				sendResponse(respuesta);
+				sendAnalytics(nameW);
+	
+			});
+		});
 	}else if(action == "MicroFraseFinal"){
 		const data = await graphID(id);
 		nameW= data.name;
