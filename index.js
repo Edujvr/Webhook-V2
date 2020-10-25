@@ -117,8 +117,9 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		email=data.email;
 		let now= new Date();
-		let horaEcu= now.setHours(now.getHours() + 2)
+		let horaEcu= now.setHours(now.getHours() - 5)
 		console.log(now);
+		console.log(horaEcu);
 		//console.log(now.getTime())
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
