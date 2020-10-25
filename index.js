@@ -136,6 +136,7 @@ app.post("/webhook",async(req, res) =>{
 						sendAnalytics(nameW);
 					}else{
 						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now }} ,async function (err, microfinanzas){
+							console.log(microfinanzas.CLIENTES[num].HoraInicio - now)
 							const respuesta = await modMicro1();
 							sendResponse(respuesta);
 							sendAnalytics(nameW);
