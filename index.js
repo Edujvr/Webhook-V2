@@ -129,14 +129,14 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}else{
 					const num = await numCliente(microfinanzas)
-					console.log(num)
+					//console.log(num)
+					console.log(microfinanzas.CLIENTES[num].HoraInicio - now)
 					if(num === 100){
 						respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
 						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now }} ,async function (err, microfinanzas){
-							console.log(microfinanzas.CLIENTES[num].HoraInicio - now)
 							const respuesta = await modMicro1();
 							sendResponse(respuesta);
 							sendAnalytics(nameW);
