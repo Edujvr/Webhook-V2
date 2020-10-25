@@ -146,7 +146,7 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
 		var EcuTime = (new Date(usaTime)).toISOString()
-		console.log(EcuTime)
+		//console.log(EcuTime)
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
@@ -214,6 +214,8 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
+		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
+		var EcuTime = (new Date(usaTime)).toISOString()
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
@@ -222,48 +224,28 @@ app.post("/webhook",async(req, res) =>{
 				const num = await numCliente(microfinanzas)
 				console.log(microfinanzas.CLIENTES.length)
 				if((num+1) === microfinanzas.CLIENTES.length){
-					//console.log("Entro1")
-					//const frase = microfinanzas.CLIENTES[num].FraseMotivadora
-					//const fraseF = frase.replace('{usr_name}', nameW);
 					respuesta = await modMicro3();
-					//console.log(fraseF)
-					//respuesta=microfinanzas.CLIENTES[num].FraseMotivadora
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
-					});
+					//Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
+						sendResponse(respuesta);
+						sendAnalytics(nameW);
+					//});
 				}else if(num === 100){
 					respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
-					//console.log("Entro2")
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 					const fraseF=frase.replace('{usr_name}', nameW);
 					console.log(fraseF)
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					respuesta = await modMicro5(fraseF);
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
+						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
+							respuesta = await modMicro5(fraseF);
+							sendResponse(respuesta);
+							sendAnalytics(nameW);
+						});
+						
 					});
 				}
-								
-				/*
-				const frase = microfinanzas.CLIENTES[num].FraseMotivadora
-				if(microfinanzas.CLIENTES[0].Confirmacion == 'NO'){
-					console.log(microfinanzas._id)
-					console.log(microfinanzas.CLIENTES[0].NombreCliente)
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[0].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-					respuesta = await modMicro5(frase);
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
-					});	
-				}else{
-					microfinanzas.CLIENTES[0].Confirmacion.push({ Confirmacion: "SI" })
-					respuesta = await modMicro5(frase);
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
-				}*/
 			}
 		});
 	}else if(action == "MicrofinanzasBucle"){
@@ -292,8 +274,19 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
-		sendResponse(respuesta);
-		sendAnalytics(nameW);
+		let input = req.body.queryResult.queryText;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			const num = await numCliente(microfinanzas)
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
+				Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraFin": EcuTime}} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.HoraFin": input}} ,async function (err, microfinanzas){
+						sendResponse(respuesta);
+						sendAnalytics(nameW);
+					});
+				});	
+			});
+		});
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
