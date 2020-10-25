@@ -118,7 +118,7 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		let now= new Date();
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
-		var EcuTime = new Date(usaTime)).toISOString()
+		var EcuTime = (new Date(usaTime)).toISOString()
 		console.log(EcuTime)
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
