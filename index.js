@@ -120,7 +120,7 @@ app.post("/webhook",async(req, res) =>{
 		let horaEcu= now.setHours(now.getHours() - 5)
 		console.log(now);
 		console.log(horaEcu);
-		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
 		console.log(usaTime)
 		console.log('USA time: '+ (new Date(usaTime)).toISOString())
 		//console.log(now.getTime())
