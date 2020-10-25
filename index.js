@@ -133,7 +133,7 @@ app.post("/webhook",async(req, res) =>{
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
-						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now.getTime() }} ,async function (err, microfinanzas){
+						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now }} ,async function (err, microfinanzas){
 							const respuesta = await modMicro1();
 							sendResponse(respuesta);
 							sendAnalytics(nameW);
