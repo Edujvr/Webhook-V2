@@ -171,7 +171,7 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				const num = await numCliente(microfinanzas)
 				//console.log(num)
-				if(num === 0){
+				if(req.body.queryResult.intent.displayName === "Microfinanzas - INPUT INFORMACION ADICIONAL"){
 					respuesta = await modMicro4b();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
