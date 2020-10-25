@@ -117,6 +117,7 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		email=data.email;
 		let now= new Date();
+		let horaEcu= now.setHours(now.getHours() + 2)
 		console.log(now);
 		//console.log(now.getTime())
 		var query = Microfinanzas.where({EMAIL:email});
@@ -137,7 +138,7 @@ app.post("/webhook",async(req, res) =>{
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
-						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now.subtract(5, 'hours')}} ,async function (err, microfinanzas){
+						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": horaEcu}} ,async function (err, microfinanzas){
 							const respuesta = await modMicro1();
 							sendResponse(respuesta);
 							sendAnalytics(nameW);
