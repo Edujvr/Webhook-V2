@@ -145,7 +145,7 @@ app.post("/webhook",async(req, res) =>{
 		nameW= data.name;
 		email=data.email;
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
-		var EcuTime = (new Date(usaTime)).toISOString()
+		var EcuTime = (new Date(usaTime)).toISOString();
 		//console.log(EcuTime)
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
@@ -170,6 +170,7 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
+		var input = req.body.queryResult.queryText;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
@@ -178,9 +179,11 @@ app.post("/webhook",async(req, res) =>{
 				const num = await numCliente(microfinanzas)
 				//console.log(num)
 				if(req.body.queryResult.intent.displayName === "Microfinanzas - INPUT INFORMACION ADICIONAL"){
-					respuesta = await modMicro4b();
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+						respuesta = await modMicro4b();
+						sendResponse(respuesta);
+						sendAnalytics(nameW);
+					});	
 				}else{
 					respuesta = await modMicro4();
 					sendResponse(respuesta);
@@ -273,7 +276,7 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "MicroEstrategiaSave"){
 		const data = await graphID(id);
 		nameW= data.name;
-		let input = req.body.queryResult.queryText;
+		var input = req.body.queryResult.queryText;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
