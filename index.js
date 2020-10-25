@@ -118,7 +118,7 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		let now= new Date();
 		console.log(now);
-		console.log(now.getTime())
+		//console.log(now.getTime())
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
@@ -131,13 +131,13 @@ app.post("/webhook",async(req, res) =>{
 					const num = await numCliente(microfinanzas)
 					//console.log(num)
 					let tiempo=now - microfinanzas.CLIENTES[num].HoraInicio ;
-					console.log(Math.floor((tiempo % 3600000) / 60000))
+					//console.log(Math.floor((tiempo % 3600000) / 60000))
 					if(num === 100){
 						//respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
-						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now }} ,async function (err, microfinanzas){
+						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": now.subtract(5, 'hours')}} ,async function (err, microfinanzas){
 							const respuesta = await modMicro1();
 							sendResponse(respuesta);
 							sendAnalytics(nameW);
