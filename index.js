@@ -266,9 +266,22 @@ app.post("/webhook",async(req, res) =>{
 					const respuesta = await modMicro2(nameW,cliente);
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
-
+					//MicroEstrategiaSave
 				}
 			}
+		});
+	}else if(action == "MicroEstrategiaSave"){
+		const data = await graphID(id);
+		nameW= data.name;
+		let input = req.body.queryResult.queryText;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			const num = await numCliente(microfinanzas)
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.EstrategiaCobranza": input}} ,async function (err, microfinanzas){
+				sendResponse(respuesta);
+				sendAnalytics(nameW);
+	
+			});
 		});
 	}else if(action == "MicroFraseFinal"){
 		const data = await graphID(id);
@@ -280,7 +293,7 @@ app.post("/webhook",async(req, res) =>{
 			const num = await numCliente(microfinanzas)
 			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 				Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraFin": EcuTime}} ,async function (err, microfinanzas){
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.HoraFin": input}} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					});
