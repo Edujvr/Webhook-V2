@@ -120,6 +120,9 @@ app.post("/webhook",async(req, res) =>{
 		let horaEcu= now.setHours(now.getHours() - 5)
 		console.log(now);
 		console.log(horaEcu);
+		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+		console.log(usaTime)
+		console.log('USA time: '+ (new Date(usaTime)).toISOString())
 		//console.log(now.getTime())
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
