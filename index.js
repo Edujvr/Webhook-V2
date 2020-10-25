@@ -126,8 +126,6 @@ app.post("/webhook",async(req, res) =>{
 					sendAnalytics(nameW);
 				}else{
 					const num = await numCliente(microfinanzas)
-					//console.log(num)
-					let tiempo=now - microfinanzas.CLIENTES[num].HoraInicio ;
 					if(num === 100){
 						respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 						sendResponse(respuesta);
