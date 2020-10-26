@@ -154,11 +154,8 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
+					const cliente = microfinanzas.CLIENTES[num];
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
-						console.log(microfinanzas)
-						const cliente = microfinanzas.CLIENTES[num];
-						console.log(cliente)
-						console.log(num)
 						const respuesta = await modMicro2(nameW,cliente);
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
