@@ -237,14 +237,10 @@ app.post("/webhook",async(req, res) =>{
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 					const fraseF=frase.replace('{usr_name}', nameW);
 					console.log(fraseF)
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
-							Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
-								respuesta = await modMicro5(fraseF);
-								sendResponse(respuesta);
-								sendAnalytics(nameW);
-							});
-						});
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraInicio": EcuTime"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
+						respuesta = await modMicro5(fraseF);
+						sendResponse(respuesta);,
+						sendAnalytics(nameW);
 					});
 				}
 			}
