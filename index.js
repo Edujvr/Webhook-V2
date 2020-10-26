@@ -249,6 +249,8 @@ app.post("/webhook",async(req, res) =>{
 		const data = await graphID(id);
 		nameW= data.name;
 		email=data.email;
+		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
+		var EcuTime = (new Date(usaTime)).toISOString()
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			if (err) {
