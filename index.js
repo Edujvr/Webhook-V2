@@ -303,9 +303,11 @@ app.post("/webhook",async(req, res) =>{
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
 		var EcuTime = (new Date(usaTime)).toISOString()
 		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
-		let input = req.body.queryResult.queryText;
-		if(input==='NO'){
-			input='';
+		var input;
+		if(req.body.queryResult.queryText=="NO"){
+			input="";
+		}else{
+			input=req.body.queryResult.queryText
 		}
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
