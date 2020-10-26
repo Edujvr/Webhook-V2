@@ -237,7 +237,7 @@ app.post("/webhook",async(req, res) =>{
 					const frase = microfinanzas.CLIENTES[num].FraseMotivadora
 					const fraseF=frase.replace('{usr_name}', nameW);
 					console.log(fraseF)
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraInicio": EcuTime,"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
 						respuesta = await modMicro5(fraseF);
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
@@ -297,18 +297,16 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "MicroFraseFinal"){
 		const data = await graphID(id);
 		nameW= data.name;
+		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
+		var EcuTime = (new Date(usaTime)).toISOString()
 		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 		let input = req.body.queryResult.queryText;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
-			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
-				Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraFin": EcuTime}} ,async function (err, microfinanzas){
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
-						sendResponse(respuesta);
-						sendAnalytics(nameW);
-					});
-				});	
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
+				sendResponse(respuesta);
+				sendAnalytics(nameW);	
 			});
 		});
 	}else if(action == "productosCROF"){
