@@ -176,7 +176,7 @@ app.post("/webhook",async(req, res) =>{
 				const num = await numCliente(microfinanzas)
 				//console.log(num)
 				if(req.body.queryResult.intent.displayName === "Microfinanzas - INPUT INFORMACION ADICIONAL"){
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
 						respuesta = await modMicro4b();
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
@@ -239,7 +239,7 @@ app.post("/webhook",async(req, res) =>{
 					console.log(fraseF)
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 						Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraInicio": EcuTime}} ,async function (err, microfinanzas){
-							Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
+							Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
 								respuesta = await modMicro5(fraseF);
 								sendResponse(respuesta);
 								sendAnalytics(nameW);
@@ -278,10 +278,9 @@ app.post("/webhook",async(req, res) =>{
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
-			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.EstrategiaCobranza": input}} ,async function (err, microfinanzas){
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.EstrategiaCobranza": input}} ,async function (err, microfinanzas){
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
-	
 			});
 		});
 	}else if(action == "MicroOtraEstrategiaSave"){
@@ -291,7 +290,7 @@ app.post("/webhook",async(req, res) =>{
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
-			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.OtraEstrategiaCobranza": input}} ,async function (err, microfinanzas){
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.OtraEstrategiaCobranza": input}} ,async function (err, microfinanzas){
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
 	
@@ -307,7 +306,7 @@ app.post("/webhook",async(req, res) =>{
 			const num = await numCliente(microfinanzas)
 			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 				Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.HoraFin": EcuTime}} ,async function (err, microfinanzas){
-					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].OtraInformacion } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					});
