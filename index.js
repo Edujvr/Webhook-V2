@@ -303,9 +303,11 @@ app.post("/webhook",async(req, res) =>{
 		var EcuTime = (new Date(usaTime)).toISOString()
 		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 		let input = req.body.queryResult.queryText;
+		console.log(input)
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
+			console.log(num)
 			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
 				sendResponse(respuesta);
 				sendAnalytics(nameW);	
