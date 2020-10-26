@@ -239,7 +239,7 @@ app.post("/webhook",async(req, res) =>{
 					console.log(fraseF)
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraInicio": EcuTime,"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
 						respuesta = await modMicro5(fraseF);
-						sendResponse(respuesta);,
+						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					});
 				}
