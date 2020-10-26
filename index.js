@@ -223,7 +223,9 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				var input = req.body.queryResult.queryText;
 				const num = await numCliente(microfinanzas)
+				console.log(num)
 				if((num+1) === microfinanzas.CLIENTES.length){
+					console.log("Entro")
 					respuesta = await modMicro3();
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.PorqueEstrategia": input,"CLIENTES.$.Confirmacion": "SI" }} ,async function (err, microfinanzas){
 						sendResponse(respuesta);
@@ -306,7 +308,7 @@ app.post("/webhook",async(req, res) =>{
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
-			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
+			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
 				sendResponse(respuesta);
 				sendAnalytics(nameW);	
 			});
