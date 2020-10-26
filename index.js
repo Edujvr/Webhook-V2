@@ -304,7 +304,9 @@ app.post("/webhook",async(req, res) =>{
 		var EcuTime = (new Date(usaTime)).toISOString()
 		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
 		let input = req.body.queryResult.queryText;
-		console.log(input)
+		if(input==='NO'){
+			input='';
+		}
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
