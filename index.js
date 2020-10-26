@@ -274,6 +274,7 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "MicroEstrategiaSave"){
 		const data = await graphID(id);
 		nameW= data.name;
+		email=data.email;
 		var input = req.body.queryResult.queryText;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
@@ -286,6 +287,7 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "MicroOtraEstrategiaSave"){
 		const data = await graphID(id);
 		nameW= data.name;
+		email=data.email;
 		var input = req.body.queryResult.queryText;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
