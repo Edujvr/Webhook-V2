@@ -127,7 +127,7 @@ app.post("/webhook",async(req, res) =>{
 				}else{
 					const num = await numCliente(microfinanzas)
 					if(num === 100){
-						respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+						respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudarán muchísimo"
 						sendResponse(respuesta);
 						sendAnalytics(nameW);
 					}else{
@@ -234,7 +234,7 @@ app.post("/webhook",async(req, res) =>{
 						sendAnalytics(nameW);
 					});
 				}else if(num === 100){
-					respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+					respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudarán muchísimo"
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
 				}else{
@@ -306,7 +306,7 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
 		var EcuTime = (new Date(usaTime)).toISOString()
-		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudaran muchisimo"
+		respuesta =nameW+" completaste con éxito el piloto de Estrategias de cobranza. Gracias por participar, tus espuestas nos ayudarán muchísimo"
 		var input;
 		if(req.body.queryResult.queryText=="NO"){
 			input="";
