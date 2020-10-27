@@ -3,17 +3,17 @@ module.exports = {
       let respuesta ={
        "fulfillmentText":frase + ", Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
        "fulfillmentMessages":[
-        {
+        /*{
           "text": {
             "text": [
               frase
             ]
           },
           "platform": "FACEBOOK"
-        },
+        },*/
         {
           "quickReplies": {
-            "title": "Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
+            "title": frase//"Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
             "quickReplies": [
               "Continuar"
             ]
