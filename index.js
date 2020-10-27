@@ -223,7 +223,11 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				var input = req.body.queryResult.queryText;
 				const num = await numCliente(microfinanzas)
-				if((num+1) === microfinanzas.CLIENTES.length){
+				if(microfinanzas.CLIENTES[num].HoraInicio==""){
+					respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'
+				   	sendResponse(respuesta);
+					sendAnalytics(nameW);
+				}else if((num+1) === microfinanzas.CLIENTES.length){
 					respuesta = await modMicro3();
 					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.PorqueEstrategia": input}} ,async function (err, microfinanzas){
 						sendResponse(respuesta);
