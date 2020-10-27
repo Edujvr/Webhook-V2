@@ -16,7 +16,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "ok"
+              "¿Necesitas información adicional del cliente para ejecutar una estrategia de cobranza?[SI\NO]"
             ]
           }
         }
