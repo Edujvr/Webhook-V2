@@ -323,7 +323,7 @@ app.post("/webhook",async(req, res) =>{
 					sendResponse(respuesta);
 					sendAnalytics(nameW);	
 				});
-			}else(){
+			}else{
 			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
@@ -342,7 +342,7 @@ app.post("/webhook",async(req, res) =>{
 			}else if((num+1) === microfinanzas.CLIENTES.length){
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
-			}else(){
+			}else{
 			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
