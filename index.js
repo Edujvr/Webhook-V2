@@ -316,11 +316,19 @@ app.post("/webhook",async(req, res) =>{
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
-			console.log(num)
-			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+			if (err) {
+				res.status(500).send(err);
+			}else if((num+1) === microfinanzas.CLIENTES.length){	
+				Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+					sendResponse(respuesta);
+					sendAnalytics(nameW);	
+				});
+			}else(){
+			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
 				sendResponse(respuesta);
-				sendAnalytics(nameW);	
-			});
+				sendAnalytics(nameW);
+			}	
+			
 		});
 	}else if(action == "MicrofinanzasParche"){
 		const data = await graphID(id);
@@ -328,10 +336,13 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		var query = Microfinanzas.where({EMAIL:email});
 		query.findOne(async function (err, microfinanzas){
-			if(){
+			const num = await numCliente(microfinanzas)
+			if (err) {
+				res.status(500).send(err);
+			}else if((num+1) === microfinanzas.CLIENTES.length){
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
-			   }else(){
+			}else(){
 			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
