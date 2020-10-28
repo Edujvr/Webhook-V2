@@ -350,7 +350,13 @@ app.post("/webhook",async(req, res) =>{
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
 			}else{
-			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
+				
+				let respuesta ={
+				fulfillmentText :'Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"',
+				//fulfillmentMessages:req.body.queryResult.fulfillmentMessages,
+				outputContexts : [{'name': req.body.session+'/contexts/microfinanzas-inputfinal-followup','lifespanCount':0}]
+				}
+			   	//respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
 			}
