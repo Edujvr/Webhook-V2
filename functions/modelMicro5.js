@@ -13,7 +13,7 @@ module.exports = {
         },*/
         {
           "quickReplies": {
-            "title": frase//"Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
+            "title": frase,//"Recuerda que puedes darte un descanso y regresar cuando tengas tiempo libre",
             "quickReplies": [
               "Continuar"
             ]
