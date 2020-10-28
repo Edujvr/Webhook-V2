@@ -199,15 +199,15 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				const num = await numCliente(microfinanzas)
 				//console.log(num)
-				if(num === 0){
-					respuesta = await modMicro3();
-					sendResponse(respuesta);
-					sendAnalytics(nameW);
-				}else{
+				//if(num === 0){
+					//respuesta = await modMicro3();
+					//sendResponse(respuesta);
+					//sendAnalytics(nameW);
+				//}else{
 					respuesta = await modMicro4();
 					sendResponse(respuesta);
 					sendAnalytics(nameW);
-				}
+				//}
 			}
 		});
 	}else if(action == "MicrofinanzasFinal"){
