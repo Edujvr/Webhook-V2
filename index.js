@@ -322,6 +322,22 @@ app.post("/webhook",async(req, res) =>{
 				sendAnalytics(nameW);	
 			});
 		});
+	}else if(action == "MicrofinanzasParche"){
+		const data = await graphID(id);
+		nameW= data.name;
+		email=data.email;
+		var query = Microfinanzas.where({EMAIL:email});
+		query.findOne(async function (err, microfinanzas){
+			if(){
+				sendResponse(respuesta);
+				sendAnalytics(nameW);
+			   }else(){
+			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
+				sendResponse(respuesta);
+				sendAnalytics(nameW);
+			}
+			
+		});
 	}else if(action == "productosCROF"){
 			const data = await graphID(id);
 			const respuesta = await modProductosCROF();
