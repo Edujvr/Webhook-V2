@@ -5,7 +5,7 @@ module.exports = {
        "fulfillmentMessages":[
         {
           "quickReplies": {
-            "title": "¿Necesitas información adicional del cliente para ejecutar una estrategia de cobranza?",
+            "title": "Antes de despedirme además de la información que te mostramos ¿Te gustaría que en el futuro agreguemos información adicional del cliente para ejecutar una estrategia de cobranza?",
             "quickReplies": [
               "SI",
               "NO"
