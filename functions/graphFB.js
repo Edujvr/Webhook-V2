@@ -8,14 +8,15 @@ const graph = new FacebookGraph(access_token)
 module.exports = {
 	async graphID(id){
 		try{
+			console.log("entro1")
 			const zuck = await graph.get(id+"?fields=name,email");
 			return zuck;
 			/*graph.get(id+"?fields=name,email", function(err, res){
 				console.log(res.name);
 				console.log(res.email)
 			});*/
-		}catch(e){
-			//console.log(error)
+		}catch(error){
+			console.log("entro2")
 			const zuck = 'nulo'
 			return zuck
 		}
