@@ -19,6 +19,7 @@ const {modMicro3} = require("./functions/modelMicro3");
 const {modMicro4} = require("./functions/modelMicro4");
 const {modMicro4b} = require("./functions/modelMicro4b");
 const {modMicro5} = require("./functions/modelMicro5");
+const {modMicroF} = require("./functions/modelMicroF");
 const {modMicroParche} = require("./functions/modelMicroParche");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
@@ -328,11 +329,19 @@ app.post("/webhook",async(req, res) =>{
 			const num = await numCliente(microfinanzas)
 			if (err) {
 				res.status(500).send(err);
-			}else if((num+1) === microfinanzas.CLIENTES.length){	
-				Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
-					sendResponse(respuesta);
-					sendAnalytics(nameW);	
-				});
+			}else if((num+1) === microfinanzas.CLIENTES.length){
+				if(req.body.queryResult.intent.displayName === "Microfinanzas - INPUT FRASE FINAL D" || req.body.queryResult.intent.displayName === "Microfinanzas - INPUT FRASE FINAL"){
+					respuesta = await modMicroF(nameW);
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+						sendResponse(respuesta);
+						sendAnalytics(nameW);	
+					});
+				}else{			
+					Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.Confirmacion": "SI" ,"CLIENTES.$.HoraFin": EcuTime,"CLIENTES.$.OtraInformacion": input}} ,async function (err, microfinanzas){
+						sendResponse(respuesta);
+						sendAnalytics(nameW);	
+					});
+				}
 			}else{
 			   	respuesta='Recuerda que para retomar con los clientes faltantes debes escribir "cobranzas"'				
 				sendResponse(respuesta);
