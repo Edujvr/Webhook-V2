@@ -7,12 +7,17 @@ const graph = new FacebookGraph(access_token)
 
 module.exports = {
 	async graphID(id){
-		const zuck = await graph.get(id+"?fields=name,email");
-		//console.log(zuck);
-		return zuck;
-		/*graph.get(id+"?fields=name,email", function(err, res){
-			console.log(res.name);
-			console.log(res.email)
-		});*/
+		try{
+			const zuck = await graph.get(id+"?fields=name,email");
+			//console.log(zuck);
+			return zuck;
+			/*graph.get(id+"?fields=name,email", function(err, res){
+				console.log(res.name);
+				console.log(res.email)
+			});*/
+		}catch{
+			const zuck = 'nulo'
+			return zuck
+		}
 	}
 };
