@@ -9,14 +9,13 @@ module.exports = {
 	async graphID(id){
 		try{
 			const zuck = await graph.get(id+"?fields=name,email");
-			//console.log(zuck);
 			return zuck;
 			/*graph.get(id+"?fields=name,email", function(err, res){
 				console.log(res.name);
 				console.log(res.email)
 			});*/
-		}catch(error){
-			console.log(error)
+		}catch(e){
+			//console.log(error)
 			const zuck = 'nulo'
 			return zuck
 		}
