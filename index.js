@@ -316,7 +316,7 @@ app.post("/webhook",async(req, res) =>{
 		email=data.email;
 		var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
 		var EcuTime = (new Date(usaTime)).toISOString()
-		respuesta =nameW+"¡Muchas gracias por participar en el piloto!"
+		respuesta =nameW+" ¡Muchas gracias por participar en el piloto!"
 		var input;
 		if(req.body.queryResult.queryText=="NO"){
 			input="";
