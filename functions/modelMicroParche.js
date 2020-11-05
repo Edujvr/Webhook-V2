@@ -43,7 +43,7 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        },
+        }/*,
         {
           "text": {
             "text": [
@@ -59,16 +59,16 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        }/*,
+        }*/,
         {
           "quickReplies": {
-            "title": "¡Listo!",
+            "title": "*FAMILIARES Y GARANTES*\n\nNombre Garante:" + cliente.NombreGarante + "\nSu garante es familiar: " + cliente.GaranteFamilia + "\nTipo de garantía: " + cliente.TipoGarantia + "\nNúmero de familiares con mora: " + cliente.NumeroFamiliaresMora + "\nNúmero de familiares con castigo: " + cliente.NumeroFamiliaresCastigo,
             "quickReplies": [
               "Continuar"
             ]
           },
           "platform": "FACEBOOK"
-        }*/,
+        },
         {
           "text": {
             "text": [
