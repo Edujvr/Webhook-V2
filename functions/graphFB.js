@@ -15,7 +15,8 @@ module.exports = {
 				console.log(res.name);
 				console.log(res.email)
 			});*/
-		}catch{
+		}catch(error){
+			console.log(error)
 			const zuck = 'nulo'
 			return zuck
 		}
