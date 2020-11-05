@@ -17,6 +17,7 @@ module.exports = {
               nameW+" ¡Muchas gracias por participar en el piloto!"
             ]
           }
+        }
       ]
     }
       return respuesta;
