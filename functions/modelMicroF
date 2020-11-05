@@ -1,7 +1,7 @@
 module.exports = {
   async modMicroF(nameW){
       let respuesta ={
-       "fulfillmentText":"Gracias por tu feedback. Analizaremos la posibilidad de agregar este dato\n"+ nameW+" ¡Muchas gracias por participar en el piloto!"
+       "fulfillmentText":"Gracias por tu feedback. Analizaremos la posibilidad de agregar este dato\n"+ nameW+" ¡Muchas gracias por participar en el piloto!",
        "fulfillmentMessages":[
         {
           "text": {
