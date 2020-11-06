@@ -294,8 +294,8 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
 			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.EstrategiaCobranza": input}} ,async function (err, microfinanzas){
-				const respuesta = await modResEstra(respuesta);
-				sendResponse(respuesta);
+				const resp = await modResEstra(respuesta);
+				sendResponse(resp);
 				sendAnalytics(nameW);
 			});
 		});
