@@ -9,11 +9,13 @@ module.exports = {
 	async graphID(id){
 		try {
 			const zuck = await graph.get(id+"?fields=name,email");
+			return zuck
 		} catch (e){
-			const error = 'nulo'
+			const zuck = 'nulo'
 			console.log("este es el error" + e);
+			return zuck
 		}
-		return zuck
+		
 		/*
 		const zuck = await graph.get(id+"?fields=name,email").catch(err => {return error});
 		return zuck;
