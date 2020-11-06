@@ -7,25 +7,14 @@ const graph = new FacebookGraph(access_token)
 
 module.exports = {
 	async graphID(id){
-		//try{
-			console.log("entro1")
-			const zuck = await graph.get(id+"?fields=name,email").then(response => { 
-				return zuck;
-			})
-			.catch(error => {
-			    console.log(error.response)
-				const zuck = 'nulo'
-			return zuck
-			});
-			//return zuck;
+			const zuck = await graph.get(id+"?fields=name,email");
+		zuck.
+		    then(result => console.log(`Successful result: ${result}`)).
+		    catch(e => console.log(`Failed with: ${e}`))
+		//	return zuck;
 			/*graph.get(id+"?fields=name,email", function(err, res){
 				console.log(res.name);
 				console.log(res.email)
 			});*/
-		//}catch(error){
-		//	console.log("entro2")
-		//	const zuck = 'nulo'
-		//	return zuck
-		//}
 	}
 };
