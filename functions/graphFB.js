@@ -7,10 +7,17 @@ const graph = new FacebookGraph(access_token)
 
 module.exports = {
 	async graphID(id){
-		var error = 'nulo';
+		try {
+			const zuck = await graph.get(id+"?fields=name,email");
+		} catch (e){
+			const error = 'nulo'
+			console.log("este es el error" + e);
+		}
+		return zuck
+		/*
 		const zuck = await graph.get(id+"?fields=name,email").catch(err => {return error});
 		return zuck;
-		/*
+		
 		const zuck = await graph.get(id+"?fields=name,email");
 		if(zuck==undefined){
 			let error = 'nulo'
