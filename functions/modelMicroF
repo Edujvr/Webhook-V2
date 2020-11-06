@@ -1,7 +1,7 @@
 module.exports = {
   async modMicroF(nameW){
       let respuesta ={
-       "fulfillmentText":"Gracias por tu feedback. Analizaremos la posibilidad de agregar este dato\n"+ nameW+" ¡Muchas gracias por participar en el piloto!",
+       "fulfillmentText":"Gracias por tu feedback. Analizaremos la posibilidad de agregar este dato\n"+ nameW+" terminamos el ejercicio. ¡Muchas gracias por participar en el piloto!’",
        "fulfillmentMessages":[
         {
           "text": {
@@ -14,7 +14,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              nameW+" ¡Muchas gracias por participar en el piloto!"
+              nameW+" terminamos el ejercicio. ¡Muchas gracias por participar en el piloto!’"
             ]
           },
           "platform": "FACEBOOK"
@@ -22,7 +22,7 @@ module.exports = {
         {
           "text": {
             "text": [
-             "Gracias por tu feedback. Analizaremos la posibilidad de agregar este dato\n"+ nameW+" ¡Muchas gracias por participar en el piloto!"
+             "Gracias por tu feedback. Analizaremos la posibilidad de agregar este dato\n"+ nameW+" terminamos el ejercicio. ¡Muchas gracias por participar en el piloto!’"
             ]
           }
         }
