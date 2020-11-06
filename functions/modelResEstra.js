@@ -7,7 +7,6 @@ module.exports = {
     console.log(aux2)
       let respuesta ={
        "fulfillmentText": resp,
-       "outputContexts" : [{'name': req.body.session+'\contexts\microfinanzas-inicio-yes-next-followup','lifespanCount':1},{'name': req.body.session+'\contexts\microfinanzas-clientecontinuar-followup','lifespanCount':1},{'name': req.body.session+'\contexts\otraestrategia','lifespanCount':1}],
        "fulfillmentMessages":[
         {
           "text": {
@@ -24,7 +23,8 @@ module.exports = {
             ]
           }
         }
-      ]
+      ],
+        "outputContexts" : [{'name': req.body.session+'\contexts\microfinanzas-inicio-yes-next-followup','lifespanCount':1},{'name': req.body.session+'\contexts\microfinanzas-clientecontinuar-followup','lifespanCount':1},{'name': req.body.session+'\contexts\otraestrategia','lifespanCount':1}]
     }
       return respuesta;
   } 
