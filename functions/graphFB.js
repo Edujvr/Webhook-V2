@@ -8,7 +8,12 @@ const graph = new FacebookGraph(access_token)
 module.exports = {
 	async graphID(id){
 		const zuck = await graph.get(id+"?fields=name,email");
-		console.log(zuck)
+		if(zuck==undefined){
+			zuck = 'nulo'
+			return zuck;
+		}else{
+			return zuck;
+		}
 		//	return zuck;
 			/*graph.get(id+"?fields=name,email", function(err, res){
 				console.log(res.name);
