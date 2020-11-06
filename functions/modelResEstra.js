@@ -4,13 +4,12 @@ module.exports = {
       const aux= req.body.session
       const aux2=aux.replace(/\//g ,'\\');
       let respuesta ={
-       "fulfillmentText":  "Bien",
+       "fulfillmentText":  String(resp),
        "fulfillmentMessages":[
         {
           "text": {
             "text": [
-              //resp
-              "Bien"
+              String(resp)
             ]
           },
           "platform": "FACEBOOK"
@@ -18,12 +17,12 @@ module.exports = {
         {
           "text": {
             "text": [
-               "Bien"
+               String(resp)
             ]
           }
         }
-      ]
-        //"outputContexts" : [{'name': req.body.session+'\contexts\microfinanzas-inicio-yes-next-followup','lifespanCount':1},{'name': req.body.session+'\contexts\microfinanzas-clientecontinuar-followup','lifespanCount':1},{'name': req.body.session+'\contexts\otraestrategia','lifespanCount':1}]
+      ],
+        "outputContexts" : [{'name': req.body.session+'\contexts\microfinanzas-inicio-yes-next-followup','lifespanCount':1},{'name': req.body.session+'\contexts\microfinanzas-clientecontinuar-followup','lifespanCount':1},{'name': req.body.session+'\contexts\otraestrategia','lifespanCount':1}]
         // "outputContexts" : [{'name': aux2+'\contexts\microfinanzas-inicio-yes-next-followup','lifespanCount':1},{'name': aux2+'\contexts\microfinanzas-clientecontinuar-followup','lifespanCount':1},{'name': aux2+'\contexts\otraestrategia','lifespanCount':1}]
       }
       return respuesta;
