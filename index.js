@@ -21,6 +21,7 @@ const {modMicro4b} = require("./functions/modelMicro4b");
 const {modMicro5} = require("./functions/modelMicro5");
 const {modMicroF} = require("./functions/modelMicroF");
 const {modMicroParche} = require("./functions/modelMicroParche");
+const {modResEstra} = require("./functions/modelResEstra");
 const {graphID} = require("./functions/graphFB");
 const bodyParser = require("body-parser");
 const express = require('express');
@@ -293,6 +294,7 @@ app.post("/webhook",async(req, res) =>{
 		query.findOne(async function (err, microfinanzas){
 			const num = await numCliente(microfinanzas)
 			Microfinanzas.update( {"_id":microfinanzas._id,"CLIENTES.NombreCliente":microfinanzas.CLIENTES[num].NombreCliente } ,{$set: {"CLIENTES.$.EstrategiaCobranza": input}} ,async function (err, microfinanzas){
+				const respuesta = await modResEstra(respuesta);
 				sendResponse(respuesta);
 				sendAnalytics(nameW);
 			});
