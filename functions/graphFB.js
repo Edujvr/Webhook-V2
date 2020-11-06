@@ -6,23 +6,10 @@ const access_token = 'DQVJ1c0hlREl1YlQ5ZA1RocmZAzZAXZAQOVc5LVFjdDFIeTZAlY2ZAia1E
 const graph = new FacebookGraph(access_token)
 
 module.exports = {
-	async graphID(id){
-		try {
-			const zuck = await graph.get(id+"?fields=name,email");
-			return zuck
-		} catch (e){
-			const zuck = 'nulo'
-			console.log("este es el error" + e);
-			return zuck
-		}
-		
-		/*
-		const zuck = await graph.get(id+"?fields=name,email").catch(err => {return error});
-		return zuck;
-		
+	async graphID(id){		
 		const zuck = await graph.get(id+"?fields=name,email");
 		if(zuck==undefined){
-			let error = 'nulo'
+			let error = {name:id,email:id+'@pichincha.com'}
 			return error;
 		}else{
 			return zuck;
