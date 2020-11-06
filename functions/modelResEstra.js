@@ -3,7 +3,7 @@ module.exports = {
   async modResEstra(resp,req){
       let aux= req.body.session
       console.log(aux)
-      const aux2=aux.replace('/', '\');
+      const aux2=aux.replace('/', "\");
     console.log(aux2)
       let respuesta ={
        "fulfillmentText": resp,
