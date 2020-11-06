@@ -9,8 +9,8 @@ module.exports = {
 	async graphID(id){
 		const zuck = await graph.get(id+"?fields=name,email");
 		if(zuck==undefined){
-			zuck = 'nulo'
-			return zuck;
+			let error = 'nulo'
+			return error;
 		}else{
 			return zuck;
 		}
