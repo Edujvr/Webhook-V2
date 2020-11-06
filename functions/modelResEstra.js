@@ -4,12 +4,13 @@ module.exports = {
       const aux= req.body.session
       const aux2=aux.replace(/\//g ,'\\');
       let respuesta ={
-       "fulfillmentText": resp,
+       "fulfillmentText":  "Bien",
        "fulfillmentMessages":[
         {
           "text": {
             "text": [
-              resp
+              //resp
+              "Bien"
             ]
           },
           "platform": "FACEBOOK"
@@ -17,7 +18,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              resp
+               "Bien"
             ]
           }
         }
