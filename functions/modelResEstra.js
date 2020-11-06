@@ -1,14 +1,14 @@
 
 module.exports = {
-  async modResEstra(respuesta){
+  async modResEstra(resp){
       let respuesta ={
-       "fulfillmentText": respuesta,
+       "fulfillmentText": resp,
        "outputContexts" : [{'name': req.body.session+'/contexts/microfinanzas-inicio-yes-next-followup','lifespanCount':1},{'name': req.body.session+'/contexts/microfinanzas-clientecontinuar-followup','lifespanCount':1},{'name': req.body.session+'/contexts/otraestrategia','lifespanCount':1}],
        "fulfillmentMessages":[
         {
           "text": {
             "text": [
-              respuesta
+              resp
             ]
           },
           "platform": "FACEBOOK"
@@ -16,7 +16,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              respuesta
+              resp
             ]
           }
         }
