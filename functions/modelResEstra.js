@@ -1,7 +1,6 @@
 
 module.exports = {
   async modResEstra(resp,req){
-    console.log(resp)
       let respuesta ={
        "fulfillmentText":  String(resp),
        "fulfillmentMessages":[
