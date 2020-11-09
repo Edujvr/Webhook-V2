@@ -10,7 +10,7 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        },
+        }/*,
         {
           "text": {
             "text": [
@@ -18,20 +18,20 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        },/*
+        }*/,
         {
           "payload": {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": "https://storage.googleapis.com/videos_pibot/video-1556059174.mp4"
+                  "url": "https://www.dropbox.com/s/a7isrsx9waoqcb9/El%20tema%20a%20tratar%20el%20d%C3%ADa%20de%20hoy%20es_%20%20_Inteligencia%20Artificial_%20Usos%20y%20aplicaci....mp4?dl=1"
                 },
                 "type": "video"
               }
             }
           },
           "platform": "FACEBOOK"
-        }, */
+        }, 
         {
           "payload": {
             "facebook": {
