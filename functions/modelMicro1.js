@@ -14,7 +14,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "https://www.youtube.com/watch?v=Hsv6cmDdt5g&ab_channel=ElPa%C3%ADs"
+              "A continuación te mostraré un video que te explicará cómo funciona este video"
             ]
           },
           "platform": "FACEBOOK"
@@ -24,7 +24,7 @@ module.exports = {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": "https://www.youtube.com/watch?v=Hsv6cmDdt5g&ab_channel=ElPa%C3%ADs"
+                  "url": "https://storage.googleapis.com/videos_pibot/video-1556059174.mp4"
                 },
                 "type": "video"
               }
