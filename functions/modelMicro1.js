@@ -10,21 +10,21 @@ module.exports = {
             ]
           },
           "platform": "FACEBOOK"
-        }/*,
+        },
         {
           "text": {
             "text": [
-              "Acá aparecera un video Tutorial"
+              "Acá aparecera un video Tutorial  https://www.youtube.com/watch?v=Hsv6cmDdt5g&ab_channel=ElPa%C3%ADs"
             ]
           },
           "platform": "FACEBOOK"
-        }*/,
+        },
         {
           "payload": {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": "https://storage.googleapis.com/videos_pibot/video-1556059174.mp4"
+                  "url": "https://www.youtube.com/watch?v=Hsv6cmDdt5g&ab_channel=ElPa%C3%ADs"
                 },
                 "type": "video"
               }
