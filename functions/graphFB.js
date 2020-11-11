@@ -6,7 +6,8 @@ const access_token = 'DQVJ1c0hlREl1YlQ5ZA1RocmZAzZAXZAQOVc5LVFjdDFIeTZAlY2ZAia1E
 const graph = new FacebookGraph(access_token)
 
 module.exports = {
-	async graphID(id){		
+	async graphID(id){	
+		console.log(id)
 		const zuck = await graph.get(id+"?fields=name,email");
 		if(zuck==undefined){
 			let error = {name:id,email:id+'@pichincha.com'}
