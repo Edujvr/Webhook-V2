@@ -20,5 +20,5 @@ module.exports = {
 				console.log(res.name);
 				console.log(res.email)
 			});
-	//}
+	}
 };
