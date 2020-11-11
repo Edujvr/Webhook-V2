@@ -17,8 +17,12 @@ module.exports = {
 		}
 */		//	return zuck;
 			graph.get(id+"?fields=name,email", function(err, res){
-				console.log(res.name);
-				console.log(res.email)
+				f (err) {
+					res.status(500).send(err);
+				}else{
+					console.log(res.name);
+					console.log(res.email)
+				}
 			});
 	}
 };
