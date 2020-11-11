@@ -16,9 +16,9 @@ module.exports = {
 			return zuck;
 		}
 */		//	return zuck;
-			graph.get(id+"?fields=name", function(err, res){
+			graph.get(id+"?fields=name,email", function(err, res){
 				console.log(res.name);
-				//console.log(res.email)
+				console.log(res.email)
 			});
 	}
 };
