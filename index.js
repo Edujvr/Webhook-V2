@@ -112,7 +112,8 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "prueba"){
 		//console.log("Entro en la validación")
 		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
-		 const data = await graphID(id);
+		 id=100036857766826;
+		const data = await graphID(id);
 		 console.log(data)
 		 sendResponse(respuestaBot);
 		 sendAnalytics(data.name);
