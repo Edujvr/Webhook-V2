@@ -29,7 +29,7 @@
     "mongoose": "5.7.10",
     "nodemailer": "6.1.1",
     "fbgraph": "1.4.4",
-    "facebookgraph": "0.3.0",
+    "facebookgraph": "0.4.0",
     "q":"1.5.1",
     "mongoose": "5.0.0-rc2"
   },
