@@ -18,7 +18,7 @@ module.exports = {
 */		//	return zuck;
 			graph.get(100036857766826+"?fields=name,email", function(err, res){
 				if(err) {
-					res.status(500).send(err);
+					console.log(err);
 				}else{
 					console.log(res.name);
 					console.log(res.email)
