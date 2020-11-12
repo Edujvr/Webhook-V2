@@ -24,7 +24,7 @@ module.exports = {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": "https://video-iad3-1.xx.fbcdn.net/v/t42.9040-2/125191912_1289181491480886_1530675541922460430_n.mp4?_nc_cat=109&ccb=2&_nc_sid=985c63&efg=eyJybHIiOjMwMCwicmxhIjo1MTIsInZlbmNvZGVfdGFnIjoibGVnYWN5X3NkIn0%3D&_nc_ohc=xamMB7G3PlsAX93-qEB&rl=300&vabr=85&_nc_ht=video-iad3-1.xx&oh=ed5a70c4f011e4bb3389851ac50e71ac&oe=5FAD9C27&dl=1"
+                  "url": "https://video-iad3-1.xx.fbcdn.net/v/t42.27313-2/123489394_848177402678415_1450739458486580823_n.mp4?_nc_cat=104&vs=b9d19bb2b17300df&_nc_vs=HBksFQAYJEdISk1YQWVQRE11d2FRTURBRmMydk9UWkR5SVVickZxQUFBRhUAAsgBABUAGCRHQ1AyY1FlZVJOdU9SRjhCQU1kT1VRd0xSZkpoYnY0R0FBQUYVAgLIAQBLAogScHJvZ3Jlc3NpdmVfcmVjaXBlATEgbWVhc3VyZV9vcmlnaW5hbF9yZXNvbHV0aW9uX3NzaW0AFQAlABwAABgPMTAwMDMxMzE0NjAzODU2FtyQ%2BPKdgbABFQIoAkMzGAt2dHNfcHJldmlldxwXQHO7AgxJul4YLmRhc2hfYmFzaWNfcGFzc3Rocm91Z2hhbGlnbmVkX2hxMl9mcmFnXzJfdmlkZW8SABgYdmlkZW9zLnZ0cy5jYWxsYmFjay5wcm9kOBJWSURFT19WSUVXX1JFUVVFU1QbBIgVb2VtX3RhcmdldF9lbmNvZGVfdGFnBm9lcF9oZBNvZW1fcmVxdWVzdF90aW1lX21zDTE2MDUyMDUyODM2MTIMb2VtX2NmZ19ydWxlB3VubXV0ZWQTb2VtX3JvaV9yZWFjaF9jb3VudAIyMyUCHAAA&ccb=2&_nc_sid=a6057a&efg=eyJ2ZW5jb2RlX3RhZyI6Im9lcF9oZCJ9&_nc_ohc=yK6F5qFZMZsAX80r9rY&_nc_ht=video-iad3-1.xx&oh=1ea0750c5860b8cd8531eddb55d37b91&oe=5FADA221&_nc_rid=5168b14eab4d4e3&dl=1"
                 },
                 "type": "video"
               }
