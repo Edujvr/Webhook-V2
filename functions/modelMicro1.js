@@ -24,7 +24,7 @@ module.exports = {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": "https://storage.googleapis.com/videos_pibot/video-1559584292.mp4"
+                  "url": "https://storage.googleapis.com/videos_pibot/piloto2-final.mp4"
                 },
                 "type": "video"
               }
