@@ -24,7 +24,7 @@ module.exports = {
             "facebook": {
               "attachment": {
                 "payload": {
-                  "url": "https://storage.googleapis.com/videos_pibot/piloto2-final.mp4"
+                  "url": "https://video-iad3-1.xx.fbcdn.net/v/t42.9040-2/125191912_1289181491480886_1530675541922460430_n.mp4?_nc_cat=109&ccb=2&_nc_sid=985c63&efg=eyJybHIiOjMwMCwicmxhIjo1MTIsInZlbmNvZGVfdGFnIjoibGVnYWN5X3NkIn0%3D&_nc_ohc=xamMB7G3PlsAX93-qEB&rl=300&vabr=85&_nc_ht=video-iad3-1.xx&oh=ed5a70c4f011e4bb3389851ac50e71ac&oe=5FAD9C27&dl=1"
                 },
                 "type": "video"
               }
