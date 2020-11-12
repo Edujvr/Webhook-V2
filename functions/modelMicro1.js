@@ -19,7 +19,7 @@ module.exports = {
           },
           "platform": "FACEBOOK"
         },
-        {
+        /*{
           "payload": {
             "facebook": {
               "attachment": {
@@ -31,7 +31,7 @@ module.exports = {
             }
           },
           "platform": "FACEBOOK"
-        }, 
+        }, */
         {
           "payload": {
             "facebook": {
