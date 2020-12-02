@@ -29,6 +29,14 @@ const ColaboradoresSchema = new Schema({
   NOMBRE_CONSULTOR: {
     type: String,
     required:true
+  },
+  USUARIO_MODASA: {
+    type: String,
+    required:true
+  },
+  CLAVE_MODASA: {
+    type: String,
+    required:true
   }
 });
 
