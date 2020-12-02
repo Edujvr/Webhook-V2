@@ -109,7 +109,29 @@ app.post("/webhook",async(req, res) =>{
 				});
 			}
 		});
-	}else if(action == "prueba"){
+	}else if(action == "uniformes"){//Consulta el código único de colaborador
+		if(id==1){
+			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
+			email=usrPortal+'@pichincha.com';
+		}else{
+			const data = await graphID(id);
+			email=data.email;
+		}
+		nameW = await getUserMiPortal(email);
+		var query  = Colaboradores.where({ EMAIL_EMPLEADO: email });//Consulta en la base de datos por correo
+		query.findOne(function (err, colaboradores) {
+			if (err) {
+				res.status(500).send(err);
+			}else if(colaboradores == undefined || colaboradores == '' || colaboradores == []){
+				sendResponse(respuestaBot);
+				sendAnalytics(nameW);
+			}else{
+				respuestaBot = "Ingresa aquí: https://modasa.com.ec \nUsuario:" + colaboradores.USUARIO_MODASA +"\nContraseña:"colaboradores.CLAVE_MODASA
+				sendResponse(respuestaBot);//Envio de respuesta al Colaborador
+				sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
+			}
+		});
+	 }else if(action == "prueba"){
 		//console.log("Entro en la validación")
 		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
 		// id="100036857766826";
