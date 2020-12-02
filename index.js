@@ -126,7 +126,7 @@ app.post("/webhook",async(req, res) =>{
 				sendResponse(respuestaBot);
 				sendAnalytics(nameW);
 			}else{
-				respuestaBot = "Ingresa aquí: https://modasa.com.ec \nUsuario:" + colaboradores.USUARIO_MODASA +"\nContraseña:"colaboradores.CLAVE_MODASA
+				respuestaBot = "Ingresa aquí: https://modasa.com.ec \nUsuario:" + colaboradores.USUARIO_MODASA +"\nContraseña:"+colaboradores.CLAVE_MODASA
 				sendResponse(respuestaBot);//Envio de respuesta al Colaborador
 				sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
 			}
