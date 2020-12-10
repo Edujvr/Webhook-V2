@@ -59,7 +59,7 @@ app.post("/webhook",async(req, res) =>{
   var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
   var EcuTime = (new Date(usaTime)).toISOString();
   //console.log(JSON.stringify(req));
-  console.log(req);
+  console.log(JSON.stringify(req.body));
   console.log("SEGUNDA PARTE");
   console.log(req.body);
   console.log(req.body.originalDetectIntentRequest.payload.data);
