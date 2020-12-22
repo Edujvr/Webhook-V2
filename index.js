@@ -63,6 +63,9 @@ app.post("/webhook",async(req, res) =>{
   console.log("SEGUNDA PARTE");
   console.log(req.body);
   console.log(req.body.originalDetectIntentRequest.payload.data);
+  String accessToken = ((req).getAogRequest().getUser().getAccessToken();
+ console.log(accessToken);
+	
   //console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
   //console.log(req.body.originalDetectIntentRequest.payload.data.sender);
   //console.log(req.body.originalDetectIntentRequest.payload.data.message);
