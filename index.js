@@ -62,10 +62,7 @@ app.post("/webhook",async(req, res) =>{
   console.log(JSON.stringify(req.body));
   console.log("SEGUNDA PARTE");
   console.log(req.body);
-  console.log(req.body.originalDetectIntentRequest.payload.data);
-  //var accessToken = req.getUser().getIdToken();
- console.log(accessToken);
-	
+  console.log(req.body.originalDetectIntentRequest.payload.data);	
   //console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
   //console.log(req.body.originalDetectIntentRequest.payload.data.sender);
   //console.log(req.body.originalDetectIntentRequest.payload.data.message);
