@@ -1096,12 +1096,17 @@ app.post("/webhook",async(req, res) =>{
 			    qs: {access_token: pagetoken},
 			    method: 'POST',
 			    json: messageData
-			  }, function (error, response, body) {
+			  },function(error, response, body) {
 			    if (error) {
 			      console.log('Error sending message: ', error);
-			    } else if (response.body.error) {
-			      console.log('Error: ', response.body.error);
-			    }
+			    } else {
+				console.error(
+				  "Failed calling Send API",
+				  response.statusCode,
+				  response.statusMessage,
+				  body.error
+				);
+			      }
 			  });
 	}
 
