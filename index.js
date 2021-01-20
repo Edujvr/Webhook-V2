@@ -1,5 +1,7 @@
 'use estrict'
 
+const userFB = require("./models/userFB.js")
+
 const Colaboradores = require("./models/Colaboradores");
 const Objetivos = require("./models/Objetivos");
 const Microfinanzas = require("./models/Microfinanzas");
@@ -141,8 +143,16 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		sendTextMessage(recipientId);
-		sendFileMessage(recipientId);
+		var query  = userFB;//Consulta en la base de datos por correo
+		query.find(function (err, users) {
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				console.log(users)
+			}
+		});
+		//sendTextMessage(recipientId);
+		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
 		sendResponse(respuestaBot);
 		sendAnalytics(data.name);
@@ -1089,7 +1099,7 @@ app.post("/webhook",async(req, res) =>{
 				id: recipientId,
 			},
 			message:{
-				text:"Hola Pablo Andres Alessi Aguayo, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: www.campuspichincha.com \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
+				text:"Hola Pablo Andres Alessi Aguayo, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
 			}
 		}
 	    //callSendAPI(messageData);
@@ -1112,7 +1122,7 @@ app.post("/webhook",async(req, res) =>{
 				  body.error
 				);
 				    //console.log(response)
-				    console.log(body)
+				    //console.log(body)
 			      }
 			  });
 	}
@@ -1153,7 +1163,7 @@ app.post("/webhook",async(req, res) =>{
 				  body.error
 				);
 				    //console.log(response)
-				    console.log(body)
+				    //console.log(body)
 			      }
 			  });
 	}
