@@ -1092,8 +1092,8 @@ app.post("/webhook",async(req, res) =>{
 		}
 	    //callSendAPI(messageData);
 		request({
-			    url: 'https://graph.facebook.com/v2.6/'+ pagetoken +'/messages',
-			    qs: {access_token: token_raw},
+			    uri: 'https://graph.facebook.com/v3.2/me/messages',
+			    qs: {access_token: pagetoken},
 			    method: 'POST',
 			    json: messageData
 			  }, function (error, response, body) {
