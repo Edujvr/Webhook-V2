@@ -1081,15 +1081,28 @@ app.post("/webhook",async(req, res) =>{
 	}
 	
 	function sendImageMessage(recipientId){
-	    var messageData = { 
-		  recipient:{
-		    id:'100031314603856'
-		   },
-		  message:{
-		   'text':'Hola EDUARDO JAVIER TANDAZO GAONA'
-		  }
+		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
+		var messageData = {
+			recipient:{
+				id:'100031314603856'
+			},
+			message:{
+				'text':'Hola EDUARDO JAVIER TANDAZO GAONA'
+			}
 		}
-	    callSendAPI(messageData);
+	    //callSendAPI(messageData);
+		request({
+			    url: 'https://graph.facebook.com/v2.6/'+ pagetoken +'/messages',
+			    qs: {access_token: token_raw},
+			    method: 'POST',
+			    json: messageData
+			  }, function (error, response, body) {
+			    if (error) {
+			      console.log('Error sending message: ', error);
+			    } else if (response.body.error) {
+			      console.log('Error: ', response.body.error);
+			    }
+			  });
 	}
 
 	function callSendAPI(messageData) {
