@@ -151,11 +151,10 @@ app.post("/webhook",async(req, res) =>{
 				console.log(users)
 			}
 		});*/
-		userFB.find().toArray().then(docs => console.log("all documents", docs))
-		userFB.find().toArray(function (err, docs) {
-		  if (err) throw err;
-		  console.log("all documents", docs);
-		});
+		//userFB.find().toArray().then(docs => console.log("all documents", docs))
+		userFB.find().toArray(function(err, items) {
+			console.log("all documents", items)
+		      });
 		//sendTextMessage(recipientId);
 		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
