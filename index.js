@@ -1081,12 +1081,41 @@ app.post("/webhook",async(req, res) =>{
 	}
 	
 	function sendImageMessage(recipientId){
+	    var messageData = {
+		{ 
+		  "messaging_type":"UPDATE",
+		  "recipient":{
+		    "id":"100031314603856"
+		},
+		  "message":{
+		   "text":"Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *3 Líneas de Responsabilidad*. Recuerda que tienes hasta el Jueves 28 de enero 2021.        Ingresa aquí: www.campuspichincha.com          Este curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. Si deseas conocer más puedes descargar el siguiente pdf"
+		  }
+		}
+	    }
+	    callSendAPI(messageData);
+	}
+
+	function callSendAPI(messageData) {
+		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
+	    var endpoint = "https://graph.facebook.com/v9.0/me/messages?access_token=" + pagetoken;
+	    var r = request.post(endpoint, function(err, httpResponse, body) {
+		if (err) {return console.error("upload failed >> \n", err)};
+		console.log("upload successfull >> \n", body); //facebook always return 'ok' message, so you need to read error in 'body.error' if any
+	    });
+	    var form = r.form();
+	    form.append('recipient', JSON.stringify(messageData.recipient));
+	    form.append('message', JSON.stringify(messageData.message));
+	    form.append('filedata', messageData.filedata); //no need to stringify!
+	}
+	
+	
+	/*function sendImageMessage(recipientId){
 		var messageData = new FormData();
 		var texto = 'Hola EDUARDO JAVIER TANDAZO GAONA'
 		messageData.append('messaging_type','UPDATE'),
 		messageData.append('recipient', '{id:100031314603856}');
 		messageData.append('message', '{text:' +texto+ '}');
-	 console.log(messageData.getHeaders())
+	 	//console.log(messageData.getHeaders())
 		callSendAPI(messageData);
 	}
 	
@@ -1106,7 +1135,7 @@ app.post("/webhook",async(req, res) =>{
 	    return;
 	  });
 	  request.on('response', function(res) {
-		  console.log(res);
+		//  console.log(res);
 	    if (res.statusMessage == "OK") {
 	      console.log("Successfully sent message to recipient %s", recipientId);
 	    } else {
@@ -1116,7 +1145,8 @@ app.post("/webhook",async(req, res) =>{
 	    return;
 	  }); 
 	}
-		
+	*/
+	
 	async function sendAnalytics (nameUser) {
 	//console.log(req.body.queryResult.fulfillmentMessages);
 	//Creción del Objeto Json para almacenar en Mongo Atlas
