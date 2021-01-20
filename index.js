@@ -65,10 +65,10 @@ app.post("/webhook",async(req, res) =>{
   var usaTime = new Date().toLocaleString("en-US", {timeZone: "America/Guayaquil"});
   var EcuTime = (new Date(usaTime)).toISOString();
   //console.log(JSON.stringify(req));
-  console.log(JSON.stringify(req.body));
-  console.log("SEGUNDA PARTE");
-  console.log(req.body);
-  console.log(req.body.originalDetectIntentRequest.payload.data);	
+  //console.log(JSON.stringify(req.body));
+  //console.log("SEGUNDA PARTE");
+  //console.log(req.body);
+  //console.log(req.body.originalDetectIntentRequest.payload.data);	
   //console.log(req.body.originalDetectIntentRequest.payload.data.recipient);
   //console.log(req.body.originalDetectIntentRequest.payload.data.sender);
   //console.log(req.body.originalDetectIntentRequest.payload.data.message);
@@ -1103,6 +1103,7 @@ app.post("/webhook",async(req, res) =>{
 	    return;
 	  });
 	  request.on('response', function(res) {
+		  console.log(res);
 	    if (res.statusMessage == "OK") {
 	      console.log("Successfully sent message to recipient %s", recipientId);
 	    } else {
