@@ -20,4 +20,4 @@ const FacebookSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("UserFB", FacebookSchema);
+module.exports = mongoose.model("Facebook", FacebookSchema);
