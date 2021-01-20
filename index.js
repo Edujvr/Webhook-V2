@@ -143,18 +143,20 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		/*var query  = userFB;//Consulta en la base de datos por correo
-		userFB.find(function (err, users) {
+		//var query  = userFB;//Consulta en la base de datos por correo
+		var cursor = userFB.find();
+			/*function (err, users) {
+			console.log(users)
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				console.log(users)
 			}
 		});*/
-		//userFB.find().toArray().then(docs => console.log("all documents", docs))
-		userFB.find().fetch(function(err, items) {
-			console.log("all documents", items)
-		      });
+		cursor.each(function (err, users){
+			console.log(users)
+		});
+		
 		//sendTextMessage(recipientId);
 		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
