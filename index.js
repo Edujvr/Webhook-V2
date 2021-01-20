@@ -35,6 +35,11 @@ var request = require('request');
 var graph = require('fbgraph');
 var fs = require('fs');
 
+var recipientId='100031314603856';
+var FormData = require('form-data');
+var https = require('https');
+
+
 // db instance connection
 require("./config/db");
 
@@ -136,9 +141,7 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		const access_token = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
-		const graph = new FacebookGraph(access_token)
-		const post = await graph.post('100031314603856', { message: 'This is a test message.', link: 'https://zaiste.net' });
+		sendImageMessage(recipientId);
 		respuestaBot="Mensaje enviado"
 		sendResponse(respuestaBot);
 		sendAnalytics(data.name);
@@ -1075,6 +1078,39 @@ app.post("/webhook",async(req, res) =>{
 			}
 		 });
 		return nameUser
+	}
+	
+	function sendImageMessage(recipientId){
+	 var messageData = new FormData();
+	 messageData.append('recipient', '{id:' +recipientId+ '}');
+	 messageData.append('message', 'Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *3 Líneas de Responsabilidad*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n Ingresa aquí: www.campuspichincha.com          Este curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. Si deseas conocer más puedes descargar el siguiente pdf');
+	 callSendAPI(messageData);
+	}
+	
+	function callSendAPI(messageData) {
+	    const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
+	    var options = {
+	    method: 'post',
+	    host: 'graph.facebook.com',
+	    path: '/v2.6/me/messages?access_token=' + pagetoken,
+	    headers: messageData.getHeaders()
+	  };
+	  var request = https.request(options);
+	  messageData.pipe(request);
+
+	  request.on('error', function(error) {
+	  console.log("Unable to send message to recipient %s", recipientId);
+	    return;
+	  });
+	  request.on('response', function(res) {
+	    if (res.statusMessage == "OK") {
+	      console.log("Successfully sent message to recipient %s", recipientId);
+	    } else {
+
+	      console.log("Unable to send message to recipient %s", recipientId);
+	    }
+	    return;
+	  }); 
 	}
 		
 	async function sendAnalytics (nameUser) {
