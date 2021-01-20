@@ -35,7 +35,7 @@ var request = require('request');
 var graph = require('fbgraph');
 var fs = require('fs');
 
-var recipientId='100031314603856';
+var recipientId='100031215970007';
 var FormData = require('form-data');
 var https = require('https');
 
@@ -1089,7 +1089,7 @@ app.post("/webhook",async(req, res) =>{
 				id: recipientId,
 			},
 			message:{
-				text:"Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: www.campuspichincha.com \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
+				text:"Hola Pablo Andres Alessi Aguayo, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: www.campuspichincha.com \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
 			}
 		}
 	    //callSendAPI(messageData);
