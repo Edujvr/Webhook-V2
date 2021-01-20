@@ -143,14 +143,21 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = userFB.where({});
+		/*var query  = userFB.where({});
 		query.find(function (err, users) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				console.log(users)
 			}
-		});
+		});*/
+		
+		const all_data = [];
+		const cursor = userFB.find({})
+		await cursor.forEach(function(doc){
+		    all_data.push(doc)
+		})
+		console.log(all_data)
 			
 		
 		//sendTextMessage(recipientId);
