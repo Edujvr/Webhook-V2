@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const faceSchema = new Schema({
+const UserFB = new Schema({
   NOMBRE:{
         type: String,
         required:true
@@ -20,4 +20,4 @@ const faceSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("userFB", faceSchema);
+module.exports = mongoose.model("UserFB", faceSchema);
