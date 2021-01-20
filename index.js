@@ -143,7 +143,7 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = Facebooks.where({ CONFIR : "SI"});
+		var query  = Facebooks.where({ EMAIL : "etandazo@pichincha.com"});
 		let conteo = 0;
 		query.find(function (err, facebook){
 			//console.log(facebook)
