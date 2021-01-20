@@ -144,16 +144,20 @@ app.post("/webhook",async(req, res) =>{
 	}else if(action == "broadcasting"){
 		var query  = Facebooks.where({ CONFIR : "SI"});
 		query.find(function (err, facebook){
-			console.log(facebook)
+			//console.log(facebook)
 			if (err) {
 				res.status(500).send(err);
 			}else{
+				for(var i=0; i < facebook.length; i++){
+					console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
+					console.log(facebook[i].IDEN);
+				}
 				//console.log(users)
 			}
 		});
 			
 		
-		//sendTextMessage(recipientId);
+		//sendTextMessage(recipientId,msg);
 		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
 		sendResponse(respuestaBot);
@@ -1093,7 +1097,7 @@ app.post("/webhook",async(req, res) =>{
 		return nameUser
 	}
 	
-	function sendTextMessage(recipientId){
+	function sendTextMessage(recipientId,msg){
 		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
 		var messageData = {
 			messaging_type:'UPDATE',
@@ -1101,7 +1105,8 @@ app.post("/webhook",async(req, res) =>{
 				id: recipientId,
 			},
 			message:{
-				text:"Hola Pablo Andres Alessi Aguayo, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
+				//text:"Hola Pablo Andres Alessi Aguayo, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
+				text: msg
 			}
 		}
 	    //callSendAPI(messageData);
