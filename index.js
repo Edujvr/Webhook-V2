@@ -141,7 +141,8 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		sendImageMessage(recipientId);
+		sendTextMessage(recipientId);
+		sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
 		sendResponse(respuestaBot);
 		sendAnalytics(data.name);
@@ -1080,14 +1081,15 @@ app.post("/webhook",async(req, res) =>{
 		return nameUser
 	}
 	
-	function sendImageMessage(recipientId){
+	function sendTextMessage(recipientId){
 		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
 		var messageData = {
+			messaging_type:'UPDATE',
 			recipient:{
-				id:"100031314603856"
+				id: recipientId,
 			},
 			message:{
-				text:"Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: www.campuspichincha.com \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+				text:"Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: www.campuspichincha.com \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
 			}
 		}
 	    //callSendAPI(messageData);
@@ -1115,6 +1117,46 @@ app.post("/webhook",async(req, res) =>{
 			  });
 	}
 
+	function sendFileMessage(recipientId){
+		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
+		var messageData = {
+			messaging_type:'UPDATE',
+			recipient:{
+				id: recipientId,
+			},
+			message:{ 
+			   attachment: {
+			      type: 'file',
+			      payload: {
+				url: "https://storage.googleapis.com/documentos_pibot/3%20lineas%20R.pdf"
+			      }
+			    }
+			  }
+		}
+	    //callSendAPI(messageData);
+		request(
+			{
+			url: "https://graph.facebook.com/v9.0/me/messages",
+			qs: {
+				access_token: pagetoken
+			},
+			method: "POST",
+			json : messageData
+			  },function(error, response, body) {
+			    if (error) {
+			      console.log('Error sending message: ', error);
+			    } else {
+				console.error(
+				  "Failed calling Send API",
+				  response.statusCode,
+				  response.statusMessage,
+				  body.error
+				);
+				    //console.log(response)
+				    console.log(body)
+			      }
+			  });
+	}
 	
 	
 	async function sendAnalytics (nameUser) {
