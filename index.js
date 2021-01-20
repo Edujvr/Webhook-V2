@@ -1,6 +1,6 @@
 'use estrict'
 
-const userFB = require("./models/userFB");
+const UserFB = require("./models/UserFB");
 const Colaboradores = require("./models/Colaboradores");
 const Objetivos = require("./models/Objetivos");
 const Microfinanzas = require("./models/Microfinanzas");
