@@ -1083,7 +1083,7 @@ app.post("/webhook",async(req, res) =>{
 	function sendImageMessage(recipientId){
 	 var messageData = new FormData();
 	 messageData.append('recipient', '{id:' +recipientId+ '}');
-	 messageData.append('message', 'Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *3 Líneas de Responsabilidad*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n Ingresa aquí: www.campuspichincha.com          Este curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. Si deseas conocer más puedes descargar el siguiente pdf');
+	 messageData.append('message', '{text:Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *3 Líneas de Responsabilidad*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n Ingresa aquí: www.campuspichincha.com          Este curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. Si deseas conocer más puedes descargar el siguiente pdf}');
 	 callSendAPI(messageData);
 	}
 	
@@ -1092,7 +1092,7 @@ app.post("/webhook",async(req, res) =>{
 	    var options = {
 	    method: 'post',
 	    host: 'graph.facebook.com',
-	    path: '/v2.6/me/messages?access_token=' + pagetoken,
+	    path: '/v9.0/me/messages?access_token=' + pagetoken,
 	    headers: messageData.getHeaders()
 	  };
 	  var request = https.request(options);
