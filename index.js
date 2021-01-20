@@ -143,11 +143,14 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		//var query  = userFB;//Consulta en la base de datos por correo
-		var cursor = userFB.find({}).toArray(function(err, result) {
-		    if (err) throw err;
-		    console.log(result);
-		  });
+		var query  = userFB.where({});
+		query.find(function (err, users) {
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				console.log(users)
+			}
+		});
 			
 		
 		//sendTextMessage(recipientId);
