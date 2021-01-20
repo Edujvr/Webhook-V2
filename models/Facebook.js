@@ -6,11 +6,11 @@ const FacebookSchema = new Schema({
         type: String,
         required:true
   },
-  MAIL:{
+  EMAIL:{
     type: String,
     required:true
   },
-  ID:{
+  IDEN:{
     type: String,
     required:true
   },
