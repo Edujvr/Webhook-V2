@@ -155,7 +155,7 @@ app.post("/webhook",async(req, res) =>{
 		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
 		sendResponse(respuestaBot);
-		sendAnalytics(data.name);
+		//sendAnalytics(data.name);
 	}else if(action == "prueba"){
 		//console.log("Entro en la validación")
 		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
