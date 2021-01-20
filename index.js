@@ -152,7 +152,7 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});*/
 		//userFB.find().toArray().then(docs => console.log("all documents", docs))
-		userFB.find().toArray(function(err, items) {
+		userFB.find().fetch(function(err, items) {
 			console.log("all documents", items)
 		      });
 		//sendTextMessage(recipientId);
