@@ -142,9 +142,8 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = Facebooks.where({ EMAIL : "vandrang@pichincha.com"});
-		console.log(query)
-		query.findOne(function (err, facebook){
+		var query  = Facebooks.where({ CONFIR : "SI"});
+		query.find(function (err, facebook){
 			console.log(facebook)
 			if (err) {
 				res.status(500).send(err);
