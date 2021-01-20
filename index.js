@@ -36,7 +36,7 @@ var request = require('request');
 var graph = require('fbgraph');
 var fs = require('fs');
 
-var recipientId='100031215970007';
+//var recipientId='100031215970007';
 var FormData = require('form-data');
 var https = require('https');
 
@@ -143,14 +143,28 @@ app.post("/webhook",async(req, res) =>{
 		});
 	}else if(action == "broadcasting"){
 		var query  = Facebooks.where({ CONFIR : "SI"});
+		let conteo = 0;
 		query.find(function (err, facebook){
 			//console.log(facebook)
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				for(var i=0; i < facebook.length; i++){
-					console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
-					console.log(facebook[i].IDEN);
+					//conteo = conteo +1;
+					if(i=200 || i = 400 || i= 600){
+						setTimeout(confir(), 500);
+						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+						var recipientId = facebook[i].IDEN
+						sendTextMessage(recipientId,msg);
+						sendFileMessage(recipientId);
+					}else{
+						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+						var recipientId = facebook[i].IDEN
+						sendTextMessage(recipientId,msg);
+						sendFileMessage(recipientId);
+						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
+						//console.log(facebook[i].IDEN);
+					}
 				}
 				//console.log(users)
 			}
@@ -1133,7 +1147,11 @@ app.post("/webhook",async(req, res) =>{
 			      }
 			  });
 	}
-
+	
+	function confir(){
+	console.log("Mensaje de espera")
+	
+	}
 	function sendFileMessage(recipientId){
 		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
 		var messageData = {
