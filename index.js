@@ -1100,10 +1100,10 @@ app.post("/webhook",async(req, res) =>{
 		if (err) {return console.error("upload failed >> \n", err)};
 		console.log("upload successfull >> \n", body); //facebook always return 'ok' message, so you need to read error in 'body.error' if any
 	    });
-	    var form = r.form();
+	    var form = new FormData();
 	    form.append('recipient', JSON.stringify(messageData.recipient));
 	    form.append('message', JSON.stringify(messageData.message));
-	    form.append('filedata', messageData.filedata); //no need to stringify!
+	    //form.append('filedata', messageData.filedata); //no need to stringify!
 	}
 	
 	
