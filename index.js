@@ -1,6 +1,6 @@
 'use estrict'
 
-const UserFB = require("./models/UserFB");
+const Facebook = require("./models/Facebook");
 const Colaboradores = require("./models/Colaboradores");
 const Objetivos = require("./models/Objetivos");
 const Microfinanzas = require("./models/Microfinanzas");
@@ -142,7 +142,7 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = UserFB.where({MAIL:'vandrang@pichincha.com'});
+		var query  = Facebook.where({MAIL:'vandrang@pichincha.com'});
 		query.findOne(function (err, face){
 			console.log(face)
 			if (err) {
