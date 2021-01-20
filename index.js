@@ -152,6 +152,10 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});*/
 		userFB.find().toArray().then(docs => console.log("all documents", docs))
+		userFB.find().toArray(function (err, docs) {
+		  if (err) throw err;
+		  console.log("all documents", docs);
+		});
 		//sendTextMessage(recipientId);
 		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
