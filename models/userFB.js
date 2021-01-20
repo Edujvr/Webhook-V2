@@ -6,7 +6,7 @@ const userFBSchema = new Schema({
         type: String,
         required:true
   },
-  MAIL{
+  MAIL:{
     type: String,
     required:true
   },
