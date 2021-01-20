@@ -1083,6 +1083,7 @@ app.post("/webhook",async(req, res) =>{
 	function sendImageMessage(recipientId){
 		var messageData = new FormData();
 		var texto = 'Hola EDUARDO JAVIER TANDAZO GAONA'
+		messageData.append('messaging_type','UPDATE'),
 		messageData.append('recipient', '{id:100031314603856}');
 		messageData.append('message', '{text:' +texto+ '}');
 	 console.log(messageData.getHeaders())
