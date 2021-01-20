@@ -13,6 +13,10 @@ const userFBSchema = new Schema({
   ID: {
     type: String,
     required:true
+  },
+  CONFIR: {
+    type: String,
+    required:true
   }
 });
 
