@@ -1083,6 +1083,7 @@ app.post("/webhook",async(req, res) =>{
 	function sendImageMessage(recipientId){
 		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
 		var messageData = {
+			messaging_type:'UPDATE',
 			recipient:{
 				id:'100031314603856',
 			},
@@ -1091,8 +1092,9 @@ app.post("/webhook",async(req, res) =>{
 			}
 		}
 	    //callSendAPI(messageData);
-		request({
-			    uri: 'https://graph.facebook.com/v3.2/me/messages',
+		request(
+			{
+			uri: 'https://graph.facebook.com/v3.2/me/messages',
 			    qs: {access_token: pagetoken},
 			    method: 'POST',
 			    json: messageData
@@ -1106,6 +1108,8 @@ app.post("/webhook",async(req, res) =>{
 				  response.statusMessage,
 				  body.error
 				);
+				    console.log(response)
+				    console.log(body)
 			      }
 			  });
 	}
