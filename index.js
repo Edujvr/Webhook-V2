@@ -1083,21 +1083,20 @@ app.post("/webhook",async(req, res) =>{
 	function sendImageMessage(recipientId){
 		var messageData = new FormData();
 		var texto = 'Hola EDUARDO JAVIER TANDAZO GAONA'
-		messageData.append('recipient', '{id:' +recipientId+ '}');
+		messageData.append('recipient', '{id:100031314603856}');
 		messageData.append('message', '{text:' +texto+ '}');
-	 //console.log(messageData)
 	 console.log(messageData.getHeaders())
 		callSendAPI(messageData);
 	}
 	
 	function callSendAPI(messageData) {
-	    const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
-	    var options = {
-	    method: 'post',
-	    host: 'graph.facebook.com',
-	    path: '/v9.0/me/messages?access_token=' + pagetoken,
-	    headers: messageData.getHeaders()
-	  };
+		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
+		var options = {
+			method: 'post',
+			host: 'graph.facebook.com',
+			path: '/v9.0/me/messages?access_token=' + pagetoken,
+			headers: messageData.getHeaders()
+		};
 	  var request = https.request(options);
 	  messageData.pipe(request);
 
