@@ -23,6 +23,7 @@ const {modMicroF} = require("./functions/modelMicroF");
 const {modMicroParche} = require("./functions/modelMicroParche");
 const {modResEstra} = require("./functions/modelResEstra");
 const {graphID} = require("./functions/graphFB");
+const FacebookGraph = require('facebookgraph');
 const bodyParser = require("body-parser");
 const express = require('express');
 const app = express();
@@ -134,7 +135,14 @@ app.post("/webhook",async(req, res) =>{
 				sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
 			}
 		});
-	 }else if(action == "prueba"){
+	}else if(action == "broadcasting"){
+		const access_token = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
+		const graph = new FacebookGraph(access_token)
+		const post = await graph.post('100031314603856', { message: 'This is a test message.', link: 'https://zaiste.net' });
+		respuestaBot="Mensaje enviado"
+		sendResponse(respuestaBot);
+		sendAnalytics(data.name);
+	}else if(action == "prueba"){
 		//console.log("Entro en la validación")
 		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
 		// id="100036857766826";
