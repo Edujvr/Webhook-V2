@@ -17,6 +17,7 @@
   "author": "Eduardo Tandazo",
   "license": "ISC",
   "dependencies": {
+    "sleep":"6.3.0",
     "@google/chatbase": "1.0.0",
     "body-parser": "1.18.2",
     "express": "^3.11.0",
