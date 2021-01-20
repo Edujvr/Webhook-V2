@@ -1084,7 +1084,9 @@ app.post("/webhook",async(req, res) =>{
 	 var messageData = new FormData();
 	 messageData.append('recipient', '{id:' +recipientId+ '}');
 	 messageData.append('message', '{text:Hola EDUARDO JAVIER TANDAZO GAONA, no has realizado el Curso virtual *3 Líneas de Responsabilidad*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n Ingresa aquí: www.campuspichincha.com          Este curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. Si deseas conocer más puedes descargar el siguiente pdf}');
-	 callSendAPI(messageData);
+	 console.log(messageData)
+	 console.log(messageData.getHeaders())
+		//callSendAPI(messageData);
 	}
 	
 	function callSendAPI(messageData) {
