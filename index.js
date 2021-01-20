@@ -1079,7 +1079,7 @@ app.post("/webhook",async(req, res) =>{
 		 });
 		return nameUser
 	}
-	
+	/*
 	function sendImageMessage(recipientId){
 	 var messageData = new FormData();
 	 messageData.append('recipient', '{id:' +recipientId+ '}');
@@ -1114,6 +1114,33 @@ app.post("/webhook",async(req, res) =>{
 	    }
 	    return;
 	  }); 
+	}*/
+	
+	function sendImageMessage(recipientId){
+	    var messageData = {
+		recipient : {
+		    id : recipientId
+		},
+		message : {
+		    attachment : {
+			type : "file",
+			payload :{"url":"https://storage.googleapis.com/documentos_pibot/3%20lineas%20R.pdf"}
+		    }
+		}
+	    }
+	    callSendAPI(messageData);
+	}
+
+	function callSendAPI(messageData) {
+	    var endpoint = "https://graph.facebook.com/v9.0/me/messages?access_token=" + process.env.PAGE_ACCESS_TOKEN;
+	    var r = request.post(endpoint, function(err, httpResponse, body) {
+		if (err) {return console.error("upload failed >> \n", err)};
+		console.log("upload successfull >> \n", body); //facebook always return 'ok' message, so you need to read error in 'body.error' if any
+	    });
+	    var form = r.form();
+	    form.append('recipient', JSON.stringify(messageData.recipient));
+	    form.append('message', JSON.stringify(messageData.message));
+	    //form.append('filedata', messageData.filedata); //no need to stringify!
 	}
 		
 	async function sendAnalytics (nameUser) {
