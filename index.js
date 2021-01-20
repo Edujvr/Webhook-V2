@@ -143,14 +143,15 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = userFB;//Consulta en la base de datos por correo
-		query.find(function (err, users) {
+		/*var query  = userFB;//Consulta en la base de datos por correo
+		userFB.find(function (err, users) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				console.log(users)
 			}
-		});
+		});*/
+		userFB.find().toArray().then(docs => console.log("all documents", docs))
 		//sendTextMessage(recipientId);
 		//sendFileMessage(recipientId);
 		respuestaBot="Mensaje enviado"
