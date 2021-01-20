@@ -142,7 +142,7 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = userFB.where({MAIL:'vandrang@pichincha.com'});
+		var query  = UserFB.where({MAIL:'vandrang@pichincha.com'});
 		query.findOne(function (err, face){
 			console.log(face)
 			if (err) {
