@@ -152,21 +152,21 @@ app.post("/webhook",async(req, res) =>{
 			}else{
 				for(var i=0; i < facebook.length; i++){
 					//conteo = conteo +1;
-					if(i==200 || i == 400 || i== 600|| i== 800|| i== 1000|| i== 1200|| i== 1400|| i== 1600|| i== 1800|| i== 2000|| i== 2200|| i== 2400){
+					if(i==200 || i == 400 || i== 600|| i== 800|| i== 1000|| i== 1200|| i== 1400|| i== 1600|| i== 1800|| i== 2000|| i== 2200|| i== 2400|| i== 100|| i== 300|| i== 500|| i== 700|| i== 900|| i== 1100|| i== 1300|| i== 1500|| i== 1700|| i== 1900|| i== 2100|| i== 2300){
 						//Thread.sleep(2*1000)
 						sleep.sleep(2)
 						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 						var recipientId = facebook[i].IDEN
-						console.log(facebook[i].IDEN)
+						//console.log(facebook[i].IDEN)
 						//setTimeout(confir,5000);
-						//sendTextMessage(recipientId,msg);
-						//sendFileMessage(recipientId);
+						sendTextMessage(recipientId,msg);
+						sendFileMessage(recipientId);
 					}else{
 						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 						var recipientId = facebook[i].IDEN
-						console.log(facebook[i].IDEN)
-						//sendTextMessage(recipientId,msg);
-						//sendFileMessage(recipientId);
+						//console.log(facebook[i].IDEN)
+						sendTextMessage(recipientId,msg);
+						sendFileMessage(recipientId);
 						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
 						//console.log(facebook[i].IDEN);
 					}
