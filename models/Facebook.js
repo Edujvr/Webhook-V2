@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const FaceboosksSchema = new Schema({
+const FacebooksSchema = new Schema({
   NOMBRE:{
         type: String,
         required:true
