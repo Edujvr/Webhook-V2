@@ -143,9 +143,9 @@ app.post("/webhook",async(req, res) =>{
 			}
 		});
 	}else if(action == "broadcasting"){
-		var query  = userFB.where({EMAIL:'vandrang@pichincha.com'});
-		query.find(function (err, userFB) {
-			console.log(userFB)
+		var query  = userFB.where({MAIL:'vandrang@pichincha.com'});
+		query.findOne(function (err, userfb) {
+			console.log(userfb)
 			if (err) {
 				res.status(500).send(err);
 			}else{
