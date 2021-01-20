@@ -1,6 +1,6 @@
 'use estrict'
 
-const userFB = require("./models/userFB.js")
+const faceUser = require("./models/userFB")
 
 const Colaboradores = require("./models/Colaboradores");
 const Objetivos = require("./models/Objetivos");
