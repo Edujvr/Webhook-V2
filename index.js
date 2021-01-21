@@ -173,7 +173,7 @@ app.post("/webhook",async(req, res) =>{
 						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
 						//console.log(facebook[i].IDEN);
 				//	}
-				//}
+				}
 				//console.log(users)
 			}
 		});
