@@ -88,7 +88,48 @@ app.post("/webhook",async(req, res) =>{
 	}
 		
 	//Consulta nombre de Generalista en Mongo Atlas 
-	if(action == 'query'){
+	if(action == "broadcasting"){
+		var query  = Facebooks.where({ CONFIR : "SI"});
+		let conteo = 0;
+		query.find(function (err, facebook){
+			//console.log(facebook)
+			if (err) {
+				res.status(500).send(err);
+			}else{
+				for(var i=100; i < 150; i++){
+					//conteo = conteo +1;
+					/*if(i==50 || i == 100 || i== 150|| i== 200|| i== 250|| i== 300|| i== 350|| i== 400|| i== 450|| i== 500|| i== 550|| i== 600|| i== 650|| i== 700|| i== 500|| i== 700|| i== 750|| i== 800|| i== 850|| i== 900|| i== 950|| i== 1000|| i== 1050|| i== 1100|| i== 1150|| i== 1200|| i== 1250|| i== 1300|| i== 1350|| i== 1400|| i== 1450|| i== 1500|| i== 1550|| i== 1600|| i== 1650|| i== 1700|| i== 1750|| i== 1800|| i== 1850|| i== 1900|| i== 1950|| i== 2000|| i== 2050|| i== 2100|| i== 2150){
+						//Thread.sleep(2*1000)
+						sleep.sleep(2);
+						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+						var recipientId = facebook[i].IDEN
+						//console.log(facebook[i].IDEN)
+						//setTimeout(confir,5000);
+						sendTextMessage(recipientId,msg);
+						sleep.sleep(1)
+						sendFileMessage(recipientId);
+					}else{*/
+						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+						var recipientId = facebook[i].IDEN
+						sendTextMessage(recipientId,msg);
+						sleep.sleep(1)
+						sendFileMessage(recipientId);
+						console.log("Mensaje "+i+ " enviado a " + facebook[i].NOMBRE);
+						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
+						//console.log(facebook[i].IDEN);
+				//	}
+				}
+				//console.log(users)
+			}
+		});
+			
+		
+		//sendTextMessage(recipientId,msg);
+		//sendFileMessage(recipientId);
+		respuestaBot="Mensaje enviado"
+		sendResponse(respuestaBot);
+		//sendAnalytics(data.name);
+	}else if(action == 'query'){
 		if(id==1){
 			var usrPortal=req.body.originalDetectIntentRequest.payload.user;
 			email=usrPortal+'@pichincha.com';	
@@ -142,47 +183,6 @@ app.post("/webhook",async(req, res) =>{
 				sendAnalytics(nameW);//Envio de la interacción a la BD Históricos
 			}
 		});
-	}else if(action == "broadcasting"){
-		var query  = Facebooks.where({ CONFIR : "SI"});
-		let conteo = 0;
-		query.find(function (err, facebook){
-			//console.log(facebook)
-			if (err) {
-				res.status(500).send(err);
-			}else{
-				for(var i=50; i < 100; i++){
-					//conteo = conteo +1;
-					/*if(i==50 || i == 100 || i== 150|| i== 200|| i== 250|| i== 300|| i== 350|| i== 400|| i== 450|| i== 500|| i== 550|| i== 600|| i== 650|| i== 700|| i== 500|| i== 700|| i== 750|| i== 800|| i== 850|| i== 900|| i== 950|| i== 1000|| i== 1050|| i== 1100|| i== 1150|| i== 1200|| i== 1250|| i== 1300|| i== 1350|| i== 1400|| i== 1450|| i== 1500|| i== 1550|| i== 1600|| i== 1650|| i== 1700|| i== 1750|| i== 1800|| i== 1850|| i== 1900|| i== 1950|| i== 2000|| i== 2050|| i== 2100|| i== 2150){
-						//Thread.sleep(2*1000)
-						sleep.sleep(2);
-						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
-						var recipientId = facebook[i].IDEN
-						//console.log(facebook[i].IDEN)
-						//setTimeout(confir,5000);
-						sendTextMessage(recipientId,msg);
-						sleep.sleep(1)
-						sendFileMessage(recipientId);
-					}else{*/
-						var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
-						var recipientId = facebook[i].IDEN
-						sendTextMessage(recipientId,msg);
-						sleep.sleep(1)
-						sendFileMessage(recipientId);
-						console.log("Mensaje "+i+ " enviado a " + facebook[i].NOMBRE);
-						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
-						//console.log(facebook[i].IDEN);
-				//	}
-				}
-				//console.log(users)
-			}
-		});
-			
-		
-		//sendTextMessage(recipientId,msg);
-		//sendFileMessage(recipientId);
-		respuestaBot="Mensaje enviado"
-		sendResponse(respuestaBot);
-		//sendAnalytics(data.name);
 	}else if(action == "prueba"){
 		//console.log("Entro en la validación")
 		//console.log(req.body.originalDetectIntentRequest.payload.data.sende.id)
