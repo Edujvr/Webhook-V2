@@ -14,6 +14,10 @@ const FacebooksSchema = new Schema({
     type: String,
     required:true
   },
+  NOTA:{
+    type: String,
+    required:true
+  },
   CONFIR:{
     type: String,
     required:true
