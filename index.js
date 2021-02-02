@@ -1143,7 +1143,7 @@ app.post("/webhook",async(req, res) =>{
 					var recipientId = body.recipient_id;
 					var messageId = body.message_id
 					if (messageId) {
-						console.log('Mensaje enviado a: %S con código: %s y estatus: %s',recipientId, response.statusCode,response.statusMessage);
+						console.log('Mensaje enviado a: %s con código: %s y estatus: %s',recipientId, response.statusCode,response.statusMessage);
 					} else {
 						console.log('llamado exitosamente %s',recipientId)
 					}
