@@ -1128,34 +1128,28 @@ app.post("/webhook",async(req, res) =>{
 				id: recipientId,
 			},
 			message:{
-				//text:"Hola Pablo Andres Alessi Aguayo, no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf",
 				text: msg
 			}
 		}
-	    //callSendAPI(messageData);
-		request(
-			{
+		request({
 			url: "https://graph.facebook.com/v9.0/me/messages",
 			qs: {
 				access_token: pagetoken
 			},
 			method: "POST",
 			json : messageData
-			  },function(error, response, body) {
-				console.log(response)
-				    console.log(body)  
-			    if (error) {
-			      console.log('Error sending message: ', error);
-			    } else {
-				console.error(
-				  "Failed calling Send API",
-				  response.statusCode,
-				  response.statusMessage,
-				  body.error
-				);
-				    //console.log(response)
-				    //console.log(body)
-			      }
+			},function(error, response, body) {
+				if(!error && response.statusCode == 200){
+					var recipientId = body.recipient_id;
+					var messageId = body.message_id
+					if (messageId) {
+						console.log('Mensaje enviado a: %S con código: %s y estatus: %s',recipientId, response.statusCode,response.statusMessage);
+					} else {
+						console.log('llamado exitosamente %s',recipientId)
+					}
+				}else{
+					console.error('Fallo el envió', body.error)
+				}
 			  });
 	}
 	
