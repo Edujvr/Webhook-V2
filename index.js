@@ -1142,6 +1142,8 @@ app.post("/webhook",async(req, res) =>{
 			method: "POST",
 			json : messageData
 			  },function(error, response, body) {
+				console.log(response)
+				    console.log(body)  
 			    if (error) {
 			      console.log('Error sending message: ', error);
 			    } else {
