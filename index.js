@@ -110,12 +110,14 @@ app.post("/webhook",async(req, res) =>{
 						sleep.sleep(1)
 						sendFileMessage(recipientId);
 					}else{*/
-					var msg = "Felicitaciones has completado el curso '3 Líneas de Responsabilidad'. La nota con la que aprobaste el curso es '" +facebook[i].NOTA+ "'"	
+					//var msg = "Felicitaciones has completado el curso '3 Líneas de Responsabilidad'. La nota con la que aprobaste el curso es '" +facebook[i].NOTA+ "'"	
 					//var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta hoy último día. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
-						var recipientId = facebook[i].IDEN
+					var msg = "Hola "+facebook[i].NOMBRE+", nos hiciste falta, entendemos que fue difícil gestionar el curso virtual de 3 Líneas de Responsabilidad por esto hemos extendido el plazo para la aprobación. Recuerda que tienes hasta el Lunes 15 de marzo de 2021 - 23:59 pm, \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+					//var recipientId = facebook[i].IDEN
+					var recipientId = '100031314603856'
 						sendTextMessage(recipientId,msg);
 						sleep.sleep(1)
-						//sendFileMessage(recipientId);
+						sendFileMessage(recipientId);
 						console.log("Mensaje "+i+ " enviado a " + facebook[i].NOMBRE);
 						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
 						//console.log(facebook[i].IDEN);
