@@ -97,7 +97,7 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				for(var i=0; i < 2; i++){
+				for(var i=0; i < 1; i++){
 					//conteo = conteo +1;
 					/*if(i==50 || i == 100 || i== 150|| i== 200|| i== 250|| i== 300|| i== 350|| i== 400|| i== 450|| i== 500|| i== 550|| i== 600|| i== 650|| i== 700|| i== 500|| i== 700|| i== 750|| i== 800|| i== 850|| i== 900|| i== 950|| i== 1000|| i== 1050|| i== 1100|| i== 1150|| i== 1200|| i== 1250|| i== 1300|| i== 1350|| i== 1400|| i== 1450|| i== 1500|| i== 1550|| i== 1600|| i== 1650|| i== 1700|| i== 1750|| i== 1800|| i== 1850|| i== 1900|| i== 1950|| i== 2000|| i== 2050|| i== 2100|| i== 2150){
 						//Thread.sleep(2*1000)
@@ -112,7 +112,7 @@ app.post("/webhook",async(req, res) =>{
 					}else{*/
 					//var msg = "Felicitaciones has completado el curso '3 Líneas de Responsabilidad'. La nota con la que aprobaste el curso es '" +facebook[i].NOTA+ "'"	
 					//var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta hoy último día. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
-					var msg = "Hola "+facebook[i].NOMBRE+", nos hiciste falta, entendemos que fue difícil gestionar el curso virtual de 3 Líneas de Responsabilidad por esto hemos extendido el plazo para la aprobación. Recuerda que tienes hasta el Lunes 15 de marzo de 2021 - 23:59 pm, \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
+					var msg = "Hola "+facebook[i].NOMBRE+", nos hiciste falta, entendemos que fue difícil gestionar el curso virtual de 3 Líneas de Responsabilidad por esto hemos extendido el plazo para la aprobación. Recuerda que tienes hasta el Lunes 15 de marzo de 2021 - 23:59 pm, \n\nIngresa aquí: * www.campuspichincha.com * \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 					//var recipientId = facebook[i].IDEN
 					var recipientId = '100031314603856'
 						sendTextMessage(recipientId,msg);
