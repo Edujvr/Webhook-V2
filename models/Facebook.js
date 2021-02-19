@@ -13,11 +13,11 @@ const FacebooksSchema = new Schema({
   IDEN:{
     type: String,
     required:true
-  },
+  }/*,
   NOTA:{
     type: String,
     required:true
-  },
+  }*/,
   CONFIR:{
     type: String,
     required:true
