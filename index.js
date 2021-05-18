@@ -98,7 +98,7 @@ app.post("/webhook",async(req, res) =>{
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				for(var i=300; i < 400; i++){
+				for(var i=200; i < 300; i++){
 					//conteo = conteo +1;
 					/*if(i==50 || i == 100 || i== 150|| i== 200|| i== 250|| i== 300|| i== 350|| i== 400|| i== 450|| i== 500|| i== 550|| i== 600|| i== 650|| i== 700|| i== 500|| i== 700|| i== 750|| i== 800|| i== 850|| i== 900|| i== 950|| i== 1000|| i== 1050|| i== 1100|| i== 1150|| i== 1200|| i== 1250|| i== 1300|| i== 1350|| i== 1400|| i== 1450|| i== 1500|| i== 1550|| i== 1600|| i== 1650|| i== 1700|| i== 1750|| i== 1800|| i== 1850|| i== 1900|| i== 1950|| i== 2000|| i== 2050|| i== 2100|| i== 2150){
 						//Thread.sleep(2*1000)
@@ -117,7 +117,7 @@ app.post("/webhook",async(req, res) =>{
 					//var msg = "Hola "+facebook[i].NOMBRE+",  tienes pendiente la aprobación del curso virtual de 3 Líneas de Responsabilidad. La nota mínima de aprobación del curso de 3LR es de 8/10. Recuerda que tienes hasta el: Lunes 15 de marzo de 2021 - 23:59 pm y dispondrá de 2 intentos adicionales para realizar el test. \n\nIngresa aquí: * www.campuspichincha.com * \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 					var recipientId = facebook[i].IDEN
 					//var recipientId = '100031314603856'
-						await sendTextMessage(recipientId,msg);
+						//await sendTextMessage(recipientId,msg);
 						sleep.sleep(1)
 						//sendFileMessage(recipientId);
 						console.log("Mensaje "+i+ " enviado a " + facebook[i].NOMBRE);
