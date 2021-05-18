@@ -117,7 +117,7 @@ app.post("/webhook",async(req, res) =>{
 					//var msg = "Hola "+facebook[i].NOMBRE+",  tienes pendiente la aprobación del curso virtual de 3 Líneas de Responsabilidad. La nota mínima de aprobación del curso de 3LR es de 8/10. Recuerda que tienes hasta el: Lunes 15 de marzo de 2021 - 23:59 pm y dispondrá de 2 intentos adicionales para realizar el test. \n\nIngresa aquí: * www.campuspichincha.com * \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 					var recipientId = facebook[i].IDEN
 					//var recipientId = '100031314603856'
-						//await sendTextMessage(recipientId,msg);
+						await sendTextMessage(recipientId,msg);
 						sleep.sleep(1)
 						//sendFileMessage(recipientId);
 						console.log("Mensaje "+i+ " enviado a " + facebook[i].NOMBRE);
@@ -1124,7 +1124,7 @@ app.post("/webhook",async(req, res) =>{
 		return nameUser
 	}
 	
-	function sendTextMessage(recipientId,msg){
+	async function sendTextMessage(recipientId,msg){
 		const pagetoken = 'DQVJ2RHE0eVZAORDNiOWJ2MzJJek0tWlB0OXpONFZALRUhxNmJPanhpc0ltR1ZAWZAzMzaGN5ZA01adXgzOWd3ZAFVNS1lhLUc1YW5VMmNJY2pGZAklKLWZAkdl9uMWtQZAmxnLTJ6TzZACX2FXSUozOHZAqR1VpZAVZAVZAVdmNWVfa3p2TXBfbTJEWXlROTBzZAjJiX2RmYW5MRFBVamM4VDBxeGxjc29DY0VMYXNTeGY3Q3p2MXVSU2lBWjByc01pVmR3QTVYZA2RSTUZAaazhTZAWJMSl91YjZA3SQZDZD';
 		var messageData = {
 			messaging_type:'UPDATE',
