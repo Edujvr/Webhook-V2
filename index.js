@@ -94,7 +94,7 @@ app.post("/webhook",async(req, res) =>{
 		var query  = Facebooks.where({ EMAIL : "etandazo@pichincha.com"});
 		let conteo = 0;
 		query.find(async function (err, facebook){
-			//console.log(facebook)
+			console.log(facebook)
 			if (err) {
 				res.status(500).send(err);
 			}else{
