@@ -111,7 +111,7 @@ app.post("/webhook",async(req, res) =>{
 						sleep.sleep(1)
 						sendFileMessage(recipientId);
 					}else{*/
-					var msg = facebook[i].NOMBRE +", recuerda tener tu conversación de carrera y desempeño con tu línea de supervisión y registrar tu PID hasta el 21-Mayo-2021, aquí => https://4u.pichincha.com/estatico/plan-individual-de-desarrollo"	
+					var msg = "Hola " facebook[i].NOMBRE +", ahora puedes resetear tu clave de AS400 mediante el siguiente link: \nhttp://as400web:10031/ReseteoClaveUsuariosWeb/paginas/login.jsf* \nRecuerda que debes estar conectado a la red. \n\n·Si deseas conocer más puedes descargar el siguiente pdf:"	
 					//var msg = "Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta hoy último día. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 					//var msg = "Hola "+facebook[i].NOMBRE+", nos hiciste falta, entendemos que fue difícil gestionar el curso virtual de 3 Líneas de Responsabilidad por esto hemos extendido el plazo para la aprobación. Recuerda que tienes hasta el Lunes 15 de marzo de 2021 - 23:59 pm, \n\nIngresa aquí: * www.campuspichincha.com * \n\nSi deseas conocer más puedes descargar el siguiente pdf"
 					//var msg = "Hola "+facebook[i].NOMBRE+",  tienes pendiente la aprobación del curso virtual de 3 Líneas de Responsabilidad. La nota mínima de aprobación del curso de 3LR es de 8/10. Recuerda que tienes hasta el: Lunes 15 de marzo de 2021 - 23:59 pm y dispondrá de 2 intentos adicionales para realizar el test. \n\nIngresa aquí: * www.campuspichincha.com * \n\nSi deseas conocer más puedes descargar el siguiente pdf"
@@ -119,7 +119,7 @@ app.post("/webhook",async(req, res) =>{
 					//var recipientId = '100031314603856'
 						await sendTextMessage(recipientId,msg);
 						sleep.sleep(1)
-						//sendFileMessage(recipientId);
+						sendFileMessage(recipientId);
 						console.log("Mensaje "+i+ " enviado a " + facebook[i].NOMBRE);
 						//console.log("Hola "+facebook[i].NOMBRE+", no has realizado el Curso virtual *'3 Líneas de Responsabilidad'*. Recuerda que tienes hasta el Jueves 28 de enero 2021. \n\nIngresa aquí: * www.campuspichincha.com * \n\nEste curso busca enseñarte como mitigar y denunciar los riesgos institucionales, puesto que es un pilar fundamental de nuestra Organización el contar con una gestión de riesgo eficaz. \n\nSi deseas conocer más puedes descargar el siguiente pdf");
 						//console.log(facebook[i].IDEN);
@@ -1172,7 +1172,7 @@ app.post("/webhook",async(req, res) =>{
 			   attachment: {
 			      type: 'file',
 			      payload: {
-				url: "https://storage.googleapis.com/documentos_pibot/3%20lineas%20R.pdf"
+				url: "https://storage.googleapis.com/documentos_pibot/MESA_DE_SERVICIO/CIR_RO_2269_Tarjetas_de_credito_Reseteo_Clave_de_acceso_AS400.pdf"
 			      }
 			    }
 			  }
