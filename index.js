@@ -90,8 +90,8 @@ app.post("/webhook",async(req, res) =>{
 		
 	//Consulta nombre de Generalista en Mongo Atlas 
 	if(action == "broadcasting"){
-		var query  = Facebooks.where({ CONFIR : "SI"});
-		//var query  = Facebooks.where({ EMAIL : "etandazo@pichincha.com"});
+		//var query  = Facebooks.where({ CONFIR : "SI"});
+		var query  = Facebooks.where({ EMAIL : "etandazo@pichincha.com"});
 		let conteo = 0;
 		query.find(async function (err, facebook){
 			//console.log(facebook)
