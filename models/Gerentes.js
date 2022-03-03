@@ -9,6 +9,10 @@ const GerentesSchema = new Schema({
   GERENTE_AGENCIA:{
     type: String,
     required:true
+  },  
+  JEFE_COMERCIAL_SERVICIOS:{
+    type: String,
+    required:true
   },
   CEL_GERENTE_AGENCIA:{
     type: String,
