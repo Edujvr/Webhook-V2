@@ -1247,7 +1247,7 @@ app.post("/webhook",async(req, res) =>{
 		});
 	
 	// Creación mensaje Set de Usuario
-	var messageSet = chatbase.newMessageSet()
+	/*var messageSet = chatbase.newMessageSet()
 	  .setApiKey("25a20150-b9b6-470c-9289-c793cb04b33c") // Chatbase API key
 	  .setPlatform("Workplace") // Nombre de la Plataforma del Chat
 	  .setVersion('2.1'); // La versión que el bot desplegado es
@@ -1300,7 +1300,7 @@ app.post("/webhook",async(req, res) =>{
 	  })
 	  .catch(error => {
 	    console.error(error);
-	});
+	});*/
 	
 }	
 	//Envio de información webhook a Dialogflow Messenger
