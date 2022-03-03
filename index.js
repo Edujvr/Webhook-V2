@@ -741,7 +741,6 @@ app.post("/webhook",async(req, res) =>{
 				nameW=res.name	
 				var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
 				query.findOne(function (err, agencias) {
-					console.log(agencias)
 					if (err) {
 					  res.status(500).send(err);
 					}else if(agencias==undefined){
@@ -751,6 +750,7 @@ app.post("/webhook",async(req, res) =>{
 						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
 						var query1  = Gerentes.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});				
 						query1.findOne(function (err, gerentes) {
+							console.log(gerentes)
 							if (err) {
 								res.status(500).send(err);
 							}else if(gerentes==undefined){
