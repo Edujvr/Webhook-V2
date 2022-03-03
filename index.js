@@ -741,6 +741,7 @@ app.post("/webhook",async(req, res) =>{
 				nameW=res.name	
 				var query  = Agencias.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia });
 				query.findOne(function (err, agencias) {
+					console.log(agencias)
 					if (err) {
 					  res.status(500).send(err);
 					}else if(agencias==undefined){
