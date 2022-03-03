@@ -759,7 +759,7 @@ app.post("/webhook",async(req, res) =>{
 							}else{
 								respuestaBot=respuestaBot + "\n\nLineas de Supervisión:";
 								//respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;	
-								if(gerentes.GERENTE_AGENCIA='N   '){
+								if(gerentes.GERENTE_AGENCIA=='N   '){
 									respuestaBot = respuestaBot+"\nJefe Comercial y Servicios: " + gerentes.JEFE_COMERCIAL_SERVICIOS + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
 								}else{
 									respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
@@ -842,7 +842,7 @@ app.post("/webhook",async(req, res) =>{
 						respuestaBot="Agencia "+ gerentes.NOMBRE+":";
 						if (err) {
 						  res.status(500).send(err);
-						}else if(gerentes.GERENTE_AGENCIA='N   '){
+						}else if(gerentes.GERENTE_AGENCIA=='N   '){
 							respuestaBot = respuestaBot+"\nJefe Comercial y Servicios: " + gerentes.JEFE_COMERCIAL_SERVICIOS + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
 						}else{
 							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
