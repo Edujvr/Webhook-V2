@@ -759,7 +759,11 @@ app.post("/webhook",async(req, res) =>{
 							}else{
 								respuestaBot=respuestaBot + "\n\nLineas de Supervisión:";
 								//respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;	
-								respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 	
+								if(gerentes.GERENTE_AGENCIA='N   '){
+									respuestaBot = respuestaBot+"\nJefe Comercial y Servicios: " + gerentes.JEFE_COMERCIAL_SERVICIOS + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
+								}else{
+									respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
+								}	
 								var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
 								query2.findOne(function (err, administradores) {
 									respuestaBot=respuestaBot+"\n"
