@@ -842,11 +842,15 @@ app.post("/webhook",async(req, res) =>{
 						respuestaBot="Agencia "+ gerentes.NOMBRE+":";
 						if (err) {
 						  res.status(500).send(err);
-						}if(gerentes.GERENTE_AGENCIA != 'N/A'){
-							//respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA + "\nCONVENCIONAL: " + gerentes.CONV_GERENTE_AGENCIA;
+						}else if(gerentes.GERENTE_AGENCIA='N   '){
+							respuestaBot = respuestaBot+"\nJefe Comercial y Servicios: " + gerentes.JEFE_COMERCIAL_SERVICIOS + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
+						}else{
 							respuestaBot =respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
-						}	sendResponse(respuestaBot);
-							sendAnalytics(nameW);
+						}	
+						
+						
+						sendResponse(respuestaBot);
+						sendAnalytics(nameW);
 					}
 				});			
 			});
