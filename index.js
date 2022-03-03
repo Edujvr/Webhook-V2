@@ -880,8 +880,8 @@ app.post("/webhook",async(req, res) =>{
 					}else{
 						//respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nEstado Agencia Por Contigencia COVID_19: " + agencias.ESTADO +  "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
 						respuestaBot = "La Agencia " + agencias.NOMBRE + " cc: "+ agencias.CC + " se encuentra en: \n" + agencias.PROVINCIA + "- " + agencias.CUIDAD + ", " + agencias.DIRECCION + "\nReferencia: " + agencias.REFERENCIA + "\nTeléfonos: " + agencias.TELF_1 + " /" + agencias.TELF_2 + "\nHorarios \n Lunes a Viernes: " + agencias.H_SEMANA + "\n Sábado: " + agencias.H_SABADO + "\n Domingo: " + agencias.H_DOMINGO				
-						console.log(req.body.queryResult.parameters.NombreAgencia)
-						console.log(agencias.NOMBRE)
+						//console.log(req.body.queryResult.parameters.NombreAgencia)
+						//console.log(agencias.NOMBRE)
 						var query1  = Gerentes.where({ NOMBRE: agencias.NOMBRE});				
 						query1.findOne(function (err, gerentes) {
 							console.log(gerentes)
@@ -898,7 +898,7 @@ app.post("/webhook",async(req, res) =>{
 								}else{
 									respuestaBot = respuestaBot+"\nGerente Agencia: " + gerentes.GERENTE_AGENCIA + "\nCEL: " + gerentes.CEL_GERENTE_AGENCIA + "\nEXT: " + gerentes.EXT_GERENTE_AGENCIA 
 								}	
-								var query2  = Administradores.where({ NOMBRE: req.body.queryResult.parameters.NombreAgencia});
+								var query2  = Administradores.where({ NOMBRE: agencias.NOMBRE});
 								query2.findOne(function (err, administradores) {
 									respuestaBot=respuestaBot+"\n"
 									if (err) {
