@@ -28,12 +28,11 @@
     "firebase-admin": "^4.2.1",
     "firebase-functions": "^0.5.7",
     "apiai": "^4.0.3",
-    "mongoose": "5.7.10",
+    "mongoose": "^7.0.4",
     "nodemailer": "6.1.1",
     "fbgraph": "1.4.4",
     "facebookgraph": "0.4.0",
-    "q":"1.5.1",
-    "mongoose": "5.0.0-rc2"
+    "q":"1.5.1"
   },
   "engines": {
     "node": "8.1.4"
